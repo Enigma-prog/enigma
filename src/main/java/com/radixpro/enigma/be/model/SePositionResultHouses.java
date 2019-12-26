@@ -4,10 +4,10 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.astron.calcmodel;
+package com.radixpro.enigma.be.model;
 
 /**
- * Container for the result of a SE calculation for houses, holds array with calculated positions and a possible error Message.
+ * DTO for the result of a SE calculation for houses, holds array with positions and a possible error Message.
  */
 public class SePositionResultHouses {
 

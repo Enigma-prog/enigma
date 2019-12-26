@@ -4,8 +4,9 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.astron.calcmodel;
+package com.radixpro.enigma.be.model;
 
+import com.radixpro.enigma.be.model.SePositionResultHouses;
 import org.junit.Before;
 import org.junit.Test;
 

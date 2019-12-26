@@ -4,7 +4,7 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.appmodel;
+package com.radixpro.enigma.be.model;
 
 /**
  * Celestial bodies and id's to access the SE.

@@ -15,6 +15,8 @@
         <junit.version>4.12</junit.version>
         <mockito.version>3.2.4</mockito.version>
         <javafx-controls.version>14-ea+4</javafx-controls.version>
+        <javafx-fxml.version>14-ea+4</javafx-fxml.version>
+        <jackson.version>2.10.1</jackson.version>
     </properties>
 
     <build>
@@ -27,14 +29,14 @@
                     <target>13</target>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.openjfx</groupId>-->
-<!--                <artifactId>javafx</artifactId>-->
-<!--                <version>11</version>-->
-<!--                <configuration>-->
-<!--                    <mainClass>com.radixpro.enigma.ui.App</mainClass>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx</artifactId>
+                <version>11</version>
+                <configuration>
+                    <mainClass>com.radixpro.enigma.ui.App</mainClass>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>
@@ -49,6 +51,26 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${javafx-controls.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx-fxml.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
