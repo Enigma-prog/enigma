@@ -9,6 +9,7 @@ package com.radixpro.enigma.be.astron.main;
 import com.radixpro.enigma.be.astron.assist.*;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CelBody {
@@ -20,24 +21,26 @@ public class CelBody {
    private int equatorialFlags;
    private int horizontalFlags;
 
-   public CelBody(final SeFrontend seFrontend, final Double jdEt, final CelBodiesToCalculate celBody,
+   public CelBody(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody,
                   final Location location, final List<SeFlags> flagList) {
-      defineFlags(flagList);
-      calculate(seFrontend, jdEt, celBody, location);
+      final List<SeFlags> localFlagList = new ArrayList<>(flagList); // need copy to prevent changing the content of flaglist.
+      defineFlags(localFlagList);
+      calculate(seFrontend, jdUt, celBody, location);
    }
 
-   private void defineFlags(final List<SeFlags> flagList) {
-      eclipticalFlags = (int) new CombinedFlags(flagList).getCombinedValue();
-      flagList.add(SeFlags.EQUATORIAL);
-      equatorialFlags = (int) new CombinedFlags(flagList).getCombinedValue();
+   private void defineFlags(final List<SeFlags> localFlagList) {
+      eclipticalFlags = (int) new CombinedFlags(localFlagList).getCombinedValue();
+      localFlagList.add(SeFlags.EQUATORIAL);
+      equatorialFlags = (int) new CombinedFlags(localFlagList).getCombinedValue();
+
       horizontalFlags = (int) SeFlags.HORIZONTAL.getSeValue();
    }
 
-   private void calculate(final SeFrontend seFrontend, final Double jdEt, final CelBodiesToCalculate celBody,
+   private void calculate(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody,
                           final Location location) {
-      eclipticalPosition = new CelBodySingleCoordinates(seFrontend, jdEt, celBody, eclipticalFlags);
-      equatorialPosition = new CelBodySingleCoordinates(seFrontend, jdEt, celBody, equatorialFlags);
-      horizontalPosition = new CelBodyHorizontalCoordinates(seFrontend, jdEt, eclipticalPosition, location,
+      eclipticalPosition = new CelBodySingleCoordinates(seFrontend, jdUt, celBody, eclipticalFlags);
+      equatorialPosition = new CelBodySingleCoordinates(seFrontend, jdUt, celBody, equatorialFlags);
+      horizontalPosition = new CelBodyHorizontalCoordinates(seFrontend, jdUt, eclipticalPosition, location,
             horizontalFlags);
    }
 

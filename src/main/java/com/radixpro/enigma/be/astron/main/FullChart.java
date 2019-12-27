@@ -59,7 +59,7 @@ public class FullChart {
    private void calculateBodies() {
       bodies = new ArrayList<>();
       for (int i = 0; i < settings.getCelBodies().size(); i++) {
-         bodies.add(new CelBody(seFrontend, simpleDateTime.getJdEt(), settings.getCelBodies().get(i), location, allFlags));
+         bodies.add(new CelBody(seFrontend, simpleDateTime.getJdUt(), settings.getCelBodies().get(i), location, allFlags));
       }
    }
 

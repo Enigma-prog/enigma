@@ -10,6 +10,12 @@ public class Location {
    private final double geoLat;
    private final double geoLong;
 
+   /**
+    * DTO for geographic latitude and geographic longitude
+    *
+    * @param geoLat  Geographic latitude
+    * @param geoLong Geographic longitude
+    */
    public Location(final double geoLat, final double geoLong) {
       this.geoLat = geoLat;
       this.geoLong = geoLong;

@@ -21,12 +21,12 @@ public class CelBodySingleCoordinates {
    private double deviationSpeed;
    private double distanceSpeed;
 
-   public CelBodySingleCoordinates(final SeFrontend seFrontend, final Double jdEt, final CelBodiesToCalculate celBody, final int flags) {
-      calculate(seFrontend, jdEt, celBody, flags);
+   public CelBodySingleCoordinates(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody, final int flags) {
+      calculate(seFrontend, jdUt, celBody, flags);
    }
 
-   private void calculate(final SeFrontend seFrontend, final Double jdEt, final CelBodiesToCalculate celBody, final int flags) {
-      SePositionResultCelBodies sePositionResult = seFrontend.getPositionsForCelBody(jdEt, celBody.getId(), flags);
+   private void calculate(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody, final int flags) {
+      SePositionResultCelBodies sePositionResult = seFrontend.getPositionsForCelBody(jdUt, celBody.getId(), flags);
       errorMsg = sePositionResult.getErrorMsg();
       mainPosition = sePositionResult.getAllPositions()[0];
       deviationPosition = sePositionResult.getAllPositions()[1];
