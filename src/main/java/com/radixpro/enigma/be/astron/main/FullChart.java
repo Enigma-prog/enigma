@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class FullChart {
 
-   private final DateTime dateTime;
+   private final SimpleDateTime simpleDateTime;
    private final Location location;
    private final CalculationSettings settings;
    private final SeFrontend seFrontend;
@@ -26,8 +26,8 @@ public class FullChart {
    private HouseValues houseValues;
    private List<CelBody> bodies;
 
-   public FullChart(final DateTime dateTime, final Location location, final CalculationSettings settings) {
-      this.dateTime = dateTime;
+   public FullChart(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
+      this.simpleDateTime = simpleDateTime;
       this.location = location;
       this.settings = settings;
       seFrontend = SeFrontend.getFrontend();
@@ -53,13 +53,13 @@ public class FullChart {
    }
 
    private void calculateHouses() {
-      houseValues = new HouseValues(seFrontend, dateTime.getJdUt(), (int) flagsValue, location, settings.getHouseSystem());
+      houseValues = new HouseValues(seFrontend, simpleDateTime.getJdUt(), (int) flagsValue, location, settings.getHouseSystem());
    }
 
    private void calculateBodies() {
       bodies = new ArrayList<>();
       for (int i = 0; i < settings.getCelBodies().size(); i++) {
-         bodies.add(new CelBody(seFrontend, dateTime.getJdEt(), settings.getCelBodies().get(i), location, allFlags));
+         bodies.add(new CelBody(seFrontend, simpleDateTime.getJdEt(), settings.getCelBodies().get(i), location, allFlags));
       }
    }
 
@@ -71,8 +71,8 @@ public class FullChart {
       return bodies;
    }
 
-   public DateTime getDateTime() {
-      return dateTime;
+   public SimpleDateTime getSimpleDateTime() {
+      return simpleDateTime;
    }
 
    public Location getLocation() {

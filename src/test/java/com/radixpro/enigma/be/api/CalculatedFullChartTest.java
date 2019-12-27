@@ -27,7 +27,7 @@ public class CalculatedFullChartTest {
    @Mock
    private Location locationMock;
    @Mock
-   private DateTime dateTimeMock;
+   private SimpleDateTime simpleDateTimeMock;
    @Mock
    private CalculationSettings settingsMock;
    private FullChart fullChart;
@@ -37,8 +37,8 @@ public class CalculatedFullChartTest {
       final List<CelBodiesToCalculate> bodies = new ArrayList<>();
       bodies.add(CelBodiesToCalculate.SUN);
       bodies.add(CelBodiesToCalculate.MOON);
-      when(dateTimeMock.getJdEt()).thenReturn(12345.6789);
-      when(dateTimeMock.getJdUt()).thenReturn(12345.6790);
+      when(simpleDateTimeMock.getJdEt()).thenReturn(12345.6789);
+      when(simpleDateTimeMock.getJdUt()).thenReturn(12345.6790);
       when(locationMock.getGeoLat()).thenReturn(44.4);
       when(locationMock.getGeoLong()).thenReturn(22.2);
       when(settingsMock.isHeliocentric()).thenReturn(false);
@@ -46,7 +46,7 @@ public class CalculatedFullChartTest {
       when(settingsMock.isHeliocentric()).thenReturn(false);
       when(settingsMock.getHouseSystem()).thenReturn(HouseSystemsToCalculate.PLACIDUS);
       when(settingsMock.getCelBodies()).thenReturn(bodies);
-      fullChart = new FullChart(dateTimeMock, locationMock, settingsMock);
+      fullChart = new FullChart(simpleDateTimeMock, locationMock, settingsMock);
    }
 
    @Test
@@ -66,7 +66,7 @@ public class CalculatedFullChartTest {
 
    @Test
    public void getDateTime() {
-      assertEquals(dateTimeMock, fullChart.getDateTime());
+      assertEquals(simpleDateTimeMock, fullChart.getSimpleDateTime());
    }
 
    @Test

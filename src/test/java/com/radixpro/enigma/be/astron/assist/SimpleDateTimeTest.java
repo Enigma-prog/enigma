@@ -19,11 +19,15 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DateTimeTest {
+public class SimpleDateTimeTest {
 
    @Mock
    private SeFrontend seFrontendMock;
-   private DateTime dateTime;
+   @Mock
+   private SimpleDate simpleDateMock;
+   @Mock
+   private SimpleTime simpleTimeMock;
+   private SimpleDateTime simpleDateTime;
    private final int year = 2019;
    private final int month = 12;
    private final int day = 26;
@@ -37,53 +41,60 @@ public class DateTimeTest {
 
    @Before
    public void setUp() {
+      when(simpleDateMock.getYear()).thenReturn(year);
+      when(simpleDateMock.getMonth()).thenReturn(month);
+      when(simpleDateMock.getDay()).thenReturn(day);
+      when(simpleDateMock.isGregorian()).thenReturn(gregorian);
+      when(simpleTimeMock.getHour()).thenReturn(hour);
+      when(simpleTimeMock.getMinute()).thenReturn(minute);
+      when(simpleTimeMock.getSecond()).thenReturn(second);
       when(seFrontendMock.getJulianDay(anyInt(), anyInt(), anyInt(), anyInt(), anyInt(), anyInt(),
             anyBoolean())).thenReturn(new double[]{jdEt, jdUt});
-      dateTime = new DateTime(seFrontendMock, year, month, day, hour, minute, second, gregorian);
+      simpleDateTime = new SimpleDateTime(seFrontendMock, simpleDateMock, simpleTimeMock);
    }
 
    @Test
    public void getYear() {
-      assertEquals(year, dateTime.getYear());
+      assertEquals(year, simpleDateTime.getYear());
    }
 
    @Test
    public void getMonth() {
-      assertEquals(month, dateTime.getMonth());
+      assertEquals(month, simpleDateTime.getMonth());
    }
 
    @Test
    public void getDay() {
-      assertEquals(day, dateTime.getDay());
+      assertEquals(day, simpleDateTime.getDay());
    }
 
    @Test
    public void getHour() {
-      assertEquals(hour, dateTime.getHour());
+      assertEquals(hour, simpleDateTime.getHour());
    }
 
    @Test
    public void getMinute() {
-      assertEquals(minute, dateTime.getMinute());
+      assertEquals(minute, simpleDateTime.getMinute());
    }
 
    @Test
    public void getSecond() {
-      assertEquals(second, dateTime.getSecond());
+      assertEquals(second, simpleDateTime.getSecond());
    }
 
    @Test
    public void isGregorian() {
-      assertEquals(gregorian, dateTime.isGregorian());
+      assertEquals(gregorian, simpleDateTime.isGregorian());
    }
 
    @Test
    public void getJdUt() {
-      assertEquals(jdUt, dateTime.getJdUt(), delta);
+      assertEquals(jdUt, simpleDateTime.getJdUt(), delta);
    }
 
    @Test
    public void getJdEt() {
-      assertEquals(jdEt, dateTime.getJdEt(), delta);
+      assertEquals(jdEt, simpleDateTime.getJdEt(), delta);
    }
 }

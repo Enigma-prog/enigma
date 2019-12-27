@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 public class FullChartTest {
 
    @Mock
-   private DateTime dateTimeMock;
+   private SimpleDateTime simpleDateTimeMock;
    @Mock
    private Location locationMock;
    @Mock
@@ -43,7 +43,7 @@ public class FullChartTest {
       when(settingsMock.getHouseSystem()).thenReturn(HouseSystemsToCalculate.AXIAL);
       when(settingsMock.getCelBodies()).thenReturn(celBodies);
 
-      fullChart = new FullChart(dateTimeMock, locationMock, settingsMock);
+      fullChart = new FullChart(simpleDateTimeMock, locationMock, settingsMock);
    }
 
    @Test
@@ -58,7 +58,7 @@ public class FullChartTest {
 
    @Test
    public void getDateTime() {
-      assertEquals(dateTimeMock, fullChart.getDateTime());
+      assertEquals(simpleDateTimeMock, fullChart.getSimpleDateTime());
    }
 
    @Test
