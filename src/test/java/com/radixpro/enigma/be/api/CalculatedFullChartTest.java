@@ -37,8 +37,6 @@ public class CalculatedFullChartTest {
       final List<CelBodiesToCalculate> bodies = new ArrayList<>();
       bodies.add(CelBodiesToCalculate.SUN);
       bodies.add(CelBodiesToCalculate.MOON);
-      when(simpleDateTimeMock.getJdEt()).thenReturn(12345.6789);
-      when(simpleDateTimeMock.getJdUt()).thenReturn(12345.6790);
       when(locationMock.getGeoLat()).thenReturn(44.4);
       when(locationMock.getGeoLong()).thenReturn(22.2);
       when(settingsMock.isHeliocentric()).thenReturn(false);
