@@ -39,6 +39,7 @@ public class FullChart {
    private void calculateFlags() {
       allFlags = new ArrayList<>();
       allFlags.add(SeFlags.SWISSEPH);
+      allFlags.add(SeFlags.SPEED);
       if (settings.isHeliocentric()) {
          allFlags.add(SeFlags.HELIOCENTRIC);
       }

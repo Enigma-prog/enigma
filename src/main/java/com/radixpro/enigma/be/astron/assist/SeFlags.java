@@ -15,6 +15,7 @@ import static swisseph.SweConst.*;
 public enum SeFlags {
    SWISSEPH(SEFLG_SWIEPH),             // 2L
    HELIOCENTRIC(SEFLG_HELCTR),         // 8L
+   SPEED(SEFLG_SPEED),                 // 256L
    EQUATORIAL(SEFLG_EQUATORIAL),       // 2048L
    TOPOCENTRIC(SEFLG_TOPOCTR),         // 32*1024L
    SIDEREAL(SEFLG_SIDEREAL),           // 64*1024L
