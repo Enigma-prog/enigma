@@ -35,7 +35,6 @@ public class SimpleDateTimeTest {
    private final int minute = 3;
    private final int second = 45;
    private final boolean gregorian = true;
-   private final double jdEt = 12.34;
    private final double jdUt = 12.35;
    private final double delta = 0.00000001;
 
@@ -49,7 +48,7 @@ public class SimpleDateTimeTest {
       when(simpleTimeMock.getMinute()).thenReturn(minute);
       when(simpleTimeMock.getSecond()).thenReturn(second);
       when(seFrontendMock.getJulianDay(anyInt(), anyInt(), anyInt(), anyInt(), anyInt(), anyInt(),
-            anyBoolean())).thenReturn(new double[]{jdEt, jdUt});
+            anyBoolean())).thenReturn(new double[]{123.45, jdUt});
       simpleDateTime = new SimpleDateTime(seFrontendMock, simpleDateMock, simpleTimeMock);
    }
 
@@ -93,8 +92,4 @@ public class SimpleDateTimeTest {
       assertEquals(jdUt, simpleDateTime.getJdUt(), delta);
    }
 
-   @Test
-   public void getJdEt() {
-      assertEquals(jdEt, simpleDateTime.getJdEt(), delta);
-   }
 }

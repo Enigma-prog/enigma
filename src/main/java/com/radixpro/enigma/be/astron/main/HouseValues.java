@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.be.astron.main;
 
+import com.radixpro.enigma.be.astron.assist.FullPositionResultHouses;
 import com.radixpro.enigma.be.astron.assist.HouseSystemsToCalculate;
 import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
@@ -19,9 +20,9 @@ import java.util.List;
  */
 public class HouseValues {
 
-   private List<Double> cusps;  // values start at position 1
-   private double mc;
-   private double ascendant;
+   private List<FullPositionResultHouses> cusps;  // values start at position 1
+   private FullPositionResultHouses mc;
+   private FullPositionResultHouses ascendant;
    private double eastpoint;
    private double vertex;
    private double armc;
@@ -38,24 +39,30 @@ public class HouseValues {
             system.getNrOfCusps());
       cusps = new ArrayList<>();
       for (int i = 0; i < positions.getCusps().length; i++) {
-         cusps.add(positions.getCusps()[i]);
+         cusps.add(constructFullPosition(seFrontend, positions.getCusps()[i], jdUt));
       }
-      ascendant = positions.getAscMc()[0];
-      mc = positions.getAscMc()[1];
+      ascendant = constructFullPosition(seFrontend, positions.getAscMc()[0], jdUt);
+      mc = constructFullPosition(seFrontend, positions.getAscMc()[1], jdUt);
       armc = positions.getAscMc()[2];
       vertex = positions.getAscMc()[3];
       eastpoint = positions.getAscMc()[4];
    }
 
-   public List<Double> getCusps() {
+   private FullPositionResultHouses constructFullPosition(final SeFrontend seFrontend, final double longitude,
+                                                          final double jdUt) {
+      final EquatorialPosition equatorialPosition = new EquatorialPosition(seFrontend, longitude, jdUt);
+      return new FullPositionResultHouses(longitude, equatorialPosition);
+   }
+
+   public List<FullPositionResultHouses> getCusps() {
       return cusps;
    }
 
-   public double getMc() {
+   public FullPositionResultHouses getMc() {
       return mc;
    }
 
-   public double getAscendant() {
+   public FullPositionResultHouses getAscendant() {
       return ascendant;
    }
 

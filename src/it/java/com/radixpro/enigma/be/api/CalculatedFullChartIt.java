@@ -74,8 +74,11 @@ public class CalculatedFullChartIt {
 
       // celestial bodies, all longitudes and samples for the other values
       List<CelBody> bodies = calculatedFullChart.getBodies();
+
+      // obliquity
+      assertEquals(23.447072308, calculatedFullChart.getObliquity(), DELTA);
+
       // longitudes
-      assertEquals(2434406.81806005, dateTime.getJdEt(), 0.00001);  // ET
       assertEquals(2434406.81770833, dateTime.getJdUt(), 0.00001);  // UT
       assertEquals(309.1185106790, bodies.get(0).getEclipticalPosition().getMainPosition(), DELTA);  // Sun
       assertEquals(121.764999, bodies.get(1).getEclipticalPosition().getMainPosition(), DELTA);   // Moon (test was 121.7647365976)
@@ -156,22 +159,22 @@ public class CalculatedFullChartIt {
       // houses
       HouseValues houseValues = calculatedFullChart.getHouseValues();
       assertEquals(249.5350953050, houseValues.getArmc(), DELTA);
-      assertEquals(314.7210736953, houseValues.getAscendant(), DELTA);
-      assertEquals(251.1002358654, houseValues.getMc(), DELTA);
+      assertEquals(314.7210736953, houseValues.getAscendant().getLongitude(), DELTA);
+      assertEquals(251.1002358654, houseValues.getMc().getLongitude(), DELTA);
       assertEquals(163.3350501542, houseValues.getVertex(), DELTA);
       assertEquals(337.8647433572, houseValues.getEastpoint(), DELTA);      // TODO calculate or find reference data for eastpoint
-      assertEquals(314.7210736953, houseValues.getCusps().get(1), DELTA);
-      assertEquals(16.4262924252, houseValues.getCusps().get(2), DELTA);
-      assertEquals(50.1257249109, houseValues.getCusps().get(3), DELTA);
-      assertEquals(71.1002358654, houseValues.getCusps().get(4), DELTA);
-      assertEquals(88.3499759259, houseValues.getCusps().get(5), DELTA);
-      assertEquals(106.7107115059, houseValues.getCusps().get(6), DELTA);
-      assertEquals(134.7210736953, houseValues.getCusps().get(7), DELTA);
-      assertEquals(196.4262924252, houseValues.getCusps().get(8), DELTA);
-      assertEquals(230.1257249109, houseValues.getCusps().get(9), DELTA);
-      assertEquals(251.1002358654, houseValues.getCusps().get(10), DELTA);
-      assertEquals(268.3499759259, houseValues.getCusps().get(11), DELTA);
-      assertEquals(286.7107115059, houseValues.getCusps().get(12), DELTA);
+      assertEquals(314.7210736953, houseValues.getCusps().get(1).getLongitude(), DELTA);
+      assertEquals(16.4262924252, houseValues.getCusps().get(2).getLongitude(), DELTA);
+      assertEquals(50.1257249109, houseValues.getCusps().get(3).getLongitude(), DELTA);
+      assertEquals(71.1002358654, houseValues.getCusps().get(4).getLongitude(), DELTA);
+      assertEquals(88.3499759259, houseValues.getCusps().get(5).getLongitude(), DELTA);
+      assertEquals(106.7107115059, houseValues.getCusps().get(6).getLongitude(), DELTA);
+      assertEquals(134.7210736953, houseValues.getCusps().get(7).getLongitude(), DELTA);
+      assertEquals(196.4262924252, houseValues.getCusps().get(8).getLongitude(), DELTA);
+      assertEquals(230.1257249109, houseValues.getCusps().get(9).getLongitude(), DELTA);
+      assertEquals(251.1002358654, houseValues.getCusps().get(10).getLongitude(), DELTA);
+      assertEquals(268.3499759259, houseValues.getCusps().get(11).getLongitude(), DELTA);
+      assertEquals(286.7107115059, houseValues.getCusps().get(12).getLongitude(), DELTA);
    }
 
 }

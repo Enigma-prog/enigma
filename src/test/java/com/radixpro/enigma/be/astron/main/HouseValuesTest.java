@@ -6,9 +6,7 @@
 
 package com.radixpro.enigma.be.astron.main;
 
-import com.radixpro.enigma.be.astron.assist.HouseSystemsToCalculate;
-import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
+import com.radixpro.enigma.be.astron.assist.*;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,35 +33,40 @@ public class HouseValuesTest {
    @Mock
    private SeFrontend seFrontendMock;
    @Mock
-   private SePositionResultHouses sePositionResultMock;
+   private SePositionResultHouses sePositionResultHousesMock;
+   @Mock
+   private SePositionResultCelBodies sePositionResultCelBodiesMock;
    @Mock
    private Location locationMock;
    private HouseValues houseValues;
 
    @Before
    public void setUp() {
-      when(sePositionResultMock.getCusps()).thenReturn(cusps);
-      when(sePositionResultMock.getAscMc()).thenReturn(ascMc);
+      when(sePositionResultHousesMock.getCusps()).thenReturn(cusps);
+      when(sePositionResultHousesMock.getAscMc()).thenReturn(ascMc);
+      when(sePositionResultCelBodiesMock.getAllPositions()).thenReturn(new double[]{23.447, 23.448});
+      when(seFrontendMock.convertToEquatorial(any(), anyDouble())).thenReturn(new double[]{2.3, 3.3});
       when(seFrontendMock.getPositionsForHouses(anyDouble(), anyInt(), any(), anyInt(),
-            anyInt())).thenReturn(sePositionResultMock);
+            anyInt())).thenReturn(sePositionResultHousesMock);
+      when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultCelBodiesMock);
       houseValues = new HouseValues(seFrontendMock, jdUt, flags, locationMock, system);
    }
 
    @Test
    public void getCusps() {
-      List<Double> result = houseValues.getCusps();
+      List<FullPositionResultHouses> result = houseValues.getCusps();
       assertEquals(cusps.length, result.size());
-      assertEquals(cusps[3], result.get(3), delta);
+      assertEquals(cusps[3], result.get(3).getLongitude(), delta);
    }
 
    @Test
    public void getMc() {
-      assertEquals(2.2, houseValues.getMc(), delta);
+      assertEquals(2.2, houseValues.getMc().getLongitude(), delta);
    }
 
    @Test
    public void getAscendant() {
-      assertEquals(1.1, houseValues.getAscendant(), delta);
+      assertEquals(1.1, houseValues.getAscendant().getLongitude(), delta);
    }
 
    @Test

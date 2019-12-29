@@ -13,15 +13,15 @@ public class CelBodyHorizontalCoordinates {
    private double azimuth;
    private double altitude;
 
-   public CelBodyHorizontalCoordinates(final SeFrontend seFrontend, final double jdEt,
+   public CelBodyHorizontalCoordinates(final SeFrontend seFrontend, final double jdUt,
                                        final CelBodySingleCoordinates eclCoord, final Location location,
                                        final int flags) {
-      calculate(seFrontend, jdEt, eclCoord, location, flags);
+      calculate(seFrontend, jdUt, eclCoord, location, flags);
    }
 
-   private void calculate(final SeFrontend seFrontend, final double jdEt, final CelBodySingleCoordinates eclCoord,
+   private void calculate(final SeFrontend seFrontend, final double jdUt, final CelBodySingleCoordinates eclCoord,
                           final Location location, final int flags) {
-      double[] result = seFrontend.getHorizontalPositionForCelBody(jdEt, eclCoord, location, flags);
+      double[] result = seFrontend.getHorizontalPositionForCelBody(jdUt, eclCoord, location, flags);
       azimuth = result[0];
       altitude = result[1];   // true altitude, index 2 = apparent altitude
    }

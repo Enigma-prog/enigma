@@ -25,6 +25,7 @@ public class FullChart {
    private List<SeFlags> allFlags;
    private HouseValues houseValues;
    private List<CelBody> bodies;
+   private double obliquity;
 
    public FullChart(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
       this.simpleDateTime = simpleDateTime;
@@ -34,6 +35,7 @@ public class FullChart {
       calculateFlags();
       calculateHouses();
       calculateBodies();
+      calculateObliquity();
    }
 
    private void calculateFlags() {
@@ -64,6 +66,10 @@ public class FullChart {
       }
    }
 
+   private void calculateObliquity() {
+      obliquity = new Obliquity(seFrontend, simpleDateTime.getJdUt()).getTrueObliquity();
+   }
+
    public HouseValues getHouseValues() {
       return houseValues;
    }
@@ -82,5 +88,9 @@ public class FullChart {
 
    public CalculationSettings getSettings() {
       return settings;
+   }
+
+   public double getObliquity() {
+      return obliquity;
    }
 }

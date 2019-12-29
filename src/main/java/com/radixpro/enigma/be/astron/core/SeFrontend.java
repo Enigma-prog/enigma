@@ -12,6 +12,7 @@ import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import swisseph.SweDate;
 import swisseph.SwissEph;
+import swisseph.SwissLib;
 
 /**
  * Simple wrapper to access the Java port to the SE by Thomas Mack.
@@ -63,35 +64,35 @@ public class SeFrontend {
    /**
     * Calculate ecliptical or equatorial positions for a body
     *
-    * @param jdEt  Julian Day based on EPhemeris Time
+    * @param jdUt  Julian Day based on EPhemeris Time
     * @param id    indicates the body
     * @param flags combined settings for the SE
     * @return calculated positions
     */
-   public SePositionResultCelBodies getPositionsForCelBody(final double jdEt, final int id, final int flags) {
+   public SePositionResultCelBodies getPositionsForCelBody(final double jdUt, final int id, final int flags) {
       double[] allPositions = new double[6];
       var errorMsg = new StringBuffer();  // StringBuilder not possible because Java Port to the SE uses a StringBuffer.
-      swissEph.swe_calc_ut(jdEt, id, flags, allPositions, errorMsg);
+      swissEph.swe_calc_ut(jdUt, id, flags, allPositions, errorMsg);
       return new SePositionResultCelBodies(allPositions, errorMsg.toString());
    }
 
    /**
     * Calculate horizontal positions for a body
     *
-    * @param jdEt     Julian day based on ephemeris time
+    * @param jdUt     Julian day based on ephemeris time
     * @param eclCoord ecliptical coördinates
     * @param location geographic latitude and longitude
     * @param flags    combined settings for the SE
     * @return calculated positions
     */
-   public double[] getHorizontalPositionForCelBody(final double jdEt, final CelBodySingleCoordinates eclCoord,
+   public double[] getHorizontalPositionForCelBody(final double jdUt, final CelBodySingleCoordinates eclCoord,
                                                    final Location location, final int flags) {
       double[] geoPos = {location.getGeoLong(), location.getGeoLat(), 0.0};
       double[] eclPos = {eclCoord.getMainPosition(), eclCoord.getDeviationPosition(), eclCoord.getDistancePosition()};
       double atPress = 0.0;
       double atTemp = 0.0;
       var azAlt = new double[3];
-      swissEph.swe_azalt(jdEt, flags, geoPos, atPress, atTemp, eclPos, azAlt);
+      swissEph.swe_azalt(jdUt, flags, geoPos, atPress, atTemp, eclPos, azAlt);
       return azAlt;
    }
 
@@ -111,6 +112,13 @@ public class SeFrontend {
       var ascMc = new double[10];
       swissEph.swe_houses(jdUt, flags, location.getGeoLat(), location.getGeoLong(), system, cusps, ascMc);
       return new SePositionResultHouses(ascMc, cusps);
+   }
+
+   public double[] convertToEquatorial(final double[] eclipticValues, final double obliquity) {
+      SwissLib swissLib = new SwissLib();
+      double[] equatorialValues = new double[3];
+      swissLib.swe_cotrans(eclipticValues, equatorialValues, -obliquity);  // obliquity must be negative !
+      return equatorialValues;
    }
 
 }

@@ -16,8 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -69,5 +68,10 @@ public class FullChartTest {
    @Test
    public void getSettings() {
       assertEquals(settingsMock, fullChart.getSettings());
+   }
+
+   @Test
+   public void getObliquity() {
+      assertTrue(fullChart.getObliquity() > 0.0);
    }
 }

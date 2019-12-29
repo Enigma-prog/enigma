@@ -46,4 +46,8 @@ public class CalculatedFullChart {
       return fullchart.getLocation();
    }
 
+   public double getObliquity() {
+      return fullchart.getObliquity();
+   }
+
 }

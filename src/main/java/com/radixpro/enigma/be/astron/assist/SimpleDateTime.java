@@ -12,7 +12,6 @@ public class SimpleDateTime {
    private SimpleDate date;
    private SimpleTime time;
    private double jdUt;
-   private double jdEt;
 
    public SimpleDateTime(final SeFrontend seFrontend, final SimpleDate simpleDate, final SimpleTime simpleTime) {
       this.date = simpleDate;
@@ -23,7 +22,7 @@ public class SimpleDateTime {
    private void calculateJd(final SeFrontend seFrontend) {
       double[] jdValues = seFrontend.getJulianDay(date.getYear(), date.getMonth(), date.getDay(), time.getHour(),
             time.getMinute(), time.getSecond(), date.isGregorian());
-      jdEt = jdValues[0];
+      // jdValues[0] is for JD for Ephemris time/ Dynamical time and can be ignored as the SE already handles this
       jdUt = jdValues[1];
    }
 
@@ -57,9 +56,5 @@ public class SimpleDateTime {
 
    public double getJdUt() {
       return jdUt;
-   }
-
-   public double getJdEt() {
-      return jdEt;
    }
 }

@@ -19,13 +19,13 @@ public class Obliquity {
    private double trueObliquity;
    private double meanObliquity;
 
-   public Obliquity(final SeFrontend seFrontend, final double jdEt) {
-      performCalculation(seFrontend, jdEt);
+   public Obliquity(final SeFrontend seFrontend, final double jdUt) {
+      performCalculation(seFrontend, jdUt);
    }
 
-   private void performCalculation(final SeFrontend seFrontend, final double jdEt) {
+   private void performCalculation(final SeFrontend seFrontend, final double jdUt) {
       final int flags = 0;
-      SePositionResultCelBodies calculatedPos = seFrontend.getPositionsForCelBody(jdEt, SE_ECL_NUT, flags);
+      SePositionResultCelBodies calculatedPos = seFrontend.getPositionsForCelBody(jdUt, SE_ECL_NUT, flags);
       trueObliquity = calculatedPos.getAllPositions()[0];
       meanObliquity = calculatedPos.getAllPositions()[1];
    }

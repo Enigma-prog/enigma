@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class ObliquityTest {
 
    public static final double DELTA = 0.00000001;
-   private final double jdEt = 123456.789;
+   private final double jdUt = 123456.789;
    @Mock
    private SeFrontend seFrontendMock;
    @Mock
@@ -34,7 +34,7 @@ public class ObliquityTest {
    public void setUp() {
       when(positionResultMock.getAllPositions()).thenReturn(new double[]{1.1, 1.2, 3.3, 4.4, 0.0, 0.0});
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(positionResultMock);
-      obliquity = new Obliquity(seFrontendMock, jdEt);
+      obliquity = new Obliquity(seFrontendMock, jdUt);
    }
 
    @Test
