@@ -156,7 +156,7 @@ public class CalculatedFullChartIt {
       assertEquals(19.25527778, bodies.get(6).getHorizontalPosition().getAltitude(), DELTA);  // Saturn
       assertEquals(14.26694444, bodies.get(10).getHorizontalPosition().getAltitude(), DELTA);  // Cheiron
 
-      // houses
+      // houses longitude
       HouseValues houseValues = calculatedFullChart.getHouseValues();
       assertEquals(249.5350953050, houseValues.getArmc(), DELTA);
       assertEquals(314.7210736953, houseValues.getAscendant().getLongitude(), DELTA);
@@ -175,6 +175,20 @@ public class CalculatedFullChartIt {
       assertEquals(251.1002358654, houseValues.getCusps().get(10).getLongitude(), DELTA);
       assertEquals(268.3499759259, houseValues.getCusps().get(11).getLongitude(), DELTA);
       assertEquals(286.7107115059, houseValues.getCusps().get(12).getLongitude(), DELTA);
+      // Right ascension, only samples
+      assertEquals(317.1877777778, houseValues.getAscendant().getEquatorialPosition().getRightAscension(), DELTA);
+      assertEquals(88.20138888889, houseValues.getCusps().get(5).getEquatorialPosition().getRightAscension(), DELTA);
+      assertEquals(227.6802777778, houseValues.getCusps().get(9).getEquatorialPosition().getRightAscension(), DELTA);
+      assertEquals(288.12, houseValues.getCusps().get(12).getEquatorialPosition().getRightAscension(), DELTA);
+      // Declination, only samples
+      assertEquals(-16.4227777778, houseValues.getAscendant().getEquatorialPosition().getDeclination(), DELTA);
+      assertEquals(17.7804811, houseValues.getCusps().get(3).getEquatorialPosition().getDeclination(), DELTA);
+      assertEquals(-6.46055555556, houseValues.getCusps().get(8).getEquatorialPosition().getDeclination(), DELTA);
+      assertEquals(-23.4366666667, houseValues.getCusps().get(11).getEquatorialPosition().getDeclination(), DELTA);
+
+      // Azimuth, only samples
+
+      // Altitude, only samples
    }
 
 }
