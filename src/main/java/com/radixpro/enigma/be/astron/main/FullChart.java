@@ -23,8 +23,8 @@ public class FullChart {
    private final SeFrontend seFrontend;
    private long flagsValue;
    private List<SeFlags> allFlags;
-   private HouseValues houseValues;
-   private List<CelBody> bodies;
+   private MundaneValues mundaneValues;
+   private List<CelBodyPosition> bodies;
    private double obliquity;
 
    public FullChart(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
@@ -56,13 +56,13 @@ public class FullChart {
    }
 
    private void calculateHouses() {
-      houseValues = new HouseValues(seFrontend, simpleDateTime.getJdUt(), (int) flagsValue, location, settings.getHouseSystem());
+      mundaneValues = new MundaneValues(seFrontend, simpleDateTime.getJdUt(), (int) flagsValue, location, settings.getHouseSystem());
    }
 
    private void calculateBodies() {
       bodies = new ArrayList<>();
       for (int i = 0; i < settings.getCelBodies().size(); i++) {
-         bodies.add(new CelBody(seFrontend, simpleDateTime.getJdUt(), settings.getCelBodies().get(i), location, allFlags));
+         bodies.add(new CelBodyPosition(seFrontend, simpleDateTime.getJdUt(), settings.getCelBodies().get(i), location, allFlags));
       }
    }
 
@@ -70,11 +70,11 @@ public class FullChart {
       obliquity = new Obliquity(seFrontend, simpleDateTime.getJdUt()).getTrueObliquity();
    }
 
-   public HouseValues getHouseValues() {
-      return houseValues;
+   public MundaneValues getMundaneValues() {
+      return mundaneValues;
    }
 
-   public List<CelBody> getBodies() {
+   public List<CelBodyPosition> getBodies() {
       return bodies;
    }
 

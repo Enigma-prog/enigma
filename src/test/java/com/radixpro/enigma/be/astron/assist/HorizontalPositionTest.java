@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CelBodyHorizontalCoordinatesTest {
+public class HorizontalPositionTest {
 
    private final double jdUt = 123456.789;
    private final double geoLat = 50.0;
@@ -30,25 +30,25 @@ public class CelBodyHorizontalCoordinatesTest {
    private SeFrontend seFrontendMock;
    @Mock
    private Location locationMock;
-   @Mock
-   private CelBodySingleCoordinates celBodySingleCoordinatesMock;
-   private CelBodyHorizontalCoordinates celBodyHorizontalCoordinates;
+   private double[] eclipticalCoordinates;
+   private HorizontalPosition horizontalPosition;
 
    @Before
    public void setUp() {
-      when(seFrontendMock.getHorizontalPositionForCelBody(anyDouble(), any(), any(),
+      when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(),
             anyInt())).thenReturn(horPositions);
-      celBodyHorizontalCoordinates = new CelBodyHorizontalCoordinates(seFrontendMock, jdUt, celBodySingleCoordinatesMock,
+      eclipticalCoordinates = new double[]{100.1, 2.1, 3.1};
+      horizontalPosition = new HorizontalPosition(seFrontendMock, jdUt, eclipticalCoordinates,
             locationMock, flags);
    }
 
    @Test
    public void getAzimuth() {
-      assertEquals(3.3, celBodyHorizontalCoordinates.getAzimuth(), delta);
+      assertEquals(3.3, horizontalPosition.getAzimuth(), delta);
    }
 
    @Test
    public void getAltitude() {
-      assertEquals(4.4, celBodyHorizontalCoordinates.getAltitude(), delta);
+      assertEquals(4.4, horizontalPosition.getAltitude(), delta);
    }
 }

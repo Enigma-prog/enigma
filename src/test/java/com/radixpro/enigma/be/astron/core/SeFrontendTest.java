@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.be.astron.core;
 
-import com.radixpro.enigma.be.astron.assist.CelBodySingleCoordinates;
+import com.radixpro.enigma.be.astron.assist.CelBodySinglePosition;
 import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 public class SeFrontendTest {
 
    @Mock
-   private CelBodySingleCoordinates celBodySingleCoordinatesMock;
+   private CelBodySinglePosition celBodySinglePositionMock;
    @Mock
    private Location locationMock;
    private final double delta = 0.00000001;
@@ -40,9 +40,6 @@ public class SeFrontendTest {
    public void setUp() {
       when(locationMock.getGeoLat()).thenReturn(geoLat);
       when(locationMock.getGeoLong()).thenReturn(geoLong);
-      when(celBodySingleCoordinatesMock.getMainPosition()).thenReturn(100.0);
-      when(celBodySingleCoordinatesMock.getDeviationPosition()).thenReturn(-1.0);
-      when(celBodySingleCoordinatesMock.getDistancePosition()).thenReturn(3.3);
    }
 
    @Test
@@ -74,12 +71,13 @@ public class SeFrontendTest {
    }
 
    @Test
-   public void getHorizontalPositionForCelBody() {
+   public void getHorizontalPosition() {
       int horFlags = 0;    // ecliptical
-      double[] result = SeFrontend.getFrontend().getHorizontalPositionForCelBody(jdUt, celBodySingleCoordinatesMock,
+      double[] eclipticalCoordinates = new double[]{22.2, 2.2, 5.2};
+      double[] result = SeFrontend.getFrontend().getHorizontalPosition(jdUt, eclipticalCoordinates,
             locationMock, horFlags);
-      assertEquals(158.59341318390926, result[0], delta);
-      assertEquals(-12.93921011397498, result[1], delta);
+      assertEquals(238.22139830075912, result[0], delta);
+      assertEquals(-9.634283826590398, result[1], delta);
 
    }
 

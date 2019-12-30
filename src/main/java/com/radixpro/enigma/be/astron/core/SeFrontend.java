@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.be.astron.core;
 
-import com.radixpro.enigma.be.astron.assist.CelBodySingleCoordinates;
 import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
@@ -80,15 +79,15 @@ public class SeFrontend {
     * Calculate horizontal positions for a body
     *
     * @param jdUt     Julian day based on ephemeris time
-    * @param eclCoord ecliptical coördinates
+    * @param eclCoord ecliptical coördinates: index 0 = longitude, 1 = latitude, 2 = distance
     * @param location geographic latitude and longitude
     * @param flags    combined settings for the SE
     * @return calculated positions
     */
-   public double[] getHorizontalPositionForCelBody(final double jdUt, final CelBodySingleCoordinates eclCoord,
-                                                   final Location location, final int flags) {
+   public double[] getHorizontalPosition(final double jdUt, final double[] eclCoord,
+                                         final Location location, final int flags) {
       double[] geoPos = {location.getGeoLong(), location.getGeoLat(), 0.0};
-      double[] eclPos = {eclCoord.getMainPosition(), eclCoord.getDeviationPosition(), eclCoord.getDistancePosition()};
+      double[] eclPos = {eclCoord[0], eclCoord[1], eclCoord[2]};
       double atPress = 0.0;
       double atTemp = 0.0;
       var azAlt = new double[3];

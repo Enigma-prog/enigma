@@ -54,7 +54,7 @@ public class CalculatedFullChartTest {
 
    @Test
    public void getHouseValues() {
-      assertNotNull(fullChart.getHouseValues());
+      assertNotNull(fullChart.getMundaneValues());
    }
 
    @Test

@@ -24,7 +24,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CelBodyTest {
+public class CelBodyPositionTest {
 
    @Mock
    private SeFrontend seFrontendMock;
@@ -32,7 +32,7 @@ public class CelBodyTest {
    private Location locationMock;
    @Mock
    private SePositionResultCelBodies sePositionResultMock;
-   private CelBody celBody;
+   private CelBodyPosition celBodyPosition;
    private final Double jdUt = 1234567.891;
    private final CelBodiesToCalculate celBodyToCalc = CelBodiesToCalculate.MERCURY;
    private final double geoLat = 52.0;
@@ -44,25 +44,25 @@ public class CelBodyTest {
       when(sePositionResultMock.getErrorMsg()).thenReturn("errormsg");
       when(sePositionResultMock.getAllPositions()).thenReturn(new double[]{1.1, 1.2, 1.3, 1.4, 1.5, 1.6});
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultMock);
-      when(seFrontendMock.getHorizontalPositionForCelBody(anyDouble(), any(), any(),
+      when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(),
             anyInt())).thenReturn(new double[]{3.4, 5.6});
       flagList = new ArrayList<>();
       flagList.add(SeFlags.SWISSEPH);
-      celBody = new CelBody(seFrontendMock, jdUt, celBodyToCalc, locationMock, flagList);
+      celBodyPosition = new CelBodyPosition(seFrontendMock, jdUt, celBodyToCalc, locationMock, flagList);
    }
 
    @Test
    public void getEclipticalPosition() {
-      assertNotNull(celBody.getEclipticalPosition());
+      assertNotNull(celBodyPosition.getEclipticalPosition());
    }
 
    @Test
    public void getEquatorialPosition() {
-      assertNotNull(celBody.getEquatorialPosition());
+      assertNotNull(celBodyPosition.getEquatorialPosition());
    }
 
    @Test
    public void getHorizontalPosition() {
-      assertNotNull(celBody.getHorizontalPosition());
+      assertNotNull(celBodyPosition.getHorizontalPosition());
    }
 }

@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-import com.radixpro.enigma.be.astron.main.EquatorialPosition;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,26 +15,33 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class FullPositionResultHousesTest {
+public class HousePositionTest {
 
    private static final double DELTA = 0.00000001;
    private final double longitude = 123.456;
    @Mock
    private EquatorialPosition equatorialPositionMock;
-   private FullPositionResultHouses fullPositionResultHouses;
+   @Mock
+   private HorizontalPosition horizontalPositionMock;
+   private HousePosition housePosition;
 
    @Before
    public void setUp() {
-      fullPositionResultHouses = new FullPositionResultHouses(longitude, equatorialPositionMock);
+      housePosition = new HousePosition(longitude, equatorialPositionMock, horizontalPositionMock);
    }
 
    @Test
    public void getEquatorialPosition() {
-      assertEquals(equatorialPositionMock, fullPositionResultHouses.getEquatorialPosition());
+      assertEquals(equatorialPositionMock, housePosition.getEquatorialPosition());
    }
 
    @Test
    public void getLongitude() {
-      assertEquals(longitude, fullPositionResultHouses.getLongitude(), DELTA);
+      assertEquals(longitude, housePosition.getLongitude(), DELTA);
+   }
+
+   @Test
+   public void getHorizontalPosition() {
+      assertEquals(horizontalPositionMock, housePosition.getHorizontalPosition());
    }
 }

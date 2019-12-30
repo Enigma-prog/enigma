@@ -11,7 +11,7 @@ import com.radixpro.enigma.be.astron.core.SeFrontend;
 /**
  * Calculated positions for a specific coordinateset for a celestial body.
  */
-public class CelBodySingleCoordinates {
+public class CelBodySinglePosition {
 
    private String errorMsg = "";
    private double mainPosition;
@@ -21,7 +21,7 @@ public class CelBodySingleCoordinates {
    private double deviationSpeed;
    private double distanceSpeed;
 
-   public CelBodySingleCoordinates(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody, final int flags) {
+   public CelBodySinglePosition(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody, final int flags) {
       calculate(seFrontend, jdUt, celBody, flags);
    }
 

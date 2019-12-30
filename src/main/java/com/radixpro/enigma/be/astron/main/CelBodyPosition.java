@@ -12,17 +12,17 @@ import com.radixpro.enigma.be.astron.core.SeFrontend;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CelBody {
+public class CelBodyPosition {
 
-   private CelBodySingleCoordinates eclipticalPosition;
-   private CelBodySingleCoordinates equatorialPosition;
-   private CelBodyHorizontalCoordinates horizontalPosition;
+   private CelBodySinglePosition eclipticalPosition;
+   private CelBodySinglePosition equatorialPosition;
+   private HorizontalPosition horizontalPosition;
    private int eclipticalFlags;
    private int equatorialFlags;
    private int horizontalFlags;
 
-   public CelBody(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody,
-                  final Location location, final List<SeFlags> flagList) {
+   public CelBodyPosition(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody,
+                          final Location location, final List<SeFlags> flagList) {
       final List<SeFlags> localFlagList = new ArrayList<>(flagList); // need copy to prevent changing the content of flaglist.
       defineFlags(localFlagList);
       calculate(seFrontend, jdUt, celBody, location);
@@ -38,21 +38,23 @@ public class CelBody {
 
    private void calculate(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody,
                           final Location location) {
-      eclipticalPosition = new CelBodySingleCoordinates(seFrontend, jdUt, celBody, eclipticalFlags);
-      equatorialPosition = new CelBodySingleCoordinates(seFrontend, jdUt, celBody, equatorialFlags);
-      horizontalPosition = new CelBodyHorizontalCoordinates(seFrontend, jdUt, eclipticalPosition, location,
+      eclipticalPosition = new CelBodySinglePosition(seFrontend, jdUt, celBody, eclipticalFlags);
+      equatorialPosition = new CelBodySinglePosition(seFrontend, jdUt, celBody, equatorialFlags);
+      double[] eclipticalCoordinates = new double[]{eclipticalPosition.getMainPosition(),
+            eclipticalPosition.getDeviationPosition(), eclipticalPosition.getDistancePosition()};
+      horizontalPosition = new HorizontalPosition(seFrontend, jdUt, eclipticalCoordinates, location,
             horizontalFlags);
    }
 
-   public CelBodySingleCoordinates getEclipticalPosition() {
+   public CelBodySinglePosition getEclipticalPosition() {
       return eclipticalPosition;
    }
 
-   public CelBodySingleCoordinates getEquatorialPosition() {
+   public CelBodySinglePosition getEquatorialPosition() {
       return equatorialPosition;
    }
 
-   public CelBodyHorizontalCoordinates getHorizontalPosition() {
+   public HorizontalPosition getHorizontalPosition() {
       return horizontalPosition;
    }
 

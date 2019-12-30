@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class HouseValuesTest {
+public class MundaneValuesTest {
 
    private final double[] cusps = {0.0, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9, 10.10, 11.11, 12.12};
    private final double[] ascMc = {1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 0.0, 0.0};  // Asc,MC,ARMC,Vertex,Eastpoint...
@@ -38,7 +38,7 @@ public class HouseValuesTest {
    private SePositionResultCelBodies sePositionResultCelBodiesMock;
    @Mock
    private Location locationMock;
-   private HouseValues houseValues;
+   private MundaneValues mundaneValues;
 
    @Before
    public void setUp() {
@@ -49,39 +49,40 @@ public class HouseValuesTest {
       when(seFrontendMock.getPositionsForHouses(anyDouble(), anyInt(), any(), anyInt(),
             anyInt())).thenReturn(sePositionResultHousesMock);
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultCelBodiesMock);
-      houseValues = new HouseValues(seFrontendMock, jdUt, flags, locationMock, system);
+      when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(), anyInt())).thenReturn(new double[]{100.0, -30.0});
+      mundaneValues = new MundaneValues(seFrontendMock, jdUt, flags, locationMock, system);
    }
 
    @Test
    public void getCusps() {
-      List<FullPositionResultHouses> result = houseValues.getCusps();
+      List<HousePosition> result = mundaneValues.getCusps();
       assertEquals(cusps.length, result.size());
       assertEquals(cusps[3], result.get(3).getLongitude(), delta);
    }
 
    @Test
    public void getMc() {
-      assertEquals(2.2, houseValues.getMc().getLongitude(), delta);
+      assertEquals(2.2, mundaneValues.getMc().getLongitude(), delta);
    }
 
    @Test
    public void getAscendant() {
-      assertEquals(1.1, houseValues.getAscendant().getLongitude(), delta);
+      assertEquals(1.1, mundaneValues.getAscendant().getLongitude(), delta);
    }
 
    @Test
    public void getEastpoint() {
-      assertEquals(5.5, houseValues.getEastpoint(), delta);
+      assertEquals(5.5, mundaneValues.getEastpoint().getLongitude(), delta);
    }
 
    @Test
    public void getVertex() {
-      assertEquals(4.4, houseValues.getVertex(), delta);
+      assertEquals(4.4, mundaneValues.getVertex().getLongitude(), delta);
    }
 
    @Test
    public void getArmc() {
-      assertEquals(3.3, houseValues.getArmc(), delta);
+      assertEquals(3.3, mundaneValues.getArmc(), delta);
    }
 
 }

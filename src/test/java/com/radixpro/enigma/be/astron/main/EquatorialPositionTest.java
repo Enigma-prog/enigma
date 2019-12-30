@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.be.astron.main;
 
+import com.radixpro.enigma.be.astron.assist.EquatorialPosition;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import org.junit.Before;
@@ -35,16 +36,30 @@ public class EquatorialPositionTest {
       when(sePosResultMock.getAllPositions()).thenReturn(new double[]{1.1, 2.2, 3.3});
       when(seFrontendMock.convertToEquatorial(any(), anyDouble())).thenReturn(new double[]{101.0, -1.0, 1.0});
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePosResultMock);
-      equatorialPosition = new EquatorialPosition(seFrontendMock, longitude, jdUt);
    }
 
    @Test
    public void getRightAscension() {
+      equatorialPosition = new EquatorialPosition(seFrontendMock, longitude, jdUt);
       assertEquals(101.0, equatorialPosition.getRightAscension(), DELTA);
    }
 
    @Test
+   public void getRightAscensionValuesInConstructor() {
+      equatorialPosition = new EquatorialPosition(200.2, 12.3);
+      assertEquals(200.2, equatorialPosition.getRightAscension(), DELTA);
+   }
+
+   @Test
    public void getDeclination() {
+      equatorialPosition = new EquatorialPosition(seFrontendMock, longitude, jdUt);
       assertEquals(-1.0, equatorialPosition.getDeclination(), DELTA);
    }
+
+   @Test
+   public void getDeclinationValuesInConstructor() {
+      equatorialPosition = new EquatorialPosition(278.9, -18.8);
+      assertEquals(-18.8, equatorialPosition.getDeclination(), DELTA);
+   }
+
 }

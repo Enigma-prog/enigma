@@ -4,14 +4,15 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.astron.main;
+package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.be.astron.main.Obliquity;
 
 /**
- * Equatorial position: right ascendsiona nd declination.
+ * Equatorial position: right ascendsion and declination.
  * Converts from ecliptic coördinates to equatorial coördinates. Can only be used for house positions as a zero latitude
- * is assumed. Ther eis no need for conversion of planetary positions as they already contain equatorial values.
+ * is assumed. There is no need for conversion of planetary positions as they already contain equatorial values.
  */
 public class EquatorialPosition {
 
@@ -20,6 +21,11 @@ public class EquatorialPosition {
 
    public EquatorialPosition(final SeFrontend seFrontend, final double longitude, final double jdUt) {
       calculatePositions(seFrontend, longitude, jdUt);
+   }
+
+   public EquatorialPosition(final double rightAscension, final double declination) {
+      this.rightAscension = rightAscension;
+      this.declination = declination;
    }
 
    private void calculatePositions(final SeFrontend seFrontend, final double longitude, final double jdUt) {
