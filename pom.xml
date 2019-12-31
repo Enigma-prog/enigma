@@ -17,6 +17,8 @@
         <javafx-controls.version>14-ea+4</javafx-controls.version>
         <javafx-fxml.version>14-ea+4</javafx-fxml.version>
         <jackson.version>2.10.1</jackson.version>
+        <nitrite.version>3.3.0</nitrite.version>
+        <slf4j.version>1.7.30</slf4j.version>
     </properties>
 
     <build>
@@ -58,6 +60,11 @@
             <version>${javafx-fxml.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.dizitart</groupId>
+            <artifactId>nitrite</artifactId>
+            <version>${nitrite.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
@@ -71,6 +78,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>   <!-- required for Nitrite -->
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

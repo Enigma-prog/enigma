@@ -162,7 +162,7 @@ public class CalculatedFullChartIt {
       assertEquals(314.7210736953, mundaneValues.getAscendant().getLongitude(), DELTA);
       assertEquals(251.1002358654, mundaneValues.getMc().getLongitude(), DELTA);
       assertEquals(163.3350501542, mundaneValues.getVertex().getLongitude(), DELTA);
-      assertEquals(337.8647433572, mundaneValues.getEastpoint().getLongitude(), DELTA);      // TODO calculate or find reference data for eastpoint
+      assertEquals(337.8647433572, mundaneValues.getEastpoint().getLongitude(), DELTA);
       assertEquals(314.7210736953, mundaneValues.getCusps().get(1).getLongitude(), DELTA);
       assertEquals(16.4262924252, mundaneValues.getCusps().get(2).getLongitude(), DELTA);
       assertEquals(50.1257249109, mundaneValues.getCusps().get(3).getLongitude(), DELTA);
