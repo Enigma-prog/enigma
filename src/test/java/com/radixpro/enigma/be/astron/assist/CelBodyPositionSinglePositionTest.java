@@ -7,6 +7,7 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.CelestialBodies;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,7 @@ public class CelBodyPositionSinglePositionTest {
    private CelBodySinglePosition celBodySinglePosition;
    private final double jdUt = 123.456;
    private final int flags = 2;
-   private final CelBodiesToCalculate celBodyToCalculate = CelBodiesToCalculate.MARS;
+   private final CelestialBodies celBodyToCalculate = CelestialBodies.MARS;
 
    private final double delta = 0.00000001;
    private final double[] positions = {1.1, 2.2, 3.3, 4.4, 5.5, 6.6};

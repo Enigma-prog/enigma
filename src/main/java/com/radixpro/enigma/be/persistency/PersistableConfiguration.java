@@ -103,4 +103,5 @@ public class PersistableConfiguration {
    public void setCelObjects(int[] celObjects) {
       this.celObjects = celObjects;
    }
+
 }

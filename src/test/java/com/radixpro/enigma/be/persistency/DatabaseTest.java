@@ -6,12 +6,10 @@
 
 package com.radixpro.enigma.be.persistency;
 
-import org.junit.Test;
-
 public class DatabaseTest {
 
-   @Test
-   public void instnatiation() {
-      Database database = new Database();
-   }
+//   @Test
+//   public void instantiation() {
+//      Database database = new Database();
+//   }
 }

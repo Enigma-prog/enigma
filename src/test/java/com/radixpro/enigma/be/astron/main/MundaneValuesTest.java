@@ -6,8 +6,12 @@
 
 package com.radixpro.enigma.be.astron.main;
 
-import com.radixpro.enigma.be.astron.assist.*;
+import com.radixpro.enigma.be.astron.assist.HousePosition;
+import com.radixpro.enigma.be.astron.assist.Location;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +32,7 @@ public class MundaneValuesTest {
    private final double jdUt = 1234567.8912;
    private final int flags = 3;
    private final double delta = 0.00000001;
-   private final HouseSystemsToCalculate system = HouseSystemsToCalculate.PLACIDUS;
+   private final HouseSystems system = HouseSystems.PLACIDUS;
    private final int nrOfCusps = 12;
    @Mock
    private SeFrontend seFrontendMock;

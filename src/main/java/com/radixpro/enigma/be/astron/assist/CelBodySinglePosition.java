@@ -7,6 +7,7 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.CelestialBodies;
 
 /**
  * Calculated positions for a specific coordinateset for a celestial body.
@@ -21,11 +22,11 @@ public class CelBodySinglePosition {
    private double deviationSpeed;
    private double distanceSpeed;
 
-   public CelBodySinglePosition(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody, final int flags) {
+   public CelBodySinglePosition(final SeFrontend seFrontend, final Double jdUt, final CelestialBodies celBody, final int flags) {
       calculate(seFrontend, jdUt, celBody, flags);
    }
 
-   private void calculate(final SeFrontend seFrontend, final Double jdUt, final CelBodiesToCalculate celBody, final int flags) {
+   private void calculate(final SeFrontend seFrontend, final Double jdUt, final CelestialBodies celBody, final int flags) {
       SePositionResultCelBodies sePositionResult = seFrontend.getPositionsForCelBody(jdUt, celBody.getId(), flags);
       errorMsg = sePositionResult.getErrorMsg();
       mainPosition = sePositionResult.getAllPositions()[0];

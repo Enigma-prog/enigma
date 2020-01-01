@@ -6,6 +6,8 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
+import com.radixpro.enigma.xchg.domain.SeFlags;
+
 import java.util.List;
 
 public class CombinedFlags {

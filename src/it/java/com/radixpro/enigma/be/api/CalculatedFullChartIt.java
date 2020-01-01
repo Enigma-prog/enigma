@@ -10,6 +10,9 @@ import com.radixpro.enigma.be.astron.assist.*;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.CelBodyPosition;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
+import com.radixpro.enigma.xchg.domain.Ayanamshas;
+import com.radixpro.enigma.xchg.domain.CelestialBodies;
+import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,8 +36,8 @@ public class CalculatedFullChartIt {
    private static final boolean HELIOCENTRIC = false;
    private static final boolean TOPOCENTRIC = false;
    private static final boolean SIDEREAL = false;
-   private static final AyanamshasToCalculate AYANAMSHA = AyanamshasToCalculate.HUBER;
-   private static final HouseSystemsToCalculate HOUSE_SYSTEM = HouseSystemsToCalculate.PLACIDUS;
+   private static final Ayanamshas AYANAMSHA = Ayanamshas.HUBER;
+   private static final HouseSystems HOUSE_SYSTEM = HouseSystems.PLACIDUS;
    private static final double DELTA = 0.0002;   // 0.72 second of arc
    private static final double GEO_LAT = 52.21666667;
    private static final double GEO_LONG = 6.9;
@@ -49,19 +52,19 @@ public class CalculatedFullChartIt {
       final SimpleDate date = new SimpleDate(YEAR, MONTH, DAY, GREGORIAN);
       final SimpleTime time = new SimpleTime(HOUR, MINUTE, SECOND);
       dateTime = new SimpleDateTime(seFrontend, date, time);
-      List<CelBodiesToCalculate> requestedBodies = new ArrayList<>();
-      requestedBodies.add(CelBodiesToCalculate.SUN);
-      requestedBodies.add(CelBodiesToCalculate.MOON);
-      requestedBodies.add(CelBodiesToCalculate.MERCURY);
-      requestedBodies.add(CelBodiesToCalculate.VENUS);
-      requestedBodies.add(CelBodiesToCalculate.MARS);
-      requestedBodies.add(CelBodiesToCalculate.JUPITER);
-      requestedBodies.add(CelBodiesToCalculate.SATURN);
-      requestedBodies.add(CelBodiesToCalculate.URANUS);
-      requestedBodies.add(CelBodiesToCalculate.NEPTUNE);
-      requestedBodies.add(CelBodiesToCalculate.PLUTO);
-      requestedBodies.add(CelBodiesToCalculate.CHIRON);
-      requestedBodies.add(CelBodiesToCalculate.MEAN_NODE);
+      List<CelestialBodies> requestedBodies = new ArrayList<>();
+      requestedBodies.add(CelestialBodies.SUN);
+      requestedBodies.add(CelestialBodies.MOON);
+      requestedBodies.add(CelestialBodies.MERCURY);
+      requestedBodies.add(CelestialBodies.VENUS);
+      requestedBodies.add(CelestialBodies.MARS);
+      requestedBodies.add(CelestialBodies.JUPITER);
+      requestedBodies.add(CelestialBodies.SATURN);
+      requestedBodies.add(CelestialBodies.URANUS);
+      requestedBodies.add(CelestialBodies.NEPTUNE);
+      requestedBodies.add(CelestialBodies.PLUTO);
+      requestedBodies.add(CelestialBodies.CHIRON);
+      requestedBodies.add(CelestialBodies.MEAN_NODE);
       settings = new CalculationSettings(requestedBodies, HOUSE_SYSTEM, AYANAMSHA, SIDEREAL, TOPOCENTRIC, HELIOCENTRIC);
    }
 

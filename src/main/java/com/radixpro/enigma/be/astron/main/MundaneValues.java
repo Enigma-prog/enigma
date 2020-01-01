@@ -8,6 +8,8 @@ package com.radixpro.enigma.be.astron.main;
 
 import com.radixpro.enigma.be.astron.assist.*;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.HouseSystems;
+import com.radixpro.enigma.xchg.domain.SeFlags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +27,12 @@ public class MundaneValues {
    private double armc;
 
    public MundaneValues(final SeFrontend seFrontend, final double jdUt, final int flags, final Location location,
-                        final HouseSystemsToCalculate system) {
+                        final HouseSystems system) {
       calculate(seFrontend, jdUt, flags, location, system);
    }
 
    private void calculate(final SeFrontend seFrontend, final double jdUt, final int flags, final Location location,
-                          final HouseSystemsToCalculate system) {
+                          final HouseSystems system) {
       final char seIdAsInt = system.getSeId().charAt(0);
       final SePositionResultHouses positions = seFrontend.getPositionsForHouses(jdUt, flags, location, seIdAsInt,
             system.getNrOfCusps());

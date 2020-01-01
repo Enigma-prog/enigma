@@ -6,11 +6,11 @@
 
 package com.radixpro.enigma.be.astron.main;
 
-import com.radixpro.enigma.be.astron.assist.CelBodiesToCalculate;
 import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SeFlags;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.CelestialBodies;
+import com.radixpro.enigma.xchg.domain.SeFlags;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +34,7 @@ public class CelBodyPositionTest {
    private SePositionResultCelBodies sePositionResultMock;
    private CelBodyPosition celBodyPosition;
    private final Double jdUt = 1234567.891;
-   private final CelBodiesToCalculate celBodyToCalc = CelBodiesToCalculate.MERCURY;
+   private final CelestialBodies celBodyToCalc = CelestialBodies.MERCURY;
    private final double geoLat = 52.0;
    private final double geoLong = 7.0;
    private ArrayList<SeFlags> flagList;

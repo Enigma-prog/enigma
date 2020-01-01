@@ -6,8 +6,12 @@
 
 package com.radixpro.enigma.be.api;
 
-import com.radixpro.enigma.be.astron.assist.*;
+import com.radixpro.enigma.be.astron.assist.CalculationSettings;
+import com.radixpro.enigma.be.astron.assist.Location;
+import com.radixpro.enigma.be.astron.assist.SimpleDateTime;
 import com.radixpro.enigma.be.astron.main.FullChart;
+import com.radixpro.enigma.xchg.domain.CelestialBodies;
+import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,15 +38,15 @@ public class CalculatedFullChartTest {
 
    @Before
    public void setUp() {
-      final List<CelBodiesToCalculate> bodies = new ArrayList<>();
-      bodies.add(CelBodiesToCalculate.SUN);
-      bodies.add(CelBodiesToCalculate.MOON);
+      final List<CelestialBodies> bodies = new ArrayList<>();
+      bodies.add(CelestialBodies.SUN);
+      bodies.add(CelestialBodies.MOON);
       when(locationMock.getGeoLat()).thenReturn(44.4);
       when(locationMock.getGeoLong()).thenReturn(22.2);
       when(settingsMock.isHeliocentric()).thenReturn(false);
       when(settingsMock.isTopocentric()).thenReturn(true);
       when(settingsMock.isHeliocentric()).thenReturn(false);
-      when(settingsMock.getHouseSystem()).thenReturn(HouseSystemsToCalculate.PLACIDUS);
+      when(settingsMock.getHouseSystem()).thenReturn(HouseSystems.PLACIDUS);
       when(settingsMock.getCelBodies()).thenReturn(bodies);
       fullChart = new FullChart(simpleDateTimeMock, locationMock, settingsMock);
    }

@@ -1,15 +1,15 @@
 /*
- * Jan Kampherbeek, (c) 2019.
+ * Jan Kampherbeek, (c) 2020.
  * Enigma is open source.
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.astron.assist;
+package com.radixpro.enigma.xchg.domain;
 
 /**
  * Celestial bodies and id's to access the SE.
  */
-public enum CelBodiesToCalculate {
+public enum CelestialBodies {
    SUN(0),
    MOON(1),
    MERCURY(2),
@@ -26,7 +26,7 @@ public enum CelBodiesToCalculate {
 
    private final int id;
 
-   CelBodiesToCalculate(int id) {
+   CelestialBodies(int id) {
       this.id = id;
    }
 
