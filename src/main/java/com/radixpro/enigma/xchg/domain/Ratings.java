@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-public enum Ratings {
+public enum Ratings implements LookupAble {
    AA(1, "aa"),
    A(2, "a"),
    B(3, "b"),
@@ -16,8 +16,6 @@ public enum Ratings {
    XX(7, "XX");
 
    private static final String RB_PREFIX = "gen.lookup.ratings.";
-   private static final String RB_NAME_POSTFIX = ".name";
-   private static final String RB_DESCRIPTION_POSTFIX = ".description";
    private final int id;
    private final String nameForRB;
 

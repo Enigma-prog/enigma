@@ -6,14 +6,12 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-public enum ObserverPositions {
+public enum ObserverPositions implements LookupAble {
    GEOCENTRIRC(1, "geocentric"),
    TOPOCENTRIC(2, "topocentric"),
    HELIOCENTRIC(3, "heliocentric");
 
    private static final String RB_PREFIX = "gen.lookup.observerpositions.";
-   private static final String RB_NAME_POSTFIX = ".name";
-   private static final String RB_DESCRIPTION_POSTFIX = ".description";
    private final int id;
    private final String nameForRB;
 

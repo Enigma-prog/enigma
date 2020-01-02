@@ -9,7 +9,7 @@ package com.radixpro.enigma.xchg.domain;
 /**
  * Housesystems for calculation, internal id and id for SE.
  */
-public enum HouseSystems {
+public enum HouseSystems implements LookupAble {
    NONE(-1, "", "none", 0, false, false, false),
    WHOLESIGN(2, "W", "wholesign", 12, true, false, true),
    EQUAL(3, "A", "equalasc", 12, true, false, true),
@@ -34,8 +34,6 @@ public enum HouseSystems {
    SUNSHINE_TREINDL(22, "I", "sunshinetreindl", 12, true, false, true);
 
    private static final String RB_PREFIX = "gen.lookup.houses.";
-   private static final String RB_NAME_POSTFIX = ".name";
-   private static final String RB_DESCRIPTION_POSTFIX = ".description";
    private final String seId;
    private final int id;
    private final int nrOfCusps;

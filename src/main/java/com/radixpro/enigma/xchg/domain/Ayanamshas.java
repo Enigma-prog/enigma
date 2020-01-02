@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-public enum Ayanamshas {
+public enum Ayanamshas implements LookupAble {
    NONE(-1, -1, "none"),
    FAGAN(0, 0, "fagan"),
    LAHIRI(1, 1, "lahiri"),
@@ -50,8 +50,6 @@ public enum Ayanamshas {
    GAQQLACTIC_CTR_0CAP(39, 39, "galcenter0cap");
 
    private static final String RB_PREFIX = "gen.lookup.ayanamshas.";
-   private static final String RB_NAME_POSTFIX = ".name";
-   private static final String RB_DESCRIPTION_POSTFIX = ".description";
    private final String nameForRB;
    private final int seId;
    private final int id;
