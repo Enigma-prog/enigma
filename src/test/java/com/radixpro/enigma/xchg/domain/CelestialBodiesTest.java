@@ -24,4 +24,9 @@ public class CelestialBodiesTest {
    public void getId() {
       assertEquals(5, celBody.getId());
    }
+
+   @Test
+   public void total() {
+      assertEquals(13, CelestialBodies.values().length);
+   }
 }

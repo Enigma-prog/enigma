@@ -28,4 +28,10 @@ public class ObserverPositionsTest {
    public void getRbKeyForDescription() {
       assertEquals("gen.lookup.observerpositions.heliocentric.description", observerPosition.getRbKeyForDescription());
    }
+
+   @Test
+   public void total() {
+      assertEquals(3, ObserverPositions.values().length);
+   }
+
 }

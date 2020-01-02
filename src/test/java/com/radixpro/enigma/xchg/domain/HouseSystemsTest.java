@@ -62,4 +62,9 @@ public class HouseSystemsTest {
    public void isCuspIsStart() {
       assertTrue(houseSystem.isCuspIsStart());
    }
+
+   @Test
+   public void total() {
+      assertEquals(22, HouseSystems.values().length);
+   }
 }

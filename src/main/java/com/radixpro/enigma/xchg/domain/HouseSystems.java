@@ -87,4 +87,5 @@ public enum HouseSystems {
    public boolean isCuspIsStart() {
       return cuspIsStart;
    }
+
 }

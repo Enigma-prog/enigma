@@ -24,4 +24,9 @@ public class SeFlagsTest {
    public void getSeValue() {
       assertEquals(2048L, seFlags.getSeValue());
    }
+
+   @Test
+   public void total() {
+      assertEquals(7, SeFlags.values().length);
+   }
 }

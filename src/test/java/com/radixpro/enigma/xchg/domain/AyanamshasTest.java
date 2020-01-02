@@ -39,4 +39,9 @@ public class AyanamshasTest {
    public void getRbKeyForDescription() {
       assertEquals("gen.lookup.ayanamshas.kugler2.description", ayanamsha.getRbKeyForDescription());
    }
+
+   @Test
+   public void total() {
+      assertEquals(41, Ayanamshas.values().length);
+   }
 }
