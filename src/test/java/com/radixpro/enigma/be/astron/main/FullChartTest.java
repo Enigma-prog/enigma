@@ -9,7 +9,7 @@ package com.radixpro.enigma.be.astron.main;
 import com.radixpro.enigma.be.astron.assist.CalculationSettings;
 import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.assist.SimpleDateTime;
-import com.radixpro.enigma.xchg.domain.CelestialBodies;
+import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,9 +37,9 @@ public class FullChartTest {
 
    @Before
    public void setUp() {
-      List<CelestialBodies> celBodies = new ArrayList<>();
-      celBodies.add(CelestialBodies.SUN);
-      celBodies.add(CelestialBodies.MOON);
+      List<CelestialObjects> celBodies = new ArrayList<>();
+      celBodies.add(CelestialObjects.SUN);
+      celBodies.add(CelestialObjects.MOON);
       when(settingsMock.isTopocentric()).thenReturn(false);
       when(settingsMock.isHeliocentric()).thenReturn(false);
       when(settingsMock.isSidereal()).thenReturn(true);

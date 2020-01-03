@@ -7,21 +7,21 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.xchg.domain.Ayanamshas;
-import com.radixpro.enigma.xchg.domain.CelestialBodies;
+import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 
 import java.util.List;
 
 public class CalculationSettings {
 
-   private final List<CelestialBodies> celBodies;
+   private final List<CelestialObjects> celBodies;
    private final HouseSystems houseSystem;
    private final Ayanamshas ayanamsha;
    private final boolean sidereal;
    private final boolean topocentric;
    private final boolean heliocentric;
 
-   public CalculationSettings(final List<CelestialBodies> celBodies, final HouseSystems houseSystem,
+   public CalculationSettings(final List<CelestialObjects> celBodies, final HouseSystems houseSystem,
                               final Ayanamshas ayanamsha, final boolean sidereal, final boolean topocentric,
                               final boolean heliocentric) {
       this.celBodies = celBodies;
@@ -32,7 +32,7 @@ public class CalculationSettings {
       this.heliocentric = heliocentric;
    }
 
-   public List<CelestialBodies> getCelBodies() {
+   public List<CelestialObjects> getCelBodies() {
       return celBodies;
    }
 

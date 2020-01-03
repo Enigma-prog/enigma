@@ -11,7 +11,7 @@ import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.CelBodyPosition;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.xchg.domain.Ayanamshas;
-import com.radixpro.enigma.xchg.domain.CelestialBodies;
+import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +32,20 @@ public class CalculatedFullChartIt {
    private static final int HOUR = 7;
    private static final int MINUTE = 37;
    private static final int SECOND = 30;
+   // positions in array
+   private static final int SUN = 0;
+   private static final int MOON = 1;
+   private static final int MERCURY = 2;
+   private static final int VENUS = 3;
+   private static final int MARS = 4;
+   private static final int JUPITER = 5;
+   private static final int SATURN = 6;
+   private static final int URANUS = 7;
+   private static final int NEPTUNE = 8;
+   private static final int PLUTO = 9;
+   private static final int CHEIRON = 10;
+   private static final int MEAN_NODE = 11;
+
    private static final boolean GREGORIAN = true;
    private static final boolean HELIOCENTRIC = false;
    private static final boolean TOPOCENTRIC = false;
@@ -52,19 +66,19 @@ public class CalculatedFullChartIt {
       final SimpleDate date = new SimpleDate(YEAR, MONTH, DAY, GREGORIAN);
       final SimpleTime time = new SimpleTime(HOUR, MINUTE, SECOND);
       dateTime = new SimpleDateTime(seFrontend, date, time);
-      List<CelestialBodies> requestedBodies = new ArrayList<>();
-      requestedBodies.add(CelestialBodies.SUN);
-      requestedBodies.add(CelestialBodies.MOON);
-      requestedBodies.add(CelestialBodies.MERCURY);
-      requestedBodies.add(CelestialBodies.VENUS);
-      requestedBodies.add(CelestialBodies.MARS);
-      requestedBodies.add(CelestialBodies.JUPITER);
-      requestedBodies.add(CelestialBodies.SATURN);
-      requestedBodies.add(CelestialBodies.URANUS);
-      requestedBodies.add(CelestialBodies.NEPTUNE);
-      requestedBodies.add(CelestialBodies.PLUTO);
-      requestedBodies.add(CelestialBodies.CHIRON);
-      requestedBodies.add(CelestialBodies.MEAN_NODE);
+      List<CelestialObjects> requestedBodies = new ArrayList<>();
+      requestedBodies.add(CelestialObjects.SUN);
+      requestedBodies.add(CelestialObjects.MOON);
+      requestedBodies.add(CelestialObjects.MERCURY);
+      requestedBodies.add(CelestialObjects.VENUS);
+      requestedBodies.add(CelestialObjects.MARS);
+      requestedBodies.add(CelestialObjects.JUPITER);
+      requestedBodies.add(CelestialObjects.SATURN);
+      requestedBodies.add(CelestialObjects.URANUS);
+      requestedBodies.add(CelestialObjects.NEPTUNE);
+      requestedBodies.add(CelestialObjects.PLUTO);
+      requestedBodies.add(CelestialObjects.CHEIRON);
+      requestedBodies.add(CelestialObjects.MEAN_NODE);
       settings = new CalculationSettings(requestedBodies, HOUSE_SYSTEM, AYANAMSHA, SIDEREAL, TOPOCENTRIC, HELIOCENTRIC);
    }
 
@@ -83,81 +97,81 @@ public class CalculatedFullChartIt {
 
       // longitudes
       assertEquals(2434406.81770833, dateTime.getJdUt(), 0.00001);  // UT
-      assertEquals(309.1185106790, bodies.get(0).getEclipticalPosition().getMainPosition(), DELTA);  // Sun
-      assertEquals(121.764999, bodies.get(1).getEclipticalPosition().getMainPosition(), DELTA);   // Moon (test was 121.7647365976)
-      assertEquals(305.8677131365, bodies.get(2).getEclipticalPosition().getMainPosition(), DELTA);  // Mercury
-      assertEquals(356.0098349692, bodies.get(3).getEclipticalPosition().getMainPosition(), DELTA);  // Venus
-      assertEquals(352.5987342027, bodies.get(4).getEclipticalPosition().getMainPosition(), DELTA);  // Mars
-      assertEquals(41.9520277954, bodies.get(5).getEclipticalPosition().getMainPosition(), DELTA);  // Jupiter
-      assertEquals(207.2578072264, bodies.get(6).getEclipticalPosition().getMainPosition(), DELTA);  // Saturn
-      assertEquals(105.5629669894, bodies.get(7).getEclipticalPosition().getMainPosition(), DELTA);  // Uranus
-      assertEquals(203.8824860279, bodies.get(8).getEclipticalPosition().getMainPosition(), DELTA);  // Neptune
-      assertEquals(142.3620870053, bodies.get(9).getEclipticalPosition().getMainPosition(), DELTA);  // Pluto
-      assertEquals(286.3288471420, bodies.get(10).getEclipticalPosition().getMainPosition(), DELTA);  // Cheiron
-      assertEquals(312.5802072448, bodies.get(11).getEclipticalPosition().getMainPosition(), DELTA);  // mean node
+      assertEquals(309.1185106790, bodies.get(SUN).getEclipticalPosition().getMainPosition(), DELTA);  // Sun
+      assertEquals(121.764999, bodies.get(MOON).getEclipticalPosition().getMainPosition(), DELTA);   // Moon (test was 121.7647365976)
+      assertEquals(305.8677131365, bodies.get(MERCURY).getEclipticalPosition().getMainPosition(), DELTA);  // Mercury
+      assertEquals(356.0098349692, bodies.get(VENUS).getEclipticalPosition().getMainPosition(), DELTA);  // Venus
+      assertEquals(352.5987342027, bodies.get(MARS).getEclipticalPosition().getMainPosition(), DELTA);  // Mars
+      assertEquals(41.9520277954, bodies.get(JUPITER).getEclipticalPosition().getMainPosition(), DELTA);  // Jupiter
+      assertEquals(207.2578072264, bodies.get(SATURN).getEclipticalPosition().getMainPosition(), DELTA);  // Saturn
+      assertEquals(105.5629669894, bodies.get(URANUS).getEclipticalPosition().getMainPosition(), DELTA);  // Uranus
+      assertEquals(203.8824860279, bodies.get(NEPTUNE).getEclipticalPosition().getMainPosition(), DELTA);  // Neptune
+      assertEquals(142.3620870053, bodies.get(PLUTO).getEclipticalPosition().getMainPosition(), DELTA);  // Pluto
+      assertEquals(286.3288471420, bodies.get(CHEIRON).getEclipticalPosition().getMainPosition(), DELTA);  // Cheiron
+      assertEquals(312.5802072448, bodies.get(MEAN_NODE).getEclipticalPosition().getMainPosition(), DELTA);  // mean node
       // speed in longitude
-      assertEquals(1.0152777778, bodies.get(0).getEclipticalPosition().getMainSpeed(), DELTA);  // Sun
-      assertEquals(0.7630555556, bodies.get(4).getEclipticalPosition().getMainSpeed(), DELTA);  // Mars
-      assertEquals(-0.0386111111, bodies.get(7).getEclipticalPosition().getMainSpeed(), DELTA);  // Uranus
-      assertEquals(0.0919444444, bodies.get(10).getEclipticalPosition().getMainSpeed(), DELTA);  // Cheiron
+      assertEquals(1.0152777778, bodies.get(SUN).getEclipticalPosition().getMainSpeed(), DELTA);  // Sun
+      assertEquals(0.7630555556, bodies.get(MARS).getEclipticalPosition().getMainSpeed(), DELTA);  // Mars
+      assertEquals(-0.0386111111, bodies.get(URANUS).getEclipticalPosition().getMainSpeed(), DELTA);  // Uranus
+      assertEquals(0.0919444444, bodies.get(CHEIRON).getEclipticalPosition().getMainSpeed(), DELTA);  // Cheiron
       // latitude
-      assertEquals(0.9758333333, bodies.get(1).getEclipticalPosition().getDeviationPosition(), DELTA); // Moon
-      assertEquals(-0.62967, bodies.get(4).getEclipticalPosition().getDeviationPosition(), DELTA);  // Mars
-      assertEquals(2.553578, bodies.get(6).getEclipticalPosition().getDeviationPosition(), DELTA);  // Saturn
-      assertEquals(9.620795, bodies.get(9).getEclipticalPosition().getDeviationPosition(), DELTA);  // Pluto
+      assertEquals(0.9758333333, bodies.get(MOON).getEclipticalPosition().getDeviationPosition(), DELTA); // Moon
+      assertEquals(-0.62967, bodies.get(MARS).getEclipticalPosition().getDeviationPosition(), DELTA);  // Mars
+      assertEquals(2.553578, bodies.get(SATURN).getEclipticalPosition().getDeviationPosition(), DELTA);  // Saturn
+      assertEquals(9.620795, bodies.get(PLUTO).getEclipticalPosition().getDeviationPosition(), DELTA);  // Pluto
       // speed in latitude
-      assertEquals(-1.09333333, bodies.get(1).getEclipticalPosition().getDeviationSpeed(), DELTA); // Moon
-      assertEquals(-0.02305556, bodies.get(2).getEclipticalPosition().getDeviationSpeed(), DELTA); // Mercury
-      assertEquals(0.0, bodies.get(7).getEclipticalPosition().getDeviationSpeed(), DELTA); // Uranus
-      assertEquals(0.00361111, bodies.get(10).getEclipticalPosition().getDeviationSpeed(), DELTA); // Cheiron
+      assertEquals(-1.09333333, bodies.get(MOON).getEclipticalPosition().getDeviationSpeed(), DELTA); // Moon
+      assertEquals(-0.02305556, bodies.get(MERCURY).getEclipticalPosition().getDeviationSpeed(), DELTA); // Mercury
+      assertEquals(0.0, bodies.get(URANUS).getEclipticalPosition().getDeviationSpeed(), DELTA); // Uranus
+      assertEquals(0.00361111, bodies.get(CHEIRON).getEclipticalPosition().getDeviationSpeed(), DELTA); // Cheiron
 
       // Right ascension
-      assertEquals(356.1744157, bodies.get(3).getEquatorialPosition().getMainPosition(), DELTA); // Venus
-      assertEquals(39.8219374, bodies.get(5).getEquatorialPosition().getMainPosition(), DELTA); // Jupiter
-      assertEquals(206.2260786, bodies.get(6).getEquatorialPosition().getMainPosition(), DELTA); // Saturn
-      assertEquals(202.7365977, bodies.get(8).getEquatorialPosition().getMainPosition(), DELTA); // Neptune
+      assertEquals(356.1744157, bodies.get(VENUS).getEquatorialPosition().getMainPosition(), DELTA); // Venus
+      assertEquals(39.8219374, bodies.get(JUPITER).getEquatorialPosition().getMainPosition(), DELTA); // Jupiter
+      assertEquals(206.2260786, bodies.get(SATURN).getEquatorialPosition().getMainPosition(), DELTA); // Saturn
+      assertEquals(202.7365977, bodies.get(NEPTUNE).getEquatorialPosition().getMainPosition(), DELTA); // Neptune
 
       // speed in Right Ascension
-      assertEquals(12.2475, bodies.get(1).getEquatorialPosition().getMainSpeed(), DELTA);  // Moon
-      assertEquals(1.7525, bodies.get(2).getEquatorialPosition().getMainSpeed(), DELTA);  // Mercury
-      assertEquals(0.90472222, bodies.get(3).getEquatorialPosition().getMainSpeed(), DELTA);  // Venus
-      assertEquals(-0.0416667, bodies.get(7).getEquatorialPosition().getMainSpeed(), DELTA);  // Uranus
+      assertEquals(12.2475, bodies.get(MOON).getEquatorialPosition().getMainSpeed(), DELTA);  // Moon
+      assertEquals(1.7525, bodies.get(MERCURY).getEquatorialPosition().getMainSpeed(), DELTA);  // Mercury
+      assertEquals(0.90472222, bodies.get(VENUS).getEquatorialPosition().getMainSpeed(), DELTA);  // Venus
+      assertEquals(-0.0416667, bodies.get(URANUS).getEquatorialPosition().getMainSpeed(), DELTA);  // Uranus
 
       // Declination
-      assertEquals(-20.788611111, bodies.get(2).getEquatorialPosition().getDeviationPosition(), DELTA); // Mercury
-      assertEquals(14.493608, bodies.get(5).getEquatorialPosition().getDeviationPosition(), DELTA); // Jupiter
-      assertEquals(23.13472222, bodies.get(9).getEquatorialPosition().getDeviationPosition(), DELTA); // Pluto
-      assertEquals(-17.036888, bodies.get(11).getEquatorialPosition().getDeviationPosition(), DELTA); // Mean node
+      assertEquals(-20.788611111, bodies.get(MERCURY).getEquatorialPosition().getDeviationPosition(), DELTA); // Mercury
+      assertEquals(14.493608, bodies.get(JUPITER).getEquatorialPosition().getDeviationPosition(), DELTA); // Jupiter
+      assertEquals(23.13472222, bodies.get(PLUTO).getEquatorialPosition().getDeviationPosition(), DELTA); // Pluto
+      assertEquals(-17.036888, bodies.get(MEAN_NODE).getEquatorialPosition().getDeviationPosition(), DELTA); // Mean node
 
       // Speed in declination
-      assertEquals(0.2677778, bodies.get(0).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Sun
-      assertEquals(-3.7541667, bodies.get(1).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Moon
-      assertEquals(0.0, bodies.get(6).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Saturn
-      assertEquals(0.0102118, bodies.get(9).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Pluto
+      assertEquals(0.2677778, bodies.get(SUN).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Sun
+      assertEquals(-3.7541667, bodies.get(MOON).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Moon
+      assertEquals(0.0, bodies.get(SATURN).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Saturn
+      assertEquals(0.0102118, bodies.get(PLUTO).getEquatorialPosition().getDeviationSpeed(), DELTA);  // Pluto
 
       // Distance
-      assertEquals(0.98501628, bodies.get(0).getEclipticalPosition().getDistancePosition(), DELTA);  // Sun
-      assertEquals(30.0333179, bodies.get(8).getEclipticalPosition().getDistancePosition(), DELTA);  // Neptune
-      assertEquals(34.59775899, bodies.get(9).getEclipticalPosition().getDistancePosition(), DELTA);  // Pluto
-      assertEquals(13.08780192, bodies.get(10).getEclipticalPosition().getDistancePosition(), DELTA);  // Cheiron
+      assertEquals(0.98501628, bodies.get(SUN).getEclipticalPosition().getDistancePosition(), DELTA);  // Sun
+      assertEquals(30.0333179, bodies.get(NEPTUNE).getEclipticalPosition().getDistancePosition(), DELTA);  // Neptune
+      assertEquals(34.59775899, bodies.get(PLUTO).getEclipticalPosition().getDistancePosition(), DELTA);  // Pluto
+      assertEquals(13.08780192, bodies.get(CHEIRON).getEclipticalPosition().getDistancePosition(), DELTA);  // Cheiron
 
       // Speed in distance
-      assertEquals(0.00001306, bodies.get(1).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Moon
-      assertEquals(-0.00742368, bodies.get(3).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Venus
-      assertEquals(0.01611306, bodies.get(5).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Jupiter
-      assertEquals(-0.01626397, bodies.get(6).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Saturn
+      assertEquals(0.00001306, bodies.get(MOON).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Moon
+      assertEquals(-0.00742368, bodies.get(VENUS).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Venus
+      assertEquals(0.01611306, bodies.get(JUPITER).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Jupiter
+      assertEquals(-0.01626397, bodies.get(SATURN).getEclipticalPosition().getDistanceSpeed(), DELTA);  // Saturn
 
       // Azimuth
-      assertEquals(302.82472222, bodies.get(0).getHorizontalPosition().getAzimuth(), DELTA); // Sun
-      assertEquals(261.0738577, bodies.get(4).getHorizontalPosition().getAzimuth(), DELTA); // Mars
-      assertEquals(49.44222222, bodies.get(8).getHorizontalPosition().getAzimuth(), DELTA); // Neptune
-      assertEquals(299.5225, bodies.get(11).getHorizontalPosition().getAzimuth(), DELTA); // Mean node
+      assertEquals(302.82472222, bodies.get(SUN).getHorizontalPosition().getAzimuth(), DELTA); // Sun
+      assertEquals(261.0738577, bodies.get(MARS).getHorizontalPosition().getAzimuth(), DELTA); // Mars
+      assertEquals(49.44222222, bodies.get(NEPTUNE).getHorizontalPosition().getAzimuth(), DELTA); // Neptune
+      assertEquals(299.5225, bodies.get(MEAN_NODE).getHorizontalPosition().getAzimuth(), DELTA); // Mean node
 
       // Altitude
-      assertEquals(-2.942777778, bodies.get(1).getHorizontalPosition().getAltitude(), DELTA);  // Maan
-      assertEquals(-18.505, bodies.get(5).getHorizontalPosition().getAltitude(), DELTA);  // Jupiter
-      assertEquals(19.25527778, bodies.get(6).getHorizontalPosition().getAltitude(), DELTA);  // Saturn
-      assertEquals(14.26694444, bodies.get(10).getHorizontalPosition().getAltitude(), DELTA);  // Cheiron
+      assertEquals(-2.942777778, bodies.get(MOON).getHorizontalPosition().getAltitude(), DELTA);
+      assertEquals(-18.505, bodies.get(JUPITER).getHorizontalPosition().getAltitude(), DELTA);  // Jupiter
+      assertEquals(19.25527778, bodies.get(SATURN).getHorizontalPosition().getAltitude(), DELTA);  // Saturn
+      assertEquals(14.26694444, bodies.get(CHEIRON).getHorizontalPosition().getAltitude(), DELTA);  // Cheiron
 
       // houses longitude
       MundaneValues mundaneValues = calculatedFullChart.getHouseValues();

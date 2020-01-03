@@ -7,7 +7,7 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.xchg.domain.Ayanamshas;
-import com.radixpro.enigma.xchg.domain.CelestialBodies;
+import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,14 +25,14 @@ public class CalculationSettingsTest {
    private final boolean sidereal = false;
    private final boolean topocentric = true;
    private final boolean heliocentric = false;
-   private List<CelestialBodies> celBodies;
+   private List<CelestialObjects> celBodies;
    private CalculationSettings calculationSettings;
 
    @Before
    public void setUp() {
       celBodies = new ArrayList<>();
-      celBodies.add(CelestialBodies.SUN);
-      celBodies.add(CelestialBodies.MOON);
+      celBodies.add(CelestialObjects.SUN);
+      celBodies.add(CelestialObjects.MOON);
       calculationSettings = new CalculationSettings(celBodies, houseSystem, ayanamsha, sidereal, topocentric,
             heliocentric);
    }
