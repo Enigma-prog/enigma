@@ -28,7 +28,7 @@ public class FullChart {
    private long flagsValue;
    private List<SeFlags> allFlags;
    private MundaneValues mundaneValues;
-   private List<CelBodyPosition> bodies;
+   private List<CelObjectPosition> bodies;
    private double obliquity;
 
    public FullChart(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
@@ -66,7 +66,7 @@ public class FullChart {
    private void calculateBodies() {
       bodies = new ArrayList<>();
       for (int i = 0; i < settings.getCelBodies().size(); i++) {
-         bodies.add(new CelBodyPosition(seFrontend, simpleDateTime.getJdUt(), settings.getCelBodies().get(i), location, allFlags));
+         bodies.add(new CelObjectPosition(seFrontend, simpleDateTime.getJdUt(), settings.getCelBodies().get(i), location, allFlags));
       }
    }
 
@@ -78,7 +78,7 @@ public class FullChart {
       return mundaneValues;
    }
 
-   public List<CelBodyPosition> getBodies() {
+   public List<CelObjectPosition> getBodies() {
       return bodies;
    }
 

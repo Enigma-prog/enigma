@@ -9,7 +9,7 @@ package com.radixpro.enigma.be.astron.assist;
 /**
  * Container for the result of a SE calculation for celestial bodies.
  */
-public class SePositionResultCelBodies {
+public class SePositionResultCelObjects {
 
    private final double[] allPositions;
    private final String errorMsg;
@@ -22,7 +22,7 @@ public class SePositionResultCelBodies {
     *                     speed of deviation, speed of distance.
     * @param errorMsg     Errormessage or empty String.
     */
-   public SePositionResultCelBodies(final double[] allPositions, final String errorMsg) {
+   public SePositionResultCelObjects(final double[] allPositions, final String errorMsg) {
       this.allPositions = allPositions;
       this.errorMsg = errorMsg;
    }

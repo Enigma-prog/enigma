@@ -20,13 +20,13 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CelBodyPositionSinglePositionTest {
+public class CelObjectPositionSinglePositionTest {
 
    @Mock
    private SeFrontend seFrontendMock;
    @Mock
-   private SePositionResultCelBodies sePositionResultMock;
-   private CelBodySinglePosition celBodySinglePosition;
+   private SePositionResultCelObjects sePositionResultMock;
+   private CelObjectSinglePosition celObjectSinglePosition;
    private final double jdUt = 123.456;
    private final int flags = 2;
    private final CelestialObjects celBodyToCalculate = CelestialObjects.MARS;
@@ -40,41 +40,41 @@ public class CelBodyPositionSinglePositionTest {
       when(sePositionResultMock.getAllPositions()).thenReturn(positions);
       when(sePositionResultMock.getErrorMsg()).thenReturn(errorMsg);
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultMock);
-      celBodySinglePosition = new CelBodySinglePosition(seFrontendMock, jdUt, celBodyToCalculate, flags);
+      celObjectSinglePosition = new CelObjectSinglePosition(seFrontendMock, jdUt, celBodyToCalculate, flags);
    }
 
    @Test
    public void getErrorMsg() {
-      assertEquals(errorMsg, celBodySinglePosition.getErrorMsg());
+      assertEquals(errorMsg, celObjectSinglePosition.getErrorMsg());
    }
 
    @Test
    public void getMainPosition() {
-      assertEquals(1.1, celBodySinglePosition.getMainPosition(), delta);
+      assertEquals(1.1, celObjectSinglePosition.getMainPosition(), delta);
    }
 
    @Test
    public void getDeviationPosition() {
-      assertEquals(2.2, celBodySinglePosition.getDeviationPosition(), delta);
+      assertEquals(2.2, celObjectSinglePosition.getDeviationPosition(), delta);
    }
 
    @Test
    public void getDistancePosition() {
-      assertEquals(3.3, celBodySinglePosition.getDistancePosition(), delta);
+      assertEquals(3.3, celObjectSinglePosition.getDistancePosition(), delta);
    }
 
    @Test
    public void getMainSpeed() {
-      assertEquals(4.4, celBodySinglePosition.getMainSpeed(), delta);
+      assertEquals(4.4, celObjectSinglePosition.getMainSpeed(), delta);
    }
 
    @Test
    public void getDeviationSpeed() {
-      assertEquals(5.5, celBodySinglePosition.getDeviationSpeed(), delta);
+      assertEquals(5.5, celObjectSinglePosition.getDeviationSpeed(), delta);
    }
 
    @Test
    public void getDistanceSpeed() {
-      assertEquals(6.6, celBodySinglePosition.getDistanceSpeed(), delta);
+      assertEquals(6.6, celObjectSinglePosition.getDistanceSpeed(), delta);
    }
 }

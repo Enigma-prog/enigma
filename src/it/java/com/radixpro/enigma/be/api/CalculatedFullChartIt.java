@@ -8,7 +8,7 @@ package com.radixpro.enigma.be.api;
 
 import com.radixpro.enigma.be.astron.assist.*;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import com.radixpro.enigma.be.astron.main.CelBodyPosition;
+import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.xchg.domain.Ayanamshas;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
@@ -90,7 +90,7 @@ public class CalculatedFullChartIt {
       assertEquals(settings, calculatedFullChart.getSettings());
 
       // celestial bodies, all longitudes and samples for the other values
-      List<CelBodyPosition> bodies = calculatedFullChart.getBodies();
+      List<CelObjectPosition> bodies = calculatedFullChart.getBodies();
 
       // obliquity
       assertEquals(23.447072308, calculatedFullChart.getObliquity(), DELTA);

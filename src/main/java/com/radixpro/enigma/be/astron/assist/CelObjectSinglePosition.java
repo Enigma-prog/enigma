@@ -12,7 +12,7 @@ import com.radixpro.enigma.xchg.domain.CelestialObjects;
 /**
  * Calculated positions for a specific coordinateset for a celestial body.
  */
-public class CelBodySinglePosition {
+public class CelObjectSinglePosition {
 
    private String errorMsg = "";
    private double mainPosition;
@@ -22,12 +22,12 @@ public class CelBodySinglePosition {
    private double deviationSpeed;
    private double distanceSpeed;
 
-   public CelBodySinglePosition(final SeFrontend seFrontend, final Double jdUt, final CelestialObjects celBody, final int flags) {
+   public CelObjectSinglePosition(final SeFrontend seFrontend, final Double jdUt, final CelestialObjects celBody, final int flags) {
       calculate(seFrontend, jdUt, celBody, flags);
    }
 
    private void calculate(final SeFrontend seFrontend, final Double jdUt, final CelestialObjects celBody, final int flags) {
-      SePositionResultCelBodies sePositionResult = seFrontend.getPositionsForCelBody(jdUt, (int) celBody.getSeId(), flags);
+      SePositionResultCelObjects sePositionResult = seFrontend.getPositionsForCelBody(jdUt, (int) celBody.getSeId(), flags);
       errorMsg = sePositionResult.getErrorMsg();
       mainPosition = sePositionResult.getAllPositions()[0];
       deviationPosition = sePositionResult.getAllPositions()[1];

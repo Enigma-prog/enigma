@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.be.astron.main;
 
-import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class ObliquityTest {
    @Mock
    private SeFrontend seFrontendMock;
    @Mock
-   private SePositionResultCelBodies positionResultMock;
+   private SePositionResultCelObjects positionResultMock;
    private Obliquity obliquity;
 
    @Before

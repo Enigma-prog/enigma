@@ -7,7 +7,7 @@
 package com.radixpro.enigma.be.astron.main;
 
 import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.SeFlags;
@@ -24,15 +24,15 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CelBodyPositionTest {
+public class CelObjectPositionTest {
 
    @Mock
    private SeFrontend seFrontendMock;
    @Mock
    private Location locationMock;
    @Mock
-   private SePositionResultCelBodies sePositionResultMock;
-   private CelBodyPosition celBodyPosition;
+   private SePositionResultCelObjects sePositionResultMock;
+   private CelObjectPosition celObjectPosition;
    private final Double jdUt = 1234567.891;
    private final CelestialObjects celBodyToCalc = CelestialObjects.MERCURY;
    private final double geoLat = 52.0;
@@ -48,21 +48,21 @@ public class CelBodyPositionTest {
             anyInt())).thenReturn(new double[]{3.4, 5.6});
       flagList = new ArrayList<>();
       flagList.add(SeFlags.SWISSEPH);
-      celBodyPosition = new CelBodyPosition(seFrontendMock, jdUt, celBodyToCalc, locationMock, flagList);
+      celObjectPosition = new CelObjectPosition(seFrontendMock, jdUt, celBodyToCalc, locationMock, flagList);
    }
 
    @Test
    public void getEclipticalPosition() {
-      assertNotNull(celBodyPosition.getEclipticalPosition());
+      assertNotNull(celObjectPosition.getEclipticalPosition());
    }
 
    @Test
    public void getEquatorialPosition() {
-      assertNotNull(celBodyPosition.getEquatorialPosition());
+      assertNotNull(celObjectPosition.getEquatorialPosition());
    }
 
    @Test
    public void getHorizontalPosition() {
-      assertNotNull(celBodyPosition.getHorizontalPosition());
+      assertNotNull(celObjectPosition.getHorizontalPosition());
    }
 }

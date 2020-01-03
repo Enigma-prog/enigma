@@ -7,7 +7,7 @@
 package com.radixpro.enigma.be.astron.main;
 
 import com.radixpro.enigma.be.astron.assist.EquatorialPosition;
-import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class EquatorialPositionTest {
    @Mock
    private SeFrontend seFrontendMock;
    @Mock
-   private SePositionResultCelBodies sePosResultMock;
+   private SePositionResultCelObjects sePosResultMock;
    private EquatorialPosition equatorialPosition;
 
    @Before

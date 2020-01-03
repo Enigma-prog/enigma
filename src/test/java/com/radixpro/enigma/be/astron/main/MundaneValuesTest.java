@@ -8,7 +8,7 @@ package com.radixpro.enigma.be.astron.main;
 
 import com.radixpro.enigma.be.astron.assist.HousePosition;
 import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
@@ -39,7 +39,7 @@ public class MundaneValuesTest {
    @Mock
    private SePositionResultHouses sePositionResultHousesMock;
    @Mock
-   private SePositionResultCelBodies sePositionResultCelBodiesMock;
+   private SePositionResultCelObjects sePositionResultCelObjectsMock;
    @Mock
    private Location locationMock;
    private MundaneValues mundaneValues;
@@ -48,11 +48,11 @@ public class MundaneValuesTest {
    public void setUp() {
       when(sePositionResultHousesMock.getCusps()).thenReturn(cusps);
       when(sePositionResultHousesMock.getAscMc()).thenReturn(ascMc);
-      when(sePositionResultCelBodiesMock.getAllPositions()).thenReturn(new double[]{23.447, 23.448});
+      when(sePositionResultCelObjectsMock.getAllPositions()).thenReturn(new double[]{23.447, 23.448});
       when(seFrontendMock.convertToEquatorial(any(), anyDouble())).thenReturn(new double[]{2.3, 3.3});
       when(seFrontendMock.getPositionsForHouses(anyDouble(), anyInt(), any(), anyInt(),
             anyInt())).thenReturn(sePositionResultHousesMock);
-      when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultCelBodiesMock);
+      when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultCelObjectsMock);
       when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(), anyInt())).thenReturn(new double[]{100.0, -30.0});
       mundaneValues = new MundaneValues(seFrontendMock, jdUt, flags, locationMock, system);
    }

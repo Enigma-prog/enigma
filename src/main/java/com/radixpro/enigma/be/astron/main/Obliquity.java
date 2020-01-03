@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.be.astron.main;
 
-import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 
 import static swisseph.SweConst.SE_ECL_NUT;
@@ -25,7 +25,7 @@ public class Obliquity {
 
    private void performCalculation(final SeFrontend seFrontend, final double jdUt) {
       final int flags = 0;
-      SePositionResultCelBodies calculatedPos = seFrontend.getPositionsForCelBody(jdUt, SE_ECL_NUT, flags);
+      SePositionResultCelObjects calculatedPos = seFrontend.getPositionsForCelBody(jdUt, SE_ECL_NUT, flags);
       trueObliquity = calculatedPos.getAllPositions()[0];
       meanObliquity = calculatedPos.getAllPositions()[1];
    }

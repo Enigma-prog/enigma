@@ -21,12 +21,12 @@ public class SePositionResultTest {
    private final double pos5 = 5.5;
    private final double pos6 = 6.6;
    private final double delta = 0.00000001;
-   private SePositionResultCelBodies sePositionResult;
+   private SePositionResultCelObjects sePositionResult;
 
    @Before
    public void setUp() {
       double[] positions = {pos1, pos2, pos3, pos4, pos5, pos6};
-      sePositionResult = new SePositionResultCelBodies(positions, errorMsg);
+      sePositionResult = new SePositionResultCelObjects(positions, errorMsg);
    }
 
    @Test

@@ -7,7 +7,7 @@
 package com.radixpro.enigma.be.astron.core;
 
 import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import swisseph.SweDate;
 import swisseph.SwissEph;
@@ -68,11 +68,11 @@ public class SeFrontend {
     * @param flags combined settings for the SE
     * @return calculated positions
     */
-   public SePositionResultCelBodies getPositionsForCelBody(final double jdUt, final int id, final int flags) {
+   public SePositionResultCelObjects getPositionsForCelBody(final double jdUt, final int id, final int flags) {
       double[] allPositions = new double[6];
       var errorMsg = new StringBuffer();  // StringBuilder not possible because Java Port to the SE uses a StringBuffer.
       swissEph.swe_calc_ut(jdUt, id, flags, allPositions, errorMsg);
-      return new SePositionResultCelBodies(allPositions, errorMsg.toString());
+      return new SePositionResultCelObjects(allPositions, errorMsg.toString());
    }
 
    /**

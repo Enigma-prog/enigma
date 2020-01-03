@@ -6,9 +6,9 @@
 
 package com.radixpro.enigma.be.astron.core;
 
-import com.radixpro.enigma.be.astron.assist.CelBodySinglePosition;
+import com.radixpro.enigma.be.astron.assist.CelObjectSinglePosition;
 import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SePositionResultCelBodies;
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 public class SeFrontendTest {
 
    @Mock
-   private CelBodySinglePosition celBodySinglePositionMock;
+   private CelObjectSinglePosition celObjectSinglePositionMock;
    @Mock
    private Location locationMock;
    private final double delta = 0.00000001;
@@ -58,7 +58,7 @@ public class SeFrontendTest {
 
    @Test
    public void getPositionsForCelBody() {
-      SePositionResultCelBodies result = SeFrontend.getFrontend().getPositionsForCelBody(jdUt, bodyId, flags);
+      SePositionResultCelObjects result = SeFrontend.getFrontend().getPositionsForCelBody(jdUt, bodyId, flags);
       assertEquals(148.08135699695939, result.getAllPositions()[0], delta);
    }
 
