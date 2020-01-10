@@ -18,11 +18,11 @@ import java.util.List;
 /**
  * API for a calculated full chart. Contains all positions and additional astronomical info.
  */
-public class CalculatedFullChart {
+public class CalculatedFullChartApi {
 
    private final FullChart fullchart;
 
-   public CalculatedFullChart(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
+   public CalculatedFullChartApi(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
       fullchart = new FullChart(simpleDateTime, location, settings);
    }
 
