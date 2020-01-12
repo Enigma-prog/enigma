@@ -6,14 +6,12 @@
 
 package com.radixpro.enigma.be.persistency.daos;
 
-import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SimpleDateTime;
+import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.results.ChartDataListResult;
 import com.radixpro.enigma.be.persistency.results.ChartDataResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.xchg.domain.ChartData;
-import com.radixpro.enigma.xchg.domain.ChartMetaData;
+import com.radixpro.enigma.xchg.domain.*;
 import org.dizitart.no2.*;
 
 import java.util.ArrayList;
@@ -100,20 +98,62 @@ public class ChartDataDao {
       return new ChartDataListResult(chartDataList, databaseResult);
    }
 
+//   private Document chartData2Document(final ChartData chartData) {
+//      return Document.createDocument("_id", chartData.getId())
+//            .put("datetime", chartData.getSimpleDateTime())
+//            .put("location", chartData.getLocation())
+//            .put("meta", chartData.getChartMetaData());
+//   }
+
    private Document chartData2Document(final ChartData chartData) {
       return Document.createDocument("_id", chartData.getId())
-            .put("datetime", chartData.getSimpleDateTime())
-            .put("location", chartData.getLocation())
-            .put("meta", chartData.getChartMetaData());
+            .put("year", chartData.getSimpleDateTime().getYear())
+            .put("month", chartData.getSimpleDateTime().getMonth())
+            .put("day", chartData.getSimpleDateTime().getDay())
+            .put("hour", chartData.getSimpleDateTime().getHour())
+            .put("minute", chartData.getSimpleDateTime().getMinute())
+            .put("second", chartData.getSimpleDateTime().getSecond())
+            .put("gregorian", chartData.getSimpleDateTime().isGregorian())
+            .put("jdut", chartData.getSimpleDateTime().getJdUt())
+            .put("geolat", chartData.getLocation().getGeoLat())
+            .put("geolong", chartData.getLocation().getGeoLong())
+            .put("name", chartData.getChartMetaData().getName())
+            .put("description", chartData.getChartMetaData().getDescription())
+            .put("source", chartData.getChartMetaData().getSource())
+            .put("sex", chartData.getChartMetaData().getSex())
+            .put("charttype", chartData.getChartMetaData().getChartType().getId())
+            .put("rating", chartData.getChartMetaData().getRating().getId())
+            .put("categories", chartData.getChartMetaData().getCategories());
    }
 
-   private ChartData document2ChartData(final Document document) {
-      long id = (long) document.get("_id");
-      var simpleDateTime = (SimpleDateTime) document.get("datetime");
-      var location = (Location) document.get("location");
-      var chartMetaData = (ChartMetaData) document.get("meta");
-      return new ChartData(id, simpleDateTime, location, chartMetaData);
+
+   private ChartData document2ChartData(final Document doc) {
+      long id = (long) doc.get("_id");
+      var date = new SimpleDate((int) doc.get("day"), (int) doc.get("month"), (int) doc.get("month"), (boolean) doc.get("gregorian"));
+      var time = new SimpleTime((int) doc.get("hour"), (int) doc.get("minute"), (int) doc.get("second"));
+      var dateTime = new SimpleDateTime(SeFrontend.getFrontend(), date, time);
+      var location = new Location((double) doc.get("geolat"), (double) doc.get("geolong"));
+      var chartMetaData = new ChartMetaData((String) doc.get("name"), (String) doc.get("description"),
+            (String) doc.get("source"), (String) doc.get("sex"), (List<Integer>) doc.get("categories"),
+            ChartTypes.UNKNOWN.chartTypeForId((int) doc.get("charttype")),
+            Ratings.ZZ.ratingForId((int) doc.get("rating")));
+      return new ChartData(id, dateTime, location, chartMetaData);
    }
+
+/*
+   public ChartMetaData(final String name, final String description, final String source, final String sex,
+                        final List<Integer> categories, final ChartTypes chartType, final Ratings rating) {
+ */
+
+
+//   private ChartData document2ChartData(final Document document) {
+//      long id = (long) document.get("_id");
+//      var simpleDateTime = (SimpleDateTime) document.get("datetime");
+//      var location = (Location) document.get("location");
+//      var chartMetaData = (ChartMetaData) document.get("meta");
+//      return new ChartData(id, simpleDateTime, location, chartMetaData);
+//   }
+
 
    private void openCollectionAndDatabase() {
       EnigmaDatabase enigmaDb = new EnigmaDatabase();

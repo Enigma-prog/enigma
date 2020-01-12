@@ -1,14 +1,10 @@
 /*
- * Jan Kampherbeek, (c) 2019.
+ * Jan Kampherbeek, (c) 2020.
  * Enigma is open source.
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.astron.assist;
-
-import com.radixpro.enigma.xchg.domain.Ayanamshas;
-import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import com.radixpro.enigma.xchg.domain.HouseSystems;
+package com.radixpro.enigma.xchg.domain;
 
 import java.util.List;
 

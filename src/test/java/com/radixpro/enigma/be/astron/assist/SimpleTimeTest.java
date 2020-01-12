@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
+import com.radixpro.enigma.xchg.domain.SimpleTime;
 import org.junit.Before;
 import org.junit.Test;
 

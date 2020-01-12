@@ -104,18 +104,6 @@ public class UserDefinedCategoryDao {
       return new UserDefinedCategory(id, text);
    }
 
-
-//   private void openRepositoryAndDatabase() {
-//      EnigmaDatabase enigmaDb = new EnigmaDatabase();
-//      nitriteDb = enigmaDb.openDatabase();
-//      repository = nitriteDb.getRepository(UserDefinedCategory.class);
-//   }
-//
-//   private void closeRepositoryAndDatabase() {
-//      repository.close();
-//      nitriteDb.close();
-//   }
-
    private void openCollectionAndDatabase() {
       EnigmaDatabase enigmaDb = new EnigmaDatabase();
       nitriteDb = enigmaDb.openDatabase();

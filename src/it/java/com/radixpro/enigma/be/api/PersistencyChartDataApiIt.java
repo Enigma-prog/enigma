@@ -6,15 +6,8 @@
 
 package com.radixpro.enigma.be.api;
 
-import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SimpleDate;
-import com.radixpro.enigma.be.astron.assist.SimpleDateTime;
-import com.radixpro.enigma.be.astron.assist.SimpleTime;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import com.radixpro.enigma.xchg.domain.ChartData;
-import com.radixpro.enigma.xchg.domain.ChartMetaData;
-import com.radixpro.enigma.xchg.domain.ChartTypes;
-import com.radixpro.enigma.xchg.domain.Ratings;
+import com.radixpro.enigma.xchg.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 

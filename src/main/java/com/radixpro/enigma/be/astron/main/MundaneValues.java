@@ -6,9 +6,13 @@
 
 package com.radixpro.enigma.be.astron.main;
 
-import com.radixpro.enigma.be.astron.assist.*;
+import com.radixpro.enigma.be.astron.assist.EquatorialPosition;
+import com.radixpro.enigma.be.astron.assist.HorizontalPosition;
+import com.radixpro.enigma.be.astron.assist.HousePosition;
+import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
+import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
 
 import java.util.ArrayList;

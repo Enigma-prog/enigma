@@ -9,9 +9,9 @@ package com.radixpro.enigma.be.astron.main;
 import com.radixpro.enigma.be.astron.assist.CelObjectSinglePosition;
 import com.radixpro.enigma.be.astron.assist.CombinedFlags;
 import com.radixpro.enigma.be.astron.assist.HorizontalPosition;
-import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
+import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
 
 import java.util.ArrayList;

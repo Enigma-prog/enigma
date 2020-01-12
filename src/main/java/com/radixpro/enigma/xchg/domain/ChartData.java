@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SimpleDateTime;
 import org.dizitart.no2.objects.Id;
 
 public class ChartData {

@@ -7,11 +7,11 @@
 package com.radixpro.enigma.be.astron.main;
 
 import com.radixpro.enigma.be.astron.assist.HousePosition;
-import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
+import com.radixpro.enigma.xchg.domain.Location;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -7,6 +7,7 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.Location;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

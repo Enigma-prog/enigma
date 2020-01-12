@@ -6,9 +6,9 @@
 
 package com.radixpro.enigma.be.astron.core;
 
-import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
+import com.radixpro.enigma.xchg.domain.Location;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 import swisseph.SwissLib;

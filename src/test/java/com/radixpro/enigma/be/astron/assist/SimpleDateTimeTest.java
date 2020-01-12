@@ -7,6 +7,9 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.SimpleDate;
+import com.radixpro.enigma.xchg.domain.SimpleDateTime;
+import com.radixpro.enigma.xchg.domain.SimpleTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

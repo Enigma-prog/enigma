@@ -9,13 +9,14 @@ package com.radixpro.enigma.xchg.domain;
 import java.io.Serializable;
 
 public enum Ratings implements Serializable {
+   ZZ(0, "zz"),
    AA(1, "aa"),
    A(2, "a"),
    B(3, "b"),
    C(4, "c"),
    DD(5, "dd"),
    X(6, "x"),
-   XX(7, "XX");
+   XX(7, "xx");
 
    private static final String RB_PREFIX = "gen.lookup.ratings.";
    private static final String RB_NAME_POSTFIX = ".name";
@@ -38,6 +39,15 @@ public enum Ratings implements Serializable {
 
    public String getRbKeyForDescription() {
       return RB_PREFIX + nameForRB + RB_DESCRIPTION_POSTFIX;
+   }
+
+   public Ratings ratingForId(final int id) {
+      for (Ratings rating : Ratings.values()) {
+         if (rating.getId() == id) {
+            return rating;
+         }
+      }
+      return Ratings.ZZ;
    }
 
 }

@@ -6,12 +6,12 @@
 
 package com.radixpro.enigma.be.astron.main;
 
-import com.radixpro.enigma.be.astron.assist.CalculationSettings;
 import com.radixpro.enigma.be.astron.assist.CombinedFlags;
-import com.radixpro.enigma.be.astron.assist.Location;
-import com.radixpro.enigma.be.astron.assist.SimpleDateTime;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.CalculationSettings;
+import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
+import com.radixpro.enigma.xchg.domain.SimpleDateTime;
 
 import java.util.ArrayList;
 import java.util.List;

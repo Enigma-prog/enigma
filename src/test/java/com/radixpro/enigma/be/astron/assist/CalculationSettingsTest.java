@@ -7,6 +7,7 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.xchg.domain.Ayanamshas;
+import com.radixpro.enigma.xchg.domain.CalculationSettings;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.junit.Before;

@@ -31,6 +31,17 @@ public class RatingsTest {
 
    @Test
    public void total() {
-      assertEquals(7, Ratings.values().length);
+      assertEquals(8, Ratings.values().length);
    }
+
+   @Test
+   public void ratingForId() {
+      assertEquals(Ratings.A, rating.ratingForId(2));
+   }
+
+   @Test
+   public void ratingForIdNotFound() {
+      assertEquals(Ratings.ZZ, rating.ratingForId(1000));
+   }
+
 }
