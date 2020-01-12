@@ -7,6 +7,7 @@
 package com.radixpro.enigma.xchg.domain;
 
 public enum ObserverPositions {
+   UNKNOWN(0, "unknown"),
    GEOCENTRIRC(1, "geocentric"),
    TOPOCENTRIC(2, "topocentric"),
    HELIOCENTRIC(3, "heliocentric");
@@ -32,6 +33,15 @@ public enum ObserverPositions {
 
    public String getRbKeyForDescription() {
       return RB_PREFIX + nameForRB + RB_DESCRIPTION_POSTFIX;
+   }
+
+   public ObserverPositions getObserverPositionForId(final int id) {
+      for (ObserverPositions observerPos : ObserverPositions.values()) {
+         if (observerPos.getId() == id) {
+            return observerPos;
+         }
+      }
+      return ObserverPositions.UNKNOWN;
    }
 
 }

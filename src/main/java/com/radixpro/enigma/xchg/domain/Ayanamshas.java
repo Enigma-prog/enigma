@@ -7,6 +7,7 @@
 package com.radixpro.enigma.xchg.domain;
 
 public enum Ayanamshas {
+   UNKNOWN(-2, -1, "unknown"),
    NONE(-1, -1, "none"),
    FAGAN(0, 0, "fagan"),
    LAHIRI(1, 1, "lahiri"),
@@ -77,4 +78,14 @@ public enum Ayanamshas {
    public String getRbKeyForDescription() {
       return RB_PREFIX + nameForRB + RB_DESCRIPTION_POSTFIX;
    }
+
+   public Ayanamshas getAyanamshaForId(int id) {
+      for (Ayanamshas ayanamsha : Ayanamshas.values()) {
+         if (ayanamsha.getId() == id) {
+            return ayanamsha;
+         }
+      }
+      return Ayanamshas.UNKNOWN;
+   }
+
 }

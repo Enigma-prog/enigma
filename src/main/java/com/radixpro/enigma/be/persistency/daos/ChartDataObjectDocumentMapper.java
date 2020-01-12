@@ -44,7 +44,7 @@ public class ChartDataObjectDocumentMapper {
       var chartMetaData = new ChartMetaData((String) doc.get("name"), (String) doc.get("description"),
             (String) doc.get("source"), (String) doc.get("sex"), (List<Integer>) doc.get("categories"),
             ChartTypes.UNKNOWN.chartTypeForId((int) doc.get("charttype")),
-            Ratings.ZZ.ratingForId((int) doc.get("rating")));
+            Ratings.ZZ.getRatingForId((int) doc.get("rating")));
       return new ChartData(id, dateTime, location, chartMetaData);
    }
 

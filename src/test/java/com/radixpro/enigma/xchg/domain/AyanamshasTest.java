@@ -41,7 +41,19 @@ public class AyanamshasTest {
    }
 
    @Test
-   public void total() {
-      assertEquals(41, Ayanamshas.values().length);
+   public void getAyanamshaForId() {
+      assertEquals(Ayanamshas.RAMAN, ayanamsha.getAyanamshaForId(3));
    }
+
+   @Test
+   public void getAyanamshaForIdNotFound() {
+      assertEquals(Ayanamshas.UNKNOWN, ayanamsha.getAyanamshaForId(1000));
+   }
+
+   @Test
+   public void total() {
+      assertEquals(42, Ayanamshas.values().length);
+   }
+
+
 }

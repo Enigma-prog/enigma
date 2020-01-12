@@ -36,12 +36,12 @@ public class RatingsTest {
 
    @Test
    public void ratingForId() {
-      assertEquals(Ratings.A, rating.ratingForId(2));
+      assertEquals(Ratings.A, rating.getRatingForId(2));
    }
 
    @Test
    public void ratingForIdNotFound() {
-      assertEquals(Ratings.ZZ, rating.ratingForId(1000));
+      assertEquals(Ratings.ZZ, rating.getRatingForId(1000));
    }
 
 }

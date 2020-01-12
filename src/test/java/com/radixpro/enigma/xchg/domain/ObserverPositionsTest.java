@@ -30,8 +30,18 @@ public class ObserverPositionsTest {
    }
 
    @Test
+   public void getObserverPositionForId() {
+      assertEquals(ObserverPositions.TOPOCENTRIC, observerPosition.getObserverPositionForId(2));
+   }
+
+   @Test
+   public void getObserverPositionForIdNotFound() {
+      assertEquals(ObserverPositions.UNKNOWN, observerPosition.getObserverPositionForId(1000));
+   }
+
+   @Test
    public void total() {
-      assertEquals(3, ObserverPositions.values().length);
+      assertEquals(4, ObserverPositions.values().length);
    }
 
 }

@@ -65,6 +65,17 @@ public class HouseSystemsTest {
 
    @Test
    public void total() {
-      assertEquals(22, HouseSystems.values().length);
+      assertEquals(23, HouseSystems.values().length);
    }
+
+   @Test
+   public void getSystemForId() {
+      assertEquals(HouseSystems.PLACIDUS, houseSystem.getSystemForId(6));
+   }
+
+   @Test
+   public void getSystemForIdNotFound() {
+      assertEquals(HouseSystems.UNKNOWN, houseSystem.getSystemForId(1000));
+   }
+
 }

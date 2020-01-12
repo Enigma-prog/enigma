@@ -41,7 +41,7 @@ public enum Ratings implements Serializable {
       return RB_PREFIX + nameForRB + RB_DESCRIPTION_POSTFIX;
    }
 
-   public Ratings ratingForId(final int id) {
+   public Ratings getRatingForId(final int id) {
       for (Ratings rating : Ratings.values()) {
          if (rating.getId() == id) {
             return rating;

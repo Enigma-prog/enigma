@@ -10,6 +10,7 @@ package com.radixpro.enigma.xchg.domain;
  * Housesystems for calculation, internal id and id for SE.
  */
 public enum HouseSystems {
+   UNKNOWN(0, "", "unknown", 0, false, false, false),
    NONE(-1, "", "none", 0, false, false, false),
    WHOLESIGN(2, "W", "wholesign", 12, true, false, true),
    EQUAL(3, "A", "equalasc", 12, true, false, true),
@@ -86,6 +87,15 @@ public enum HouseSystems {
 
    public boolean isCuspIsStart() {
       return cuspIsStart;
+   }
+
+   public HouseSystems getSystemForId(int id) {
+      for (HouseSystems system : HouseSystems.values()) {
+         if (system.getId() == id) {
+            return system;
+         }
+      }
+      return HouseSystems.UNKNOWN;
    }
 
 }
