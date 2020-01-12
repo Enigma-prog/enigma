@@ -6,27 +6,27 @@
 
 package com.radixpro.enigma.be.api;
 
-import com.radixpro.enigma.be.persistency.daos.UserDefinedCategoryDao;
+import com.radixpro.enigma.be.persistency.daos.ChartDataDao;
+import com.radixpro.enigma.be.persistency.results.ChartDataListResult;
+import com.radixpro.enigma.be.persistency.results.ChartDataResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryListResult;
-import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
-import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
+import com.radixpro.enigma.xchg.domain.ChartData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersistedUserDefinedCategoryApi {
+public class PersistedChartDataApi {
 
    private final static String ERROR = "ERROR";
    private final static String OK = "OK";
-   private final UserDefinedCategoryDao dao;
+   private final ChartDataDao dao;
 
-   public PersistedUserDefinedCategoryApi() {
-      dao = new UserDefinedCategoryDao();
+   public PersistedChartDataApi() {
+      dao = new ChartDataDao();
    }
 
-   public String insert(final UserDefinedCategory category) {
-      final DatabaseResults result = dao.insert(category);
+   public String insert(final ChartData chartData) {
+      final DatabaseResults result = dao.insert(chartData);
       if (result != DatabaseResults.OK) {
          // TODO handle result, use db error messages in RB
          return ERROR;
@@ -34,8 +34,8 @@ public class PersistedUserDefinedCategoryApi {
       return OK;
    }
 
-   public String update(final UserDefinedCategory category) {
-      final DatabaseResults result = dao.update(category);
+   public String update(final ChartData chartData) {
+      final DatabaseResults result = dao.update(chartData);
       if (result == DatabaseResults.NOT_FOUND) {
          return "NOTFOUND";
       }
@@ -45,8 +45,8 @@ public class PersistedUserDefinedCategoryApi {
       return OK;
    }
 
-   public String delete(final UserDefinedCategory category) {
-      final DatabaseResults result = dao.delete(category);
+   public String delete(final ChartData chartData) {
+      final DatabaseResults result = dao.delete(chartData);
       if (result != DatabaseResults.OK) {
          // TODO handle result, use db error messages in RB
          return ERROR;
@@ -54,20 +54,21 @@ public class PersistedUserDefinedCategoryApi {
       return OK;
    }
 
-   public UserDefinedCategory read(final int id) {
-      UserDefinedCategoryResult result = dao.read(id);
+   public ChartData read(final int id) {
+      ChartDataResult result = dao.read(id);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return null;
-      } else return result.getUserDefinedCategory();
+      } else return result.getChartData();
    }
 
-   public List<UserDefinedCategory> readAll() {
-      UserDefinedCategoryListResult result = dao.readAll();
+   public List<ChartData> readAll() {
+      ChartDataListResult result = dao.readAll();
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return new ArrayList<>();
-      } else return result.getCategories();
+      } else return result.getChartDataList();
    }
+
 
 }

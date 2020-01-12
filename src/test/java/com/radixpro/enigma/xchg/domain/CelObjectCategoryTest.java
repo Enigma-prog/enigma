@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CelObjectCategoryTest {
 
-   private CelObjectCategory category = CelObjectCategory.EXTRA_PLUT;
+   private final CelObjectCategory category = CelObjectCategory.EXTRA_PLUT;
 
    @Test
    public void getId() {

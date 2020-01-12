@@ -26,7 +26,7 @@ public class Chartsmain {
    void onInputForChart(ActionEvent event) throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsinput.fxml"));
       Parent parent = fxmlLoader.load();
-      ChartsInput chartsInput = fxmlLoader.<ChartsInput>getController();
+      ChartsInput chartsInput = fxmlLoader.getController();
       // setObservableList om resultaten terug te krijgen
 
       Scene scene = new Scene(parent, 300, 200);

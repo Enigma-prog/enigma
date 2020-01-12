@@ -27,8 +27,6 @@ public class CelObjectPositionSinglePositionTest {
    @Mock
    private SePositionResultCelObjects sePositionResultMock;
    private CelObjectSinglePosition celObjectSinglePosition;
-   private final double jdUt = 123.456;
-   private final int flags = 2;
    private final CelestialObjects celBodyToCalculate = CelestialObjects.MARS;
 
    private final double delta = 0.00000001;
@@ -40,6 +38,8 @@ public class CelObjectPositionSinglePositionTest {
       when(sePositionResultMock.getAllPositions()).thenReturn(positions);
       when(sePositionResultMock.getErrorMsg()).thenReturn(errorMsg);
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultMock);
+      int flags = 2;
+      double jdUt = 123.456;
       celObjectSinglePosition = new CelObjectSinglePosition(seFrontendMock, jdUt, celBodyToCalculate, flags);
    }
 

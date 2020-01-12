@@ -8,21 +8,20 @@ package com.radixpro.enigma.xchg.domain;
 
 import com.radixpro.enigma.be.astron.assist.Location;
 import com.radixpro.enigma.be.astron.assist.SimpleDateTime;
+import org.dizitart.no2.objects.Id;
 
-import java.util.List;
+public class ChartData {
 
-public class PersistableChartData {
+   @Id
+   private final long id;
+   private final SimpleDateTime simpleDateTime;
+   private final Location location;
+   private final ChartMetaData chartMetaData;
 
-   private String id;
-   private List<Integer> categories;
-   private SimpleDateTime simpleDateTime;
-   private Location location;
-   private ChartMetaData chartMetaData;
 
-   public PersistableChartData(final String id, final List<Integer> categories, final SimpleDateTime simpleDateTime,
-                               final Location location, final ChartMetaData chartMetaData) {
+   public ChartData(final long id, final SimpleDateTime simpleDateTime,
+                    final Location location, final ChartMetaData chartMetaData) {
       this.id = id;
-      this.categories = categories;
       this.simpleDateTime = simpleDateTime;
       this.location = location;
       this.chartMetaData = chartMetaData;
@@ -36,11 +35,7 @@ public class PersistableChartData {
       return location;
    }
 
-   public List<Integer> getCategories() {
-      return categories;
-   }
-
-   public String getId() {
+   public long getId() {
       return id;
    }
 

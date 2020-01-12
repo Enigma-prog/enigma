@@ -6,9 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ChartMetaData {
+public class ChartMetaData implements Serializable {
 
    private final String name;
    private final String description;

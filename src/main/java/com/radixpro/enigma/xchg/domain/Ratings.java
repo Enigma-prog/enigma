@@ -6,7 +6,9 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-public enum Ratings {
+import java.io.Serializable;
+
+public enum Ratings implements Serializable {
    AA(1, "aa"),
    A(2, "a"),
    B(3, "b"),

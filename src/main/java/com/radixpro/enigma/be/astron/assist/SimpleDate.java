@@ -6,7 +6,9 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-public class SimpleDate {
+import java.io.Serializable;
+
+public class SimpleDate implements Serializable {
    private final int year;
    private final int month;
    private final int day;

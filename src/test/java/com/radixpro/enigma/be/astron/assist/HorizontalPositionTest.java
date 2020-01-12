@@ -20,24 +20,23 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class HorizontalPositionTest {
 
-   private final double jdUt = 123456.789;
    private final double geoLat = 50.0;
    private final double geoLon = -100.0;
-   private final int flags = 0;
    private final double[] horPositions = {3.3, 4.4};
    private final double delta = 0.00000001;
    @Mock
    private SeFrontend seFrontendMock;
    @Mock
    private Location locationMock;
-   private double[] eclipticalCoordinates;
    private HorizontalPosition horizontalPosition;
 
    @Before
    public void setUp() {
       when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(),
             anyInt())).thenReturn(horPositions);
-      eclipticalCoordinates = new double[]{100.1, 2.1, 3.1};
+      double[] eclipticalCoordinates = new double[]{100.1, 2.1, 3.1};
+      int flags = 0;
+      double jdUt = 123456.789;
       horizontalPosition = new HorizontalPosition(seFrontendMock, jdUt, eclipticalCoordinates,
             locationMock, flags);
    }

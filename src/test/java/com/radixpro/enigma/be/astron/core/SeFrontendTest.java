@@ -29,16 +29,13 @@ public class SeFrontendTest {
    private Location locationMock;
    private final double delta = 0.00000001;
    private final double jdUt = 1234567.89;
-   private final int bodyId = 4;
    private final int flags = 1;
-   private final double geoLat = 52.0;
-   private final double geoLong = 7.0;
-   private final char system = 'p';
-   private final int nrOfCusps = 12;
 
    @Before
    public void setUp() {
+      double geoLat = 52.0;
       when(locationMock.getGeoLat()).thenReturn(geoLat);
+      double geoLong = 7.0;
       when(locationMock.getGeoLong()).thenReturn(geoLong);
    }
 
@@ -58,12 +55,15 @@ public class SeFrontendTest {
 
    @Test
    public void getPositionsForCelBody() {
+      int bodyId = 4;
       SePositionResultCelObjects result = SeFrontend.getFrontend().getPositionsForCelBody(jdUt, bodyId, flags);
       assertEquals(148.08135699695939, result.getAllPositions()[0], delta);
    }
 
    @Test
    public void getPositionsForHouses() {
+      int nrOfCusps = 12;
+      char system = 'p';
       SePositionResultHouses result = SeFrontend.getFrontend().getPositionsForHouses(jdUt, flags, locationMock,
             system, nrOfCusps);
       assertEquals(59.97963584631173, result.getCusps()[3], delta);

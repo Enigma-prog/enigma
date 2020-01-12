@@ -6,7 +6,9 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-public class SimpleTime {
+import java.io.Serializable;
+
+public class SimpleTime implements Serializable {
    private final int hour;
    private final int minute;
    private final int second;

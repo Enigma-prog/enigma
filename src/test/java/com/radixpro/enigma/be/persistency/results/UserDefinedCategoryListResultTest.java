@@ -19,22 +19,22 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserDefinedCategoryResultListTest {
+public class UserDefinedCategoryListResultTest {
 
    @Mock
    private UserDefinedCategory userDefinedCategoryMock1;
    @Mock
    private UserDefinedCategory userDefinedCategoryMock2;
    private List<UserDefinedCategory> categoryList;
-   private DatabaseResults databaseResult = DatabaseResults.OK;
-   private UserDefinedCategoryResultList categoryResultList;
+   private final DatabaseResults databaseResult = DatabaseResults.OK;
+   private UserDefinedCategoryListResult categoryResultList;
 
    @Before
    public void setUp() {
       categoryList = new ArrayList<>();
       categoryList.add(userDefinedCategoryMock1);
       categoryList.add(userDefinedCategoryMock2);
-      categoryResultList = new UserDefinedCategoryResultList(categoryList, databaseResult);
+      categoryResultList = new UserDefinedCategoryListResult(categoryList, databaseResult);
    }
 
    @Test

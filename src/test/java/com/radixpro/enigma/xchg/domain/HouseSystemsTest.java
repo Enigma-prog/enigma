@@ -15,8 +15,6 @@ import static org.junit.Assert.assertTrue;
 public class HouseSystemsTest {
 
    private HouseSystems houseSystem;
-   private final String seId = "B";
-   private final int id = 11;
 
    @Before
    public void setUp() {
@@ -25,11 +23,13 @@ public class HouseSystemsTest {
 
    @Test
    public void getSeId() {
+      String seId = "B";
       assertEquals(seId, houseSystem.getSeId());
    }
 
    @Test
    public void getId() {
+      int id = 11;
       assertEquals(id, houseSystem.getId());
    }
 

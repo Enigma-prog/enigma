@@ -29,8 +29,6 @@ public class MundaneValuesTest {
 
    private final double[] cusps = {0.0, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9, 10.10, 11.11, 12.12};
    private final double[] ascMc = {1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 0.0, 0.0};  // Asc,MC,ARMC,Vertex,Eastpoint...
-   private final double jdUt = 1234567.8912;
-   private final int flags = 3;
    private final double delta = 0.00000001;
    private final HouseSystems system = HouseSystems.PLACIDUS;
    private final int nrOfCusps = 12;
@@ -54,6 +52,8 @@ public class MundaneValuesTest {
             anyInt())).thenReturn(sePositionResultHousesMock);
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultCelObjectsMock);
       when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(), anyInt())).thenReturn(new double[]{100.0, -30.0});
+      int flags = 3;
+      double jdUt = 1234567.8912;
       mundaneValues = new MundaneValues(seFrontendMock, jdUt, flags, locationMock, system);
    }
 

@@ -6,7 +6,9 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
    private final double geoLat;
    private final double geoLong;
 

@@ -36,7 +36,6 @@ public class SimpleDateTimeTest {
    private final int second = 45;
    private final boolean gregorian = true;
    private final double jdUt = 12.35;
-   private final double delta = 0.00000001;
 
    @Before
    public void setUp() {
@@ -89,6 +88,7 @@ public class SimpleDateTimeTest {
 
    @Test
    public void getJdUt() {
+      double delta = 0.00000001;
       assertEquals(jdUt, simpleDateTime.getJdUt(), delta);
    }
 

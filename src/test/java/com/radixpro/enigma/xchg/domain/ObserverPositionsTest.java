@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ObserverPositionsTest {
 
-   private ObserverPositions observerPosition = ObserverPositions.HELIOCENTRIC;
+   private final ObserverPositions observerPosition = ObserverPositions.HELIOCENTRIC;
 
    @Test
    public void getId() {

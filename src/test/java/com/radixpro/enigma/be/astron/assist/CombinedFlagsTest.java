@@ -17,11 +17,10 @@ import static org.junit.Assert.assertEquals;
 public class CombinedFlagsTest {
 
    private CombinedFlags combinedFlags;
-   private ArrayList<SeFlags> allSeFlags;
 
    @Before
    public void setUp()  {
-      allSeFlags = new ArrayList<>();
+      ArrayList<SeFlags> allSeFlags = new ArrayList<>();
       allSeFlags.add(SeFlags.SWISSEPH);            // 2L
       allSeFlags.add(SeFlags.HELIOCENTRIC);       // 8L
       allSeFlags.add(SeFlags.TOPOCENTRIC);         // 32 * 1024L

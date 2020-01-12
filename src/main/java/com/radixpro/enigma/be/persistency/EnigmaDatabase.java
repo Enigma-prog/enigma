@@ -11,7 +11,7 @@ import org.dizitart.no2.Nitrite;
 
 public class EnigmaDatabase {
 
-   private String dbFilePath;
+   private final String dbFilePath;
 
    public EnigmaDatabase() {
       dbFilePath = new AppProperties().getProperties().getProperty("database");

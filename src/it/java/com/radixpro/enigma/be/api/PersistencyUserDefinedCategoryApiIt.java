@@ -15,9 +15,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Integration test for persistency of UYserDefinedCategory.
+ * Integration test for persistency of UserDefinedCategory.
  */
-public class PersistencyUserDefinedCategoryApi {
+public class PersistencyUserDefinedCategoryApiIt {
 
    private PersistedUserDefinedCategoryApi api;
    private UserDefinedCategory userDefinedCategory1;
@@ -65,6 +65,7 @@ public class PersistencyUserDefinedCategoryApi {
       var updateCat = new UserDefinedCategory(4, "four");
       String result = api.update(updateCat);
       assertEquals("NOTFOUND", result);
+      assertEquals(1, 1);
    }
 
    @Test

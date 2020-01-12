@@ -8,9 +8,11 @@ package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 
-public class SimpleDateTime {
-   private SimpleDate date;
-   private SimpleTime time;
+import java.io.Serializable;
+
+public class SimpleDateTime implements Serializable {
+   private final SimpleDate date;
+   private final SimpleTime time;
    private double jdUt;
 
    public SimpleDateTime(final SeFrontend seFrontend, final SimpleDate simpleDate, final SimpleTime simpleTime) {

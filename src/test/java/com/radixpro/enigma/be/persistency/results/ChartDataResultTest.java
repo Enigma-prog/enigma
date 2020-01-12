@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.be.persistency.results;
 
-import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
+import com.radixpro.enigma.xchg.domain.ChartData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,25 +16,26 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserDefinedCategoryResultTest {
+public class ChartDataResultTest {
 
-   @Mock
-   private UserDefinedCategory categoryMock;
-   private UserDefinedCategoryResult categoryResult;
    private final DatabaseResults databaseResult = DatabaseResults.OK;
+   @Mock
+   private ChartData chartDataMock;
+   private ChartDataResult chartDataResult;
 
    @Before
    public void setUp() {
-      categoryResult = new UserDefinedCategoryResult(categoryMock, databaseResult);
+      chartDataResult = new ChartDataResult(chartDataMock, databaseResult);
    }
 
    @Test
    public void getDatabaseResult() {
-      assertEquals(databaseResult, categoryResult.getDatabaseResult());
+      assertEquals(databaseResult, chartDataResult.getDatabaseResult());
    }
 
    @Test
-   public void getUserDefinedCategory() {
-      assertEquals(categoryMock, categoryResult.getUserDefinedCategory());
+   public void getChartData() {
+      assertEquals(chartDataMock, chartDataResult.getChartData());
    }
+
 }

@@ -33,11 +33,9 @@ public class CelObjectPositionTest {
    @Mock
    private SePositionResultCelObjects sePositionResultMock;
    private CelObjectPosition celObjectPosition;
-   private final Double jdUt = 1234567.891;
    private final CelestialObjects celBodyToCalc = CelestialObjects.MERCURY;
    private final double geoLat = 52.0;
    private final double geoLong = 7.0;
-   private ArrayList<SeFlags> flagList;
 
    @Before
    public void setUp() {
@@ -46,8 +44,9 @@ public class CelObjectPositionTest {
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultMock);
       when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(),
             anyInt())).thenReturn(new double[]{3.4, 5.6});
-      flagList = new ArrayList<>();
+      ArrayList<SeFlags> flagList = new ArrayList<>();
       flagList.add(SeFlags.SWISSEPH);
+      Double jdUt = 1234567.891;
       celObjectPosition = new CelObjectPosition(seFrontendMock, jdUt, celBodyToCalc, locationMock, flagList);
    }
 

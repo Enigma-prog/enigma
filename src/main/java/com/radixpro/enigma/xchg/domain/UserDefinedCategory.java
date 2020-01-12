@@ -8,26 +8,20 @@ package com.radixpro.enigma.xchg.domain;
 
 import org.dizitart.no2.objects.Id;
 
-public class UserDefinedCategory {
+import java.io.Serializable;
+
+public class UserDefinedCategory implements Serializable {
 
    @Id
-   private final int id;   // Nitrite Id
+   private final long id;   // Nitrite Id
    private final String text;
 
-   /**
-    * Default constructor required for persistency.
-    */
-   public UserDefinedCategory() {
-      this.id = -1;
-      this.text = "";
-   }
-
-   public UserDefinedCategory(final int id, final String text) {
+   public UserDefinedCategory(final long id, final String text) {
       this.id = id;
       this.text = text;
    }
 
-   public int getId() {
+   public long getId() {
       return id;
    }
 
