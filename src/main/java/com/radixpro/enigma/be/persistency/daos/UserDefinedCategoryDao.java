@@ -23,12 +23,17 @@ public class UserDefinedCategoryDao {
 
    private static final String COLLECTION_NAME = "userdefinedcategory";
    private NitriteCollection collection;
+   private final UserDefinedCategoryObjectDocumentMapper mapper;
+
+   public UserDefinedCategoryDao() {
+      mapper = new UserDefinedCategoryObjectDocumentMapper();
+   }
 
    public DatabaseResults insert(final UserDefinedCategory category) {
       var databaseResult = DatabaseResults.OK;
       try {
          openCollectionAndDatabase();
-         final WriteResult insertResult = collection.insert(category2Document(category));
+         final WriteResult insertResult = collection.insert(mapper.object2Document(category));
          if (insertResult.getAffectedCount() != 1) {
             databaseResult = DatabaseResults.NOT_UNIQUE;
          }
@@ -44,7 +49,7 @@ public class UserDefinedCategoryDao {
       var databaseResult = DatabaseResults.OK;
       try {
          openCollectionAndDatabase();
-         final WriteResult updateResult = collection.update(category2Document(category));
+         final WriteResult updateResult = collection.update(mapper.object2Document(category));
          if ((updateResult.getAffectedCount() == 0)) {
             databaseResult = DatabaseResults.NOT_FOUND;
          }
@@ -58,7 +63,7 @@ public class UserDefinedCategoryDao {
 
    public DatabaseResults delete(final UserDefinedCategory category) {
       openCollectionAndDatabase();
-      collection.remove(category2Document(category));
+      collection.remove(mapper.object2Document(category));
       closeCollectionAndDatabase();
       return DatabaseResults.OK;
    }
@@ -68,7 +73,7 @@ public class UserDefinedCategoryDao {
       UserDefinedCategory cat = new UserDefinedCategory(-1L, "");
       try {
          openCollectionAndDatabase();
-         cat = document2Category(collection.find(Filters.eq("_id", catId)).firstOrDefault());
+         cat = mapper.document2Object(collection.find(Filters.eq("_id", catId)).firstOrDefault());
       } catch (Exception e) {
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
@@ -84,7 +89,7 @@ public class UserDefinedCategoryDao {
          openCollectionAndDatabase();
          final Cursor userDefinedCategories = collection.find();
          for (Document foundCat : userDefinedCategories) {
-            catList.add(document2Category(foundCat));
+            catList.add(mapper.document2Object(foundCat));
          }
       } catch (Exception e) {
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
@@ -92,16 +97,6 @@ public class UserDefinedCategoryDao {
          closeCollectionAndDatabase();
       }
       return new UserDefinedCategoryListResult(catList, databaseResult);
-   }
-
-   private Document category2Document(final UserDefinedCategory category) {
-      return Document.createDocument("_id", category.getId()).put("text", category.getText());
-   }
-
-   private UserDefinedCategory document2Category(final Document document) {
-      long id = (long) document.get("_id");
-      var text = (String) document.get("text");
-      return new UserDefinedCategory(id, text);
    }
 
    private void openCollectionAndDatabase() {

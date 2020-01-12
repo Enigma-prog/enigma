@@ -1,13 +1,11 @@
 /*
- * Jan Kampherbeek, (c) 2019.
+ * Jan Kampherbeek, (c) 2020.
  * Enigma is open source.
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.persistency;
+package com.radixpro.enigma.xchg.domain;
 
-import com.radixpro.enigma.xchg.domain.Ayanamshas;
-import com.radixpro.enigma.xchg.domain.HouseSystems;
 import org.dizitart.no2.objects.Id;
 
 import java.io.Serializable;
