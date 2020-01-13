@@ -7,6 +7,7 @@
 package com.radixpro.enigma.xchg.domain;
 
 public enum Aspects {
+   UNKNOWN(0, -1, -1.0, false, "unknown"),
    CONJUNCTION(1, 1, 0.0, true, "conjunction"),
    OPPOSITION(2, 1, 180.0, true, "opposition"),
    TRIANGLE(3, 1, 120.0, true, "triangle"),
@@ -66,5 +67,14 @@ public enum Aspects {
 
    public String getFullRbId() {
       return fullRbId;
+   }
+
+   public Aspects getAspectForId(int id) {
+      for (Aspects aspect : Aspects.values()) {
+         if (aspect.getId() == id) {
+            return aspect;
+         }
+      }
+      return Aspects.UNKNOWN;
    }
 }

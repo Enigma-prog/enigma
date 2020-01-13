@@ -70,4 +70,13 @@ public class PersistedUserDefinedCategoryApi {
       } else return result.getCategories();
    }
 
+   public long getMaxId() {
+      long maxId = dao.getMaxId();
+      if (maxId < 0) {
+         // todo: throw exception
+         return -1;
+      }
+      return maxId;
+   }
+
 }

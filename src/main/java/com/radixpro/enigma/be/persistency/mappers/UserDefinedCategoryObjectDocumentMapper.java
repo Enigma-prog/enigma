@@ -4,7 +4,7 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.persistency.daos;
+package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
 import org.dizitart.no2.Document;

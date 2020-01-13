@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Integration test for CalculatedFullChart.
  */
-public class CalculatedFullChartApiIt {
+public class CalculatedFullChartIt {
 
    private static final int YEAR = 1953;
    private static final int MONTH = 1;
@@ -81,16 +81,16 @@ public class CalculatedFullChartApiIt {
 
    @Test
    public void testDefaultApi() {
-      CalculatedFullChartApi calculatedFullChartApi = new CalculatedFullChartApi(dateTime, location, settings);
-      assertEquals(dateTime, calculatedFullChartApi.getDateTime());
-      assertEquals(location, calculatedFullChartApi.getLocation());
-      assertEquals(settings, calculatedFullChartApi.getSettings());
+      CalculatedFullChart calculatedFullChart = new CalculatedFullChart(dateTime, location, settings);
+      assertEquals(dateTime, calculatedFullChart.getDateTime());
+      assertEquals(location, calculatedFullChart.getLocation());
+      assertEquals(settings, calculatedFullChart.getSettings());
 
       // celestial bodies, all longitudes and samples for the other values
-      List<CelObjectPosition> bodies = calculatedFullChartApi.getBodies();
+      List<CelObjectPosition> bodies = calculatedFullChart.getBodies();
 
       // obliquity
-      assertEquals(23.447072308, calculatedFullChartApi.getObliquity(), DELTA);
+      assertEquals(23.447072308, calculatedFullChart.getObliquity(), DELTA);
 
       // longitudes
       assertEquals(2434406.81770833, dateTime.getJdUt(), 0.00001);  // UT
@@ -171,7 +171,7 @@ public class CalculatedFullChartApiIt {
       assertEquals(14.26694444, bodies.get(CHEIRON).getHorizontalPosition().getAltitude(), DELTA);  // Cheiron
 
       // houses longitude
-      MundaneValues mundaneValues = calculatedFullChartApi.getHouseValues();
+      MundaneValues mundaneValues = calculatedFullChart.getHouseValues();
       assertEquals(249.5350953050, mundaneValues.getArmc(), DELTA);
       assertEquals(314.7210736953, mundaneValues.getAscendant().getLongitude(), DELTA);
       assertEquals(251.1002358654, mundaneValues.getMc().getLongitude(), DELTA);

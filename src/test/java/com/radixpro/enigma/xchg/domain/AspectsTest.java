@@ -18,7 +18,7 @@ public class AspectsTest {
    private Aspects aspect;
 
    @Before
-   public void setUp() throws Exception {
+   public void setUp() {
       aspect = Aspects.OPPOSITION;
    }
 
@@ -45,5 +45,20 @@ public class AspectsTest {
    @Test
    public void getFullRbId() {
       assertEquals("gen.lookup.aspects.opposition", aspect.getFullRbId());
+   }
+
+   @Test
+   public void getAspectForId() {
+      assertEquals(Aspects.BINOVILE, Aspects.UNKNOWN.getAspectForId(21));
+   }
+
+   @Test
+   public void getAspectForIdNotFound() {
+      assertEquals(Aspects.UNKNOWN, Aspects.UNKNOWN.getAspectForId(2000));
+   }
+
+   @Test
+   public void total() {
+      assertEquals(25, Aspects.values().length);
    }
 }

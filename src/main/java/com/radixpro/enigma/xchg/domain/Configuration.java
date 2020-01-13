@@ -8,31 +8,41 @@ package com.radixpro.enigma.xchg.domain;
 
 import org.dizitart.no2.objects.Id;
 
-import java.io.Serializable;
-
-
-public class Configuration implements Serializable {
+public class Configuration {
 
    @Id
    private final long id;
-   private final int parentId;
+   private final long parentId;
+   private final String name;
+   private final String description;
    private final ConfigAstron configAstron;
    private final ConfigDelin configDelin;
 
 
-   public Configuration(final long id, final int parentId, final ConfigAstron configAstron, final ConfigDelin cOnfigDelin) {
+   public Configuration(final long id, final long parentId, final String name, final String description,
+                        final ConfigAstron configAstron, final ConfigDelin configDelin) {
       this.id = id;
       this.parentId = parentId;
+      this.name = name;
+      this.description = description;
       this.configAstron = configAstron;
-      this.configDelin = cOnfigDelin;
+      this.configDelin = configDelin;
    }
 
    public long getId() {
       return id;
    }
 
-   public int getParentId() {
+   public long getParentId() {
       return parentId;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public String getDescription() {
+      return description;
    }
 
    public ConfigAstron getConfigAstron() {

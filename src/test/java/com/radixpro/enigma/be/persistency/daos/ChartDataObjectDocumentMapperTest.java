@@ -7,6 +7,7 @@
 package com.radixpro.enigma.be.persistency.daos;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.be.persistency.mappers.ChartDataObjectDocumentMapper;
 import com.radixpro.enigma.xchg.domain.*;
 import org.dizitart.no2.Document;
 import org.junit.Before;

@@ -18,7 +18,7 @@ public class AspectOrbTest {
    private AspectOrb aspectOrb;
 
    @Before
-   public void setUp() throws Exception {
+   public void setUp() {
       aspectOrb = new AspectOrb(aspect, orbPercentage);
    }
 

@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CalculatedFullChartApiTest {
+public class CalculatedFullChartTest {
 
    @Mock
    private Location locationMock;

@@ -10,6 +10,7 @@ package com.radixpro.enigma.xchg.domain;
  * Celestial bodies and id's to access the SE.
  */
 public enum CelestialObjects {
+   UNKNOWN(0, -1, CelObjectCategory.UNKNOWN, "unknown"),
    SUN(1, 0, CelObjectCategory.CLASSICS, "sun"),
    MOON(2, 1, CelObjectCategory.CLASSICS, "moon"),
    MERCURY(3, 2, CelObjectCategory.CLASSICS, "mercury"),
@@ -73,6 +74,15 @@ public enum CelestialObjects {
 
    public String getRbKeyForDescription() {
       return RB_PREFIX + nameForRB + RB_DESCRIPTION_POSTFIX;
+   }
+
+   public CelestialObjects getCelObjectForId(int id) {
+      for (CelestialObjects celObject : CelestialObjects.values()) {
+         if (celObject.getId() == id) {
+            return celObject;
+         }
+      }
+      return CelestialObjects.UNKNOWN;
    }
 
 }

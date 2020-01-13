@@ -86,6 +86,13 @@ public class PersistencyChartDataApiIt {
       assertEquals(2, chartDataList.size());
    }
 
+   @Test
+   public void getMaxId() {
+      assertEquals(0, api.getMaxId());
+      api.insert(chartData2);
+      assertEquals(2, api.getMaxId());
+   }
+
 
    private ChartData createChartData(final long id, final String name) {
       final var simpleDate = new SimpleDate(2020, 1, 10, true);

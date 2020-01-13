@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.be.persistency.daos;
 
+import com.radixpro.enigma.be.persistency.mappers.UserDefinedCategoryObjectDocumentMapper;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
 import org.dizitart.no2.Document;
 import org.junit.Before;

@@ -7,6 +7,7 @@
 package com.radixpro.enigma.xchg.domain;
 
 public enum CelObjectCategory {
+   UNKNOWN(0, "unknown"),
    CLASSICS(1, "classic"),
    MODERN(2, "modern"),
    EXTRA_PLUT(3, "extraplut"),

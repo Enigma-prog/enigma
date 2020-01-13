@@ -84,4 +84,11 @@ public class PersistencyUserDefinedCategoryApiIt {
       assertEquals(2, catList.size());
    }
 
+   @Test
+   public void getMaxId() {
+      assertEquals(0, api.getMaxId());
+      api.insert(userDefinedCategory2);
+      assertEquals(2, api.getMaxId());
+   }
+
 }

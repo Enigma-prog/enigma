@@ -7,36 +7,35 @@
 package com.radixpro.enigma.be.persistency.daos;
 
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
-import com.radixpro.enigma.be.persistency.mappers.ChartDataObjectDocumentMapper;
-import com.radixpro.enigma.be.persistency.results.ChartDataListResult;
-import com.radixpro.enigma.be.persistency.results.ChartDataResult;
+import com.radixpro.enigma.be.persistency.mappers.ConfigurationObjectDocumentMapper;
+import com.radixpro.enigma.be.persistency.results.ConfigurationListResult;
+import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.xchg.domain.ChartData;
+import com.radixpro.enigma.xchg.domain.Configuration;
 import org.dizitart.no2.*;
+import org.dizitart.no2.filters.Filters;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.dizitart.no2.FindOptions.sort;
-import static org.dizitart.no2.filters.Filters.eq;
 
+public class ConfigurationDao {
 
-public class ChartDataDao {
-
-   private static final String COLLECTION_NAME = "chartdata";
-   private final ChartDataObjectDocumentMapper mapper;
+   private static final String COLLECTION_NAME = "configurations";
+   private final ConfigurationObjectDocumentMapper mapper;
    private Nitrite nitriteDb;
    private NitriteCollection collection;
 
-   public ChartDataDao() {
-      mapper = new ChartDataObjectDocumentMapper();
+   public ConfigurationDao() {
+      mapper = new ConfigurationObjectDocumentMapper();
    }
 
-   public DatabaseResults insert(final ChartData chartData) {
+   public DatabaseResults insert(final Configuration config) {
       var databaseResult = DatabaseResults.OK;
       try {
          openCollectionAndDatabase();
-         final WriteResult insertResult = collection.insert(mapper.object2Document(chartData));
+         final WriteResult insertResult = collection.insert(mapper.object2Document(config));
          if (insertResult.getAffectedCount() != 1) {
             databaseResult = DatabaseResults.NOT_UNIQUE;
          }
@@ -45,15 +44,14 @@ public class ChartDataDao {
       } finally {
          closeCollectionAndDatabase();
       }
-      nitriteDb.commit();
       return databaseResult;
    }
 
-   public DatabaseResults update(final ChartData chartData) {
+   public DatabaseResults update(final Configuration config) {
       var databaseResult = DatabaseResults.OK;
       try {
          openCollectionAndDatabase();
-         final WriteResult updateResult = collection.update(mapper.object2Document(chartData));
+         final WriteResult updateResult = collection.update(mapper.object2Document(config));
          if ((updateResult.getAffectedCount() == 0)) {
             databaseResult = DatabaseResults.NOT_FOUND;
          }
@@ -65,43 +63,42 @@ public class ChartDataDao {
       return databaseResult;
    }
 
-   public DatabaseResults delete(final ChartData chartData) {
+   public DatabaseResults delete(final Configuration config) {
       openCollectionAndDatabase();
-      Document chartDoc = mapper.object2Document(chartData);
-      collection.remove(chartDoc);
+      collection.remove(mapper.object2Document(config));
       closeCollectionAndDatabase();
       return DatabaseResults.OK;
    }
 
-   public ChartDataResult read(final long chartId) {
+   public ConfigurationResult read(final long id) {
       var databaseResult = DatabaseResults.OK;
-      ChartData chartData = null;
+      Configuration config = null;
       try {
          openCollectionAndDatabase();
-         Document chartDoc = collection.find(eq("_id", chartId)).firstOrDefault();
-         chartData = mapper.document2Object(chartDoc);
+         config = mapper.document2Object(collection.find(Filters.eq("_id", id)).firstOrDefault());
       } catch (Exception e) {
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataResult(chartData, databaseResult);
+      return new ConfigurationResult(config, databaseResult);
    }
 
-   public ChartDataListResult readAll() {
+   public ConfigurationListResult readAll() {
       var databaseResult = DatabaseResults.OK;
-      List<ChartData> chartDataList = new ArrayList<>();
+      List<Configuration> configList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
-         final Cursor allChartData = collection.find();
-         for (Document foundChartData : allChartData)
-            chartDataList.add(mapper.document2Object(foundChartData));
+         final Cursor userDefinedCategories = collection.find();
+         for (Document foundCat : userDefinedCategories) {
+            configList.add(mapper.document2Object(foundCat));
+         }
       } catch (Exception e) {
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataListResult(chartDataList, databaseResult);
+      return new ConfigurationListResult(configList, databaseResult);
    }
 
    public long getMaxId() {
@@ -130,5 +127,6 @@ public class ChartDataDao {
       collection.close();
       nitriteDb.close();
    }
+
 
 }

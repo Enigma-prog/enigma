@@ -16,7 +16,7 @@ public class EclipticProjectionsTest {
    private EclipticProjections projection;
 
    @Before
-   public void setUp() throws Exception {
+   public void setUp() {
       projection = EclipticProjections.SIDEREAL;
    }
 

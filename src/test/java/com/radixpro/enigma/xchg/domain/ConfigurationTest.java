@@ -17,8 +17,10 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class ConfigurationTest {
 
-   private final int id = 3;
-   private final int parentId = 1;
+   private final long id = 3L;
+   private final long parentId = 1L;
+   private final String name = "Some config";
+   private final String description = "Description of some config.";
    @Mock
    private ConfigAstron configAstronMock;
    @Mock
@@ -26,8 +28,8 @@ public class ConfigurationTest {
    private Configuration config;
 
    @Before
-   public void setUp() throws Exception {
-      config = new Configuration(id, parentId, configAstronMock, configDelinMock);
+   public void setUp() {
+      config = new Configuration(id, parentId, name, description, configAstronMock, configDelinMock);
    }
 
    @Test
@@ -48,6 +50,16 @@ public class ConfigurationTest {
    @Test
    public void getConfigDelin() {
       assertEquals(configDelinMock, config.getConfigDelin());
+   }
+
+   @Test
+   public void getName() {
+      assertEquals(name, config.getName());
+   }
+
+   @Test
+   public void getDescription() {
+      assertEquals(description, config.getDescription());
    }
 
 }

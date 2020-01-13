@@ -47,7 +47,17 @@ public class CelestialObjectsTest {
 
    @Test
    public void total() {
-      assertEquals(29, CelestialObjects.values().length);
+      assertEquals(30, CelestialObjects.values().length);
+   }
+
+   @Test
+   public void getCelObjectForId() {
+      assertEquals(CelestialObjects.JUPITER, CelestialObjects.UNKNOWN.getCelObjectForId(7));
+   }
+
+   @Test
+   public void getCelObjectForIdNotFound() {
+      assertEquals(CelestialObjects.UNKNOWN, CelestialObjects.UNKNOWN.getCelObjectForId(7000));
    }
 
 }

@@ -7,6 +7,7 @@
 package com.radixpro.enigma.be.persistency.daos;
 
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
+import com.radixpro.enigma.be.persistency.mappers.UserDefinedCategoryObjectDocumentMapper;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryListResult;
 import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
@@ -16,6 +17,8 @@ import org.dizitart.no2.filters.Filters;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.dizitart.no2.FindOptions.sort;
 
 public class UserDefinedCategoryDao {
 
@@ -97,6 +100,22 @@ public class UserDefinedCategoryDao {
          closeCollectionAndDatabase();
       }
       return new UserDefinedCategoryListResult(catList, databaseResult);
+   }
+
+   public long getMaxId() {
+      long maxId = 0;
+      try {
+         openCollectionAndDatabase();
+         final Cursor configs = collection.find(sort("_id", SortOrder.Descending).thenLimit(0, 1));
+         for (Document config : configs) {
+            maxId = (long) config.get("_id");
+         }
+      } catch (Exception e) {
+         maxId = -1L;                                // TODO extend error handling
+      } finally {
+         closeCollectionAndDatabase();
+      }
+      return maxId;
    }
 
    private void openCollectionAndDatabase() {
