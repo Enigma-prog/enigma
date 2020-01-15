@@ -20,7 +20,7 @@ import java.io.IOException;
 public class Chartsmain {
 
    @FXML
-   String lblConfigurations;
+   String lblChartsTitle;
 
    @FXML
    void onInputForChart(ActionEvent event) throws IOException {

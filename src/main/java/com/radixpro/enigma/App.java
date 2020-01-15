@@ -7,10 +7,10 @@
 package com.radixpro.enigma;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -29,7 +29,23 @@ public class App extends Application {
    @Override
    public void start(Stage primaryStage) {
       this.primaryStage = primaryStage;
-      showChartMain();
+      showChartStart();
+   }
+
+   private void showChartStart() {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setResources(ResourceBundle.getBundle("rb/texts", new Locale("du", "DU")));
+      loader.setLocation(getClass().getResource("/fxml/chartsstart.fxml"));  // staat in resources
+      Parent root = null;
+      try {
+         root = loader.load();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      Scene scene = new Scene(root);
+      primaryStage.setTitle("Enigma version 2020.1");
+      primaryStage.setScene(scene);
+      primaryStage.show();
    }
 
    private void showChartMain() {
@@ -43,9 +59,10 @@ public class App extends Application {
          e.printStackTrace();
       }
       Scene scene = new Scene(root);
-      primaryStage.setTitle("Enigma version 0.6");
+      primaryStage.setTitle("Enigma version 2020.1");
       primaryStage.setScene(scene);
       primaryStage.show();
+
 
    }
 

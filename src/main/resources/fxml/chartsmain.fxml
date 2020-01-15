@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
-
 <!--
   ~ Jan Kampherbeek, (c) 2019.
   ~ Enigma is open source.
   ~ Please check the file copyright.txt in the root of the source for further details.
   -->
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radixpro.enigma.ui.charts.Chartsmain">
    <children>
       <AnchorPane layoutX="1.0" layoutY="-1.0" prefHeight="474.0" prefWidth="600.0">
@@ -24,67 +17,56 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TableView layoutX="-25.0" layoutY="33.0" prefHeight="365.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
-                        <Label id="lblConfigurations" layoutY="3.0" prefHeight="35.0" prefWidth="162.0" text="Configurations">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="415.0" prefWidth="417.0" AnchorPane.bottomAnchor="-17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <SplitPane dividerPositions="0.6578313253012048" layoutX="43.0" layoutY="66.0" prefHeight="376.0" prefWidth="417.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="270.0">
-                                       <children>
-                                          <TableView layoutY="33.0" prefHeight="151.0" prefWidth="270.0">
-                                            <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
-                                            </columns>
-                                          </TableView>
-                                          <TableView layoutY="228.0" prefHeight="132.0" prefWidth="270.0">
-                                            <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
-                                            </columns>
-                                          </TableView>
-                                          <Label layoutX="14.0" layoutY="8.0" text="%ui.charts.main.pagetitle">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                        <Button layoutX="43.0" layoutY="454.0" mnemonicParsing="false" text="Button" />
-                                          <Button id="btnNewChart" layoutX="43.0" layoutY="184.0" mnemonicParsing="false" onAction="#onInputForChart" text="New chart" />
-                                       </children>
-                                    </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                       <children>
-                                          <TextFlow layoutY="20.0" prefHeight="312.0" prefWidth="139.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="303.0" prefWidth="139.0" text="Help text" wrapText="true" />
-                                             </children>
-                                          </TextFlow>
-                                       </children>
-                                    </AnchorPane>
+                               <SplitPane layoutX="43.0" layoutY="66.0" prefHeight="376.0" prefWidth="417.0"
+                                          AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="0.0"
+                                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                   <items>
+                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="111.0">
+                                           <children>
+                                               <Button layoutX="87.0" layoutY="124.0" mnemonicParsing="false"
+                                                       prefHeight="25.0" prefWidth="70.0" text="Button"/>
+                                               <Button id="btnNewChart" layoutX="87.0" layoutY="85.0"
+                                                       mnemonicParsing="false" onAction="#onInputForChart"
+                                                       text="New chart"/>
+                                               <Label layoutX="14.0" layoutY="37.0" text="Actions">
+                                                   <font>
+                                                       <Font size="18.0"/>
+                                                   </font>
+                                               </Label>
+                                           </children>
+                                       </AnchorPane>
                                 </items>
-                              </SplitPane>
-                              <ButtonBar layoutX="9.0" layoutY="370.0" prefHeight="40.0" prefWidth="200.0" />
+                               </SplitPane>
+                               <ButtonBar layoutX="9.0" layoutY="370.0" prefHeight="40.0" prefWidth="200.0"/>
                            </children>
                         </AnchorPane>
                      </children>
-                  </AnchorPane>
+                </AnchorPane>
               </items>
             </SplitPane>
          </children>
       </AnchorPane>
+       <Accordion/>
+       <MenuBar>
+           <menus>
+               <Menu mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Close"/>
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Edit">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Delete"/>
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Help">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="About"/>
+                   </items>
+               </Menu>
+           </menus>
+       </MenuBar>
    </children>
 </AnchorPane>
