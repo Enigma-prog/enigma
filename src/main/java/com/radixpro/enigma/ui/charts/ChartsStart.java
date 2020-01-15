@@ -6,7 +6,12 @@
 
 package com.radixpro.enigma.ui.charts;
 
+import javafx.fxml.FXML;
+
 public class ChartsStart {
+
+   @FXML
+   String lblTitle;
 
 
    public void initialize() {

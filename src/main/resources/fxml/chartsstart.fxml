@@ -11,7 +11,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.radixpro.enigma.ui.charts.ChartsStart">
    <children>
-      <Label layoutX="115.0" layoutY="103.0" text="Charts"/>
+      <Label id="lblTitle" layoutX="115.0" layoutY="103.0" text="%ui.charts.start.pagetitle"/>
       <MenuBar layoutY="2.0">
          <menus>
 
@@ -21,9 +21,9 @@
                   <MenuItem mnemonicParsing="false" text="Close"/>
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Charts">
+            <Menu id="menuCharts" mnemonicParsing="false" text="%ui.charts.start.menu.charts">
                <items>
-                  <MenuItem mnemonicParsing="false" text="New"/>
+                  <MenuItem mnemonicParsing="false" text="%ui.charts.start.menu.charts.new"/>
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Configurations">
