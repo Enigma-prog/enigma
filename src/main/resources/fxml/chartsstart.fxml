@@ -29,7 +29,8 @@
             </Menu>
             <Menu id="menuCharts" mnemonicParsing="false" text="%ui.charts.start.menu.charts">
                <items>
-                  <MenuItem id="mItemChartsNew" mnemonicParsing="false" text="%ui.charts.start.menu.charts.new"/>
+                  <MenuItem id="mItemChartsNew" mnemonicParsing="false" onAction="#onNewChart"
+                            text="%ui.charts.start.menu.charts.new"/>
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Configurations">
@@ -51,8 +52,8 @@
       </MenuBar>
       <Pane layoutX="21.0" layoutY="77.0" prefHeight="316.0" prefWidth="194.0">
          <children>
-            <Button id="btnChartNew" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0"
-                    prefWidth="153.0" text="%ui.charts.start.btnchartnew"/>
+            <Button id="btnChartNew" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#onNewChart"
+                    prefHeight="25.0" prefWidth="153.0" text="%ui.charts.start.btnchartnew"/>
             <Button id="btnChartSearch" layoutX="20.0" layoutY="56.0" mnemonicParsing="false" prefHeight="25.0"
                     prefWidth="153.0" text="Search for chart"/>
          </children>
