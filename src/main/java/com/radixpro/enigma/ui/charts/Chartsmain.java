@@ -24,6 +24,8 @@ public class Chartsmain {
 
    @FXML
    void onInputForChart(ActionEvent event) throws IOException {
+
+
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsinput.fxml"));
       Parent parent = fxmlLoader.load();
       ChartsInput chartsInput = fxmlLoader.getController();

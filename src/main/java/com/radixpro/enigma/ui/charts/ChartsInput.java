@@ -7,4 +7,5 @@
 package com.radixpro.enigma.ui.charts;
 
 public class ChartsInput {
+
 }

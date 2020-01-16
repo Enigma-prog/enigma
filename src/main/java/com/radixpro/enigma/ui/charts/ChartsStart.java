@@ -15,6 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ChartsStart {
 
@@ -24,11 +26,11 @@ public class ChartsStart {
    @FXML
    void onNewChart(ActionEvent event) throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsinput.fxml"));
+      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", new Locale("du", "DU")));
+
       Parent parent = fxmlLoader.load();
       ChartsInput chartsInput = fxmlLoader.getController();
-      // setObservableList om resultaten terug te krijgen
-
-      Scene scene = new Scene(parent, 300, 200);
+      Scene scene = new Scene(parent, 600, 800);
       Stage stage = new Stage();
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setScene(scene);
