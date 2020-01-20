@@ -1,0 +1,12 @@
+/* Standard JavaFX stylesheet for Enigma */
+.root {
+    -fx-background-color: azure;
+}
+.label {
+    -fx-text-fill: midnightblue;
+}
+.button {
+   -fx-background-color: steelblue;
+   -fx-text-fill: azure;
+}
+.title { -fx-font-size: 28; }
