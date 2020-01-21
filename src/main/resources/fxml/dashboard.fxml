@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Jan Kampherbeek, (c) 2020. 
+  ~ Enigma is open source.
+  ~ Please check the file copyright.txt in the root of the source for further details. 
+  -->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="250.0" prefWidth="600.0" stylesheets="@../css/enigma.css"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.radixpro.enigma.ui.shared.Dashboard">
+   <children>
+      <BorderPane prefHeight="250.0" prefWidth="600.0">
+         <bottom>
+            <ButtonBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <buttons>
+                  <Button mnemonicParsing="false" onAction="#onCharts" text="%ui.db.btn.charts"/>
+                  <Button disable="true" mnemonicParsing="false" text="%ui.db.btn.periods"/>
+                  <Button disable="true" mnemonicParsing="false" text="%ui.db.btn.stats"/>
+                  <Button disable="true" mnemonicParsing="false" text="%ui.db.btn.tools"/>
+                  <Button mnemonicParsing="false" onAction="#onExit" text="%ui.shared.btn.exit"/>
+               </buttons>
+            </ButtonBar>
+         </bottom>
+         <left>
+            <ImageView fitHeight="86.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true"
+                       BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../img/ziggurat.png"/>
+               </image>
+            </ImageView>
+         </left>
+         <center>
+            <Label text="%ui.db.instruct" BorderPane.alignment="CENTER_LEFT"/>
+         </center>
+         <right>
+            <Pane prefHeight="185.0" prefWidth="153.0" styleClass="descriptionpane" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="31.0" layoutY="28.0" styleClass="descriptiontext" text="%ui.db.describe"/>
+               </children>
+            </Pane>
+         </right>
+         <top>
+            <Pane prefHeight="57.0" prefWidth="600.0" styleClass="titlepane" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="247.0" layoutY="9.0" styleClass="titletext" text="%ui.db.title"/>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

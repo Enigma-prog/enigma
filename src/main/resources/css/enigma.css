@@ -9,4 +9,16 @@
    -fx-background-color: steelblue;
    -fx-text-fill: azure;
 }
-.title { -fx-font-size: 28; }
+.descriptionpane {
+    -fx-background-color: blanchedalmond;
+}
+.descriptiontext {
+    -fx-text-alignment: center;
+}
+.titlepane {
+    -fx-background-color: steelblue;
+}
+.titletext {
+    -fx-font-size: 28;
+    -fx-text-fill: blanchedalmond;
+}
