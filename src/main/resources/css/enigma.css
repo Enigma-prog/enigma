@@ -9,6 +9,9 @@
    -fx-background-color: steelblue;
    -fx-text-fill: azure;
 }
+.radio-button {
+     -fx-padding: 6;
+}
 .descriptionpane {
     -fx-background-color: blanchedalmond;
 }
@@ -21,4 +24,11 @@
 .titletext {
     -fx-font-size: 28;
     -fx-text-fill: blanchedalmond;
+    -fx-alignment: center;
 }
+.subtitletext {
+    -fx-font-size: 20;
+    -fx-text-fill: steelblue;
+    -fx-alignment: center;
+}
+
