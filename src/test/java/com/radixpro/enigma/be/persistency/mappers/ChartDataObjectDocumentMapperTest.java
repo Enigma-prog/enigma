@@ -4,10 +4,9 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.persistency.daos;
+package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import com.radixpro.enigma.be.persistency.mappers.ChartDataObjectDocumentMapper;
 import com.radixpro.enigma.xchg.domain.*;
 import org.dizitart.no2.Document;
 import org.junit.Before;

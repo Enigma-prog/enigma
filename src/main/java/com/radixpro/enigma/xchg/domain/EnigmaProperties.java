@@ -10,18 +10,20 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class AppProperties {
+public class EnigmaProperties {
 
+   private static final String EXTENSION = ".properties";
+   private static final String NOT_FOUND = "Cannot read properties.";
    private Properties properties;
 
-   public AppProperties() {
-      processProperties();
+   public EnigmaProperties(final String propType) {
+      processProperties(propType);
    }
 
-   private void processProperties() {
+   private void processProperties(final String propType) {
       String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-      if (rootPath == null) throw new RuntimeException("Cannot read properties.");
-      String appConfigPath = rootPath + "app.properties";
+      if (rootPath == null) throw new RuntimeException(NOT_FOUND);
+      String appConfigPath = rootPath + propType + EXTENSION;
       properties = new Properties();
       try {
          properties.load(new FileInputStream(appConfigPath));

@@ -7,12 +7,15 @@
 package com.radixpro.enigma.ui.charts;
 
 import com.radixpro.enigma.xchg.domain.ChartTypes;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import org.controlsfx.control.CheckComboBox;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ChartsInput {
 
@@ -33,9 +36,9 @@ public class ChartsInput {
    @FXML
    public TextField time;
    @FXML
-   public CheckComboBox subject;
+   public ChoiceBox subject;
    @FXML
-   public CheckComboBox rating;
+   public ChoiceBox rating;
 
 
    @FXML
@@ -44,10 +47,10 @@ public class ChartsInput {
    }
 
    public void initialize() {
-
-      subject.getItems().add(ChartTypes.UNKNOWN.name());
-      subject.getItems().add(ChartTypes.NATAL.name());
-
+      ResourceBundle mybundle = ResourceBundle.getBundle("rb/texts", new Locale("du", "DU"));
+      ChartTypes defaultChartType = ChartTypes.UNKNOWN;
+      ObservableList<ChartTypes> observableList = defaultChartType.getObservableList();
+      subject.setItems(observableList);
    }
 
 }

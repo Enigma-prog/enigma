@@ -6,15 +6,17 @@
 
 package com.radixpro.enigma.be.persistency;
 
-import com.radixpro.enigma.xchg.domain.AppProperties;
+import com.radixpro.enigma.xchg.domain.EnigmaProperties;
 import org.dizitart.no2.Nitrite;
 
 public class EnigmaDatabase {
 
+   private static final String PROPERTIES = "app";
+   private static final String PROP_DB = "database";
    private final String dbFilePath;
 
    public EnigmaDatabase() {
-      dbFilePath = new AppProperties().getProperties().getProperty("database");
+      dbFilePath = new EnigmaProperties(PROPERTIES).getProperties().getProperty(PROP_DB);
    }
 
    public Nitrite openDatabase() {

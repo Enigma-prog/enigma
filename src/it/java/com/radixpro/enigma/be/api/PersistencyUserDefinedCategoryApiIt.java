@@ -65,7 +65,6 @@ public class PersistencyUserDefinedCategoryApiIt {
       var updateCat = new UserDefinedCategory(4, "four");
       String result = api.update(updateCat);
       assertEquals("NOTFOUND", result);
-      assertEquals(1, 1);
    }
 
    @Test

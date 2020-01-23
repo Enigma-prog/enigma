@@ -6,6 +6,12 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.Arrays;
+import java.util.List;
+
 public enum ChartTypes {
    UNKNOWN(0, "unknown"),
    NATAL(1, "natal"),
@@ -38,6 +44,11 @@ public enum ChartTypes {
          }
       }
       return ChartTypes.UNKNOWN;
+   }
+
+   public ObservableList<ChartTypes> getObservableList() {
+      List<ChartTypes> allTypes = Arrays.asList(values());
+      return FXCollections.observableArrayList(allTypes);
    }
 
 }
