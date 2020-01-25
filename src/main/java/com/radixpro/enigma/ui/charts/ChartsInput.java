@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.ui.charts;
 
+import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.xchg.domain.ChartTypes;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +15,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ChartsInput {
@@ -47,7 +47,7 @@ public class ChartsInput {
    }
 
    public void initialize() {
-      ResourceBundle mybundle = ResourceBundle.getBundle("rb/texts", new Locale("du", "DU"));
+      ResourceBundle mybundle = ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale());
       ChartTypes defaultChartType = ChartTypes.UNKNOWN;
       ObservableList<ChartTypes> observableList = defaultChartType.getObservableList();
       subject.setItems(observableList);

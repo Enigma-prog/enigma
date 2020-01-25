@@ -106,9 +106,9 @@ public class UserDefinedCategoryDao {
       long maxId = 0;
       try {
          openCollectionAndDatabase();
-         final Cursor configs = collection.find(sort("_id", SortOrder.Descending).thenLimit(0, 1));
-         for (Document config : configs) {
-            maxId = (long) config.get("_id");
+         final Cursor cats = collection.find(sort("_id", SortOrder.Descending).thenLimit(0, 1));
+         for (Document cat : cats) {
+            maxId = (long) cat.get("_id");
          }
       } catch (Exception e) {
          maxId = -1L;                                // TODO extend error handling

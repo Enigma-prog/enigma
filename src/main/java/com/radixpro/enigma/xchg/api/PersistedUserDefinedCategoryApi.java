@@ -4,29 +4,29 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.api;
+package com.radixpro.enigma.xchg.api;
 
-import com.radixpro.enigma.be.persistency.daos.ConfigurationDao;
-import com.radixpro.enigma.be.persistency.results.ConfigurationListResult;
-import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
+import com.radixpro.enigma.be.persistency.daos.UserDefinedCategoryDao;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.xchg.domain.Configuration;
+import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryListResult;
+import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
+import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersistedConfigurationApi {
+public class PersistedUserDefinedCategoryApi {
 
    private final static String ERROR = "ERROR";
    private final static String OK = "OK";
-   private final ConfigurationDao dao;
+   private final UserDefinedCategoryDao dao;
 
-   public PersistedConfigurationApi() {
-      dao = new ConfigurationDao();
+   public PersistedUserDefinedCategoryApi() {
+      dao = new UserDefinedCategoryDao();
    }
 
-   public String insert(final Configuration configuration) {
-      final DatabaseResults result = dao.insert(configuration);
+   public String insert(final UserDefinedCategory category) {
+      final DatabaseResults result = dao.insert(category);
       if (result != DatabaseResults.OK) {
          // TODO handle result, use db error messages in RB
          return ERROR;
@@ -34,8 +34,8 @@ public class PersistedConfigurationApi {
       return OK;
    }
 
-   public String update(final Configuration configuration) {
-      final DatabaseResults result = dao.update(configuration);
+   public String update(final UserDefinedCategory category) {
+      final DatabaseResults result = dao.update(category);
       if (result == DatabaseResults.NOT_FOUND) {
          return "NOTFOUND";
       }
@@ -45,8 +45,8 @@ public class PersistedConfigurationApi {
       return OK;
    }
 
-   public String delete(final Configuration configuration) {
-      final DatabaseResults result = dao.delete(configuration);
+   public String delete(final UserDefinedCategory category) {
+      final DatabaseResults result = dao.delete(category);
       if (result != DatabaseResults.OK) {
          // TODO handle result, use db error messages in RB
          return ERROR;
@@ -54,22 +54,20 @@ public class PersistedConfigurationApi {
       return OK;
    }
 
-   public Configuration read(final int id) {
-      ConfigurationResult result = dao.read(id);
+   public UserDefinedCategory read(final int id) {
+      UserDefinedCategoryResult result = dao.read(id);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return null;
-      }
-      return result.getConfig();
+      } else return result.getUserDefinedCategory();
    }
 
-   public List<Configuration> readAll() {
-      ConfigurationListResult result = dao.readAll();
+   public List<UserDefinedCategory> readAll() {
+      UserDefinedCategoryListResult result = dao.readAll();
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return new ArrayList<>();
-      }
-      return result.getConfigurations();
+      } else return result.getCategories();
    }
 
    public long getMaxId() {
@@ -81,6 +79,4 @@ public class PersistedConfigurationApi {
       return maxId;
    }
 
-
 }
-

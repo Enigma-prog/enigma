@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.ui.charts;
 
+import com.radixpro.enigma.shared.Rosetta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ChartsStart {
@@ -26,7 +26,7 @@ public class ChartsStart {
    @FXML
    void onNewChart(ActionEvent event) throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsinput.fxml"));
-      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", new Locale("du", "DU")));
+      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
 
       Parent parent = fxmlLoader.load();
       ChartsInput chartsInput = fxmlLoader.getController();

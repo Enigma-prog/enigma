@@ -9,6 +9,8 @@ package com.radixpro.enigma.be.persistency;
 import com.radixpro.enigma.xchg.domain.EnigmaProperties;
 import org.dizitart.no2.Nitrite;
 
+import java.io.File;
+
 public class EnigmaDatabase {
 
    private static final String PROPERTIES = "app";
@@ -23,4 +25,8 @@ public class EnigmaDatabase {
       return Nitrite.builder().filePath(dbFilePath).openOrCreate();
    }
 
+   public boolean databaseFound() {
+      File dbFile = new File(dbFilePath);
+      return (dbFile.exists() && !dbFile.isDirectory());
+   }
 }

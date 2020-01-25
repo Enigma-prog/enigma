@@ -4,7 +4,7 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.api;
+package com.radixpro.enigma.xchg.api;
 
 import com.radixpro.enigma.be.persistency.daos.PropertyDao;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
@@ -68,6 +68,15 @@ public class PersistedPropertyApi {
          // todo: throw exception
          return new ArrayList<>();
       } else return result.getProperties();
+   }
+
+   public long getMaxId() {
+      long maxId = dao.getMaxId();
+      if (maxId < 0) {
+         // todo: throw exception
+         return -1;
+      }
+      return maxId;
    }
 
 }

@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.shared;
 
-import com.radixpro.enigma.xchg.domain.EnigmaProperties;
+import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
 
 import java.io.File;
 import java.util.Locale;
@@ -34,7 +34,7 @@ public class Rosetta {
    /**
     * Retrieve instance of singleton Rosetta.
     *
-    * @return unique instance of Rosetta.
+    * @return instance of Rosetta.
     */
    public static Rosetta getRosetta() {
       if (instance == null) {
@@ -45,15 +45,34 @@ public class Rosetta {
    }
 
    /**
-    * Defines new Locale from properties and redefines ResourceBundle.
+    * Sets new language
+    *
+    * @param language use "en" for English or "du" for Dutch (case-sensitive).
     */
-   public void reInitialize() {
+   public void setLanguage(final String language) {
+      if (language.equals(ENGLISH) || language.equals(DUTCH)) {
+         var propApi = new PersistedPropertyApi();
+         Property currentProp = propApi.read(PROP_LANG);
+         Property langProp = new Property(currentProp.getId(), PROP_LANG, language);
+         propApi.update(langProp);
+         reInitialize();
+      } else {
+         // TODO write error "Unsupported language" to log
+      }
+
+   }
+
+   private void reInitialize() {
       initi18N();
       defineResourceBundle();
    }
 
    private void initi18N() {
-      final String language = new EnigmaProperties(PROPERTIES).getProperties().getProperty(PROP_LANG);
+      var propApi = new PersistedPropertyApi();
+      Property currentProp = propApi.read(PROP_LANG);
+      String language = currentProp.getValue();
+
+//      final String language = new PersistedPropertyApi().read(PROP_LANG).getValue();
       if (language.equals(DUTCH)) locale = new Locale(DUTCH, DUTCH.toUpperCase());
       else locale = new Locale(ENGLISH, ENGLISH.toUpperCase());
    }
@@ -66,4 +85,7 @@ public class Rosetta {
       return resourceBundle.getString(key);
    }
 
+   public Locale getLocale() {
+      return locale;
+   }
 }

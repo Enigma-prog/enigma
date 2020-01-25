@@ -18,6 +18,8 @@ import org.dizitart.no2.filters.Filters;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.dizitart.no2.FindOptions.sort;
+
 public class PropertyDao {
 
    private static final String COLLECTION_NAME = "property";
@@ -98,6 +100,23 @@ public class PropertyDao {
       }
       return new PropertyListResult(propList, databaseResult);
    }
+
+   public long getMaxId() {
+      long maxId = 0;
+      try {
+         openCollectionAndDatabase();
+         final Cursor props = collection.find(sort("_id", SortOrder.Descending).thenLimit(0, 1));
+         for (Document prop : props) {
+            maxId = (long) prop.get("_id");
+         }
+      } catch (Exception e) {
+         maxId = -1L;                                // TODO extend error handling
+      } finally {
+         closeCollectionAndDatabase();
+      }
+      return maxId;
+   }
+
 
    private void openCollectionAndDatabase() {
       EnigmaDatabase enigmaDb = new EnigmaDatabase();

@@ -4,29 +4,29 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.api;
+package com.radixpro.enigma.xchg.api;
 
-import com.radixpro.enigma.be.persistency.daos.ChartDataDao;
-import com.radixpro.enigma.be.persistency.results.ChartDataListResult;
-import com.radixpro.enigma.be.persistency.results.ChartDataResult;
+import com.radixpro.enigma.be.persistency.daos.ConfigurationDao;
+import com.radixpro.enigma.be.persistency.results.ConfigurationListResult;
+import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.xchg.domain.ChartData;
+import com.radixpro.enigma.xchg.domain.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersistedChartDataApi {
+public class PersistedConfigurationApi {
 
    private final static String ERROR = "ERROR";
    private final static String OK = "OK";
-   private final ChartDataDao dao;
+   private final ConfigurationDao dao;
 
-   public PersistedChartDataApi() {
-      dao = new ChartDataDao();
+   public PersistedConfigurationApi() {
+      dao = new ConfigurationDao();
    }
 
-   public String insert(final ChartData chartData) {
-      final DatabaseResults result = dao.insert(chartData);
+   public String insert(final Configuration configuration) {
+      final DatabaseResults result = dao.insert(configuration);
       if (result != DatabaseResults.OK) {
          // TODO handle result, use db error messages in RB
          return ERROR;
@@ -34,8 +34,8 @@ public class PersistedChartDataApi {
       return OK;
    }
 
-   public String update(final ChartData chartData) {
-      final DatabaseResults result = dao.update(chartData);
+   public String update(final Configuration configuration) {
+      final DatabaseResults result = dao.update(configuration);
       if (result == DatabaseResults.NOT_FOUND) {
          return "NOTFOUND";
       }
@@ -45,8 +45,8 @@ public class PersistedChartDataApi {
       return OK;
    }
 
-   public String delete(final ChartData chartData) {
-      final DatabaseResults result = dao.delete(chartData);
+   public String delete(final Configuration configuration) {
+      final DatabaseResults result = dao.delete(configuration);
       if (result != DatabaseResults.OK) {
          // TODO handle result, use db error messages in RB
          return ERROR;
@@ -54,20 +54,22 @@ public class PersistedChartDataApi {
       return OK;
    }
 
-   public ChartData read(final int id) {
-      ChartDataResult result = dao.read(id);
+   public Configuration read(final int id) {
+      ConfigurationResult result = dao.read(id);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return null;
-      } else return result.getChartData();
+      }
+      return result.getConfig();
    }
 
-   public List<ChartData> readAll() {
-      ChartDataListResult result = dao.readAll();
+   public List<Configuration> readAll() {
+      ConfigurationListResult result = dao.readAll();
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return new ArrayList<>();
-      } else return result.getChartDataList();
+      }
+      return result.getConfigurations();
    }
 
    public long getMaxId() {
@@ -81,3 +83,4 @@ public class PersistedChartDataApi {
 
 
 }
+

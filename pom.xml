@@ -18,7 +18,7 @@
         <javafx-fxml.version>14-ea+4</javafx-fxml.version>
         <jackson.version>2.10.1</jackson.version>
         <nitrite.version>3.3.0</nitrite.version>
-        <slf4j.version>1.7.30</slf4j.version>
+        <slf4j.version>1.8.0-beta4</slf4j.version>
         <controlsfx.version>11.0.1</controlsfx.version>
     </properties>
 
@@ -85,12 +85,24 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.slf4j</groupId>   &lt;!&ndash; required for Nitrite &ndash;&gt;-->
+        <!--            <artifactId>slf4j-nop</artifactId>-->
+        <!--            <version>${slf4j.version}</version>-->
+        <!--        <scope>test</scope>-->
+        <!--    </dependency>-->
         <dependency>
-            <groupId>org.slf4j</groupId>   <!-- required for Nitrite -->
-            <artifactId>slf4j-nop</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

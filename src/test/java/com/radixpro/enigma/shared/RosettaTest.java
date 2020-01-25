@@ -6,48 +6,73 @@
 
 package com.radixpro.enigma.shared;
 
+import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class RosettaTest {
 
+   private PersistedPropertyApi api;
+
+   @Before
+   public void setUp() {
+      api = new PersistedPropertyApi();
+      cleanDatabase();
+      api.insert(new Property(1L, "lang", "du"));
+   }
+
+   @After
+   public void tearDown() throws Exception {
+      cleanDatabase();
+   }
+
    @Test
    public void getRosetta() {
-      Rosetta rosetta = Rosetta.getRosetta();
+      var rosetta = Rosetta.getRosetta();
       assertNotNull(rosetta);
    }
 
-//   @Test
-//   public void reInitialize() {
-//      Rosetta rosetta = Rosetta.getRosetta();
-//      setPropForLocale("en");
-//      rosetta.reInitialize();
-//      assertEquals("Tropical", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
-//      setPropForLocale("du");
-//      rosetta.reInitialize();
-//      assertEquals("Tropisch", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
-//   }
-//
-//   @Test
-//   public void getText() {
-//      Rosetta rosetta = Rosetta.getRosetta();
-//      setPropForLocale("en");
-//      rosetta.reInitialize();
-//      assertEquals("Equal from Asc", rosetta.getText("gen.lookup.houses.equalasc.name"));
-//   }
-//
-//
-//   private void setPropForLocale(final String langProp) {
-//      try (OutputStream output = new FileOutputStream("./src/main/resources/i18n.properties")) {
-//         Properties prop = new Properties();
-//         prop.setProperty("lang", langProp);
-//         prop.store(output, null);
-//         System.out.println(prop);
-//      } catch (IOException io) {
-//         io.printStackTrace();
-//      }
-//   }
+   @Test
+   public void setLanguageAndGetText() {
+      var rosetta = Rosetta.getRosetta();
+      rosetta.setLanguage("en");
+      assertEquals("Tropical", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+      rosetta.setLanguage("du");
+      assertEquals("Tropisch", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+   }
+
+   @Test
+   public void setLanguageUnsupportedLang() {
+      var rosetta = Rosetta.getRosetta();
+      rosetta.setLanguage("en");
+      assertEquals("Tropical", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+      rosetta.setLanguage("es");
+      assertEquals("Tropical", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+   }
+
+   @Test
+   public void getLocale() {
+      var rosetta = Rosetta.getRosetta();
+      rosetta.setLanguage("en");
+      assertEquals("EN", rosetta.getLocale().getCountry());
+      rosetta.setLanguage("du");
+      assertEquals("DU", rosetta.getLocale().getCountry());
+   }
+
+
+   private void cleanDatabase() {
+      List<Property> propList = api.readAll();
+      // clean up
+      for (Property prop : propList) {
+         api.delete(prop);
+      }
+   }
 
 
 }
