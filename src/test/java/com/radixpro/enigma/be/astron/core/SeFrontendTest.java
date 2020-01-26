@@ -16,8 +16,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -88,6 +87,43 @@ public class SeFrontendTest {
       double[] equatorialPositions = SeFrontend.getFrontend().convertToEquatorial(eclipticPositions, obliquity);
       assertEquals(124.751841376, equatorialPositions[0], delta);
       assertEquals(20.743011595, equatorialPositions[1], delta);
-
    }
+
+   @Test
+   public void isValidDateHappyFlow() {
+      var seFrontend = SeFrontend.getFrontend();
+      assertTrue(seFrontend.isValidDate(1953, 1, 29, true));
+   }
+
+   @Test
+   public void isValidDateWrongMonth() {
+      var seFrontend = SeFrontend.getFrontend();
+      assertFalse(seFrontend.isValidDate(1953, 15, 29, true));
+   }
+
+   @Test
+   public void isValidDateWrongDay() {
+      var seFrontend = SeFrontend.getFrontend();
+      assertFalse(seFrontend.isValidDate(1953, 15, -29, true));
+   }
+
+   @Test
+   public void isValidDateJulian() {
+      var seFrontend = SeFrontend.getFrontend();
+      assertTrue(seFrontend.isValidDate(653, 1, 29, false));
+   }
+
+   @Test
+   public void isValidDateValidLeapDay() {
+      var seFrontend = SeFrontend.getFrontend();
+      assertTrue(seFrontend.isValidDate(1952, 2, 29, true));
+   }
+
+   @Test
+   public void isValidDateWrongLeapDay() {
+      var seFrontend = SeFrontend.getFrontend();
+      assertFalse(seFrontend.isValidDate(1953, 2, 29, true));
+   }
+
+
 }

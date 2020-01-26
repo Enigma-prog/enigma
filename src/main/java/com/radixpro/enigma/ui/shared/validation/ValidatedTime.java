@@ -15,7 +15,8 @@ public class ValidatedTime extends ValidatedInput {
       validate();
    }
 
-   private void validate() {
+   @Override
+   protected void validate() {
       int hour, minute, second;
       String[] values = input.split(TIME_SEPARATOR);
       if (values.length == 2 || values.length == 3) {

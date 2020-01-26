@@ -14,16 +14,16 @@ public class ValidatedTimeTest {
 
    private static final double MARGIN = 0.00000001;
    private ValidatedTime time;
-   private String timeTextOk = "11:45:48";
-   private String timeTextSingleDigits = "1:2:3";
-   private String timeTextHour2Large = "25:45:38";
-   private String timeTextHour2Small = "-1:45:38";
-   private String timeTextMinute2Large = "11:65:48";
-   private String timeTextMinute2Small = "11:-1:48";
-   private String timeTextSecond2Large = "11:45:60";
-   private String timeTextSecond2Small = "11:45:-3";
-   private String timeTextNoSecond = "11:45";
-   private String timeTextNotNumeric = "Enigma";
+   private final String timeTextOk = "11:45:48";
+   private final String timeTextSingleDigits = "1:2:3";
+   private final String timeTextHour2Large = "25:45:38";
+   private final String timeTextHour2Small = "-1:45:38";
+   private final String timeTextMinute2Large = "11:65:48";
+   private final String timeTextMinute2Small = "11:-1:48";
+   private final String timeTextSecond2Large = "11:45:60";
+   private final String timeTextSecond2Small = "11:45:-3";
+   private final String timeTextNoSecond = "11:45";
+   private final String timeTextNotNumeric = "Enigma";
 
 
    @Test

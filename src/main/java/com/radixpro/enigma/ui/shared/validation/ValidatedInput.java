@@ -8,6 +8,7 @@ package com.radixpro.enigma.ui.shared.validation;
 
 public abstract class ValidatedInput {
 
+   protected static final String DATE_SEPARATOR = "/";
    protected static final int HOUR_MIN = 0;
    protected static final int HOUR_MAX = 23;
    protected static final int MINUTE_MIN = 0;
@@ -28,5 +29,6 @@ public abstract class ValidatedInput {
       return validated;
    }
 
+   protected abstract void validate();
 
 }

@@ -57,7 +57,7 @@ public class SeFrontend {
     */
    public double[] getJulianDay(final int year, final int month, final int day, final int hour, final int min,
                                 final int sec, final boolean gregFlag) {
-      final var sweDate = new SweDate();
+      var sweDate = new SweDate();
       final var checkValidInput = false;
       return sweDate.getJDfromUTC(year, month, day, hour, min, sec, gregFlag, checkValidInput);
    }
@@ -121,6 +121,14 @@ public class SeFrontend {
       double[] equatorialValues = new double[3];
       swissLib.swe_cotrans(eclipticValues, equatorialValues, -obliquity);  // obliquity must be negative !
       return equatorialValues;
+   }
+
+   public boolean isValidDate(final int year, final int month, final int day, final boolean gregorian) {
+      final var sweDate1 = new SweDate(year, month, day, 0.0, gregorian);
+      final var calculatedJulDay = sweDate1.getJulDay();
+      final var sweDate2 = new SweDate(calculatedJulDay, gregorian);
+      return (sweDate1.getYear() == sweDate2.getYear() && sweDate1.getMonth() == sweDate2.getMonth() &&
+            sweDate1.getDay() == sweDate2.getDay());
    }
 
 }
