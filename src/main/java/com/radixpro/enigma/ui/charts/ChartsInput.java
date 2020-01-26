@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.CheckComboBox;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -38,7 +39,7 @@ public class ChartsInput {
    @FXML
    public ChoiceBox subject;
    @FXML
-   public ChoiceBox rating;
+   public CheckComboBox rating;
 
 
    @FXML

@@ -9,6 +9,7 @@ package com.radixpro.enigma.be.astron.core;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.xchg.domain.Location;
+import org.apache.log4j.Logger;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 import swisseph.SwissLib;
@@ -20,6 +21,7 @@ import swisseph.SwissLib;
  */
 public class SeFrontend {
 
+   private static final Logger LOG = Logger.getLogger(SeFrontend.class);
    private static SeFrontend instance = null;
    private static final String PATH = "se";
    private final SwissEph swissEph = new SwissEph(PATH);
@@ -36,6 +38,7 @@ public class SeFrontend {
    public static SeFrontend getFrontend() {
       if (instance == null) {
          instance = new SeFrontend();
+         LOG.info("Created singleton instance for SeFrontend.");
       }
       return instance;
    }

@@ -12,6 +12,7 @@ import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryListResult;
 import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
+import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
 
@@ -22,6 +23,7 @@ import static org.dizitart.no2.FindOptions.sort;
 
 public class UserDefinedCategoryDao {
 
+   private static final Logger LOG = Logger.getLogger(UserDefinedCategoryDao.class);
    private Nitrite nitriteDb;
 
    private static final String COLLECTION_NAME = "userdefinedcategory";
@@ -41,6 +43,7 @@ public class UserDefinedCategoryDao {
             databaseResult = DatabaseResults.NOT_UNIQUE;
          }
       } catch (Exception e) {
+         LOG.error("Exception when inserting user defined category. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -57,6 +60,7 @@ public class UserDefinedCategoryDao {
             databaseResult = DatabaseResults.NOT_FOUND;
          }
       } catch (Exception e) {
+         LOG.error("Exception when updating user defined category. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -78,6 +82,7 @@ public class UserDefinedCategoryDao {
          openCollectionAndDatabase();
          cat = mapper.document2Object(collection.find(Filters.eq("_id", catId)).firstOrDefault());
       } catch (Exception e) {
+         LOG.error("Exception when reading user defined category. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
@@ -95,6 +100,7 @@ public class UserDefinedCategoryDao {
             catList.add(mapper.document2Object(foundCat));
          }
       } catch (Exception e) {
+         LOG.error("Exception when reading all user defined categories. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
@@ -111,6 +117,7 @@ public class UserDefinedCategoryDao {
             maxId = (long) cat.get("_id");
          }
       } catch (Exception e) {
+         LOG.error("Exception when reading max id for user defined category. " + e.getMessage());
          maxId = -1L;                                // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();

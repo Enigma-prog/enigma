@@ -12,6 +12,7 @@ import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.be.persistency.results.PropertyListResult;
 import com.radixpro.enigma.be.persistency.results.PropertyResult;
 import com.radixpro.enigma.shared.Property;
+import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
 
@@ -22,6 +23,7 @@ import static org.dizitart.no2.FindOptions.sort;
 
 public class PropertyDao {
 
+   private static final Logger LOG = Logger.getLogger(PropertyDao.class);
    private static final String COLLECTION_NAME = "property";
    private final PropertyDocumentMapper mapper;
    private Nitrite nitriteDb;
@@ -40,6 +42,7 @@ public class PropertyDao {
             databaseResult = DatabaseResults.NOT_UNIQUE;
          }
       } catch (Exception e) {
+         LOG.error("Exception when inserting property. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -56,6 +59,7 @@ public class PropertyDao {
             databaseResult = DatabaseResults.NOT_FOUND;
          }
       } catch (Exception e) {
+         LOG.error("Exception when updating property. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -77,6 +81,7 @@ public class PropertyDao {
          openCollectionAndDatabase();
          pair = mapper.document2Object(collection.find(Filters.eq("key", key)).firstOrDefault());
       } catch (Exception e) {
+         LOG.error("Exception when reading property. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
@@ -94,6 +99,7 @@ public class PropertyDao {
             propList.add(mapper.document2Object(foundProp));
          }
       } catch (Exception e) {
+         LOG.error("Exception when reading all properties. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
@@ -110,6 +116,7 @@ public class PropertyDao {
             maxId = (long) prop.get("_id");
          }
       } catch (Exception e) {
+         LOG.error("Exception when reading max id for property. " + e.getMessage());
          maxId = -1L;                                // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();

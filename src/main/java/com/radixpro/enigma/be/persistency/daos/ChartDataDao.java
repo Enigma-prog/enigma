@@ -12,6 +12,7 @@ import com.radixpro.enigma.be.persistency.results.ChartDataListResult;
 import com.radixpro.enigma.be.persistency.results.ChartDataResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.ChartData;
+import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import static org.dizitart.no2.filters.Filters.eq;
 
 public class ChartDataDao {
 
+   private static final Logger LOG = Logger.getLogger(ChartDataDao.class);
    private static final String COLLECTION_NAME = "chartdata";
    private final ChartDataObjectDocumentMapper mapper;
    private Nitrite nitriteDb;
@@ -41,6 +43,7 @@ public class ChartDataDao {
             databaseResult = DatabaseResults.NOT_UNIQUE;
          }
       } catch (Exception e) {
+         LOG.error("Exception when inserting chart. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -58,6 +61,7 @@ public class ChartDataDao {
             databaseResult = DatabaseResults.NOT_FOUND;
          }
       } catch (Exception e) {
+         LOG.error("Exception when updating chart. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -81,7 +85,8 @@ public class ChartDataDao {
          Document chartDoc = collection.find(eq("_id", chartId)).firstOrDefault();
          chartData = mapper.document2Object(chartDoc);
       } catch (Exception e) {
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         LOG.error("Exception when reading chart. " + e.getMessage());
+         databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
       }
@@ -97,7 +102,8 @@ public class ChartDataDao {
          for (Document foundChartData : allChartData)
             chartDataList.add(mapper.document2Object(foundChartData));
       } catch (Exception e) {
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         LOG.error("Exception when reading all charts. " + e.getMessage());
+         databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
       }
@@ -113,6 +119,7 @@ public class ChartDataDao {
             maxId = (long) config.get("_id");
          }
       } catch (Exception e) {
+         LOG.error("Exception when reading max id for charts. " + e.getMessage());
          maxId = -1L;                                // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();

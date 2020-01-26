@@ -85,12 +85,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.slf4j</groupId>   &lt;!&ndash; required for Nitrite &ndash;&gt;-->
-        <!--            <artifactId>slf4j-nop</artifactId>-->
-        <!--            <version>${slf4j.version}</version>-->
-        <!--        <scope>test</scope>-->
-        <!--    </dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -101,8 +95,6 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.5</version>
         </dependency>
-
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

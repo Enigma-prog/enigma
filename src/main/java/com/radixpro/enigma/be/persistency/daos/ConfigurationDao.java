@@ -12,6 +12,7 @@ import com.radixpro.enigma.be.persistency.results.ConfigurationListResult;
 import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.Configuration;
+import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
 
@@ -22,6 +23,7 @@ import static org.dizitart.no2.FindOptions.sort;
 
 public class ConfigurationDao {
 
+   private static final Logger LOG = Logger.getLogger(ConfigurationDao.class);
    private static final String COLLECTION_NAME = "configurations";
    private final ConfigurationObjectDocumentMapper mapper;
    private Nitrite nitriteDb;
@@ -40,6 +42,7 @@ public class ConfigurationDao {
             databaseResult = DatabaseResults.NOT_UNIQUE;
          }
       } catch (Exception e) {
+         LOG.error("Exception when inserting configuration. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -56,6 +59,7 @@ public class ConfigurationDao {
             databaseResult = DatabaseResults.NOT_FOUND;
          }
       } catch (Exception e) {
+         LOG.error("Exception when updating configuration. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
@@ -77,6 +81,7 @@ public class ConfigurationDao {
          openCollectionAndDatabase();
          config = mapper.document2Object(collection.find(Filters.eq("_id", id)).firstOrDefault());
       } catch (Exception e) {
+         LOG.error("Exception when reading configuration. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
@@ -94,6 +99,7 @@ public class ConfigurationDao {
             configList.add(mapper.document2Object(foundCat));
          }
       } catch (Exception e) {
+         LOG.error("Exception when reading all configurations. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
@@ -110,6 +116,7 @@ public class ConfigurationDao {
             maxId = (long) config.get("_id");
          }
       } catch (Exception e) {
+         LOG.error("Exception when reading max id for configurations. " + e.getMessage());
          maxId = -1L;                                // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
