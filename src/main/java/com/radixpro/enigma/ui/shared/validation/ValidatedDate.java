@@ -27,7 +27,6 @@ public class ValidatedDate extends ValidatedInput {
       String[] values = input.split(DATE_SEPARATOR);
       if (values.length != 4) {
          validated = false;
-         simpleDate = new SimpleDate(0, 1, 1, false);
       } else {
          try {
             year = Integer.parseInt(values[0]);
@@ -36,12 +35,11 @@ public class ValidatedDate extends ValidatedInput {
             gregorian = values[3].equalsIgnoreCase("g");
             validated = (dateTimeApi.checkDate(year, month, day, gregorian));
             if (validated) simpleDate = new SimpleDate(year, month, day, gregorian);
-            else simpleDate = new SimpleDate(0, 1, 1, false);
-         } catch (ArithmeticException ae) {
+         } catch (NumberFormatException nfe) {
             validated = false;
-            simpleDate = new SimpleDate(0, 1, 1, false);
          }
       }
+      if (!validated) simpleDate = new SimpleDate(0, 1, 1, false);
    }
 
    public SimpleDate getSimpleDate() {

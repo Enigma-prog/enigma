@@ -6,42 +6,41 @@
 
 package com.radixpro.enigma.ui.shared.validation;
 
-import com.radixpro.enigma.xchg.domain.SimpleTime;
+public class ValidatedLatitude extends ValidatedInput {
 
-public class ValidatedTime extends ValidatedInput {
+   private final static int LAT_DEGREE_MIN = -89;
+   private final static int LAT_DEGREE_MAX = 89;
+   private double value;
 
-   private SimpleTime simpleTime;
-
-   public ValidatedTime(final String input) {
+   public ValidatedLatitude(final String input) {
       super(input);
       validate();
    }
 
    @Override
    protected void validate() {
-      int hour;
+      int degree;
       int minute;
       int second;
       String[] values = input.split(SEXAG_SEPARATOR);
       if (values.length == 2 || values.length == 3) {
          try {
-            hour = Integer.parseInt(values[0]);
+            degree = Integer.parseInt(values[0]);
             minute = Integer.parseInt(values[1]);
             if (values.length == 3) second = Integer.parseInt(values[2]);
             else second = 0;
-            validated = (hour >= HOUR_MIN && hour <= HOUR_MAX &&
+            validated = (degree >= LAT_DEGREE_MIN && degree <= LAT_DEGREE_MAX &&
                   minute >= MINUTE_MIN && minute <= MINUTE_MAX &&
                   second >= SECOND_MIN && second <= SECOND_MAX);
-            if (validated) simpleTime = new SimpleTime(hour, minute, second);
+            if (validated) value = degree + (double) minute / MINUTES_PER_HOUR + (double) second / SECONDS_PER_HOUR;
          } catch (NumberFormatException nfe) {
             validated = false;
          }
+         if (!validated) value = 0.0;
       }
-      if (!validated) simpleTime = new SimpleTime(0, 0, 0);
    }
 
-   public SimpleTime getSimpleTime() {
-      return simpleTime;
+   public double getValue() {
+      return value;
    }
-
 }

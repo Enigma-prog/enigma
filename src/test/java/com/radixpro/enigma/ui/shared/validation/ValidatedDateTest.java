@@ -19,6 +19,7 @@ public class ValidatedDateTest {
    private final String dateTextMonth2Small = "2000/-1/1/g";
    private final String dateTextDay2Large = "2000/1/32/g";
    private final String dateTextDay2Small = "2000/1/-3/g";
+   private final String dateTextNotNumeric = "2000/ab/03/g";
 
    @Test
    public void happyFlow() {
@@ -65,6 +66,11 @@ public class ValidatedDateTest {
    @Test
    public void day2Small() {
       assertFalse(new ValidatedDate(dateTextDay2Small).isValidated());
+   }
+
+   @Test
+   public void notNumeric() {
+      assertFalse(new ValidatedDate(dateTextNotNumeric).isValidated());
    }
 
 }

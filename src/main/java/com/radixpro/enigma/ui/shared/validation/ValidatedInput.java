@@ -17,7 +17,7 @@ public abstract class ValidatedInput {
    protected static final int SECOND_MIN = 0;
    protected static final int SECOND_MAX = 59;
    protected static final int SECONDS_PER_HOUR = 3600;
-   protected static final String TIME_SEPARATOR = ":";
+   protected static final String SEXAG_SEPARATOR = ":";
    protected final String input;
    protected boolean validated = false;
 
