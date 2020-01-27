@@ -70,6 +70,14 @@ public class PersistedChartDataApi {
       } else return result.getChartDataList();
    }
 
+   public ChartData search(final String searchName) {
+      ChartDataResult result = dao.search(searchName);
+      if (result.getDatabaseResult() != DatabaseResults.OK) { // TODO handle NOT_FOUND
+         // todo: throw exception
+         return null;
+      } else return result.getChartData();
+   }
+
    public long getMaxId() {
       long maxId = dao.getMaxId();
       if (maxId < 0) {

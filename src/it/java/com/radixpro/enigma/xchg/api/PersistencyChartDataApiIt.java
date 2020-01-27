@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Integration test for persistency of ChartData.
@@ -85,6 +86,30 @@ public class PersistencyChartDataApiIt {
       List<ChartData> chartDataList = api.readAll();
       assertEquals(2, chartDataList.size());
    }
+
+   @Test
+   public void readNotFound() {
+      api.insert(chartData1);
+      api.insert(chartData2);
+      assertNull(api.read(5));
+   }
+
+   @Test
+   public void search() {
+      api.insert(chartData1);
+      api.insert(chartData2);
+      ChartData chartData = api.search("two");
+      assertEquals("two", chartData.getChartMetaData().getName());
+   }
+
+   @Test
+   public void searchNotFound() {
+      api.insert(chartData1);
+      api.insert(chartData2);
+      assertNull(api.search("three"));
+      ;
+   }
+
 
    @Test
    public void getMaxId() {

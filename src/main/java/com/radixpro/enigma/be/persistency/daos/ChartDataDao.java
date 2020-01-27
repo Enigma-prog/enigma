@@ -83,7 +83,8 @@ public class ChartDataDao {
       try {
          openCollectionAndDatabase();
          Document chartDoc = collection.find(eq("_id", chartId)).firstOrDefault();
-         chartData = mapper.document2Object(chartDoc);
+         if (chartDoc != null) chartData = mapper.document2Object(chartDoc);
+         else databaseResult = DatabaseResults.NOT_FOUND;
       } catch (Exception e) {
          LOG.error("Exception when reading chart. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
@@ -108,6 +109,23 @@ public class ChartDataDao {
          closeCollectionAndDatabase();
       }
       return new ChartDataListResult(chartDataList, databaseResult);
+   }
+
+   public ChartDataResult search(final String searchName) {
+      var databaseResult = DatabaseResults.OK;
+      ChartData chartData = null;
+      try {
+         openCollectionAndDatabase();
+         Document chartDoc = collection.find(eq("name", searchName)).firstOrDefault();
+         if (chartDoc != null) chartData = mapper.document2Object(chartDoc);
+         else databaseResult = DatabaseResults.NOT_FOUND;
+      } catch (Exception e) {
+         LOG.error("Exception when searching chart. " + e.getMessage());
+         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+      } finally {
+         closeCollectionAndDatabase();
+      }
+      return new ChartDataResult(chartData, databaseResult);
    }
 
    public long getMaxId() {
