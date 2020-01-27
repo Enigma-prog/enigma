@@ -70,7 +70,7 @@ public class ValidatedTimeTest {
 
    @Test
    public void minute2Small() {
-      time = new ValidatedTime(timeTextMinute2Small);
+      assertFalse(new ValidatedTime(timeTextMinute2Small).isValidated());
    }
 
    @Test
