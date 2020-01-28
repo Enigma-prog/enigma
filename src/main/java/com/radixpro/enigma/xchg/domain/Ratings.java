@@ -6,7 +6,12 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 public enum Ratings implements Serializable {
    ZZ(0, "zz"),
@@ -48,6 +53,11 @@ public enum Ratings implements Serializable {
          }
       }
       return Ratings.ZZ;
+   }
+
+   public ObservableList<Ratings> getObservableList() {
+      List<Ratings> allRatings = Arrays.asList(values());
+      return FXCollections.observableArrayList(allRatings);
    }
 
 }

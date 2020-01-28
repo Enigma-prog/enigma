@@ -162,7 +162,8 @@
                                            GridPane.rowIndex="26">
                                     <buttons>
                                         <Button mnemonicParsing="false" text="%ui.shared.btn.help"/>
-                                        <Button mnemonicParsing="false" text="%ui.shared.btn.calculate"/>
+                                        <Button mnemonicParsing="false" onAction="#onCalculate"
+                                                text="%ui.shared.btn.calculate"/>
                                         <Button mnemonicParsing="false" text="%ui.shared.btn.cancel"/>
                                     </buttons>
                                 </ButtonBar>

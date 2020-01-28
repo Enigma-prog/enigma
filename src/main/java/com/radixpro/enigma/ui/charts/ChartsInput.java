@@ -7,6 +7,7 @@
 package com.radixpro.enigma.ui.charts;
 
 import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.ui.shared.validation.ValidatedChartName;
 import com.radixpro.enigma.xchg.domain.ChartTypes;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,18 +41,56 @@ public class ChartsInput {
    public ChoiceBox subject;
    @FXML
    public CheckComboBox rating;
-
+   private ResourceBundle resourceBundle;
+   private boolean errorsFound;
 
    @FXML
    void onCalculate(ActionEvent event) throws IOException {
-      System.out.println("Name is " + name.getText());
+      validate();
+      if (!errorsFound) {
+         saveData();
+         // close screen
+      }
+
    }
 
    public void initialize() {
-      ResourceBundle mybundle = ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale());
-      ChartTypes defaultChartType = ChartTypes.UNKNOWN;
-      ObservableList<ChartTypes> observableList = defaultChartType.getObservableList();
+      resourceBundle = ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale());
+      initSubject();
+      initRating();
+   }
+
+   private void initSubject() {
+      ObservableList<String> observableList = ChartTypes.NATAL.getObservableList();
       subject.setItems(observableList);
+      subject.getSelectionModel().select(1);  // Natal
+   }
+
+   private void initRating() {
+//      ObservableList<Ratings> observableList = Rati
+   }
+
+
+   private void validate() {
+      errorsFound = false;
+      validateName();
+   }
+
+
+   private void validateName() {
+      ValidatedChartName valName = new ValidatedChartName(name.getText());
+      name.setText(valName.getNameText());
+      if (valName.isValidated()) name.getStyleClass().add("fixed");
+      else {
+         name.getStyleClass().add("error");
+         errorsFound = true;
+      }
+   }
+
+   private void saveData() {
+      String selectedSubject = (String) subject.getValue();
+      ChartTypes selectedChartType = ChartTypes.UNKNOWN.chartTypeForLocalName(selectedSubject);
+      System.out.println(selectedChartType.name());
    }
 
 }

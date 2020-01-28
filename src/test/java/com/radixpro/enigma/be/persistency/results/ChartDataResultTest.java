@@ -22,7 +22,6 @@ public class ChartDataResultTest {
 
    private final DatabaseResults databaseResult = DatabaseResults.OK;
    @Mock
-//   private ChartData chartDataMock;
    private ChartDataResult chartDataResult;
    private List<ChartData> chartDataList;
 

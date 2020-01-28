@@ -31,4 +31,9 @@
     -fx-text-fill: steelblue;
     -fx-alignment: center;
 }
-
+.error {
+  -fx-control-inner-background: yellow;
+}
+.fixed {
+  -fx-control-inner-background: white;
+}
