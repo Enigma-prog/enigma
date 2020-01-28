@@ -38,7 +38,7 @@ public class VersionController {
 
    private void performCheckedInitialisation() {
       PersistedPropertyApi api = new PersistedPropertyApi();
-      Property versionProp = api.read("version");
+      Property versionProp = api.read("version").get(0);   // todo handle version not found
       String dbVersion = versionProp.getValue();
       String codeVersion = EnigmaDictionary.VERSION;
       LOG.info("Current version of code : " + codeVersion + " . Current version of database : " + dbVersion);

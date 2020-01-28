@@ -8,7 +8,6 @@ package com.radixpro.enigma.xchg.api;
 
 import com.radixpro.enigma.be.persistency.daos.UserDefinedCategoryDao;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryListResult;
 import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
 
@@ -54,16 +53,25 @@ public class PersistedUserDefinedCategoryApi {
       return OK;
    }
 
-   public UserDefinedCategory read(final int id) {
+   public List<UserDefinedCategory> read(final int id) {
       UserDefinedCategoryResult result = dao.read(id);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return null;
-      } else return result.getUserDefinedCategory();
+      } else return result.getCategories();
    }
 
+   public List<UserDefinedCategory> search(final String searchText) {
+      UserDefinedCategoryResult result = dao.search(searchText);
+      if (result.getDatabaseResult() != DatabaseResults.OK) {
+         // todo: throw exception
+         return null;
+      } else return result.getCategories();
+   }
+
+
    public List<UserDefinedCategory> readAll() {
-      UserDefinedCategoryListResult result = dao.readAll();
+      UserDefinedCategoryResult result = dao.readAll();
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return new ArrayList<>();

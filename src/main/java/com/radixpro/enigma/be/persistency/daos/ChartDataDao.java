@@ -8,7 +8,6 @@ package com.radixpro.enigma.be.persistency.daos;
 
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.ChartDataObjectDocumentMapper;
-import com.radixpro.enigma.be.persistency.results.ChartDataListResult;
 import com.radixpro.enigma.be.persistency.results.ChartDataResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.ChartData;
@@ -79,22 +78,21 @@ public class ChartDataDao {
 
    public ChartDataResult read(final long chartId) {
       var databaseResult = DatabaseResults.OK;
-      ChartData chartData = null;
+      List<ChartData> chartDataList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          Document chartDoc = collection.find(eq("_id", chartId)).firstOrDefault();
-         if (chartDoc != null) chartData = mapper.document2Object(chartDoc);
-         else databaseResult = DatabaseResults.NOT_FOUND;
+         if (chartDoc != null) chartDataList.add(mapper.document2Object(chartDoc));
       } catch (Exception e) {
          LOG.error("Exception when reading chart. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataResult(chartData, databaseResult);
+      return new ChartDataResult(chartDataList, databaseResult);
    }
 
-   public ChartDataListResult readAll() {
+   public ChartDataResult readAll() {
       var databaseResult = DatabaseResults.OK;
       List<ChartData> chartDataList = new ArrayList<>();
       try {
@@ -108,24 +106,23 @@ public class ChartDataDao {
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataListResult(chartDataList, databaseResult);
+      return new ChartDataResult(chartDataList, databaseResult);
    }
 
    public ChartDataResult search(final String searchName) {
       var databaseResult = DatabaseResults.OK;
-      ChartData chartData = null;
+      List<ChartData> chartDataList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          Document chartDoc = collection.find(eq("name", searchName)).firstOrDefault();
-         if (chartDoc != null) chartData = mapper.document2Object(chartDoc);
-         else databaseResult = DatabaseResults.NOT_FOUND;
+         if (chartDoc != null) chartDataList.add(mapper.document2Object(chartDoc));
       } catch (Exception e) {
          LOG.error("Exception when searching chart. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataResult(chartData, databaseResult);
+      return new ChartDataResult(chartDataList, databaseResult);
    }
 
    public long getMaxId() {

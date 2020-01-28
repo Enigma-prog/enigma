@@ -13,28 +13,37 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserDefinedCategoryResultTest {
 
    @Mock
-   private UserDefinedCategory categoryMock;
-   private UserDefinedCategoryResult categoryResult;
+   private UserDefinedCategory userDefinedCategoryMock1;
+   @Mock
+   private UserDefinedCategory userDefinedCategoryMock2;
+   private List<UserDefinedCategory> categoryList;
    private final DatabaseResults databaseResult = DatabaseResults.OK;
+   private UserDefinedCategoryResult categoryResultList;
 
    @Before
    public void setUp() {
-      categoryResult = new UserDefinedCategoryResult(categoryMock, databaseResult);
+      categoryList = new ArrayList<>();
+      categoryList.add(userDefinedCategoryMock1);
+      categoryList.add(userDefinedCategoryMock2);
+      categoryResultList = new UserDefinedCategoryResult(categoryList, databaseResult);
    }
 
    @Test
    public void getDatabaseResult() {
-      assertEquals(databaseResult, categoryResult.getDatabaseResult());
+      assertEquals(databaseResult, categoryResultList.getDatabaseResult());
    }
 
    @Test
-   public void getUserDefinedCategory() {
-      assertEquals(categoryMock, categoryResult.getUserDefinedCategory());
+   public void getCategories() {
+      assertEquals(categoryList, categoryResultList.getCategories());
    }
 }

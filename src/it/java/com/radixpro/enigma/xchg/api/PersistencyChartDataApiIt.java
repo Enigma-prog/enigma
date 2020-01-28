@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 /**
  * Integration test for persistency of ChartData.
@@ -59,7 +58,7 @@ public class PersistencyChartDataApiIt {
       api.insert(chartData1);
       var updateChartData = createChartData(1, "ein");
       String result = api.update(updateChartData);
-      ChartData chartData = api.read(1);
+      ChartData chartData = api.read(1).get(0);
       assertEquals("ein", chartData.getChartMetaData().getName());
    }
 
@@ -75,7 +74,7 @@ public class PersistencyChartDataApiIt {
    public void read() {
       api.insert(chartData1);
       api.insert(chartData2);
-      ChartData chartData = api.read(1);
+      ChartData chartData = api.read(1).get(0);
       assertEquals("one", chartData.getChartMetaData().getName());
    }
 
@@ -91,14 +90,14 @@ public class PersistencyChartDataApiIt {
    public void readNotFound() {
       api.insert(chartData1);
       api.insert(chartData2);
-      assertNull(api.read(5));
+      assertEquals(0, api.read(5).size());
    }
 
    @Test
    public void search() {
       api.insert(chartData1);
       api.insert(chartData2);
-      ChartData chartData = api.search("two");
+      ChartData chartData = api.search("two").get(0);
       assertEquals("two", chartData.getChartMetaData().getName());
    }
 
@@ -106,7 +105,7 @@ public class PersistencyChartDataApiIt {
    public void searchNotFound() {
       api.insert(chartData1);
       api.insert(chartData2);
-      assertNull(api.search("three"));
+      assertEquals(0, api.search("three").size());
       ;
    }
 

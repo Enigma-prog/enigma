@@ -8,7 +8,6 @@ package com.radixpro.enigma.xchg.api;
 
 import com.radixpro.enigma.be.persistency.daos.PropertyDao;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.PropertyListResult;
 import com.radixpro.enigma.be.persistency.results.PropertyResult;
 import com.radixpro.enigma.shared.Property;
 
@@ -54,20 +53,22 @@ public class PersistedPropertyApi {
       return OK;
    }
 
-   public Property read(final String key) {
+   public List<Property> read(final String key) {
       PropertyResult result = dao.read(key);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return null;
-      } else return result.getProperty();
+      }
+      return result.getProperties();
    }
 
    public List<Property> readAll() {
-      PropertyListResult result = dao.readAll();
+      PropertyResult result = dao.readAll();
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return new ArrayList<>();
-      } else return result.getProperties();
+      }
+      return result.getProperties();
    }
 
    public long getMaxId() {

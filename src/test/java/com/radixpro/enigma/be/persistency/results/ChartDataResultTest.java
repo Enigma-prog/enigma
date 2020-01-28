@@ -13,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -20,12 +22,13 @@ public class ChartDataResultTest {
 
    private final DatabaseResults databaseResult = DatabaseResults.OK;
    @Mock
-   private ChartData chartDataMock;
+//   private ChartData chartDataMock;
    private ChartDataResult chartDataResult;
+   private List<ChartData> chartDataList;
 
    @Before
    public void setUp() {
-      chartDataResult = new ChartDataResult(chartDataMock, databaseResult);
+      chartDataResult = new ChartDataResult(chartDataList, databaseResult);
    }
 
    @Test
@@ -35,7 +38,7 @@ public class ChartDataResultTest {
 
    @Test
    public void getChartData() {
-      assertEquals(chartDataMock, chartDataResult.getChartData());
+      assertEquals(chartDataList, chartDataResult.getChartDataList());
    }
 
 }

@@ -52,7 +52,7 @@ public class Rosetta {
    public void setLanguage(final String language) {
       if (language.equals(ENGLISH) || language.equals(DUTCH)) {
          var propApi = new PersistedPropertyApi();
-         Property currentProp = propApi.read(PROP_LANG);
+         Property currentProp = propApi.read(PROP_LANG).get(0);    // todo handle not found
          Property langProp = new Property(currentProp.getId(), PROP_LANG, language);
          propApi.update(langProp);
          reInitialize();
@@ -69,7 +69,7 @@ public class Rosetta {
 
    private void initi18N() {
       var propApi = new PersistedPropertyApi();
-      Property currentProp = propApi.read(PROP_LANG);
+      Property currentProp = propApi.read(PROP_LANG).get(0);  // todo handle not found
       String language = currentProp.getValue();
 
 //      final String language = new PersistedPropertyApi().read(PROP_LANG).getValue();

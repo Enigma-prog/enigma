@@ -8,19 +8,23 @@ package com.radixpro.enigma.be.persistency.results;
 
 import com.radixpro.enigma.shared.Property;
 
+import java.util.List;
+
+/**
+ * Validated result from querying database for Properties.
+ */
 public class PropertyResult extends AbstractResult {
 
-   private final Property property;
+   private final List<Property> properties;
 
-   /**
-    * Validated result that contains a property.
-    */
-   public PropertyResult(final Property property, final DatabaseResults result) {
+   public PropertyResult(final List<Property> properties, final DatabaseResults result) {
       super(result);
-      this.property = property;
+      this.properties = properties;
    }
 
-   public Property getProperty() {
-      return property;
+   public List<Property> getProperties() {
+      return properties;
    }
 }
+
+

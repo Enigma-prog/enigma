@@ -13,19 +13,28 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ConfigurationResultTest {
 
    private final DatabaseResults databaseResult = DatabaseResults.OK;
+   List<Configuration> configurationList;
    @Mock
-   private Configuration configurationMock;
+   private Configuration configurationMock1;
+   @Mock
+   private Configuration configurationMock2;
    private ConfigurationResult configurationResult;
 
    @Before
    public void setUp() {
-      configurationResult = new ConfigurationResult(configurationMock, databaseResult);
+      configurationList = new ArrayList<>();
+      configurationList.add(configurationMock1);
+      configurationList.add(configurationMock2);
+      configurationResult = new ConfigurationResult(configurationList, databaseResult);
    }
 
    @Test
@@ -34,7 +43,7 @@ public class ConfigurationResultTest {
    }
 
    @Test
-   public void getConfig() {
-      assertEquals(configurationMock, configurationResult.getConfig());
+   public void getConfigurations() {
+      assertEquals(configurationList, configurationResult.getConfigurations());
    }
 }

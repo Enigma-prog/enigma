@@ -8,19 +8,22 @@ package com.radixpro.enigma.be.persistency.results;
 
 import com.radixpro.enigma.xchg.domain.ChartData;
 
+import java.util.List;
+
 /**
  * Validated result from querying database for ChartData.
  */
 public class ChartDataResult extends AbstractResult {
 
-   private final ChartData chartData;
+   final List<ChartData> chartDataList;
 
-   public ChartDataResult(final ChartData chartData, final DatabaseResults result) {
+   public ChartDataResult(final List<ChartData> chartDataList, final DatabaseResults result) {
       super(result);
-      this.chartData = chartData;
+      this.chartDataList = chartDataList;
    }
 
-   public ChartData getChartData() {
-      return chartData;
+   public List<ChartData> getChartDataList() {
+      return chartDataList;
    }
+
 }

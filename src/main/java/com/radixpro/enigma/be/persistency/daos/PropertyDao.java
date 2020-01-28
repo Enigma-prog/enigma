@@ -9,7 +9,6 @@ package com.radixpro.enigma.be.persistency.daos;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.PropertyDocumentMapper;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.PropertyListResult;
 import com.radixpro.enigma.be.persistency.results.PropertyResult;
 import com.radixpro.enigma.shared.Property;
 import org.apache.log4j.Logger;
@@ -76,20 +75,21 @@ public class PropertyDao {
 
    public PropertyResult read(final String key) {
       var databaseResult = DatabaseResults.OK;
-      Property pair = new Property(-1L, "", "");
+      List<Property> propList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
-         pair = mapper.document2Object(collection.find(Filters.eq("key", key)).firstOrDefault());
+         final Document doc = collection.find(Filters.eq("key", key)).firstOrDefault();
+         if (doc != null) propList.add(mapper.document2Object(doc));
       } catch (Exception e) {
          LOG.error("Exception when reading property. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
       }
-      return new PropertyResult(pair, databaseResult);
+      return new PropertyResult(propList, databaseResult);
    }
 
-   public PropertyListResult readAll() {
+   public PropertyResult readAll() {
       var databaseResult = DatabaseResults.OK;
       List<Property> propList = new ArrayList<>();
       try {
@@ -104,7 +104,7 @@ public class PropertyDao {
       } finally {
          closeCollectionAndDatabase();
       }
-      return new PropertyListResult(propList, databaseResult);
+      return new PropertyResult(propList, databaseResult);
    }
 
    public long getMaxId() {

@@ -55,7 +55,7 @@ public class PersistencyConfigurationApiIt {
       api.insert(configuration1);
       var updateConfig = createConfiguration(1L, "ein");
       String result = api.update(updateConfig);
-      Configuration resultConfig = api.read(1);
+      Configuration resultConfig = api.read(1).get(0);
       assertEquals("ein", resultConfig.getName());
    }
 
@@ -72,9 +72,26 @@ public class PersistencyConfigurationApiIt {
    public void read() {
       api.insert(configuration1);
       api.insert(configuration2);
-      Configuration config = api.read(1);
+      Configuration config = api.read(1).get(0);
       assertEquals("one", config.getName());
    }
+
+   @Test
+   public void search() {
+      api.insert(configuration1);
+      api.insert(configuration2);
+      Configuration config = api.search("one").get(0);
+      assertEquals("one", config.getName());
+   }
+
+   @Test
+   public void searchNotFound() {
+      api.insert(configuration1);
+      api.insert(configuration2);
+      List configs = api.search("seven");
+      assertEquals(0, configs.size());
+   }
+
 
    @Test
    public void readAll() {

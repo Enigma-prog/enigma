@@ -8,19 +8,21 @@ package com.radixpro.enigma.be.persistency.results;
 
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
 
+import java.util.List;
+
 /**
- * Validated result from querying database for a UserDefinedCategory.
+ * Validated result from querying database for a list of UserDefinedCategory.
  */
 public class UserDefinedCategoryResult extends AbstractResult {
 
-   private final UserDefinedCategory userDefinedCategory;
+   private final List<UserDefinedCategory> categories;
 
-   public UserDefinedCategoryResult(final UserDefinedCategory cat, final DatabaseResults result) {
+   public UserDefinedCategoryResult(final List<UserDefinedCategory> categories, final DatabaseResults result) {
       super(result);
-      this.userDefinedCategory = cat;
+      this.categories = categories;
    }
 
-   public UserDefinedCategory getUserDefinedCategory() {
-      return userDefinedCategory;
+   public List<UserDefinedCategory> getCategories() {
+      return categories;
    }
 }

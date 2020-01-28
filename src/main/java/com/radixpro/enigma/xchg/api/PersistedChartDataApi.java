@@ -7,7 +7,6 @@
 package com.radixpro.enigma.xchg.api;
 
 import com.radixpro.enigma.be.persistency.daos.ChartDataDao;
-import com.radixpro.enigma.be.persistency.results.ChartDataListResult;
 import com.radixpro.enigma.be.persistency.results.ChartDataResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.ChartData;
@@ -54,28 +53,30 @@ public class PersistedChartDataApi {
       return OK;
    }
 
-   public ChartData read(final int id) {
+   public List<ChartData> read(final int id) {
       ChartDataResult result = dao.read(id);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return null;
-      } else return result.getChartData();
+      }
+      return result.getChartDataList();
    }
 
    public List<ChartData> readAll() {
-      ChartDataListResult result = dao.readAll();
+      ChartDataResult result = dao.readAll();
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return new ArrayList<>();
       } else return result.getChartDataList();
    }
 
-   public ChartData search(final String searchName) {
+   public List<ChartData> search(final String searchName) {
       ChartDataResult result = dao.search(searchName);
       if (result.getDatabaseResult() != DatabaseResults.OK) { // TODO handle NOT_FOUND
          // todo: throw exception
          return null;
-      } else return result.getChartData();
+      }
+      return result.getChartDataList();
    }
 
    public long getMaxId() {

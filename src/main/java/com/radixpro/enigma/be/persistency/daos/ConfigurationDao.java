@@ -8,7 +8,6 @@ package com.radixpro.enigma.be.persistency.daos;
 
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.ConfigurationObjectDocumentMapper;
-import com.radixpro.enigma.be.persistency.results.ConfigurationListResult;
 import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.Configuration;
@@ -76,20 +75,37 @@ public class ConfigurationDao {
 
    public ConfigurationResult read(final long id) {
       var databaseResult = DatabaseResults.OK;
-      Configuration config = null;
+      List<Configuration> configList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
-         config = mapper.document2Object(collection.find(Filters.eq("_id", id)).firstOrDefault());
+         Document doc = collection.find(Filters.eq("_id", id)).firstOrDefault();
+         if (doc != null) configList.add(mapper.document2Object(doc));
       } catch (Exception e) {
          LOG.error("Exception when reading configuration. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ConfigurationResult(config, databaseResult);
+      return new ConfigurationResult(configList, databaseResult);
    }
 
-   public ConfigurationListResult readAll() {
+   public ConfigurationResult search(final String searchName) {
+      var databaseResult = DatabaseResults.OK;
+      List<Configuration> configList = new ArrayList<>();
+      try {
+         openCollectionAndDatabase();
+         Document doc = collection.find(Filters.eq("name", searchName)).firstOrDefault();
+         if (doc != null) configList.add(mapper.document2Object(doc));
+      } catch (Exception e) {
+         LOG.error("Exception when reading configuration. " + e.getMessage());
+         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+      } finally {
+         closeCollectionAndDatabase();
+      }
+      return new ConfigurationResult(configList, databaseResult);
+   }
+
+   public ConfigurationResult readAll() {
       var databaseResult = DatabaseResults.OK;
       List<Configuration> configList = new ArrayList<>();
       try {
@@ -104,7 +120,7 @@ public class ConfigurationDao {
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ConfigurationListResult(configList, databaseResult);
+      return new ConfigurationResult(configList, databaseResult);
    }
 
    public long getMaxId() {

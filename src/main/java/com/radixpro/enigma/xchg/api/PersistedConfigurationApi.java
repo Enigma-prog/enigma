@@ -7,7 +7,6 @@
 package com.radixpro.enigma.xchg.api;
 
 import com.radixpro.enigma.be.persistency.daos.ConfigurationDao;
-import com.radixpro.enigma.be.persistency.results.ConfigurationListResult;
 import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.Configuration;
@@ -54,17 +53,26 @@ public class PersistedConfigurationApi {
       return OK;
    }
 
-   public Configuration read(final int id) {
+   public List<Configuration> read(final int id) {
       ConfigurationResult result = dao.read(id);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return null;
       }
-      return result.getConfig();
+      return result.getConfigurations();
+   }
+
+   public List<Configuration> search(final String searchName) {
+      ConfigurationResult result = dao.search(searchName);
+      if (result.getDatabaseResult() != DatabaseResults.OK) {
+         // todo: throw exception
+         return null;
+      }
+      return result.getConfigurations();
    }
 
    public List<Configuration> readAll() {
-      ConfigurationListResult result = dao.readAll();
+      ConfigurationResult result = dao.readAll();
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception
          return new ArrayList<>();

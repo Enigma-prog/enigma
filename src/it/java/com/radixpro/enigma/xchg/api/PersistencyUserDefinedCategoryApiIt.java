@@ -55,7 +55,7 @@ public class PersistencyUserDefinedCategoryApiIt {
       api.insert(userDefinedCategory1);
       var updateCat = new UserDefinedCategory(1, "ein");
       String result = api.update(updateCat);
-      UserDefinedCategory resultCat = api.read(1);
+      UserDefinedCategory resultCat = api.read(1).get(0);
       assertEquals("ein", resultCat.getText());
    }
 
@@ -71,9 +71,26 @@ public class PersistencyUserDefinedCategoryApiIt {
    public void read() {
       api.insert(userDefinedCategory1);
       api.insert(userDefinedCategory2);
-      UserDefinedCategory cat = api.read(1);
+      UserDefinedCategory cat = api.read(1).get(0);
       assertEquals("one", cat.getText());
    }
+
+   @Test
+   public void search() {
+      api.insert(userDefinedCategory1);
+      api.insert(userDefinedCategory2);
+      UserDefinedCategory cat = api.search("two").get(0);
+      assertEquals("two", cat.getText());
+   }
+
+   @Test
+   public void searchNotFound() {
+      api.insert(userDefinedCategory1);
+      api.insert(userDefinedCategory2);
+      List result = api.search("five");
+      assertEquals(0, result.size());
+   }
+
 
    @Test
    public void readAll() {

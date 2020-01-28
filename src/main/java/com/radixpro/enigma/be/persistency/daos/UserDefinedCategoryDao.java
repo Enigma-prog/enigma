@@ -9,7 +9,6 @@ package com.radixpro.enigma.be.persistency.daos;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.UserDefinedCategoryObjectDocumentMapper;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryListResult;
 import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
 import org.apache.log4j.Logger;
@@ -77,20 +76,37 @@ public class UserDefinedCategoryDao {
 
    public UserDefinedCategoryResult read(final long catId) {
       var databaseResult = DatabaseResults.OK;
-      UserDefinedCategory cat = new UserDefinedCategory(-1L, "");
+      List<UserDefinedCategory> catList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
-         cat = mapper.document2Object(collection.find(Filters.eq("_id", catId)).firstOrDefault());
+         final Document doc = collection.find(Filters.eq("_id", catId)).firstOrDefault();
+         if (doc != null) catList.add(mapper.document2Object(doc));
       } catch (Exception e) {
          LOG.error("Exception when reading user defined category. " + e.getMessage());
          databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
       } finally {
          closeCollectionAndDatabase();
       }
-      return new UserDefinedCategoryResult(cat, databaseResult);
+      return new UserDefinedCategoryResult(catList, databaseResult);
    }
 
-   public UserDefinedCategoryListResult readAll() {
+   public UserDefinedCategoryResult search(final String searchText) {
+      var databaseResult = DatabaseResults.OK;
+      List<UserDefinedCategory> catList = new ArrayList<>();
+      try {
+         openCollectionAndDatabase();
+         final Document doc = collection.find(Filters.eq("text", searchText)).firstOrDefault();
+         if (doc != null) catList.add(mapper.document2Object(doc));
+      } catch (Exception e) {
+         LOG.error("Exception when searching user defined category. " + e.getMessage());
+         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+      } finally {
+         closeCollectionAndDatabase();
+      }
+      return new UserDefinedCategoryResult(catList, databaseResult);
+   }
+
+   public UserDefinedCategoryResult readAll() {
       var databaseResult = DatabaseResults.OK;
       List<UserDefinedCategory> catList = new ArrayList<>();
       try {
@@ -105,7 +121,7 @@ public class UserDefinedCategoryDao {
       } finally {
          closeCollectionAndDatabase();
       }
-      return new UserDefinedCategoryListResult(catList, databaseResult);
+      return new UserDefinedCategoryResult(catList, databaseResult);
    }
 
    public long getMaxId() {

@@ -54,7 +54,7 @@ public class PersistencyPropertyApiIt {
       api.insert(prop1);
       var updateProp = new Property(1L, "one", "Erste");
       String result = api.update(updateProp);
-      Property resultPair = api.read("one");
+      Property resultPair = api.read("one").get(0);
       assertEquals("Erste", resultPair.getValue());
    }
 
@@ -70,7 +70,7 @@ public class PersistencyPropertyApiIt {
    public void read() {
       api.insert(prop1);
       api.insert(prop2);
-      Property prop = api.read("one");
+      Property prop = api.read("one").get(0);
       assertEquals("first", prop.getValue());
    }
 
