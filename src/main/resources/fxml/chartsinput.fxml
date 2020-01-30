@@ -9,7 +9,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.CheckComboBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="669.0" prefWidth="580.0" stylesheets="@../css/enigma.css"
             xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.radixpro.enigma.ui.charts.ChartsInput">
     <children>
@@ -91,11 +90,10 @@
                                        GridPane.rowIndex="17"/>
                                 <Label prefHeight="17.0" prefWidth="295.0" text="%ui.charts.input.date.name"
                                        GridPane.columnSpan="3" GridPane.rowIndex="18"/>
-                                <Label prefHeight="17.0" prefWidth="275.0" text="%ui.charts.input.time.name"
+                                <Label prefHeight="17.0" prefWidth="191.0" text="%ui.charts.input.time.name"
                                        GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="18"/>
-                                <Label text="%ui.charts.input.date.calendar" GridPane.rowIndex="20"/>
-                                <CheckBox mnemonicParsing="false" text="%ui.charts.input.time.dst"
-                                          GridPane.columnIndex="3" GridPane.rowIndex="20"/>
+                                <Label text="%ui.charts.input.date.calendar" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="18"/>
                                 <Label prefHeight="17.0" prefWidth="570.0" text="%ui.charts.input.time.timezone"
                                        GridPane.columnSpan="8" GridPane.rowIndex="21"/>
                                 <Label disable="true" text="%ui.charts.input.time.localtime" GridPane.rowIndex="23"/>
@@ -105,8 +103,6 @@
                                        GridPane.columnSpan="3" GridPane.rowIndex="4"/>
                                 <TextField fx:id="name" prefHeight="25.0" prefWidth="342.0" GridPane.columnSpan="7"
                                            GridPane.rowIndex="3"/>
-                                <CheckComboBox fx:id="rating" prefHeight="25.0" prefWidth="190.0"
-                                               GridPane.columnIndex="3" GridPane.rowIndex="5"/>
                                 <Label prefHeight="30.0" prefWidth="568.0" styleClass="subtitletext"
                                        text="%ui.charts.input.subtitle.general" GridPane.columnSpan="7"
                                        GridPane.rowIndex="1"/>
@@ -114,50 +110,22 @@
                                 <TextField fx:id="longitudeValue" prefHeight="25.0" prefWidth="191.0"
                                            GridPane.rowIndex="15"/>
                                 <TextField fx:id="latitudeValue" GridPane.columnIndex="3" GridPane.rowIndex="15"/>
-                                <RadioButton mnemonicParsing="false" prefHeight="23.0" prefWidth="41.0"
-                                             text="%ui.shared.direction.west.char" GridPane.columnIndex="2"
-                                             GridPane.rowIndex="15">
-                                    <toggleGroup>
-                                        <ToggleGroup fx:id="tglongitude"/>
-                                    </toggleGroup>
-                                </RadioButton>
-                                <RadioButton mnemonicParsing="false" selected="true"
-                                             text="%ui.shared.direction.east.char" toggleGroup="$tglongitude"
-                                             GridPane.columnIndex="1" GridPane.rowIndex="15"/>
                                 <RadioButton disable="true" mnemonicParsing="false" prefHeight="381.0" prefWidth="115.0"
                                              text="W..." GridPane.columnIndex="2" GridPane.rowIndex="24">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="tgloctimelongitude"/>
                                     </toggleGroup>
                                 </RadioButton>
-                                <RadioButton mnemonicParsing="false" selected="true"
-                                             text="%ui.shared.direction.north.char" GridPane.columnIndex="4"
-                                             GridPane.rowIndex="15">
-                                    <toggleGroup>
-                                        <ToggleGroup fx:id="tglatitude"/>
-                                    </toggleGroup>
-                                </RadioButton>
-                                <RadioButton mnemonicParsing="false" selected="true"
-                                             text="%ui.shared.calendar.gregorian.char" GridPane.columnIndex="1"
-                                             GridPane.rowIndex="20">
-                                    <toggleGroup>
-                                        <ToggleGroup fx:id="tgcalendar"/>
-                                    </toggleGroup>
-                                </RadioButton>
-                                <RadioButton mnemonicParsing="false" text="%ui.shared.direction.south.char"
-                                             toggleGroup="$tglatitude" GridPane.columnIndex="5" GridPane.rowIndex="15"/>
-                                <RadioButton mnemonicParsing="false" text="%ui.shared.calendar.julian.char"
-                                             toggleGroup="$tgcalendar" GridPane.columnIndex="2" GridPane.rowIndex="20"/>
                                 <TextField fx:id="source" GridPane.columnSpan="6" GridPane.rowIndex="7"/>
                                 <TextField fx:id="description" GridPane.columnSpan="6" GridPane.rowIndex="9"/>
                                 <TextField fx:id="date" GridPane.rowIndex="19"/>
                                 <TextField fx:id="time" GridPane.columnIndex="3" GridPane.rowIndex="19"/>
-                                <ChoiceBox prefHeight="25.0" prefWidth="641.0" GridPane.columnSpan="6"
+                                <ChoiceBox fx:id="timezone" prefHeight="25.0" prefWidth="641.0" GridPane.columnSpan="6"
                                            GridPane.rowIndex="22"/>
                                 <RadioButton disable="true" mnemonicParsing="false" selected="true" text="E..."
                                              toggleGroup="$tgloctimelongitude" GridPane.columnIndex="1"
                                              GridPane.rowIndex="24"/>
-                                <TextField disable="true" GridPane.rowIndex="24"/>
+                                <TextField fx:id="localtime" disable="true" GridPane.rowIndex="24"/>
                                 <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="6"
                                            GridPane.rowIndex="26">
                                     <buttons>
@@ -168,6 +136,17 @@
                                     </buttons>
                                 </ButtonBar>
                                 <ChoiceBox fx:id="subject" prefHeight="25.0" prefWidth="266.0" GridPane.rowIndex="5"/>
+                                <ChoiceBox fx:id="rating" prefHeight="25.0" prefWidth="190.0" GridPane.columnIndex="3"
+                                           GridPane.rowIndex="5"/>
+                                <ChoiceBox fx:id="eastwest" prefWidth="150.0" GridPane.columnIndex="1"
+                                           GridPane.rowIndex="15"/>
+                                <ChoiceBox fx:id="northsouth" prefWidth="150.0" GridPane.columnIndex="4"
+                                           GridPane.rowIndex="15"/>
+                                <ChoiceBox fx:id="calendar" prefWidth="150.0" GridPane.columnIndex="1"
+                                           GridPane.rowIndex="19"/>
+                                <Label text="%ui.charts.input.time.dst" GridPane.columnIndex="4"
+                                       GridPane.rowIndex="18"/>
+                                <CheckBox mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="19"/>
                             </children>
                         </GridPane>
                     </children>

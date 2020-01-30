@@ -62,9 +62,10 @@ public enum ChartTypes {
    }
 
    public ObservableList<String> getObservableList() {
+      final Rosetta rosetta = Rosetta.getRosetta();
       final List<String> localnames = new ArrayList<>();
       for (ChartTypes chartType : ChartTypes.values()) {
-         localnames.add(Rosetta.getRosetta().getText(getRbKeyForSpecificName(chartType.nameForRB)));
+         localnames.add(rosetta.getText(getRbKeyForSpecificName(chartType.nameForRB)));
       }
       return FXCollections.observableArrayList(localnames);
    }

@@ -6,11 +6,12 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public enum Ratings implements Serializable {
@@ -46,6 +47,10 @@ public enum Ratings implements Serializable {
       return RB_PREFIX + nameForRB + RB_DESCRIPTION_POSTFIX;
    }
 
+   private String getRbKeyForSpecificName(final String name) {
+      return RB_PREFIX + name + RB_NAME_POSTFIX;
+   }
+
    public Ratings getRatingForId(final int id) {
       for (Ratings rating : Ratings.values()) {
          if (rating.getId() == id) {
@@ -55,9 +60,25 @@ public enum Ratings implements Serializable {
       return Ratings.ZZ;
    }
 
-   public ObservableList<Ratings> getObservableList() {
-      List<Ratings> allRatings = Arrays.asList(values());
-      return FXCollections.observableArrayList(allRatings);
+   public Ratings chartTypeForRatingName(final String ratingName) {
+      final Rosetta rosetta = Rosetta.getRosetta();
+      for (Ratings rating : Ratings.values()) {
+         if (rosetta.getText(getRbKeyForSpecificName(rating.nameForRB)).equals(ratingName)) {
+            return rating;
+         }
+      }
+      return Ratings.ZZ;
    }
+
+
+   public ObservableList<String> getObservableList() {
+      final Rosetta rosetta = Rosetta.getRosetta();
+      final List<String> ratingNames = new ArrayList<>();
+      for (Ratings rating : Ratings.values()) {
+         ratingNames.add(rosetta.getText(getRbKeyForSpecificName(rating.nameForRB)));
+      }
+      return FXCollections.observableArrayList(ratingNames);
+   }
+
 
 }

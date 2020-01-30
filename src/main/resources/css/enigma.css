@@ -12,6 +12,11 @@
 .radio-button {
      -fx-padding: 6;
 }
+.check-box {
+    -fx-padding: 4;
+    -fx-text-fill: midnightblue;
+    -fx-background-color: blanchedalmond;
+}
 .descriptionpane {
     -fx-background-color: blanchedalmond;
 }
@@ -32,8 +37,5 @@
     -fx-alignment: center;
 }
 .error {
-  -fx-control-inner-background: yellow;
-}
-.fixed {
-  -fx-control-inner-background: white;
+    -fx-control-inner-background: yellow;
 }
