@@ -96,7 +96,8 @@
                                        GridPane.rowIndex="18"/>
                                 <Label prefHeight="17.0" prefWidth="570.0" text="%ui.charts.input.time.timezone"
                                        GridPane.columnSpan="8" GridPane.rowIndex="21"/>
-                                <Label disable="true" text="%ui.charts.input.time.localtime" GridPane.rowIndex="23"/>
+                                <Label fx:id="lbllocaltime" disable="true" text="%ui.charts.input.time.localtime"
+                                       GridPane.rowIndex="23"/>
                                 <Label prefHeight="17.0" prefWidth="177.0" text="%ui.charts.input.rating"
                                        GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4"/>
                                 <Label prefHeight="30.0" prefWidth="397.0" text="%ui.charts.input.subject"
@@ -110,22 +111,13 @@
                                 <TextField fx:id="longitudeValue" prefHeight="25.0" prefWidth="191.0"
                                            GridPane.rowIndex="15"/>
                                 <TextField fx:id="latitudeValue" GridPane.columnIndex="3" GridPane.rowIndex="15"/>
-                                <RadioButton disable="true" mnemonicParsing="false" prefHeight="381.0" prefWidth="115.0"
-                                             text="W..." GridPane.columnIndex="2" GridPane.rowIndex="24">
-                                    <toggleGroup>
-                                        <ToggleGroup fx:id="tgloctimelongitude"/>
-                                    </toggleGroup>
-                                </RadioButton>
                                 <TextField fx:id="source" GridPane.columnSpan="6" GridPane.rowIndex="7"/>
                                 <TextField fx:id="description" GridPane.columnSpan="6" GridPane.rowIndex="9"/>
                                 <TextField fx:id="date" GridPane.rowIndex="19"/>
                                 <TextField fx:id="time" GridPane.columnIndex="3" GridPane.rowIndex="19"/>
                                 <ChoiceBox fx:id="timezone" prefHeight="25.0" prefWidth="641.0" GridPane.columnSpan="6"
                                            GridPane.rowIndex="22"/>
-                                <RadioButton disable="true" mnemonicParsing="false" selected="true" text="E..."
-                                             toggleGroup="$tgloctimelongitude" GridPane.columnIndex="1"
-                                             GridPane.rowIndex="24"/>
-                                <TextField fx:id="localtime" disable="true" GridPane.rowIndex="24"/>
+                                <TextField fx:id="localtime" disable="true" editable="false" GridPane.rowIndex="24"/>
                                 <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="6"
                                            GridPane.rowIndex="26">
                                     <buttons>
@@ -147,6 +139,8 @@
                                 <Label text="%ui.charts.input.time.dst" GridPane.columnIndex="4"
                                        GridPane.rowIndex="18"/>
                                 <CheckBox mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="19"/>
+                                <ChoiceBox fx:id="localeastwest" disable="true" prefWidth="150.0"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="24"/>
                             </children>
                         </GridPane>
                     </children>

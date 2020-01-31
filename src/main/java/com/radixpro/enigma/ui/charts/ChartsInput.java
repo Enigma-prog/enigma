@@ -7,16 +7,18 @@
 package com.radixpro.enigma.ui.charts;
 
 import com.radixpro.enigma.shared.Rosetta;
-import com.radixpro.enigma.ui.shared.validation.ValidatedChartName;
-import com.radixpro.enigma.ui.shared.validation.ValidatedLongitude;
+import com.radixpro.enigma.ui.shared.validation.*;
 import com.radixpro.enigma.xchg.domain.ChartTypes;
 import com.radixpro.enigma.xchg.domain.Ratings;
+import com.radixpro.enigma.xchg.domain.TimeZones;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
@@ -44,6 +46,8 @@ public class ChartsInput {
    @FXML
    public TextField localtime;
    @FXML
+   public Label lbllocaltime;
+   @FXML
    public ChoiceBox subject;
    @FXML
    public ChoiceBox rating;
@@ -55,6 +59,8 @@ public class ChartsInput {
    public ChoiceBox northsouth;
    @FXML
    public ChoiceBox calendar;
+   @FXML
+   public ChoiceBox localeastwest;
    @FXML
    public CheckBox dst;
 
@@ -73,7 +79,6 @@ public class ChartsInput {
          saveData();
          // close screen
       }
-
    }
 
    public void initialize() {
@@ -84,6 +89,14 @@ public class ChartsInput {
       initLatitude();
       initLongitude();
       initCalendar();
+      initTimeZone();
+      initLocalEastWest();
+      defineListeners();
+   }
+
+   private void defineListeners() {
+      timezone.getSelectionModel().selectedItemProperty().addListener(
+            (ObservableValue observable, Object oldValue, Object newValue) -> checkTimeZones((String) newValue));
    }
 
    private void setDynamicStyles() {
@@ -102,6 +115,24 @@ public class ChartsInput {
       eastwest.setStyle(textInputDefaultStyle);
       northsouth.setStyle(textInputDefaultStyle);
       calendar.setStyle(textInputDefaultStyle);
+      localeastwest.setStyle(textInputDefaultStyle);
+   }
+
+   private void checkTimeZones(final String newValue) {
+      TimeZones selected = TimeZones.UT.timeZoneForZoneName((String) newValue);
+      if (selected == TimeZones.LMT) {
+         localtime.setEditable(true);
+         localtime.setDisable(false);
+         lbllocaltime.setDisable(false);
+         localeastwest.setDisable(false);
+         System.out.println("LMT true");
+      } else {
+         localtime.setEditable(false);
+         localtime.setDisable(true);
+         lbllocaltime.setDisable(true);
+         localeastwest.setDisable(true);
+         System.out.println("LMT false");
+      }
    }
 
    private void initSubject() {
@@ -119,21 +150,21 @@ public class ChartsInput {
    private void initLatitude() {
       var rosetta = Rosetta.getRosetta();
       List<String> latList = new ArrayList<>();
-      latList.add(rosetta.getText("ui.shared.direction.east.char"));
-      latList.add(rosetta.getText("ui.shared.direction.west.char"));
+      latList.add(rosetta.getText("ui.shared.direction.north.char"));
+      latList.add(rosetta.getText("ui.shared.direction.south.char"));
       ObservableList observableList = FXCollections.observableArrayList(latList);
-      eastwest.setItems(observableList);
-      eastwest.getSelectionModel().select(0);
+      northsouth.setItems(observableList);
+      northsouth.getSelectionModel().select(0);
    }
 
    private void initLongitude() {
       var rosetta = Rosetta.getRosetta();
       List<String> longList = new ArrayList<>();
-      longList.add(rosetta.getText("ui.shared.direction.north.char"));
-      longList.add(rosetta.getText("ui.shared.direction.south.char"));
+      longList.add(rosetta.getText("ui.shared.direction.east.char"));
+      longList.add(rosetta.getText("ui.shared.direction.west.char"));
       ObservableList observableList = FXCollections.observableArrayList(longList);
-      northsouth.setItems(observableList);
-      northsouth.getSelectionModel().select(0);
+      eastwest.setItems(observableList);
+      eastwest.getSelectionModel().select(0);
    }
 
    private void initCalendar() {
@@ -146,33 +177,82 @@ public class ChartsInput {
       calendar.getSelectionModel().select(0);
    }
 
+   private void initTimeZone() {
+      ObservableList<String> observableList = TimeZones.UT.getObservableList();
+      timezone.setItems(observableList);
+      timezone.getSelectionModel().select(1);  // UT
+   }
+
+   private void initLocalEastWest() {
+      var rosetta = Rosetta.getRosetta();
+      List<String> longList = new ArrayList<>();
+      longList.add(rosetta.getText("ui.shared.direction.east.char"));
+      longList.add(rosetta.getText("ui.shared.direction.west.char"));
+      ObservableList observableList = FXCollections.observableArrayList(longList);
+      localeastwest.setItems(observableList);
+      localeastwest.getSelectionModel().select(0);
+   }
+
    private void validate() {
       errorsFound = false;
       validateName();
-//      validateLongitude();
+      validateLongitude();
+      validateLatitude();
+      validateDate();
+      validateTime();
    }
 
 
    private void validateName() {
       var valName = new ValidatedChartName(name.getText());
       name.setText(valName.getNameText());
-//      if (valName.isValidated()) name.getStyleClass().add("fixed");
-////      else {
-////         name.getStyleClass().add("error");
-////         errorsFound = true;
-////      }
-      if (valName.isValidated()) name.setStyle(textInputDefaultStyle);
-      else name.setStyle(textInputErrorStyle);
+      if (valName.isValidated()) {
+         name.setStyle(textInputDefaultStyle);
+      } else {
+         errorsFound = true;
+         name.setStyle(textInputErrorStyle);
+      }
    }
 
    private void validateLongitude() {
       var valLong = new ValidatedLongitude(longitudeValue.getText());
       if (valLong.isValidated()) {
          longitudeInput = valLong.getValue();
-//         longitudeValue.getStyleClass().setAll(defaultStyleClassesTextInput);
+         longitudeValue.setStyle(textInputDefaultStyle);
       } else {
-//         longitudeValue.getStyleClass().setAll(errorStyleClassesTextInput);
          errorsFound = true;
+         longitudeValue.setStyle(textInputErrorStyle);
+      }
+   }
+
+   private void validateLatitude() {
+      var valLat = new ValidatedLatitude(latitudeValue.getText());
+      if (valLat.isValidated()) {
+         latitudeInput = valLat.getValue();
+         latitudeValue.setStyle(textInputDefaultStyle);
+      } else {
+         errorsFound = true;
+         latitudeValue.setStyle(textInputErrorStyle);
+      }
+   }
+
+   private void validateDate() {
+      var valDate = new ValidatedDate(date.getText() + '/' + calendar.getValue());
+      if (valDate.isValidated()) {
+         date.setStyle(textInputDefaultStyle);
+      } else {
+         errorsFound = true;
+         date.setStyle(textInputErrorStyle);
+      }
+   }
+
+   private void validateTime() {
+      var valTime = new ValidatedTime(time.getText());
+      if (valTime.isValidated()) {
+         time.setStyle(textInputDefaultStyle);
+      } else {
+         errorsFound = true;
+         time.setStyle(textInputErrorStyle);
       }
    }
 
