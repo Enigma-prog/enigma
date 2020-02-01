@@ -11,15 +11,13 @@ import com.radixpro.enigma.ui.shared.validation.*;
 import com.radixpro.enigma.xchg.domain.ChartTypes;
 import com.radixpro.enigma.xchg.domain.Ratings;
 import com.radixpro.enigma.xchg.domain.TimeZones;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,22 +61,30 @@ public class ChartsInput {
    public ChoiceBox localeastwest;
    @FXML
    public CheckBox dst;
+   @FXML
+   public Button calculatebtn;
 
 
    private ResourceBundle resourceBundle;
    private String textInputDefaultStyle = "-fx-background-radius:5; -fx-background-color:blanchedalmond;";
    private String textInputErrorStyle = "-fx-background-radius:5; -fx-background-color:yellow;";
-   private boolean errorsFound;
+   private boolean nameOk = false;
+   private boolean latitudeOk = false;
+   private boolean longitudeOk = false;
+   private boolean dateOk = false;
+   private boolean timeOk = false;
+   private boolean localTimeOk = false;
+   private boolean timeZoneLocalSelected = false;
+
+   //   private boolean errorsFound;
    private double longitudeInput;
    private double latitudeInput;
+   private double localTimeInput;
 
    @FXML
    void onCalculate(ActionEvent event) {
-      validate();
-      if (!errorsFound) {
-         saveData();
-         // close screen
-      }
+      saveData();
+      // close screen
    }
 
    public void initialize() {
@@ -95,8 +101,45 @@ public class ChartsInput {
    }
 
    private void defineListeners() {
+      name.textProperty().addListener(new ChangeListener<String>() {
+         @Override
+         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            validateName(newValue);
+         }
+      });
+      longitudeValue.textProperty().addListener(new ChangeListener<String>() {
+         @Override
+         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            validateLongitude(newValue);
+         }
+      });
+      latitudeValue.textProperty().addListener(new ChangeListener<String>() {
+         @Override
+         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            validateLatitude(newValue);
+         }
+      });
+      date.textProperty().addListener(new ChangeListener<String>() {
+         @Override
+         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            validateDate(newValue);
+         }
+      });
+      time.textProperty().addListener(new ChangeListener<String>() {
+         @Override
+         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            validateTime(newValue);
+         }
+      });
       timezone.getSelectionModel().selectedItemProperty().addListener(
             (ObservableValue observable, Object oldValue, Object newValue) -> checkTimeZones((String) newValue));
+      localtime.textProperty().addListener(new ChangeListener<String>() {
+         @Override
+         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            validateLocalTime(newValue);
+         }
+      });
+
    }
 
    private void setDynamicStyles() {
@@ -116,23 +159,6 @@ public class ChartsInput {
       northsouth.setStyle(textInputDefaultStyle);
       calendar.setStyle(textInputDefaultStyle);
       localeastwest.setStyle(textInputDefaultStyle);
-   }
-
-   private void checkTimeZones(final String newValue) {
-      TimeZones selected = TimeZones.UT.timeZoneForZoneName((String) newValue);
-      if (selected == TimeZones.LMT) {
-         localtime.setEditable(true);
-         localtime.setDisable(false);
-         lbllocaltime.setDisable(false);
-         localeastwest.setDisable(false);
-         System.out.println("LMT true");
-      } else {
-         localtime.setEditable(false);
-         localtime.setDisable(true);
-         lbllocaltime.setDisable(true);
-         localeastwest.setDisable(true);
-         System.out.println("LMT false");
-      }
    }
 
    private void initSubject() {
@@ -193,67 +219,103 @@ public class ChartsInput {
       localeastwest.getSelectionModel().select(0);
    }
 
-   private void validate() {
-      errorsFound = false;
-      validateName();
-      validateLongitude();
-      validateLatitude();
-      validateDate();
-      validateTime();
-   }
-
-
-   private void validateName() {
-      var valName = new ValidatedChartName(name.getText());
+   private void validateName(final String newName) {
+      var valName = new ValidatedChartName(newName);
       name.setText(valName.getNameText());
       if (valName.isValidated()) {
          name.setStyle(textInputDefaultStyle);
+         nameOk = true;
       } else {
-         errorsFound = true;
          name.setStyle(textInputErrorStyle);
+         nameOk = false;
       }
+      checkStatus();
    }
 
-   private void validateLongitude() {
-      var valLong = new ValidatedLongitude(longitudeValue.getText());
+   private void validateLongitude(final String newLongitude) {
+      var valLong = new ValidatedLongitude(newLongitude);
       if (valLong.isValidated()) {
          longitudeInput = valLong.getValue();
          longitudeValue.setStyle(textInputDefaultStyle);
+         longitudeOk = true;
       } else {
-         errorsFound = true;
          longitudeValue.setStyle(textInputErrorStyle);
+         longitudeOk = false;
       }
+      checkStatus();
    }
 
-   private void validateLatitude() {
-      var valLat = new ValidatedLatitude(latitudeValue.getText());
+   private void validateLocalTime(final String newLocalTime) {
+      var valLocalTime = new ValidatedLongitude(newLocalTime);
+      if (valLocalTime.isValidated()) {
+         localTimeInput = valLocalTime.getValue();
+         localtime.setStyle(textInputDefaultStyle);
+         localTimeOk = true;
+      } else {
+         localtime.setStyle(textInputErrorStyle);
+         localTimeOk = false;
+      }
+      checkStatus();
+   }
+
+   private void validateLatitude(final String newLatitude) {
+      var valLat = new ValidatedLatitude(newLatitude);
       if (valLat.isValidated()) {
          latitudeInput = valLat.getValue();
          latitudeValue.setStyle(textInputDefaultStyle);
+         latitudeOk = true;
       } else {
-         errorsFound = true;
          latitudeValue.setStyle(textInputErrorStyle);
+         latitudeOk = false;
       }
+      checkStatus();
    }
 
-   private void validateDate() {
-      var valDate = new ValidatedDate(date.getText() + '/' + calendar.getValue());
+   private void validateDate(final String newDate) {
+      var valDate = new ValidatedDate(newDate + '/' + calendar.getValue());
       if (valDate.isValidated()) {
          date.setStyle(textInputDefaultStyle);
+         dateOk = true;
       } else {
-         errorsFound = true;
          date.setStyle(textInputErrorStyle);
+         dateOk = false;
       }
+      checkStatus();
    }
 
-   private void validateTime() {
-      var valTime = new ValidatedTime(time.getText());
+   private void validateTime(final String newTime) {
+      var valTime = new ValidatedTime(newTime);
       if (valTime.isValidated()) {
          time.setStyle(textInputDefaultStyle);
+         timeOk = true;
       } else {
-         errorsFound = true;
          time.setStyle(textInputErrorStyle);
+         timeOk = false;
       }
+      checkStatus();
+   }
+
+   private void checkTimeZones(final String newValue) {
+      TimeZones selected = TimeZones.UT.timeZoneForZoneName((String) newValue);
+      if (selected == TimeZones.LMT) {
+         localtime.setEditable(true);
+         localtime.setDisable(false);
+         lbllocaltime.setDisable(false);
+         localeastwest.setDisable(false);
+         timeZoneLocalSelected = true;
+      } else {
+         localtime.setEditable(false);
+         localtime.setDisable(true);
+         lbllocaltime.setDisable(true);
+         localeastwest.setDisable(true);
+         timeZoneLocalSelected = false;
+      }
+      checkStatus();
+   }
+
+   private void checkStatus() {
+      calculatebtn.setDisable(!(nameOk && latitudeOk && longitudeOk && dateOk && timeOk
+            && (localTimeOk || !timeZoneLocalSelected)));
    }
 
    private void saveData() {
@@ -265,15 +327,6 @@ public class ChartsInput {
       final String sourceDescription = source.getText().trim();
       final String enteredDescription = description.getText().trim();
       final String enteredLocation = locationName.getText().trim();
-
-
-      System.out.println(selName);
-      System.out.println(selectedChartType.name());
-      System.out.println(selectedRating.name());
-      System.out.println(sourceDescription);
-      System.out.println(enteredDescription);
-      System.out.println(enteredLocation);
-      System.out.println(longitudeInput);
 
    }
 
