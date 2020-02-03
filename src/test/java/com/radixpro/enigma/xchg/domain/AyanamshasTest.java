@@ -32,12 +32,12 @@ public class AyanamshasTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("gen.lookup.ayanamshas.kugler2.name", ayanamsha.getRbKeyForName());
+      assertEquals("ayanamshas.kugler2.name", ayanamsha.getRbKeyForName());
    }
 
    @Test
    public void getRbKeyForDescription() {
-      assertEquals("gen.lookup.ayanamshas.kugler2.description", ayanamsha.getRbKeyForDescription());
+      assertEquals("ayanamshas.kugler2.descr", ayanamsha.getRbKeyForDescription());
    }
 
    @Test
