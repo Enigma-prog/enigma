@@ -16,9 +16,8 @@
             <children>
                 <Pane prefHeight="69.0" prefWidth="585.0" styleClass="titlepane">
                     <children>
-                        <Label id="lblPageTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="-5.0"
-                               prefHeight="71.0" prefWidth="584.0" styleClass="titletext"
-                               stylesheets="@../css/enigma.css" text="%ui.charts.input.pagetitle">
+                        <Label id="lblPageTitle" prefHeight="71.0" prefWidth="584.0" styleClass="titletext"
+                               text="%ui.charts.input.pagetitle">
                             <font>
                                 <Font size="18.0"/>
                             </font>
@@ -73,6 +72,10 @@
                             <children>
                                 <Label id="lblName" prefHeight="17.0" prefWidth="569.0" text="%ui.charts.input.name"
                                        GridPane.columnSpan="7" GridPane.rowIndex="2"/>
+                                <Label prefHeight="30.0" prefWidth="397.0" text="%ui.charts.input.subject"
+                                       GridPane.columnSpan="3" GridPane.rowIndex="4"/>
+                                <Label prefHeight="17.0" prefWidth="177.0" text="%ui.charts.input.rating"
+                                       GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4"/>
                                 <Label prefHeight="17.0" prefWidth="566.0" text="%ui.charts.input.source"
                                        GridPane.columnSpan="7" GridPane.rowIndex="6"/>
                                 <Label id="lblDescription" prefHeight="17.0" prefWidth="570.0"
@@ -92,62 +95,59 @@
                                        GridPane.rowIndex="17"/>
                                 <Label prefHeight="17.0" prefWidth="295.0" text="%ui.charts.input.date.name"
                                        GridPane.columnSpan="3" GridPane.rowIndex="18"/>
-                                <Label prefHeight="17.0" prefWidth="191.0" text="%ui.charts.input.time.name"
-                                       GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="18"/>
                                 <Label text="%ui.charts.input.date.calendar" GridPane.columnIndex="2"
                                        GridPane.rowIndex="18"/>
+                                <Label prefHeight="17.0" prefWidth="191.0" text="%ui.charts.input.time.name"
+                                       GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="18"/>
                                 <Label prefHeight="17.0" prefWidth="570.0" text="%ui.charts.input.time.timezone"
                                        GridPane.columnSpan="8" GridPane.rowIndex="21"/>
                                 <Label fx:id="lbllocaltime" disable="true" text="%ui.charts.input.time.localtime"
                                        GridPane.rowIndex="23"/>
-                                <Label prefHeight="17.0" prefWidth="177.0" text="%ui.charts.input.rating"
-                                       GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4"/>
-                                <Label prefHeight="30.0" prefWidth="397.0" text="%ui.charts.input.subject"
-                                       GridPane.columnSpan="3" GridPane.rowIndex="4"/>
-                                <TextField fx:id="name" prefHeight="25.0" prefWidth="342.0" GridPane.columnSpan="7"
-                                           GridPane.rowIndex="3"/>
                                 <Label prefHeight="30.0" prefWidth="568.0" styleClass="subtitletext"
                                        text="%ui.charts.input.subtitle.general" GridPane.columnSpan="7"
                                        GridPane.rowIndex="1"/>
+                                <TextField fx:id="name" prefHeight="25.0" prefWidth="342.0" GridPane.columnSpan="7"
+                                           GridPane.rowIndex="3"/>
+                                <ChoiceBox fx:id="subject" prefHeight="25.0" prefWidth="277.0" GridPane.columnSpan="3"
+                                           GridPane.rowIndex="5"/>
+                                <ChoiceBox fx:id="rating" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="4"
+                                           GridPane.columnSpan="3" GridPane.rowIndex="5"/>
+                                <TextField fx:id="source" GridPane.columnSpan="7" GridPane.rowIndex="7"/>
+                                <TextField fx:id="description" GridPane.columnSpan="7" GridPane.rowIndex="9"/>
                                 <TextField fx:id="locationName" GridPane.columnSpan="7" GridPane.rowIndex="13"/>
                                 <TextField fx:id="longitudeValue" prefHeight="25.0" prefWidth="191.0"
                                            GridPane.rowIndex="15"/>
+                                <ChoiceBox fx:id="eastwest" prefWidth="150.0" GridPane.columnIndex="2"
+                                           GridPane.rowIndex="15"/>
                                 <TextField fx:id="latitudeValue" GridPane.columnIndex="4" GridPane.rowIndex="15"/>
-                                <TextField fx:id="source" GridPane.columnSpan="7" GridPane.rowIndex="7"/>
-                                <TextField fx:id="description" GridPane.columnSpan="7" GridPane.rowIndex="9"/>
+                                <ChoiceBox fx:id="northsouth" prefWidth="150.0" GridPane.columnIndex="6"
+                                           GridPane.rowIndex="15"/>
                                 <TextField fx:id="date" GridPane.rowIndex="19"/>
+                                <ChoiceBox fx:id="calendar" prefWidth="150.0" GridPane.columnIndex="2"
+                                           GridPane.rowIndex="19"/>
                                 <TextField fx:id="time" GridPane.columnIndex="4" GridPane.rowIndex="19"/>
+                                <CheckBox alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="25.0"
+                                          prefWidth="43.0" textAlignment="RIGHT" GridPane.columnIndex="6"
+                                          GridPane.rowIndex="19"/>
                                 <ChoiceBox fx:id="timezone" prefHeight="25.0" prefWidth="641.0" GridPane.columnSpan="7"
                                            GridPane.rowIndex="22"/>
                                 <TextField fx:id="localtime" disable="true" editable="false" GridPane.rowIndex="24"/>
+                                <ChoiceBox fx:id="localeastwest" disable="true" prefWidth="150.0"
+                                           GridPane.columnIndex="2" GridPane.rowIndex="24"/>
                                 <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="6"
                                            GridPane.rowIndex="26">
                                     <buttons>
-                                        <Button mnemonicParsing="false" text="%ui.shared.btn.help"/>
                                         <Button fx:id="calculatebtn" defaultButton="true" disable="true"
                                                 mnemonicParsing="false" onAction="#onCalculate"
                                                 text="%ui.shared.btn.calculate"/>
                                         <Button cancelButton="true" mnemonicParsing="false"
                                                 text="%ui.shared.btn.cancel"/>
+                                        <Button fx:id="helpbtn" mnemonicParsing="false" onAction="#onHelp"
+                                                text="%ui.shared.btn.help"/>
                                     </buttons>
                                 </ButtonBar>
-                                <ChoiceBox fx:id="subject" prefHeight="25.0" prefWidth="277.0" GridPane.columnSpan="3"
-                                           GridPane.rowIndex="5"/>
-                                <ChoiceBox fx:id="rating" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="4"
-                                           GridPane.columnSpan="3" GridPane.rowIndex="5"/>
-                                <ChoiceBox fx:id="eastwest" prefWidth="150.0" GridPane.columnIndex="2"
-                                           GridPane.rowIndex="15"/>
-                                <ChoiceBox fx:id="northsouth" prefWidth="150.0" GridPane.columnIndex="6"
-                                           GridPane.rowIndex="15"/>
-                                <ChoiceBox fx:id="calendar" prefWidth="150.0" GridPane.columnIndex="2"
-                                           GridPane.rowIndex="19"/>
                                 <Label text="%ui.charts.input.time.dst" GridPane.columnIndex="6"
                                        GridPane.rowIndex="18"/>
-                                <CheckBox alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="25.0"
-                                          prefWidth="43.0" textAlignment="RIGHT" GridPane.columnIndex="6"
-                                          GridPane.rowIndex="19"/>
-                                <ChoiceBox fx:id="localeastwest" disable="true" prefWidth="150.0"
-                                           GridPane.columnIndex="2" GridPane.rowIndex="24"/>
                             </children>
                         </GridPane>
                     </children>

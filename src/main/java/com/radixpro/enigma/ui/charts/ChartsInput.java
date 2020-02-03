@@ -7,6 +7,7 @@
 package com.radixpro.enigma.ui.charts;
 
 import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.ui.shared.Help;
 import com.radixpro.enigma.ui.shared.validation.*;
 import com.radixpro.enigma.xchg.domain.ChartTypes;
 import com.radixpro.enigma.xchg.domain.Ratings;
@@ -17,8 +18,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -63,6 +70,8 @@ public class ChartsInput {
    public CheckBox dst;
    @FXML
    public Button calculatebtn;
+   @FXML
+   public Button helpBtn;
 
 
    private ResourceBundle resourceBundle;
@@ -76,7 +85,6 @@ public class ChartsInput {
    private boolean localTimeOk = false;
    private boolean timeZoneLocalSelected = false;
 
-   //   private boolean errorsFound;
    private double longitudeInput;
    private double latitudeInput;
    private double localTimeInput;
@@ -86,6 +94,22 @@ public class ChartsInput {
       saveData();
       // close screen
    }
+
+   @FXML
+   void onHelp(ActionEvent event) throws IOException {
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/help.fxml"));
+      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
+      Parent parent = fxmlLoader.load();
+      Help help = fxmlLoader.getController();
+      help.setTitle(Rosetta.getRosetta().getText("help.chartsinput.title"));
+      help.setContent(Rosetta.getRosetta().getText("help.chartsinput.content"));
+      Scene scene = new Scene(parent, 530, 350);
+      Stage stage = new Stage();
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.setScene(scene);
+      stage.showAndWait();
+   }
+
 
    public void initialize() {
       resourceBundle = ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale());

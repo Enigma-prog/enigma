@@ -23,6 +23,9 @@
 .descriptiontext {
     -fx-text-alignment: center;
 }
+.helppane {
+    -fx-background-color: lightcyan;
+}
 .titlepane {
     -fx-background-color: steelblue;
 }
