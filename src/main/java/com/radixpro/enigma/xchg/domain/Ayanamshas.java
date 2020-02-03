@@ -50,9 +50,6 @@ public enum Ayanamshas {
    BRITTON(38, 38, "ayanamshas.britton.name", "ayanamshas.britton.descr"),
    GAQQLACTIC_CTR_0CAP(39, 39, "ayanamshas.galcenter0cap.name", "ayanamshas.galcenter0cap.descr");
 
-   private static final String RB_PREFIX = "ayanamshas.";
-   private static final String RB_NAME_POSTFIX = ".name";
-   private static final String RB_DESCRIPTION_POSTFIX = ".description";
    private final String nameForRB;
    private final String descrForRB;
    private final int seId;

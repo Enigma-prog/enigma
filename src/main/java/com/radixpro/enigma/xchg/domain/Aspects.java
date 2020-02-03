@@ -33,8 +33,6 @@ public enum Aspects {
    UNDECILE(23, 3, 32.7272727272, true, "gen.lookup.aspects.undecile"),
    CENTILE(24, 3, 100.0, true, "gen.lookup.aspects.centile");
 
-
-   //   private static final String rbPrefix = "gen.lookup.aspects.";
    private final int id;
    private final int importance;
    private final double angle;
@@ -46,7 +44,6 @@ public enum Aspects {
       this.importance = importance;
       this.ecliptical = ecliptical;
       this.angle = angle;
-//      this.fullRbId = rbPrefix + rbId;
       this.fullRbId = rbId;
    }
 
