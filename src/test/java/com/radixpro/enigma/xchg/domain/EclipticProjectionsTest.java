@@ -27,12 +27,7 @@ public class EclipticProjectionsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("gen.lookup.eclipticprojections.sidereal.name", projection.getRbKeyForName());
-   }
-
-   @Test
-   public void getRbKeyForDescription() {
-      assertEquals("gen.lookup.eclipticprojections.sidereal.description", projection.getRbKeyForDescription());
+      assertEquals("eclipticprojections.sidereal", projection.getRbKeyForName());
    }
 
    @Test

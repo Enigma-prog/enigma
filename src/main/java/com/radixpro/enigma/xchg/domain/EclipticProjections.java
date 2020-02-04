@@ -7,13 +7,9 @@
 package com.radixpro.enigma.xchg.domain;
 
 public enum EclipticProjections {
-   UNKNOWN(0, "unknown"),
-   TROPICAL(1, "tropical"),
-   SIDEREAL(2, "sidereal");
-
-   private static final String RB_PREFIX = "gen.lookup.eclipticprojections.";
-   private static final String RB_NAME_POSTFIX = ".name";
-   private static final String RB_DESCRIPTION_POSTFIX = ".description";
+   UNKNOWN(0, "eclipticprojections.unknown"),
+   TROPICAL(1, "eclipticprojections.tropical"),
+   SIDEREAL(2, "eclipticprojections.sidereal");
 
    private final int id;
    private final String rbId;
@@ -28,11 +24,11 @@ public enum EclipticProjections {
    }
 
    public String getRbKeyForName() {
-      return RB_PREFIX + rbId + RB_NAME_POSTFIX;
+      return rbId;
    }
 
    public String getRbKeyForDescription() {
-      return RB_PREFIX + rbId + RB_DESCRIPTION_POSTFIX;
+      return rbId;
    }
 
    public EclipticProjections getProjectionForId(final int id) {

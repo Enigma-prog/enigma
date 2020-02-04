@@ -21,12 +21,7 @@ public class RatingsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("gen.lookup.ratings.c.name", rating.getRbKeyForName());
-   }
-
-   @Test
-   public void getRbKeyForDescription() {
-      assertEquals("gen.lookup.ratings.c.description", rating.getRbKeyForDescription());
+      assertEquals("ratings.c", rating.getRbKeyForName());
    }
 
    @Test

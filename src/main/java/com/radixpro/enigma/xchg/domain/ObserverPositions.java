@@ -7,14 +7,11 @@
 package com.radixpro.enigma.xchg.domain;
 
 public enum ObserverPositions {
-   UNKNOWN(0, "unknown"),
-   GEOCENTRIRC(1, "geocentric"),
-   TOPOCENTRIC(2, "topocentric"),
-   HELIOCENTRIC(3, "heliocentric");
+   UNKNOWN(0, "observerpositions.unknown"),
+   GEOCENTRIRC(1, "observerpositions.geocentric"),
+   TOPOCENTRIC(2, "observerpositions.topocentric"),
+   HELIOCENTRIC(3, "observerpositions.heliocentric");
 
-   private static final String RB_PREFIX = "gen.lookup.observerpositions.";
-   private static final String RB_NAME_POSTFIX = ".name";
-   private static final String RB_DESCRIPTION_POSTFIX = ".description";
    private final int id;
    private final String nameForRB;
 
@@ -28,11 +25,7 @@ public enum ObserverPositions {
    }
 
    public String getRbKeyForName() {
-      return RB_PREFIX + nameForRB + RB_NAME_POSTFIX;
-   }
-
-   public String getRbKeyForDescription() {
-      return RB_PREFIX + nameForRB + RB_DESCRIPTION_POSTFIX;
+      return nameForRB;
    }
 
    public ObserverPositions getObserverPositionForId(final int id) {

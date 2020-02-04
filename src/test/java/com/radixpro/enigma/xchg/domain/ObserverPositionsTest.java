@@ -21,13 +21,9 @@ public class ObserverPositionsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("gen.lookup.observerpositions.heliocentric.name", observerPosition.getRbKeyForName());
+      assertEquals("observerpositions.heliocentric", observerPosition.getRbKeyForName());
    }
 
-   @Test
-   public void getRbKeyForDescription() {
-      assertEquals("gen.lookup.observerpositions.heliocentric.description", observerPosition.getRbKeyForDescription());
-   }
 
    @Test
    public void getObserverPositionForId() {

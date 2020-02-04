@@ -40,12 +40,7 @@ public class HouseSystemsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("gen.lookup.houses.alcabitius.name", houseSystem.getRbKeyForName());
-   }
-
-   @Test
-   public void getRbKeyForDescription() {
-      assertEquals("gen.lookup.houses.alcabitius.description", houseSystem.getRbKeyForDescription());
+      assertEquals("houses.alcabitius", houseSystem.getRbKeyForName());
    }
 
    @Test

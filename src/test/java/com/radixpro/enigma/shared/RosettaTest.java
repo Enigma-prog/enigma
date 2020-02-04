@@ -42,18 +42,18 @@ public class RosettaTest {
    public void setLanguageAndGetText() {
       var rosetta = Rosetta.getRosetta();
       rosetta.setLanguage("en");
-      assertEquals("Tropical", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+      assertEquals("Tropical", rosetta.getText("eclipticprojections.tropical"));
       rosetta.setLanguage("du");
-      assertEquals("Tropisch", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+      assertEquals("Tropisch", rosetta.getText("eclipticprojections.tropical"));
    }
 
    @Test
    public void setLanguageUnsupportedLang() {
       var rosetta = Rosetta.getRosetta();
       rosetta.setLanguage("en");
-      assertEquals("Tropical", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+      assertEquals("Tropical", rosetta.getText("eclipticprojections.tropical"));
       rosetta.setLanguage("es");
-      assertEquals("Tropical", rosetta.getText("gen.lookup.eclipticprojections.tropical.name"));
+      assertEquals("Tropical", rosetta.getText("eclipticprojections.tropical"));
    }
 
    @Test

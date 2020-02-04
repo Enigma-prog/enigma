@@ -14,14 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum ChartTypes {
-   UNKNOWN(0, "unknown"),
-   NATAL(1, "natal"),
-   EVENT(2, "event"),
-   HORARY(3, "horary"),
-   ELECTION(4, "election");
+   UNKNOWN(0, "charttype.unknown"),
+   NATAL(1, "charttype.natal"),
+   EVENT(2, "charttype.event"),
+   HORARY(3, "charttype.horary"),
+   ELECTION(4, "charttype.election");
 
-   private static final String RB_PREFIX = "gen.lookup.charttype.";
-   private static final String RB_NAME_POSTFIX = ".name";
    private final int id;
    private final String nameForRB;
 
@@ -35,12 +33,9 @@ public enum ChartTypes {
    }
 
    public String getRbKeyForName() {
-      return RB_PREFIX + nameForRB + RB_NAME_POSTFIX;
+      return nameForRB;
    }
 
-   private String getRbKeyForSpecificName(final String name) {
-      return RB_PREFIX + name + RB_NAME_POSTFIX;
-   }
 
    public ChartTypes chartTypeForId(final int id) {
       for (ChartTypes chartType : ChartTypes.values()) {
@@ -54,7 +49,7 @@ public enum ChartTypes {
    public ChartTypes chartTypeForLocalName(final String localName) {
       final Rosetta rosetta = Rosetta.getRosetta();
       for (ChartTypes chartType : ChartTypes.values()) {
-         if (rosetta.getText(getRbKeyForSpecificName(chartType.nameForRB)).equals(localName)) {
+         if (rosetta.getText(chartType.nameForRB).equals(localName)) {
             return chartType;
          }
       }
@@ -65,7 +60,7 @@ public enum ChartTypes {
       final Rosetta rosetta = Rosetta.getRosetta();
       final List<String> localnames = new ArrayList<>();
       for (ChartTypes chartType : ChartTypes.values()) {
-         localnames.add(rosetta.getText(getRbKeyForSpecificName(chartType.nameForRB)));
+         localnames.add(rosetta.getText(chartType.nameForRB));
       }
       return FXCollections.observableArrayList(localnames);
    }

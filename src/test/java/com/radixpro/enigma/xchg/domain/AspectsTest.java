@@ -44,7 +44,7 @@ public class AspectsTest {
 
    @Test
    public void getFullRbId() {
-      assertEquals("gen.lookup.aspects.opposition", aspect.getFullRbId());
+      assertEquals("aspects.opposition", aspect.getFullRbId());
    }
 
    @Test
