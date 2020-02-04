@@ -12,7 +12,6 @@ import com.radixpro.enigma.ui.shared.validation.*;
 import com.radixpro.enigma.xchg.domain.ChartTypes;
 import com.radixpro.enigma.xchg.domain.Ratings;
 import com.radixpro.enigma.xchg.domain.TimeZones;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,8 +74,8 @@ public class ChartsInput {
 
 
    private ResourceBundle resourceBundle;
-   private String textInputDefaultStyle = "-fx-background-radius:5; -fx-background-color:blanchedalmond;";
-   private String textInputErrorStyle = "-fx-background-radius:5; -fx-background-color:yellow;";
+   private final String textInputDefaultStyle = "-fx-background-radius:5; -fx-background-color:blanchedalmond;";
+   private final String textInputErrorStyle = "-fx-background-radius:5; -fx-background-color:yellow;";
    private boolean nameOk = false;
    private boolean latitudeOk = false;
    private boolean longitudeOk = false;
@@ -101,8 +100,8 @@ public class ChartsInput {
       fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
       Parent parent = fxmlLoader.load();
       Help help = fxmlLoader.getController();
-      help.setTitle(Rosetta.getRosetta().getText("help.chartsinput.title"));
-      help.setContent(Rosetta.getRosetta().getText("help.chartsinput.content"));
+      help.setTitle(Rosetta.getRosetta().getHelpText("help.chartsinput.title"));
+      help.setContent(Rosetta.getRosetta().getHelpText("help.chartsinput.content"));
       Scene scene = new Scene(parent, 530, 350);
       Stage stage = new Stage();
       stage.initModality(Modality.APPLICATION_MODAL);
@@ -125,44 +124,14 @@ public class ChartsInput {
    }
 
    private void defineListeners() {
-      name.textProperty().addListener(new ChangeListener<String>() {
-         @Override
-         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            validateName(newValue);
-         }
-      });
-      longitudeValue.textProperty().addListener(new ChangeListener<String>() {
-         @Override
-         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            validateLongitude(newValue);
-         }
-      });
-      latitudeValue.textProperty().addListener(new ChangeListener<String>() {
-         @Override
-         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            validateLatitude(newValue);
-         }
-      });
-      date.textProperty().addListener(new ChangeListener<String>() {
-         @Override
-         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            validateDate(newValue);
-         }
-      });
-      time.textProperty().addListener(new ChangeListener<String>() {
-         @Override
-         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            validateTime(newValue);
-         }
-      });
+      name.textProperty().addListener((observable, oldValue, newValue) -> validateName(newValue));
+      longitudeValue.textProperty().addListener((observable, oldValue, newValue) -> validateLongitude(newValue));
+      latitudeValue.textProperty().addListener((observable, oldValue, newValue) -> validateLatitude(newValue));
+      date.textProperty().addListener((observable, oldValue, newValue) -> validateDate(newValue));
+      time.textProperty().addListener((observable, oldValue, newValue) -> validateTime(newValue));
       timezone.getSelectionModel().selectedItemProperty().addListener(
             (ObservableValue observable, Object oldValue, Object newValue) -> checkTimeZones((String) newValue));
-      localtime.textProperty().addListener(new ChangeListener<String>() {
-         @Override
-         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            validateLocalTime(newValue);
-         }
-      });
+      localtime.textProperty().addListener((observable, oldValue, newValue) -> validateLocalTime(newValue));
 
    }
 
@@ -320,7 +289,7 @@ public class ChartsInput {
    }
 
    private void checkTimeZones(final String newValue) {
-      TimeZones selected = TimeZones.UT.timeZoneForZoneName((String) newValue);
+      TimeZones selected = TimeZones.UT.timeZoneForZoneName(newValue);
       if (selected == TimeZones.LMT) {
          localtime.setEditable(true);
          localtime.setDisable(false);
