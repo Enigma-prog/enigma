@@ -10,7 +10,7 @@ import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.ConfigurationObjectDocumentMapper;
 import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.xchg.domain.Configuration;
+import com.radixpro.enigma.xchg.domain.config.Configuration;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;

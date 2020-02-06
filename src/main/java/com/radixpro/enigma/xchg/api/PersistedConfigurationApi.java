@@ -9,7 +9,7 @@ package com.radixpro.enigma.xchg.api;
 import com.radixpro.enigma.be.persistency.daos.ConfigurationDao;
 import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.xchg.domain.Configuration;
+import com.radixpro.enigma.xchg.domain.config.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;

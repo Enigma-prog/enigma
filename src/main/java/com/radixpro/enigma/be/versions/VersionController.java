@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 
 public class VersionController {
 
-   private final static Logger LOG = Logger.getLogger(VersionController.class);
+   private static final Logger LOG = Logger.getLogger(VersionController.class);
    private final EnigmaDatabase dataBase;
    private final Updater updater;
 
@@ -24,7 +24,8 @@ public class VersionController {
    }
 
    public void checkAndUpdate() {
-      performCheckedInitialisation();
+      if (doesDatabaseExist()) performCheckedInitialisation();
+      else performFullInitialisation();
    }
 
    private boolean doesDatabaseExist() {
@@ -38,12 +39,19 @@ public class VersionController {
 
    private void performCheckedInitialisation() {
       PersistedPropertyApi api = new PersistedPropertyApi();
-      Property versionProp = api.read("version").get(0);   // todo handle version not found
-      String dbVersion = versionProp.getValue();
+      String dbVersion;
+      try {
+         Property versionProp = api.read("version").get(0);   // todo handle version not found
+         dbVersion = versionProp.getValue();
+      } catch (Exception e) {
+         LOG.error("Could not read version from database. Assumed database is not yet installed and set version to 0");
+         dbVersion = "0";
+      }
       String codeVersion = EnigmaDictionary.VERSION;
       LOG.info("Current version of code : " + codeVersion + " . Current version of database : " + dbVersion);
       if (codeVersion.compareTo(dbVersion) > 0) {  // code has a higher version than the database
          // TODO perform checks per version
+
       }
 
 

@@ -7,6 +7,7 @@
 package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.*;
+import com.radixpro.enigma.xchg.domain.config.*;
 import org.dizitart.no2.Document;
 
 import java.util.ArrayList;
@@ -15,27 +16,19 @@ import java.util.List;
 public class ConfigurationObjectDocumentMapper {
 
    public Document object2Document(final Configuration config) {
-      List<Integer> celObjectIds = new ArrayList<>();
-      List<CelestialObjects> celObjects = config.getConfigAstron().getCelestialObjects();
-      for (CelestialObjects celObject : celObjects) {
-         celObjectIds.add(celObject.getId());
-      }
-      List<int[]> supportedAspectIds = new ArrayList<>();
-      List<AspectOrb> supportedAspects = config.getConfigDelin().getSupportedAspects();
-      for (AspectOrb aspectOrb : supportedAspects) {
-         supportedAspectIds.add(new int[]{aspectOrb.getAspect().getId(), aspectOrb.getOrbPercentage()});
-      }
       return Document.createDocument("_id", config.getId())
             .put("parentid", config.getParentId())
             .put("name", config.getName())
             .put("description", config.getDescription())
-            .put("housesystem", config.getConfigAstron().getHouseSystem().getId())
-            .put("ayanamsha", config.getConfigAstron().getAyanamsha().getId())
-            .put("eclipticprojection", config.getConfigAstron().getEclipticProjection().getId())
-            .put("observerposition", config.getConfigAstron().getObserverPosition().getId())
-            .put("celestialobjects", celObjectIds)
-            .put("aspectbaseorb", config.getConfigDelin().getAspectBaseOrb())
-            .put("supportedaspects", supportedAspectIds);
+            .put("housesystem", config.getAstronConfiguration().getHouseSystem().getId())
+            .put("ayanamsha", config.getAstronConfiguration().getAyanamsha().getId())
+            .put("eclipticprojection", config.getAstronConfiguration().getEclipticProjection().getId())
+            .put("observerposition", config.getAstronConfiguration().getObserverPosition().getId())
+            .put("celestialobjects", config.getAstronConfiguration().getCelObjects())
+            .put("aspectbaseorb", config.getDelinConfiguration().getAspectConfiguration().getBaseOrb())
+            .put("aspectorbstructure", config.getDelinConfiguration().getAspectConfiguration().getOrbStructure())
+            .put("aspectdrawinoutgoing", config.getDelinConfiguration().getAspectConfiguration().isDrawInOutGoing())
+            .put("supportedaspects", config.getDelinConfiguration().getAspectConfiguration().getAspects());
    }
 
    public Configuration document2Object(final Document doc) {
@@ -47,19 +40,16 @@ public class ConfigurationObjectDocumentMapper {
       var ayanamsha = Ayanamshas.UNKNOWN.getAyanamshaForId((int) doc.get("ayanamsha"));
       var eclipticProjection = EclipticProjections.UNKNOWN.getProjectionForId((int) doc.get("eclipticprojection"));
       var observerPosition = ObserverPositions.UNKNOWN.getObserverPositionForId((int) doc.get("observerposition"));
-      var celObjectIds = (ArrayList<Integer>) doc.get("celestialobjects");
-      List<CelestialObjects> celestialObjects = new ArrayList<>();
-      for (int celObjectId : celObjectIds) {
-         celestialObjects.add(CelestialObjects.UNKNOWN.getCelObjectForId(celObjectId));
-      }
-      var configAstron = new ConfigAstron(houseSystem, ayanamsha, eclipticProjection, observerPosition, celestialObjects);
-      var suppAspectIds = (ArrayList<int[]>) doc.get("supportedaspects");
-      List<AspectOrb> supportedAspects = new ArrayList<>();
-      for (int[] values : suppAspectIds) {
-         supportedAspects.add(new AspectOrb(Aspects.UNDECILE.getAspectForId(values[0]), values[1]));
-      }
-      var configDelin = new ConfigDelin((double) doc.get("aspectbaseorb"), supportedAspects);
-      return new Configuration(id, parentId, name, description, configAstron, configDelin);
+      AspectOrbStructure aspectOrbStructure = (AspectOrbStructure) doc.get("aspectorbstructure");  // todo use id
+      double aspectBaseOrb = (double) doc.get("aspectbaseorb");
+      boolean aspectDrawInOutGoing = (boolean) doc.get("aspectdrawinoutgoing");
+      var celObjects = (ArrayList<ConfiguredCelObject>) doc.get("celestialobjects");
+      List<ConfiguredCelObject> celestialObjects = new ArrayList<>();
+      var astronConfig = new AstronConfiguration(houseSystem, ayanamsha, eclipticProjection, observerPosition, celestialObjects);
+      var supportedAspects = (ArrayList<ConfiguredAspect>) doc.get("supportedaspects");
+      var aspectConfiguration = new AspectConfiguration(supportedAspects, aspectBaseOrb, aspectOrbStructure, aspectDrawInOutGoing);
+      var delinConfig = new DelinConfiguration(aspectConfiguration);
+      return new Configuration(id, parentId, name, description, astronConfig, delinConfig);
    }
 
 }

@@ -836,3 +836,119 @@
 2020-02-04 12:27:42 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-02-04 12:27:43 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-02-04 12:27:43 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-04 22:53:10 INFO  Application:32 - Started Enigma.
+2020-02-04 22:53:10 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-04 22:53:10 INFO  VersionController:44 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-04 22:53:14 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:44:38 INFO  Application:32 - Started Enigma.
+2020-02-05 22:46:24 INFO  Application:32 - Started Enigma.
+2020-02-05 22:46:25 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:46:25 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 22:47:34 INFO  Application:32 - Started Enigma.
+2020-02-05 22:47:34 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:47:34 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 22:48:09 INFO  Application:32 - Started Enigma.
+2020-02-05 22:48:09 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:48:09 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 22:49:13 INFO  Application:32 - Started Enigma.
+2020-02-05 22:49:14 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:49:14 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 22:51:00 INFO  Application:32 - Started Enigma.
+2020-02-05 22:51:00 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:51:00 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 22:51:20 INFO  Application:32 - Started Enigma.
+2020-02-05 22:51:20 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:51:20 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 22:54:00 INFO  Application:32 - Started Enigma.
+2020-02-05 22:54:46 INFO  Application:32 - Started Enigma.
+2020-02-05 22:54:46 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:54:46 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 22:55:09 INFO  Application:32 - Started Enigma.
+2020-02-05 22:55:10 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 22:55:10 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:03:17 INFO  Application:32 - Started Enigma.
+2020-02-05 23:03:42 INFO  Application:32 - Started Enigma.
+2020-02-05 23:03:43 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:03:43 ERROR Application:47 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:06:24 INFO  Application:32 - Started Enigma.
+2020-02-05 23:06:25 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:06:25 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:10:17 INFO  Application:32 - Started Enigma.
+2020-02-05 23:10:17 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:10:17 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:11:32 INFO  Application:32 - Started Enigma.
+2020-02-05 23:11:32 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:11:32 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:17:26 INFO  Application:32 - Started Enigma.
+2020-02-05 23:17:26 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:17:26 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:18:16 INFO  Application:32 - Started Enigma.
+2020-02-05 23:18:17 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:18:17 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:20:14 INFO  Application:32 - Started Enigma.
+2020-02-05 23:20:15 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:20:15 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:23:05 INFO  Application:32 - Started Enigma.
+2020-02-05 23:23:05 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-05 23:23:05 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-05 23:33:27 INFO  Application:32 - Started Enigma.
+2020-02-06 11:58:09 INFO  Application:32 - Started Enigma.
+2020-02-06 11:58:09 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 11:58:09 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-06 11:58:20 INFO  Application:32 - Started Enigma.
+2020-02-06 11:58:30 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 11:58:39 ERROR Application:45 - Could not start the root app. Exception : 
+/C:/dev/enigma/code/target/classes/fxml/dashboard.fxml
+
+2020-02-06 12:02:03 INFO  Application:32 - Started Enigma.
+2020-02-06 12:02:03 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:02:03 INFO  VersionController:46 - Could not read version from database. Assumed database is not yet installed and set version to 0
+2020-02-06 12:02:03 INFO  VersionController:50 - Current version of code : 2020.1 . Current version of database : 0
+2020-02-06 12:05:39 INFO  Application:32 - Started Enigma.
+2020-02-06 12:05:39 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:05:39 INFO  VersionController:46 - Could not read version from database. Assumed database is not yet installed and set version to 0
+2020-02-06 12:05:39 INFO  VersionController:50 - Current version of code : 2020.1 . Current version of database : 0
+2020-02-06 12:05:39 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:05:39 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:05:44 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:11:20 INFO  Application:32 - Started Enigma.
+2020-02-06 12:11:21 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:11:21 INFO  VersionController:51 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-06 12:11:34 INFO  Application:32 - Started Enigma.
+2020-02-06 12:11:34 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:11:34 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-06 12:11:41 INFO  Nitrite:309 - Nitrite database has been closed successfully.

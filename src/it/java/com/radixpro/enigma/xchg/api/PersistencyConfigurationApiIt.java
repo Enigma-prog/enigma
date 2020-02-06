@@ -7,6 +7,7 @@
 package com.radixpro.enigma.xchg.api;
 
 import com.radixpro.enigma.xchg.domain.*;
+import com.radixpro.enigma.xchg.domain.config.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -112,16 +113,18 @@ public class PersistencyConfigurationApiIt {
    private Configuration createConfiguration(final long id, final String name) {
       long parentId = 0L;
       String description = "Description";
-      List<CelestialObjects> celObjList = new ArrayList<>();
-      celObjList.add(CelestialObjects.SUN);
-      celObjList.add(CelestialObjects.MOON);
-      ConfigAstron configAstron = new ConfigAstron(HouseSystems.PLACIDUS, Ayanamshas.NONE, EclipticProjections.TROPICAL,
+      List<ConfiguredCelObject> celObjList = new ArrayList<>();
+      celObjList.add(new ConfiguredCelObject(CelestialObjects.SUN, "a", 100.0, true));
+      celObjList.add(new ConfiguredCelObject(CelestialObjects.MOON, "b", 100.0, true));
+
+      AstronConfiguration astronConfiguration = new AstronConfiguration(HouseSystems.PLACIDUS, Ayanamshas.NONE, EclipticProjections.TROPICAL,
             ObserverPositions.TOPOCENTRIC, celObjList);
-      List<AspectOrb> supportedAspects = new ArrayList<>();
-      supportedAspects.add(new AspectOrb(Aspects.CONJUNCTION, 100));
-      supportedAspects.add(new AspectOrb(Aspects.OPPOSITION, 95));
-      ConfigDelin configDelin = new ConfigDelin(8.0, supportedAspects);
-      return new Configuration(id, parentId, name, description, configAstron, configDelin);
+      List<ConfiguredAspect> supportedAspects = new ArrayList<>();
+      supportedAspects.add(new ConfiguredAspect(Aspects.CONJUNCTION, 100, "B", true));
+      supportedAspects.add(new ConfiguredAspect(Aspects.OPPOSITION, 95, "C", true));
+      AspectConfiguration aspectConfig = new AspectConfiguration(supportedAspects, 7.7, AspectOrbStructure.ASPECT, false);
+      DelinConfiguration delinConfig = new DelinConfiguration(aspectConfig);
+      return new Configuration(id, parentId, name, description, astronConfiguration, delinConfig);
    }
 
 }

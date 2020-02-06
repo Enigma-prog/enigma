@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,12 +27,14 @@ public class Dashboard {
 
    @FXML
    public Label version;
+   @FXML
+   public Button btnCharts;
 
    @FXML
-   void onCharts(ActionEvent event) throws IOException {
+   void onCharts(ActionEvent event) {
       FXMLLoader loader = new FXMLLoader();
       loader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
-      loader.setLocation(getClass().getResource("/fxml/chartsstart.fxml"));  // staat in resources
+      loader.setLocation(getClass().getResource("/fxml/chartsstart.fxml"));
       Parent root = null;
       try {
          root = loader.load();

@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 
 public class App extends Application {
-   private final static Logger LOG = Logger.getLogger(Application.class);
+   private static final Logger LOG = Logger.getLogger(App.class);
    private Stage primaryStage;
 
    public static void main(String[] args) {
@@ -37,36 +37,19 @@ public class App extends Application {
    private void showDashboard() {
       FXMLLoader loader = new FXMLLoader();
       loader.setResources(ResourceBundle.getBundle("rb/texts", new Locale("du", "DU")));
-      loader.setLocation(getClass().getResource("/fxml/dashboard.fxml"));  // staat in resources
+      loader.setLocation(getClass().getResource("/fxml/dashboard.fxml"));
       Parent root = null;
       try {
          root = loader.load();
       } catch (IOException e) {
          LOG.error("Could not start the root app. Exception : " + e.getMessage());
       }
-      Scene scene = new Scene(root);
-      primaryStage.setScene(scene);
-      primaryStage.show();
-   }
-
-
-   private void showChartStart() {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setResources(ResourceBundle.getBundle("rb/texts", new Locale("du", "DU")));
-      loader.setLocation(getClass().getResource("/fxml/chartsstart.fxml"));  // staat in resources
-      Parent root = null;
-      try {
-         root = loader.load();
-      } catch (IOException e) {
-         e.printStackTrace();
+      if (root != null) {
+         Scene scene = new Scene(root);
+         primaryStage.setScene(scene);
+         primaryStage.show();
       }
-      Scene scene = new Scene(root);
-      primaryStage.setTitle("Enigma version 2020.1");
-      primaryStage.setScene(scene);
-      primaryStage.show();
    }
-
-
 
 
 }

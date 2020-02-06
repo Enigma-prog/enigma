@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.be.persistency.results;
 
-import com.radixpro.enigma.xchg.domain.Configuration;
+import com.radixpro.enigma.xchg.domain.config.Configuration;
 
 import java.util.List;
 

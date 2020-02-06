@@ -4,26 +4,35 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.xchg.domain;
+package com.radixpro.enigma.xchg.domain.config;
 
+import com.radixpro.enigma.xchg.domain.Ayanamshas;
+import com.radixpro.enigma.xchg.domain.EclipticProjections;
+import com.radixpro.enigma.xchg.domain.HouseSystems;
+import com.radixpro.enigma.xchg.domain.ObserverPositions;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class ConfigAstron {
+/**
+ * Astronomical parts of the configuration.
+ */
+public class AstronConfiguration implements Serializable {
 
    private final HouseSystems houseSystem;
    private final Ayanamshas ayanamsha;
    private final EclipticProjections eclipticProjection;
    private final ObserverPositions observerPosition;
-   private final List<CelestialObjects> celestialObjects;
+   private final List<ConfiguredCelObject> celObjects;
 
-   public ConfigAstron(final HouseSystems houseSystem, final Ayanamshas ayanamsha,
-                       final EclipticProjections eclipticProjection, final ObserverPositions observerPosition,
-                       final List<CelestialObjects> celestialObjects) {
+   public AstronConfiguration(final HouseSystems houseSystem, final Ayanamshas ayanamsha,
+                              final EclipticProjections eclipticProjection, final ObserverPositions observerPosition,
+                              final List<ConfiguredCelObject> celObjects) {
       this.houseSystem = houseSystem;
       this.ayanamsha = ayanamsha;
       this.eclipticProjection = eclipticProjection;
       this.observerPosition = observerPosition;
-      this.celestialObjects = celestialObjects;
+      this.celObjects = celObjects;
    }
 
    public HouseSystems getHouseSystem() {
@@ -42,7 +51,7 @@ public class ConfigAstron {
       return observerPosition;
    }
 
-   public List<CelestialObjects> getCelestialObjects() {
-      return celestialObjects;
+   public List<ConfiguredCelObject> getCelObjects() {
+      return celObjects;
    }
 }

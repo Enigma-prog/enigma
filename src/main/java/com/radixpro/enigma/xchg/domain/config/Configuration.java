@@ -4,7 +4,7 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.xchg.domain;
+package com.radixpro.enigma.xchg.domain.config;
 
 import org.dizitart.no2.objects.Id;
 
@@ -15,18 +15,18 @@ public class Configuration {
    private final long parentId;
    private final String name;
    private final String description;
-   private final ConfigAstron configAstron;
-   private final ConfigDelin configDelin;
+   private final AstronConfiguration astronConfiguration;
+   private final DelinConfiguration delinConfiguration;
 
 
    public Configuration(final long id, final long parentId, final String name, final String description,
-                        final ConfigAstron configAstron, final ConfigDelin configDelin) {
+                        final AstronConfiguration astronConfiguration, final DelinConfiguration delinConfiguration) {
       this.id = id;
       this.parentId = parentId;
       this.name = name;
       this.description = description;
-      this.configAstron = configAstron;
-      this.configDelin = configDelin;
+      this.astronConfiguration = astronConfiguration;
+      this.delinConfiguration = delinConfiguration;
    }
 
    public long getId() {
@@ -45,11 +45,11 @@ public class Configuration {
       return description;
    }
 
-   public ConfigAstron getConfigAstron() {
-      return configAstron;
+   public AstronConfiguration getAstronConfiguration() {
+      return astronConfiguration;
    }
 
-   public ConfigDelin getConfigDelin() {
-      return configDelin;
+   public DelinConfiguration getDelinConfiguration() {
+      return delinConfiguration;
    }
 }
