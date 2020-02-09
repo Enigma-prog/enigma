@@ -19,7 +19,7 @@ public class PropertyTest {
    private Property prop;
 
    @Before
-   public void setUp() throws Exception {
+   public void setUp() {
       prop = new Property(id, key, value);
    }
 

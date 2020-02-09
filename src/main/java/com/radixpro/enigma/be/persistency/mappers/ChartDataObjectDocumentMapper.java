@@ -37,7 +37,7 @@ public class ChartDataObjectDocumentMapper {
 
    public ChartData document2Object(final Document doc) {
       long id = (long) doc.get("_id");
-      var date = new SimpleDate((int) doc.get("year"), (int) doc.get("month"), (int) doc.get("month"), (boolean) doc.get("gregorian"));
+      var date = new SimpleDate((int) doc.get("year"), (int) doc.get("month"), (int) doc.get("day"), (boolean) doc.get("gregorian"));
       var time = new SimpleTime((int) doc.get("hour"), (int) doc.get("minute"), (int) doc.get("second"));
       var dateTime = new SimpleDateTime(SeFrontend.getFrontend(), date, time);
       var location = new Location((double) doc.get("geolat"), (double) doc.get("geolong"));

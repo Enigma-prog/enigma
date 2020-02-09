@@ -30,7 +30,7 @@ public class PropertyResultTest {
    private PropertyResult pairResultList;
 
    @Before
-   public void setUp() throws Exception {
+   public void setUp() {
       pairList = new ArrayList<>();
       pairList.add(pairMock1);
       pairList.add(pairMock2);

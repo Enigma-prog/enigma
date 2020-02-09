@@ -10,24 +10,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../css/enigma.css"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.radixpro.enigma.ui.charts.ChartsStart">
+            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.radixpro.enigma.ui.charts.ChartsStart">
     <children>
-        <BorderPane layoutY="-4.0" prefHeight="756.0" prefWidth="1000.0">
-            <top>
-                <Pane prefHeight="102.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+        <VBox layoutX="0.0" layoutY="0.0" prefHeight="500" prefWidth="1000">
+            <children>
+                <Pane prefHeight="40.0" prefWidth="990.0">
                     <children>
-                        <Pane prefHeight="0.0" prefWidth="1000.0" styleClass="titlepane"/>
-                        <Pane layoutY="51.0" prefHeight="51.0" prefWidth="1000.0" styleClass="titlepane">
-                            <children>
-                                <Label id="lblTitle" alignment="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="0.0"
-                                       prefWidth="200.0" styleClass="titletext" text="%ui.charts.start.pagetitle">
-                                    <font>
-                                        <Font size="18.0"/>
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-                        <MenuBar layoutX="14.0" layoutY="14.0">
+                        <MenuBar>
                             <menus>
                                 <Menu mnemonicParsing="false" text="File">
                                     <items>
@@ -44,8 +33,7 @@
                                 <Menu mnemonicParsing="false" text="Configurations">
                                     <items>
                                         <MenuItem fx:id="menuConfigEdit" mnemonicParsing="false"
-                                                  onAction="#onConfigEdit"
-                                                  text="Edit"/>
+                                                  onAction="#onConfigEdit" text="Edit"/>
                                         <MenuItem mnemonicParsing="false" text="Delete"/>
                                     </items>
                                 </Menu>
@@ -59,50 +47,60 @@
                                         <MenuItem mnemonicParsing="false" text="About"/>
                                     </items>
                                 </Menu>
-                     </menus>
-                  </MenuBar>
-               </children>
-            </Pane>
-         </top>
-         <center>
-             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                 <children>
-                     <ScrollPane layoutY="42.0" prefHeight="226.0" prefWidth="1000.0">
-                         <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="82.0" prefWidth="988.0"/>
-                         </content>
-                     </ScrollPane>
-                     <ScrollPane layoutY="321.0" prefHeight="286.0" prefWidth="1000.0">
-                         <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
-                         </content>
-                     </ScrollPane>
-                     <Label layoutX="14.0" layoutY="14.0" text="Available charts"/>
-                     <Label layoutX="14.0" layoutY="287.0" text="Current configuration"/>
-                 </children>
-             </Pane>
-         </center>
-         <bottom>
-            <Pane prefHeight="47.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-                <children>
-                    <ButtonBar prefHeight="40.0" prefWidth="200.0">
-                        <buttons>
-                            <Button id="btnChartNew" mnemonicParsing="false" onAction="#onNewChart" prefHeight="25.0"
-                                    prefWidth="153.0" text="%ui.charts.start.btn.new"/>
-                            <Button id="btnChartSearch" mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0"
-                                    text="Search for chart"/>
-                            <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Close"/>
-                            <Button layoutX="50.0" layoutY="18.0" mnemonicParsing="false" text="Help"/>
-                        </buttons>
-                    </ButtonBar>
-                </children>
-            </Pane>
-         </bottom>
-      </BorderPane>
-      <VBox layoutX="5.0" layoutY="540.0" prefHeight="103.0" prefWidth="972.0">
-         <children>
-             <Pane prefHeight="200.0" prefWidth="200.0"/>
-         </children>
+                            </menus>
+                        </MenuBar>
+                    </children>
+                </Pane>
+                <Pane prefHeight="60.0" prefWidth="990.0" styleClass="titlepane">
+                    <children>
+                        <Label id="lblTitle" alignment="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="0.0"
+                               prefWidth="990.0" styleClass="titletext" text="%ui.charts.start.pagetitle">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <ScrollPane prefHeight="150.0" prefWidth="990.0"/>
+                <Pane prefHeight="60.0" prefWidth="990.0" styleClass="titlepane">
+                    <children>
+                        <Label id="lblTitle" alignment="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="0.0"
+                               prefWidth="990.0" styleClass="titletext" text="Configuration">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Pane prefHeight="50.0" prefWidth="990.0">
+                    <children>
+                        <Label text="Config general info"/>
+                    </children>
+                </Pane>
+                <TabPane prefHeight="200.0" prefWidth="990.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Astronomical">
+                            <content>
+                                <AnchorPane minHeight="100.0" minWidth="800.0" prefHeight="180.0" prefWidth="800.0"/>
+                            </content>
+                        </Tab>
+                        <Tab text="Aspects">
+                            <content>
+                                <AnchorPane minHeight="100.0" minWidth="800.0" prefHeight="180.0" prefWidth="800.0"/>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+                <Pane prefHeight="50.0" prefWidth="990.0">
+                    <children>
+                        <ButtonBar prefHeight="40.0" prefWidth="900.0">
+                            <buttons>
+                                <Button mnemonicParsing="false" text="Button"/>
+                            </buttons>
+                        </ButtonBar>
+                    </children>
+                </Pane>
+            </children>
       </VBox>
    </children>
 </AnchorPane>

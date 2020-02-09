@@ -21,7 +21,7 @@ public class PropertyDocumentMapperTest {
    private PropertyDocumentMapper mapper;
 
    @Before
-   public void setUp() throws Exception {
+   public void setUp() {
       mapper = new PropertyDocumentMapper();
    }
 
@@ -29,8 +29,8 @@ public class PropertyDocumentMapperTest {
    public void object2Document() {
       Document doc = mapper.object2Document(createObject());
       assertEquals(id, doc.get("_id"));
-      assertEquals(key, (String) doc.get("key"));
-      assertEquals(value, (String) doc.get("value"));
+      assertEquals(key, doc.get("key"));
+      assertEquals(value, doc.get("value"));
    }
 
    @Test

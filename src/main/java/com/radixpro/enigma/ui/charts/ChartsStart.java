@@ -8,6 +8,9 @@ package com.radixpro.enigma.ui.charts;
 
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.configs.ConfigEdit;
+import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
+import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
+import com.radixpro.enigma.xchg.domain.config.Configuration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +29,9 @@ public class ChartsStart {
    String lblTitle;
    @FXML
    MenuItem menuConfigEdit;
+
+   private Configuration currrentConfig;
+
 
    @FXML
    void onNewChart(ActionEvent event) throws IOException {
@@ -56,10 +62,14 @@ public class ChartsStart {
    }
 
    public void initialize() {
-      // Initialization code can go here.
-      // The parameters url and resources can be omitted if they are not needed
-
+//      defineConfig();
    }
 
+   private void defineConfig() {
+      PersistedPropertyApi propApi = new PersistedPropertyApi();
+      int currentConfigId = Integer.parseInt(propApi.read("config").get(0).getValue());
+      PersistedConfigurationApi confApi = new PersistedConfigurationApi();
+      currrentConfig = confApi.read(currentConfigId).get(0);
+   }
 
 }

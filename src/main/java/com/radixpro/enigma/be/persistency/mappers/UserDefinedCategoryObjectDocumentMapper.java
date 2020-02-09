@@ -11,7 +11,7 @@ import org.dizitart.no2.Document;
 
 public class UserDefinedCategoryObjectDocumentMapper {
 
-   public Document object2Document(final UserDefinedCategory category) {
+   public Document object2Document(final UserDefinedCategory category) throws NullPointerException {
       return Document.createDocument("_id", category.getId()).put("text", category.getText());
    }
 

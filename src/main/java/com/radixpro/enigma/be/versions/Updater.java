@@ -7,15 +7,18 @@
 package com.radixpro.enigma.be.versions;
 
 import com.radixpro.enigma.shared.Property;
+import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
 import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
 import com.radixpro.enigma.xchg.domain.*;
 import com.radixpro.enigma.xchg.domain.config.*;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Updater {
 
+   private static final Logger LOG = Logger.getLogger(VersionController.class);
    private final PersistedPropertyApi propApi;
 
    public Updater(final PersistedPropertyApi propApi) {
@@ -24,13 +27,17 @@ public class Updater {
 
    public void performFullUpdate() {
       updateStep20201();
+      LOG.info("Full initialization completed.");
    }
 
 
    private void updateStep20201() {  // initial version
+      LOG.info("Updating to version 2020.1");
       propApi.insert(new Property(1L, "version", "2020.1"));
       propApi.insert(new Property(2L, "lang", "en"));
-      // insert standard configurations
+      propApi.insert(new Property(3L, "config", "1"));
+      LOG.info("Inserted properties for 2020.1");
+
       final List<ConfiguredCelObject> celObjects = new ArrayList<>();
       celObjects.add(new ConfiguredCelObject(CelestialObjects.SUN, "a", 100.0, true));
       celObjects.add(new ConfiguredCelObject(CelestialObjects.MOON, "b", 100.0, true));
@@ -63,7 +70,8 @@ public class Updater {
       Configuration standardWestern = new Configuration(1, 0, "Western standard", "Standard for western astrology",
             astronConfiguration, delinConfiguration);
 
-
+      new PersistedConfigurationApi().insert(standardWestern);
+      LOG.info("Inserted configurations for 2020.1");
    }
 
 

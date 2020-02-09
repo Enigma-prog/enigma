@@ -49,7 +49,7 @@ public class Dashboard {
    }
 
    @FXML
-   void onExit(ActionEvent event) throws IOException {
+   void onExit(ActionEvent event) {
       Platform.exit();
    }
 

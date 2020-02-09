@@ -12,7 +12,7 @@ import com.radixpro.enigma.xchg.domain.SimpleDate;
 public class ValidatedDate extends ValidatedInput {
 
    private SimpleDate simpleDate;
-   private DateTimeApi dateTimeApi;
+   private final DateTimeApi dateTimeApi;
 
    public ValidatedDate(final String input) {
       super(input);

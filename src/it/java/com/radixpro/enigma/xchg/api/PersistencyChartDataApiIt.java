@@ -106,7 +106,6 @@ public class PersistencyChartDataApiIt {
       api.insert(chartData1);
       api.insert(chartData2);
       assertEquals(0, api.search("three").size());
-      ;
    }
 
 

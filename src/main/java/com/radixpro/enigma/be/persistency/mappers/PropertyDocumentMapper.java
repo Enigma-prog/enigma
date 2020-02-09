@@ -11,7 +11,7 @@ import org.dizitart.no2.Document;
 
 public class PropertyDocumentMapper {
 
-   public Document object2Document(final Property prop) {
+   public Document object2Document(final Property prop) throws NullPointerException {
       return Document.createDocument("_id", prop.getId()).put("key", prop.getKey()).put("value", prop.getValue());
    }
 

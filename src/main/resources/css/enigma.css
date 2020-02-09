@@ -29,6 +29,11 @@
 .titlepane {
     -fx-background-color: steelblue;
 }
+.subtitlepane {
+    -fx-background-color: blanchedalmond;
+}.titlepane {
+     -fx-background-color: steelblue;
+ }
 .titletext {
     -fx-font-size: 28;
     -fx-text-fill: blanchedalmond;
