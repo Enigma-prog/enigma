@@ -14,8 +14,7 @@
         <mack.version>2.01.00-02</mack.version>
         <junit.version>4.12</junit.version>
         <mockito.version>3.2.4</mockito.version>
-        <javafx-controls.version>14-ea+4</javafx-controls.version>
-        <javafx-fxml.version>14-ea+4</javafx-fxml.version>
+        <javafx.version>14-ea+4</javafx.version>
         <jackson.version>2.10.1</jackson.version>
         <nitrite.version>3.3.0</nitrite.version>
         <slf4j.version>1.8.0-beta4</slf4j.version>
@@ -54,12 +53,22 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>${javafx-controls.version}</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>${javafx-fxml.version}</version>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.controlsfx</groupId>

@@ -8,13 +8,14 @@ package com.radixpro.enigma.ui.shared;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.web.WebView;
 
 public class Help {
 
    @FXML
    Label lblHelpTitle;
    @FXML
-   Label lblHelpContent;
+   WebView helpText;
 
 
    public void setTitle(final String title) {
@@ -22,7 +23,7 @@ public class Help {
    }
 
    public void setContent(final String content) {
-      lblHelpContent.setText(content);
+      helpText.getEngine().loadContent(content);
    }
 
 }
