@@ -329,7 +329,7 @@ public class ChartsInput {
 
       final var dateTime = new SimpleDateTime(SeFrontend.getFrontend(), dateInput, timeInput);  // todo handle timezone
       final var location = new Location(latitudeInput, longitudeInput);
-      final var metaData = new ChartMetaData(inputName, inputDescription, inputSource, "?", null, inputChartType, inputRating);
+      final var metaData = new ChartMetaData(inputName, inputDescription, inputSource, inputChartType, inputRating);
 
       final var api = new PersistedChartDataApi();
       final long chartId = api.getMaxId();

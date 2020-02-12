@@ -10,9 +10,6 @@ import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.*;
 import org.dizitart.no2.Document;
 
-import java.util.List;
-import java.util.Objects;
-
 public class ChartDataObjectDocumentMapper {
 
    /**
@@ -24,8 +21,8 @@ public class ChartDataObjectDocumentMapper {
     */
    public Document object2Document(final ChartData chartData) {
       //noinspection ConstantConditions
-      return Objects.requireNonNull(Objects.requireNonNull(Objects.requireNonNull(Document.createDocument("_id", chartData.getId())
-            .put("year", chartData.getSimpleDateTime().getYear()))
+      return Document.createDocument("_id", chartData.getId())
+            .put("year", chartData.getSimpleDateTime().getYear())
             .put("month", chartData.getSimpleDateTime().getMonth())
             .put("day", chartData.getSimpleDateTime().getDay())
             .put("hour", chartData.getSimpleDateTime().getHour())
@@ -38,10 +35,8 @@ public class ChartDataObjectDocumentMapper {
             .put("name", chartData.getChartMetaData().getName())
             .put("description", chartData.getChartMetaData().getDescription())
             .put("source", chartData.getChartMetaData().getSource())
-            .put("sex", chartData.getChartMetaData().getSex())
-            .put("charttype", chartData.getChartMetaData().getChartType().getId()))
-            .put("rating", chartData.getChartMetaData().getRating().getId()))
-            .put("categories", chartData.getChartMetaData().getCategories());
+            .put("charttype", chartData.getChartMetaData().getChartType().getId())
+            .put("rating", chartData.getChartMetaData().getRating().getId());
    }
 
    public ChartData document2Object(final Document doc) {
@@ -51,8 +46,7 @@ public class ChartDataObjectDocumentMapper {
       var dateTime = new SimpleDateTime(SeFrontend.getFrontend(), date, time);
       var location = new Location((double) doc.get("geolat"), (double) doc.get("geolong"));
       var chartMetaData = new ChartMetaData((String) doc.get("name"), (String) doc.get("description"),
-            (String) doc.get("source"), (String) doc.get("sex"), (List<Integer>) doc.get("categories"),
-            ChartTypes.UNKNOWN.chartTypeForId((int) doc.get("charttype")),
+            (String) doc.get("source"), ChartTypes.UNKNOWN.chartTypeForId((int) doc.get("charttype")),
             Ratings.ZZ.getRatingForId((int) doc.get("rating")));
       return new ChartData(id, dateTime, location, chartMetaData);
    }

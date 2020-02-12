@@ -73,7 +73,7 @@ public class ChartDataObjectDocumentMapperTest {
       var time = new SimpleTime(14, 42, 55);
       var dateTime = new SimpleDateTime(SeFrontend.getFrontend(), date, time);
       var location = new Location(52.23, 6.9);
-      var chartMetaData = new ChartMetaData("Jan", "Description", "Source", "m", catList,
+      var chartMetaData = new ChartMetaData("Jan", "Description", "Source",
             ChartTypes.ELECTION, Ratings.C);
       return new ChartData(id, dateTime, location, chartMetaData);
    }

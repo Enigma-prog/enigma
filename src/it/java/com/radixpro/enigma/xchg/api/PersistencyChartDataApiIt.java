@@ -124,8 +124,8 @@ public class PersistencyChartDataApiIt {
       final var location = new Location(52.0, 7.0);
       final List<Integer> categories = new ArrayList<>();
       categories.add(1);
-      final var chartMetaData = new ChartMetaData(name, "description", "source", "m", categories,
-            ChartTypes.NATAL, Ratings.AA);
+      final var chartMetaData = new ChartMetaData(name, "description", "source", ChartTypes.NATAL,
+            Ratings.AA);
       return new ChartData(id, simpleDateTime, location, chartMetaData);
    }
 

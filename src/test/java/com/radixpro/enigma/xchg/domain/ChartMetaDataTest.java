@@ -32,7 +32,7 @@ public class ChartMetaDataTest {
       categories = new ArrayList<>();
       categories.add(1);
       categories.add(33);
-      chartMetaData = new ChartMetaData(name, description, source, sex, categories, chartType, rating);
+      chartMetaData = new ChartMetaData(name, description, source, chartType, rating);
    }
 
    @Test
@@ -48,16 +48,6 @@ public class ChartMetaDataTest {
    @Test
    public void getSource() {
       assertEquals(source, chartMetaData.getSource());
-   }
-
-   @Test
-   public void getSex() {
-      assertEquals(sex, chartMetaData.getSex());
-   }
-
-   @Test
-   public void getCategories() {
-      assertEquals(categories, chartMetaData.getCategories());
    }
 
    @Test
