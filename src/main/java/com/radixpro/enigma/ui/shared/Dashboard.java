@@ -21,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Dashboard {
@@ -41,7 +42,7 @@ public class Dashboard {
       } catch (IOException e) {
          e.printStackTrace();
       }
-      Scene scene = new Scene(root);
+      Scene scene = new Scene(Objects.requireNonNull(root));
       Stage stage = new Stage();
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setScene(scene);

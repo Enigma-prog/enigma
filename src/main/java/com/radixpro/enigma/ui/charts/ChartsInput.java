@@ -6,12 +6,12 @@
 
 package com.radixpro.enigma.ui.charts;
 
+import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.shared.Help;
 import com.radixpro.enigma.ui.shared.validation.*;
-import com.radixpro.enigma.xchg.domain.ChartTypes;
-import com.radixpro.enigma.xchg.domain.Ratings;
-import com.radixpro.enigma.xchg.domain.TimeZones;
+import com.radixpro.enigma.xchg.api.PersistedChartDataApi;
+import com.radixpro.enigma.xchg.domain.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,13 +58,13 @@ public class ChartsInput {
    @FXML
    public ChoiceBox timezone;
    @FXML
-   public ChoiceBox eastwest;
+   public ChoiceBox<String> eastwest;
    @FXML
-   public ChoiceBox northsouth;
+   public ChoiceBox<String> northsouth;
    @FXML
-   public ChoiceBox calendar;
+   public ChoiceBox<String> calendar;
    @FXML
-   public ChoiceBox localeastwest;
+   public ChoiceBox<String> localeastwest;
    @FXML
    public CheckBox dst;
    @FXML
@@ -84,6 +84,8 @@ public class ChartsInput {
    private boolean localTimeOk = false;
    private boolean timeZoneLocalSelected = false;
 
+   private SimpleDate dateInput;
+   private SimpleTime timeInput;
    private double longitudeInput;
    private double latitudeInput;
    private double localTimeInput;
@@ -268,9 +270,11 @@ public class ChartsInput {
       var valDate = new ValidatedDate(newDate + '/' + calendar.getValue());
       if (valDate.isValidated()) {
          date.setStyle(textInputDefaultStyle);
+         dateInput = valDate.getSimpleDate();
          dateOk = true;
       } else {
          date.setStyle(textInputErrorStyle);
+         dateInput = null;
          dateOk = false;
       }
       checkStatus();
@@ -280,9 +284,11 @@ public class ChartsInput {
       var valTime = new ValidatedTime(newTime);
       if (valTime.isValidated()) {
          time.setStyle(textInputDefaultStyle);
+         timeInput = valTime.getSimpleTime();
          timeOk = true;
       } else {
          time.setStyle(textInputErrorStyle);
+         timeInput = null;
          timeOk = false;
       }
       checkStatus();
@@ -312,14 +318,25 @@ public class ChartsInput {
    }
 
    private void saveData() {
-      final String selName = name.getText();
-      final String selSubject = (String) subject.getValue();
-      final ChartTypes selectedChartType = ChartTypes.UNKNOWN.chartTypeForLocalName(selSubject);
-      final String selRating = (String) rating.getValue();
-      final Ratings selectedRating = Ratings.ZZ.chartTypeForRatingName(selRating);
-      final String sourceDescription = source.getText().trim();
-      final String enteredDescription = description.getText().trim();
-      final String enteredLocation = locationName.getText().trim();
+      final var inputName = name.getText();
+      final var inputDescription = description.getText().trim();
+      final var inputSource = source.getText().trim();
+      final var inputRating = Ratings.ZZ.chartTypeForRatingName((String) rating.getValue());
+      final var inputChartType = ChartTypes.UNKNOWN.chartTypeForLocalName((String) subject.getValue());
+
+
+      final var enteredLocation = locationName.getText().trim();    // // todo: add after updating ChartMetaData
+
+      final var dateTime = new SimpleDateTime(SeFrontend.getFrontend(), dateInput, timeInput);  // todo handle timezone
+      final var location = new Location(latitudeInput, longitudeInput);
+      final var metaData = new ChartMetaData(inputName, inputDescription, inputSource, "?", null, inputChartType, inputRating);
+
+      final var api = new PersistedChartDataApi();
+      final long chartId = api.getMaxId();
+      final var chartData = new ChartData(chartId, dateTime, location, metaData);
+      api.insert(chartData);
+
+      System.out.println(api.read((int) chartId).get(0).getChartMetaData().getName());
 
    }
 

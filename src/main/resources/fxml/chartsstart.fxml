@@ -95,7 +95,8 @@
                     <children>
                         <ButtonBar prefHeight="40.0" prefWidth="900.0">
                             <buttons>
-                                <Button mnemonicParsing="false" text="Button"/>
+                                <Button fx:id="btnNewChart" mnemonicParsing="false" onAction="#onNewChart"
+                                        text="New Chart"/>
                             </buttons>
                         </ButtonBar>
                     </children>

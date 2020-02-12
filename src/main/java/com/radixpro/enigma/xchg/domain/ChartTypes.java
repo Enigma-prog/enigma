@@ -15,10 +15,12 @@ import java.util.List;
 
 public enum ChartTypes {
    UNKNOWN(0, "charttype.unknown"),
-   NATAL(1, "charttype.natal"),
-   EVENT(2, "charttype.event"),
-   HORARY(3, "charttype.horary"),
-   ELECTION(4, "charttype.election");
+   FEMALE(1, "charttype.female"),
+   MALE(2, "charttype.male"),
+   NATAL(3, "charttype.natal"),
+   EVENT(4, "charttype.event"),
+   HORARY(5, "charttype.horary"),
+   ELECTION(6, "charttype.election");
 
    private final int id;
    private final String nameForRB;

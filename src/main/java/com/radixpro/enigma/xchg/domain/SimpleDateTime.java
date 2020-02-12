@@ -10,6 +10,7 @@ import com.radixpro.enigma.be.astron.core.SeFrontend;
 
 import java.io.Serializable;
 
+// todo Remove SeFrontend from SimpleDateTime as SeFrontend should not be known in UI.
 public class SimpleDateTime implements Serializable {
    private final SimpleDate date;
    private final SimpleTime time;

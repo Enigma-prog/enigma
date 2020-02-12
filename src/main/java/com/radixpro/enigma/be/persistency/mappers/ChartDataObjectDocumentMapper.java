@@ -11,12 +11,21 @@ import com.radixpro.enigma.xchg.domain.*;
 import org.dizitart.no2.Document;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ChartDataObjectDocumentMapper {
 
+   /**
+    * Convert object for chart-data to a Nitrite Document. Disabled check for ConstantConditions by IntelliJ Analyzer.
+    * SonarLint does not see any problem here.
+    *
+    * @param chartData The object to save in Nitrite.
+    * @return Document for Nitrite.
+    */
    public Document object2Document(final ChartData chartData) {
-      return Document.createDocument("_id", chartData.getId())
-            .put("year", chartData.getSimpleDateTime().getYear())
+      //noinspection ConstantConditions
+      return Objects.requireNonNull(Objects.requireNonNull(Objects.requireNonNull(Document.createDocument("_id", chartData.getId())
+            .put("year", chartData.getSimpleDateTime().getYear()))
             .put("month", chartData.getSimpleDateTime().getMonth())
             .put("day", chartData.getSimpleDateTime().getDay())
             .put("hour", chartData.getSimpleDateTime().getHour())
@@ -30,8 +39,8 @@ public class ChartDataObjectDocumentMapper {
             .put("description", chartData.getChartMetaData().getDescription())
             .put("source", chartData.getChartMetaData().getSource())
             .put("sex", chartData.getChartMetaData().getSex())
-            .put("charttype", chartData.getChartMetaData().getChartType().getId())
-            .put("rating", chartData.getChartMetaData().getRating().getId())
+            .put("charttype", chartData.getChartMetaData().getChartType().getId()))
+            .put("rating", chartData.getChartMetaData().getRating().getId()))
             .put("categories", chartData.getChartMetaData().getCategories());
    }
 

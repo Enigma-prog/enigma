@@ -11,11 +11,12 @@ import java.util.List;
 
 public class ChartMetaData implements Serializable {
 
+   // todo add entered location
    private final String name;
    private final String description;
    private final String source;
-   private final String sex;
-   private final List<Integer> categories;
+   private final String sex;  // todo remove sex, should be paprt of charttype
+   private final List<Integer> categories;  // todo move categories to another object, should be added to existing charts.
    private final ChartTypes chartType;
    private final Ratings rating;
 

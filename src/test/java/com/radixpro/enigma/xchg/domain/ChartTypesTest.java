@@ -21,12 +21,12 @@ public class ChartTypesTest {
 
    @Test
    public void getId() {
-      assertEquals(2, chartType.getId());
+      assertEquals(4, chartType.getId());
    }
 
    @Test
    public void chartTypeForId() {
-      assertEquals(ChartTypes.EVENT, chartType.chartTypeForId(2));
+      assertEquals(ChartTypes.EVENT, chartType.chartTypeForId(4));
    }
 
    @Test

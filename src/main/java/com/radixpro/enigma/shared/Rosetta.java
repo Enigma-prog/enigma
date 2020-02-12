@@ -7,6 +7,7 @@
 package com.radixpro.enigma.shared;
 
 import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.Locale;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
  */
 public class Rosetta {
 
+   private static final Logger LOG = Logger.getLogger(Rosetta.class);
    private static final String RB_LOCATION = "rb" + File.separator + "texts";
    private static final String RB_HELP_LOCATION = "rb" + File.separator + "help";
    private static final String DUTCH = "du";
@@ -59,7 +61,7 @@ public class Rosetta {
          propApi.update(langProp);
          reInitialize();
       } else {
-         // TODO write error "Unsupported language" to log
+         LOG.error("Unsupported language encountered: " + language);
       }
 
    }

@@ -7,6 +7,7 @@
 package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.api.PersistedChartDataApi;
+import com.radixpro.enigma.xchg.domain.ChartData;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ValidatedChartName extends ValidatedInput {
       if (nameText.length() < 1) validated = false;
       else {
          var api = new PersistedChartDataApi();
-         List existingChart = api.search(nameText);
+         List<ChartData> existingChart = api.search(nameText);
          if (existingChart.size() > 0) validated = false;
       }
    }

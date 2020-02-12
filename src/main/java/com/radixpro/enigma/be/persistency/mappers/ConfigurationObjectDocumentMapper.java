@@ -11,11 +11,18 @@ import com.radixpro.enigma.xchg.domain.config.*;
 import org.dizitart.no2.Document;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ConfigurationObjectDocumentMapper {
 
+   /**
+    * Convert object for configuration to a Nitrite Document. Disabled check for ConstantConditions by IntelliJ
+    * Analyzer. SonarLint does not see any problem here.
+    *
+    * @param config The objhect to save in Nitrite.
+    * @return Document for Nitrite.
+    */
    public Document object2Document(final Configuration config) {
+      //noinspection ConstantConditions
       return Document.createDocument("_id", config.getId())
             .put("parentid", config.getParentId())
             .put("name", config.getName())
@@ -44,8 +51,7 @@ public class ConfigurationObjectDocumentMapper {
       double aspectBaseOrb = (double) doc.get("aspectbaseorb");
       boolean aspectDrawInOutGoing = (boolean) doc.get("aspectdrawinoutgoing");
       var celObjects = (ArrayList<ConfiguredCelObject>) doc.get("celestialobjects");
-      List<ConfiguredCelObject> celestialObjects = new ArrayList<>();
-      var astronConfig = new AstronConfiguration(houseSystem, ayanamsha, eclipticProjection, observerPosition, celestialObjects);
+      var astronConfig = new AstronConfiguration(houseSystem, ayanamsha, eclipticProjection, observerPosition, celObjects);
       var supportedAspects = (ArrayList<ConfiguredAspect>) doc.get("supportedaspects");
       var aspectConfiguration = new AspectConfiguration(supportedAspects, aspectBaseOrb, aspectOrbStructure, aspectDrawInOutGoing);
       var delinConfig = new DelinConfiguration(aspectConfiguration);

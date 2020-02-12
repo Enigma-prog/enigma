@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,8 +30,10 @@ public class ChartsStart {
    String lblTitle;
    @FXML
    MenuItem menuConfigEdit;
+   @FXML
+   Button btnNewChart;
 
-   private Configuration currrentConfig;
+   private Configuration currentConfig;
 
 
    @FXML
@@ -62,14 +65,15 @@ public class ChartsStart {
    }
 
    public void initialize() {
-//      defineConfig();
+      defineConfig();
    }
 
    private void defineConfig() {
       PersistedPropertyApi propApi = new PersistedPropertyApi();
       int currentConfigId = Integer.parseInt(propApi.read("config").get(0).getValue());
       PersistedConfigurationApi confApi = new PersistedConfigurationApi();
-      currrentConfig = confApi.read(currentConfigId).get(0);
+      currentConfig = confApi.read(currentConfigId).get(0);
+      System.out.println(currentConfig.getName());
    }
 
 }

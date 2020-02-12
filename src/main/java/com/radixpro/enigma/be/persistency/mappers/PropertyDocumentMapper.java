@@ -9,10 +9,12 @@ package com.radixpro.enigma.be.persistency.mappers;
 import com.radixpro.enigma.shared.Property;
 import org.dizitart.no2.Document;
 
+import java.util.Objects;
+
 public class PropertyDocumentMapper {
 
    public Document object2Document(final Property prop) throws NullPointerException {
-      return Document.createDocument("_id", prop.getId()).put("key", prop.getKey()).put("value", prop.getValue());
+      return Objects.requireNonNull(Document.createDocument("_id", prop.getId()).put("key", prop.getKey())).put("value", prop.getValue());
    }
 
    public Property document2Object(final Document document) {

@@ -8,6 +8,7 @@ package com.radixpro.enigma.xchg.domain;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 
 public class EnigmaProperties {
@@ -21,7 +22,7 @@ public class EnigmaProperties {
    }
 
    private void processProperties(final String propType) {
-      String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+      String rootPath = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
       if (rootPath == null) throw new RuntimeException(NOT_FOUND);
       String appConfigPath = rootPath + propType + EXTENSION;
       properties = new Properties();
