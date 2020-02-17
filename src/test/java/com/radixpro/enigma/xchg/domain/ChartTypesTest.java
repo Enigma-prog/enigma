@@ -34,4 +34,19 @@ public class ChartTypesTest {
       assertEquals(ChartTypes.UNKNOWN, chartType.chartTypeForId(1000));
    }
 
+   @Test
+   public void chartTypeForLocalName() {
+      assertEquals(ChartTypes.HORARY, chartType.chartTypeForLocalName("Horary"));
+   }
+
+   @Test
+   public void chartTypeForLocalNameNotFound() {
+      assertEquals(ChartTypes.UNKNOWN, chartType.chartTypeForLocalName("i do not exist"));
+   }
+
+   @Test
+   public void getObservableList() {
+      var observableList = chartType.getObservableList();
+      assertEquals(7, observableList.size());
+   }
 }

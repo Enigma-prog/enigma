@@ -53,7 +53,7 @@ public class PersistedChartDataApi {
       return OK;
    }
 
-   public List<ChartData> read(final int id) {
+   public List<ChartData> read(final long id) {
       ChartDataResult result = dao.read(id);
       if (result.getDatabaseResult() != DatabaseResults.OK) {
          // todo: throw exception

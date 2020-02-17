@@ -76,7 +76,7 @@ public enum TimeZones {
       return TimeZones.UT;
    }
 
-   public TimeZones timeZoneForZoneName(final String zoneLocalName) {
+   public TimeZones timeZoneForName(final String zoneLocalName) {
       final Rosetta rosetta = Rosetta.getRosetta();
       for (TimeZones timeZone : TimeZones.values()) {
          if (rosetta.getText(timeZone.nameForRB).equals(zoneLocalName)) {
@@ -92,7 +92,8 @@ public enum TimeZones {
       for (TimeZones timeZone : TimeZones.values()) {
          localnames.add(rosetta.getText(timeZone.nameForRB));
       }
-      return FXCollections.observableArrayList(localnames);
+      ObservableList<String> observableList = FXCollections.observableArrayList(localnames);
+      return observableList;
    }
 
 }

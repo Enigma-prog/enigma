@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
 import com.radixpro.enigma.xchg.domain.SimpleDateTime;
 import com.radixpro.enigma.xchg.domain.SimpleTime;
@@ -17,15 +16,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyBoolean;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleDateTimeTest {
 
-   @Mock
-   private SeFrontend seFrontendMock;
    @Mock
    private SimpleDate simpleDateMock;
    @Mock
@@ -38,7 +33,6 @@ public class SimpleDateTimeTest {
    private final int minute = 3;
    private final int second = 45;
    private final boolean gregorian = true;
-   private final double jdUt = 12.35;
 
    @Before
    public void setUp() {
@@ -49,9 +43,7 @@ public class SimpleDateTimeTest {
       when(simpleTimeMock.getHour()).thenReturn(hour);
       when(simpleTimeMock.getMinute()).thenReturn(minute);
       when(simpleTimeMock.getSecond()).thenReturn(second);
-      when(seFrontendMock.getJulianDay(anyInt(), anyInt(), anyInt(), anyInt(), anyInt(), anyInt(),
-            anyBoolean())).thenReturn(new double[]{123.45, jdUt});
-      simpleDateTime = new SimpleDateTime(seFrontendMock, simpleDateMock, simpleTimeMock);
+      simpleDateTime = new SimpleDateTime(simpleDateMock, simpleTimeMock);
    }
 
    @Test
@@ -87,12 +79,6 @@ public class SimpleDateTimeTest {
    @Test
    public void isGregorian() {
       assertEquals(gregorian, simpleDateTime.isGregorian());
-   }
-
-   @Test
-   public void getJdUt() {
-      double delta = 0.00000001;
-      assertEquals(jdUt, simpleDateTime.getJdUt(), delta);
    }
 
 }

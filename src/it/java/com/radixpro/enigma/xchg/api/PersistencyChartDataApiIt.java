@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.xchg.api;
 
-import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -120,7 +119,7 @@ public class PersistencyChartDataApiIt {
    private ChartData createChartData(final long id, final String name) {
       final var simpleDate = new SimpleDate(2020, 1, 10, true);
       final var simpleTime = new SimpleTime(22, 52, 0);
-      final var simpleDateTime = new SimpleDateTime(SeFrontend.getFrontend(), simpleDate, simpleTime);
+      final var simpleDateTime = new SimpleDateTime(simpleDate, simpleTime);
       final var location = new Location(52.0, 7.0);
       final List<Integer> categories = new ArrayList<>();
       categories.add(1);

@@ -28,7 +28,7 @@ public class Rosetta {
    private static final String PROPERTIES = "i18n";
    private static Rosetta instance = null;
    private ResourceBundle resourceBundle;
-   private ResourceBundle helpResourceBUndle;
+   private ResourceBundle helpResourceBundle;
    private Locale locale;
 
    private Rosetta() {
@@ -81,7 +81,7 @@ public class Rosetta {
 
    private void defineResourceBundles() {
       resourceBundle = ResourceBundle.getBundle(RB_LOCATION, locale);
-      helpResourceBUndle = ResourceBundle.getBundle(RB_HELP_LOCATION, locale);
+      helpResourceBundle = ResourceBundle.getBundle(RB_HELP_LOCATION, locale);
    }
 
    public String getText(final String key) {
@@ -89,7 +89,7 @@ public class Rosetta {
    }
 
    public String getHelpText(final String key) {
-      return helpResourceBUndle.getString(key);
+      return helpResourceBundle.getString(key);
    }
 
    public Locale getLocale() {

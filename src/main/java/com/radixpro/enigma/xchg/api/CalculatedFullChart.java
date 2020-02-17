@@ -50,4 +50,8 @@ public class CalculatedFullChart {
       return fullchart.getObliquity();
    }
 
+   public double getJdNrForUt() {
+      return fullchart.getJulianDayForUt();
+   }
+
 }

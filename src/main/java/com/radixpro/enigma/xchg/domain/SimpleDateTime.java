@@ -6,28 +6,25 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import com.radixpro.enigma.be.astron.core.SeFrontend;
-
 import java.io.Serializable;
 
-// todo Remove SeFrontend from SimpleDateTime as SeFrontend should not be known in UI.
 public class SimpleDateTime implements Serializable {
    private final SimpleDate date;
    private final SimpleTime time;
-   private double jdUt;
+//   private double jdUt;
 
-   public SimpleDateTime(final SeFrontend seFrontend, final SimpleDate simpleDate, final SimpleTime simpleTime) {
+   public SimpleDateTime(final SimpleDate simpleDate, final SimpleTime simpleTime) {
       this.date = simpleDate;
       this.time = simpleTime;
-      calculateJd(seFrontend);
+//      calculateJd(SeFrontend.getFrontend());
    }
-
-   private void calculateJd(final SeFrontend seFrontend) {
-      double[] jdValues = seFrontend.getJulianDay(date.getYear(), date.getMonth(), date.getDay(), time.getHour(),
-            time.getMinute(), time.getSecond(), date.isGregorian());
-      // jdValues[0] is for JD for Ephemris time/ Dynamical time and can be ignored as the SE already handles this
-      jdUt = jdValues[1];
-   }
+//
+//   private void calculateJd(final SeFrontend seFrontend) {
+//      double[] jdValues = seFrontend.getJulianDay(date.getYear(), date.getMonth(), date.getDay(), time.getHour(),
+//            time.getMinute(), time.getSecond(), date.isGregorian());
+//      // jdValues[0] is for JD for Ephemeris time/ Dynamical time and can be ignored as the SE already handles this
+//      jdUt = jdValues[1];
+//   }
 
    public int getYear() {
       return date.getYear();
@@ -57,7 +54,7 @@ public class SimpleDateTime implements Serializable {
       return date.isGregorian();
    }
 
-   public double getJdUt() {
-      return jdUt;
-   }
+//   public double getJdUt() {
+//      return jdUt;
+//   }
 }

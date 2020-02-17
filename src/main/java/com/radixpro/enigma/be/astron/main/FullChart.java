@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A 'full' chart with information on all positions
+ * A 'full' chart with information on all positions.
  */
 public class FullChart {
 
@@ -25,6 +25,7 @@ public class FullChart {
    private final Location location;
    private final CalculationSettings settings;
    private final SeFrontend seFrontend;
+   private final JulianDay julianDay;
    private long flagsValue;
    private List<SeFlags> allFlags;
    private MundaneValues mundaneValues;
@@ -36,6 +37,7 @@ public class FullChart {
       this.location = location;
       this.settings = settings;
       seFrontend = SeFrontend.getFrontend();
+      julianDay = new JulianDay(simpleDateTime);
       calculateFlags();
       calculateHouses();
       calculateBodies();
@@ -60,18 +62,18 @@ public class FullChart {
    }
 
    private void calculateHouses() {
-      mundaneValues = new MundaneValues(seFrontend, simpleDateTime.getJdUt(), (int) flagsValue, location, settings.getHouseSystem());
+      mundaneValues = new MundaneValues(seFrontend, julianDay.getJdNrUt(), (int) flagsValue, location, settings.getHouseSystem());
    }
 
    private void calculateBodies() {
       bodies = new ArrayList<>();
       for (int i = 0; i < settings.getCelBodies().size(); i++) {
-         bodies.add(new CelObjectPosition(seFrontend, simpleDateTime.getJdUt(), settings.getCelBodies().get(i), location, allFlags));
+         bodies.add(new CelObjectPosition(seFrontend, julianDay.getJdNrUt(), settings.getCelBodies().get(i), location, allFlags));
       }
    }
 
    private void calculateObliquity() {
-      obliquity = new Obliquity(seFrontend, simpleDateTime.getJdUt()).getTrueObliquity();
+      obliquity = new Obliquity(seFrontend, julianDay.getJdNrUt()).getTrueObliquity();
    }
 
    public MundaneValues getMundaneValues() {
@@ -96,5 +98,9 @@ public class FullChart {
 
    public double getObliquity() {
       return obliquity;
+   }
+
+   public double getJulianDayForUt() {
+      return julianDay.getJdNrUt();
    }
 }

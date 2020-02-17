@@ -49,7 +49,7 @@ public enum Ratings implements Serializable {
       return Ratings.ZZ;
    }
 
-   public Ratings chartTypeForRatingName(final String ratingName) {
+   public Ratings ratingForName(final String ratingName) {
       final Rosetta rosetta = Rosetta.getRosetta();
       for (Ratings rating : Ratings.values()) {
          if (rosetta.getText(rating.nameForRB).equals(ratingName)) {

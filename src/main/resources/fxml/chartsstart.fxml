@@ -12,7 +12,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../css/enigma.css"
             xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.radixpro.enigma.ui.charts.ChartsStart">
     <children>
-        <VBox layoutX="0.0" layoutY="0.0" prefHeight="500" prefWidth="1000">
+        <VBox layoutX="0.0" layoutY="0.0" prefHeight="539.0" prefWidth="1000">
             <children>
                 <Pane prefHeight="40.0" prefWidth="990.0">
                     <children>
@@ -61,7 +61,18 @@
                         </Label>
                     </children>
                 </Pane>
-                <ScrollPane prefHeight="150.0" prefWidth="990.0"/>
+                <ScrollPane prefHeight="150.0" prefWidth="990.0">
+                    <content>
+                        <TableView fx:id="tvCharts" prefHeight="200.0" prefWidth="987.0">
+                            <columns>
+                                <TableColumn fx:id="colName" prefWidth="336.0"
+                                             text="%ui.charts.start.colheaderchartname"/>
+                                <TableColumn fx:id="colData" minWidth="0.0" prefWidth="368.0"
+                                             text="%ui.charts.start.colheaderchartdata"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
                 <Pane prefHeight="60.0" prefWidth="990.0" styleClass="titlepane">
                     <children>
                         <Label id="lblTitle" alignment="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="0.0"

@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.be.persistency.mappers;
 
-import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.*;
 import org.dizitart.no2.Document;
 import org.junit.Before;
@@ -71,7 +70,7 @@ public class ChartDataObjectDocumentMapperTest {
       long id = 3L;
       var date = new SimpleDate(2020, 1, 12, true);
       var time = new SimpleTime(14, 42, 55);
-      var dateTime = new SimpleDateTime(SeFrontend.getFrontend(), date, time);
+      var dateTime = new SimpleDateTime(date, time);
       var location = new Location(52.23, 6.9);
       var chartMetaData = new ChartMetaData("Jan", "Description", "Source",
             ChartTypes.ELECTION, Ratings.C);

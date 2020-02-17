@@ -48,6 +48,17 @@ public class RosettaTest {
    }
 
    @Test
+   public void setLanguageAndGetHelpText() {
+      var rosetta = Rosetta.getRosetta();
+      rosetta.setLanguage("en");
+      assertEquals("Help for data input for charts", rosetta.getHelpText("help.chartsinput.title"));
+      rosetta.setLanguage("du");
+      assertEquals("Help voor invoer data voor horoscopen", rosetta.getHelpText("help.chartsinput.title"));
+
+
+   }
+
+   @Test
    public void setLanguageUnsupportedLang() {
       var rosetta = Rosetta.getRosetta();
       rosetta.setLanguage("en");
@@ -73,6 +84,5 @@ public class RosettaTest {
          api.delete(prop);
       }
    }
-
 
 }

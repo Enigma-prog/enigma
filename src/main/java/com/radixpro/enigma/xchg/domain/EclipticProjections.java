@@ -27,10 +27,6 @@ public enum EclipticProjections {
       return rbId;
    }
 
-   public String getRbKeyForDescription() {
-      return rbId;
-   }
-
    public EclipticProjections getProjectionForId(final int id) {
       for (EclipticProjections eclipticProjection : EclipticProjections.values()) {
          if (eclipticProjection.getId() == id) {

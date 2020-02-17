@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.xchg.api;
 
-import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.xchg.domain.*;
@@ -58,11 +57,10 @@ public class CalculatedFullChartIt {
 
    @Before
    public void setUp() {
-      SeFrontend seFrontend = SeFrontend.getFrontend();
       location = new Location(GEO_LAT, GEO_LONG);
       final SimpleDate date = new SimpleDate(YEAR, MONTH, DAY, GREGORIAN);
       final SimpleTime time = new SimpleTime(HOUR, MINUTE, SECOND);
-      dateTime = new SimpleDateTime(seFrontend, date, time);
+      dateTime = new SimpleDateTime(date, time);
       List<CelestialObjects> requestedBodies = new ArrayList<>();
       requestedBodies.add(CelestialObjects.SUN);
       requestedBodies.add(CelestialObjects.MOON);
@@ -93,7 +91,7 @@ public class CalculatedFullChartIt {
       assertEquals(23.447072308, calculatedFullChart.getObliquity(), DELTA);
 
       // longitudes
-      assertEquals(2434406.81770833, dateTime.getJdUt(), 0.00001);  // UT
+      assertEquals(2434406.81770833, calculatedFullChart.getJdNrForUt(), 0.00001);  // Jd for UT
       assertEquals(309.1185106790, bodies.get(SUN).getEclipticalPosition().getMainPosition(), DELTA);  // Sun
       assertEquals(121.764999, bodies.get(MOON).getEclipticalPosition().getMainPosition(), DELTA);   // Moon (test was 121.7647365976)
       assertEquals(305.8677131365, bodies.get(MERCURY).getEclipticalPosition().getMainPosition(), DELTA);  // Mercury

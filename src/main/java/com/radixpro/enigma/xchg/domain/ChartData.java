@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.be.astron.main.JulianDay;
 import org.dizitart.no2.objects.Id;
 
 public class ChartData {
@@ -15,6 +16,7 @@ public class ChartData {
    private final SimpleDateTime simpleDateTime;
    private final Location location;
    private final ChartMetaData chartMetaData;
+   private final JulianDay julianDay;
 
 
    public ChartData(final long id, final SimpleDateTime simpleDateTime,
@@ -23,6 +25,7 @@ public class ChartData {
       this.simpleDateTime = simpleDateTime;
       this.location = location;
       this.chartMetaData = chartMetaData;
+      this.julianDay = new JulianDay(simpleDateTime);
    }
 
    public SimpleDateTime getSimpleDateTime() {
@@ -40,4 +43,9 @@ public class ChartData {
    public ChartMetaData getChartMetaData() {
       return chartMetaData;
    }
+
+   public double getJulianDayForUt() {
+      return julianDay.getJdNrUt();
+   }
+
 }

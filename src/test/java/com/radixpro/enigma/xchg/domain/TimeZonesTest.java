@@ -35,4 +35,24 @@ public class TimeZonesTest {
       assertEquals(TimeZones.AMT, timeZone.timeZoneForId(6));
    }
 
+   @Test
+   public void timeZoneForIdNotFound() {
+      assertEquals(TimeZones.UT, timeZone.timeZoneForId(1000));
+   }
+
+   @Test
+   public void timeZoneForName() {
+      assertEquals(timeZone.ICT, timeZone.timeZoneForName("+07:00: ICT/Indochina Time"));
+   }
+
+   @Test
+   public void timeZoneForNameNotFound() {
+      assertEquals(timeZone.UT, timeZone.timeZoneForName("i do not exist"));
+   }
+
+   @Test
+   public void getObservableList() {
+      var observableList = timeZone.getObservableList();
+      assertEquals(33, observableList.size());
+   }
 }

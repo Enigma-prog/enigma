@@ -39,4 +39,19 @@ public class RatingsTest {
       assertEquals(Ratings.ZZ, rating.getRatingForId(1000));
    }
 
+   @Test
+   public void ratingForName() {
+      assertEquals(Ratings.B, rating.ratingForName("B - Biography or autobiography"));
+   }
+
+   @Test
+   public void ratingForNameNotFound() {
+      assertEquals(Ratings.ZZ, rating.ratingForName("i do not exist"));
+   }
+
+   @Test
+   public void getObservableList() {
+      var observableList = rating.getObservableList();
+      assertEquals(8, observableList.size());
+   }
 }
