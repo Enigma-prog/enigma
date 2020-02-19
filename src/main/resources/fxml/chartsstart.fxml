@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../css/enigma.css"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.radixpro.enigma.ui.charts.ChartsStart">
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.radixpro.enigma.ui.charts.ChartsStart">
     <children>
         <VBox layoutX="0.0" layoutY="0.0" prefHeight="539.0" prefWidth="1000">
             <children>
@@ -85,7 +85,7 @@
                 </Pane>
                 <Pane prefHeight="50.0" prefWidth="990.0">
                     <children>
-                        <Label text="Config general info"/>
+                        <Label fx:id="generalInfo" text="Config general info"/>
                     </children>
                 </Pane>
                 <TabPane prefHeight="200.0" prefWidth="990.0" tabClosingPolicy="UNAVAILABLE">
@@ -107,7 +107,9 @@
                         <ButtonBar prefHeight="40.0" prefWidth="900.0">
                             <buttons>
                                 <Button fx:id="btnNewChart" mnemonicParsing="false" onAction="#onNewChart"
-                                        text="New Chart"/>
+                                        text="%ui.charts.start.btn.new"/>
+                                <Button fx:id="btnPositions" mnemonicParsing="false" onAction="#onPositions"
+                                        text="%ui.charts.start.btn.positions"/>
                             </buttons>
                         </ButtonBar>
                     </children>

@@ -16,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleDateTimeTest {
@@ -26,59 +25,20 @@ public class SimpleDateTimeTest {
    @Mock
    private SimpleTime simpleTimeMock;
    private SimpleDateTime simpleDateTime;
-   private final int year = 2019;
-   private final int month = 12;
-   private final int day = 26;
-   private final int hour = 12;
-   private final int minute = 3;
-   private final int second = 45;
-   private final boolean gregorian = true;
 
    @Before
    public void setUp() {
-      when(simpleDateMock.getYear()).thenReturn(year);
-      when(simpleDateMock.getMonth()).thenReturn(month);
-      when(simpleDateMock.getDay()).thenReturn(day);
-      when(simpleDateMock.isGregorian()).thenReturn(gregorian);
-      when(simpleTimeMock.getHour()).thenReturn(hour);
-      when(simpleTimeMock.getMinute()).thenReturn(minute);
-      when(simpleTimeMock.getSecond()).thenReturn(second);
       simpleDateTime = new SimpleDateTime(simpleDateMock, simpleTimeMock);
    }
 
    @Test
-   public void getYear() {
-      assertEquals(year, simpleDateTime.getYear());
+   public void testGetDate() {
+      assertEquals(simpleDateMock, simpleDateTime.getDate());
    }
 
    @Test
-   public void getMonth() {
-      assertEquals(month, simpleDateTime.getMonth());
-   }
-
-   @Test
-   public void getDay() {
-      assertEquals(day, simpleDateTime.getDay());
-   }
-
-   @Test
-   public void getHour() {
-      assertEquals(hour, simpleDateTime.getHour());
-   }
-
-   @Test
-   public void getMinute() {
-      assertEquals(minute, simpleDateTime.getMinute());
-   }
-
-   @Test
-   public void getSecond() {
-      assertEquals(second, simpleDateTime.getSecond());
-   }
-
-   @Test
-   public void isGregorian() {
-      assertEquals(gregorian, simpleDateTime.isGregorian());
+   public void testGetTime() {
+      assertEquals(simpleTimeMock, simpleDateTime.getTime());
    }
 
 }

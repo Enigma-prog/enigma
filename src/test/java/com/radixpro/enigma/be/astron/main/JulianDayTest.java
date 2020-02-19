@@ -6,7 +6,9 @@
 
 package com.radixpro.enigma.be.astron.main;
 
+import com.radixpro.enigma.xchg.domain.SimpleDate;
 import com.radixpro.enigma.xchg.domain.SimpleDateTime;
+import com.radixpro.enigma.xchg.domain.SimpleTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,16 +24,22 @@ public class JulianDayTest {
    private static final double DELTA = 0.00000001;
    @Mock
    private SimpleDateTime dateTimeMock;
+   @Mock
+   private SimpleDate dateMock;
+   @Mock
+   private SimpleTime timeMock;
    private JulianDay julianDay;
 
    @Before
    public void setUp() throws Exception {
-      when(dateTimeMock.getYear()).thenReturn(2000);
-      when(dateTimeMock.getMonth()).thenReturn(1);
-      when(dateTimeMock.getDay()).thenReturn(1);
-      when(dateTimeMock.getHour()).thenReturn(0);
-      when(dateTimeMock.getMinute()).thenReturn(0);
-      when(dateTimeMock.getSecond()).thenReturn(0);
+      when(dateMock.getYear()).thenReturn(2000);
+      when(dateMock.getMonth()).thenReturn(1);
+      when(dateMock.getDay()).thenReturn(1);
+      when(timeMock.getHour()).thenReturn(0);
+      when(timeMock.getMinute()).thenReturn(0);
+      when(timeMock.getSecond()).thenReturn(0);
+      when(dateTimeMock.getDate()).thenReturn(dateMock);
+      when(dateTimeMock.getTime()).thenReturn(timeMock);
       julianDay = new JulianDay(dateTimeMock);
    }
 

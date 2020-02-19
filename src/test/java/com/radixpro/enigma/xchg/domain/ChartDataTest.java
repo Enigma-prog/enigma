@@ -20,7 +20,13 @@ public class ChartDataTest {
 
    private final int id = 123;
    @Mock
+   private FullDateTime fullDateTimeMock;
+   @Mock
    private SimpleDateTime simpleDateTimeMock;
+   @Mock
+   private SimpleDate simpleDateMock;
+   @Mock
+   private SimpleTime simpleTimeMock;
    @Mock
    private Location locationMock;
    @Mock
@@ -29,20 +35,23 @@ public class ChartDataTest {
 
    @Before
    public void setUp() {
-      when(simpleDateTimeMock.getYear()).thenReturn(1953);
-      when(simpleDateTimeMock.getMonth()).thenReturn(1);
-      when(simpleDateTimeMock.getDay()).thenReturn(29);
-      when(simpleDateTimeMock.getHour()).thenReturn(7);
-      when(simpleDateTimeMock.getMinute()).thenReturn(37);
-      when(simpleDateTimeMock.getSecond()).thenReturn(30);
-      when(simpleDateTimeMock.isGregorian()).thenReturn(true);
-      chartData = new ChartData(id, simpleDateTimeMock, locationMock, chartMetaDataMock);
+      when(simpleDateMock.getYear()).thenReturn(2020);
+      when(simpleDateMock.getMonth()).thenReturn(2);
+      when(simpleDateMock.getDay()).thenReturn(19);
+      when(simpleDateMock.isGregorian()).thenReturn(true);
+      when(simpleTimeMock.getHour()).thenReturn(19);
+      when(simpleTimeMock.getMinute()).thenReturn(16);
+      when(simpleTimeMock.getSecond()).thenReturn(20);
+      when(simpleDateTimeMock.getDate()).thenReturn(simpleDateMock);
+      when(simpleDateTimeMock.getTime()).thenReturn(simpleTimeMock);
+      when(fullDateTimeMock.getDateTime()).thenReturn(simpleDateTimeMock);
+      chartData = new ChartData(id, fullDateTimeMock, locationMock, chartMetaDataMock);
    }
 
 
    @Test
    public void getSimpleDateTime() {
-      assertEquals(simpleDateTimeMock, chartData.getSimpleDateTime());
+      assertEquals(fullDateTimeMock, chartData.getFullDateTime());
    }
 
    @Test

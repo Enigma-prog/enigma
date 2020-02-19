@@ -13,23 +13,23 @@ public class ChartData {
 
    @Id
    private final long id;
-   private final SimpleDateTime simpleDateTime;
+   private final FullDateTime fullDateTime;
    private final Location location;
    private final ChartMetaData chartMetaData;
    private final JulianDay julianDay;
 
-
-   public ChartData(final long id, final SimpleDateTime simpleDateTime,
+   public ChartData(final long id, final FullDateTime fullDateTime,
                     final Location location, final ChartMetaData chartMetaData) {
       this.id = id;
-      this.simpleDateTime = simpleDateTime;
+      this.fullDateTime = fullDateTime;
       this.location = location;
       this.chartMetaData = chartMetaData;
-      this.julianDay = new JulianDay(simpleDateTime);
+      this.julianDay = new JulianDay(fullDateTime.getDateTime());  // todo correct jd for timezoen and dst
    }
 
-   public SimpleDateTime getSimpleDateTime() {
-      return simpleDateTime;
+
+   public FullDateTime getFullDateTime() {
+      return fullDateTime;
    }
 
    public Location getLocation() {

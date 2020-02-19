@@ -1,12 +1,11 @@
 /*
- * Jan Kampherbeek, (c) 2019.
+ * Jan Kampherbeek, (c) 2020.
  * Enigma is open source.
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.astron.main;
+package com.radixpro.enigma.xchg.domain;
 
-import com.radixpro.enigma.xchg.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +24,10 @@ public class FullChartTest {
    @Mock
    private SimpleDateTime simpleDateTimeMock;
    @Mock
+   private SimpleDate simpleDateMock;
+   @Mock
+   private SimpleTime simpleTimeMock;
+   @Mock
    private Location locationMock;
    @Mock
    private CalculationSettings settingsMock;
@@ -41,6 +44,15 @@ public class FullChartTest {
       when(settingsMock.isSidereal()).thenReturn(true);
       when(settingsMock.getHouseSystem()).thenReturn(HouseSystems.AXIAL);
       when(settingsMock.getCelBodies()).thenReturn(celBodies);
+      when(simpleDateMock.getYear()).thenReturn(2020);
+      when(simpleDateMock.getMonth()).thenReturn(2);
+      when(simpleDateMock.getDay()).thenReturn(19);
+      when(simpleDateMock.isGregorian()).thenReturn(true);
+      when(simpleTimeMock.getHour()).thenReturn(19);
+      when(simpleTimeMock.getMinute()).thenReturn(16);
+      when(simpleTimeMock.getSecond()).thenReturn(20);
+      when(simpleDateTimeMock.getDate()).thenReturn(simpleDateMock);
+      when(simpleDateTimeMock.getTime()).thenReturn(simpleTimeMock);
 
       fullChart = new FullChart(simpleDateTimeMock, locationMock, settingsMock);
    }

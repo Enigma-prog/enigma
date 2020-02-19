@@ -32,7 +32,7 @@ public class ValidatedTime extends ValidatedInput {
             validated = (hour >= HOUR_MIN && hour <= HOUR_MAX &&
                   minute >= MINUTE_MIN && minute <= MINUTE_MAX &&
                   second >= SECOND_MIN && second <= SECOND_MAX);
-            if (validated) simpleTime = new SimpleTime(hour, minute, second);
+            if (validated) simpleTime = new SimpleTime(hour, minute, second); // dummy values for timezone and dst
          } catch (NumberFormatException nfe) {
             validated = false;
          }

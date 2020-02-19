@@ -30,4 +30,5 @@ public class SimpleTime implements Serializable {
    public int getSecond() {
       return second;
    }
+
 }

@@ -49,10 +49,10 @@ public class PresentableChartData {
 
    private String createDataDescription(final ChartData chartData) {
       StringBuilder descrSb = new StringBuilder();
-      var dateTimeText = new PresentableDateTime(chartData.getSimpleDateTime());
-      descrSb.append(dateTimeText.getDate());
+      var dateTime4Text = new PresentableDateTime(chartData.getFullDateTime());
+      descrSb.append(dateTime4Text.getDate());
       descrSb.append(" ");
-      descrSb.append(dateTimeText.getTime());
+      descrSb.append(dateTime4Text.getTime());
       return descrSb.toString();
    }
 }

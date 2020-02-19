@@ -1,17 +1,17 @@
 /*
- * Jan Kampherbeek, (c) 2019.
+ * Jan Kampherbeek, (c) 2020.
  * Enigma is open source.
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.be.astron.main;
+package com.radixpro.enigma.xchg.domain;
 
 import com.radixpro.enigma.be.astron.assist.CombinedFlags;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import com.radixpro.enigma.xchg.domain.CalculationSettings;
-import com.radixpro.enigma.xchg.domain.Location;
-import com.radixpro.enigma.xchg.domain.SeFlags;
-import com.radixpro.enigma.xchg.domain.SimpleDateTime;
+import com.radixpro.enigma.be.astron.main.CelObjectPosition;
+import com.radixpro.enigma.be.astron.main.JulianDay;
+import com.radixpro.enigma.be.astron.main.MundaneValues;
+import com.radixpro.enigma.be.astron.main.Obliquity;
 
 import java.util.ArrayList;
 import java.util.List;

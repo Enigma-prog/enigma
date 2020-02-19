@@ -11,50 +11,50 @@ import java.io.Serializable;
 public class SimpleDateTime implements Serializable {
    private final SimpleDate date;
    private final SimpleTime time;
-//   private double jdUt;
 
    public SimpleDateTime(final SimpleDate simpleDate, final SimpleTime simpleTime) {
       this.date = simpleDate;
       this.time = simpleTime;
-//      calculateJd(SeFrontend.getFrontend());
    }
+
+   public SimpleDate getDate() {
+      return date;
+   }
+
+   public SimpleTime getTime() {
+      return time;
+   }
+
+   //   public int getYear() {
+//      return date.getYear();
+//   }
 //
-//   private void calculateJd(final SeFrontend seFrontend) {
-//      double[] jdValues = seFrontend.getJulianDay(date.getYear(), date.getMonth(), date.getDay(), time.getHour(),
-//            time.getMinute(), time.getSecond(), date.isGregorian());
-//      // jdValues[0] is for JD for Ephemeris time/ Dynamical time and can be ignored as the SE already handles this
-//      jdUt = jdValues[1];
+//   public int getMonth() {
+//      return date.getMonth();
 //   }
-
-   public int getYear() {
-      return date.getYear();
-   }
-
-   public int getMonth() {
-      return date.getMonth();
-   }
-
-   public int getDay() {
-      return date.getDay();
-   }
-
-   public int getHour() {
-      return time.getHour();
-   }
-
-   public int getMinute() {
-      return time.getMinute();
-   }
-
-   public int getSecond() {
-      return time.getSecond();
-   }
-
-   public boolean isGregorian() {
-      return date.isGregorian();
-   }
-
-//   public double getJdUt() {
-//      return jdUt;
+//
+//   public int getDay() {
+//      return date.getDay();
 //   }
+//
+//   public int getHour() {
+//      return time.getHour();
+//   }
+//
+//   public int getMinute() {
+//      return time.getMinute();
+//   }
+//
+//   public int getSecond() {
+//      return time.getSecond();
+//   }
+//
+//   public TimeZones getTimeZone() { return time.getTimeZone(); }
+//
+//   public boolean isGregorian() {
+//      return date.isGregorian();
+//   }
+//
+//   public boolean isDst() { return time.isDst(); }
+
 }

@@ -328,7 +328,8 @@ public class ChartsInput {
 
       final var api = new PersistedChartDataApi();
       final long chartId = api.getMaxId() + 1;
-      final var chartData = new ChartData(chartId, dateTime, location, metaData);
+      final FullDateTime fullDateTime = new FullDateTime(dateTime, TimeZones.UT, false, 0.0);  // TODO use real values instead of dummy values
+      final var chartData = new ChartData(chartId, fullDateTime, location, metaData);
       api.insert(chartData);
       return chartId;
    }

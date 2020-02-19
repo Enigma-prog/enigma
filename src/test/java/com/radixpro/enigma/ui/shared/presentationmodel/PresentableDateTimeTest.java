@@ -6,9 +6,7 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel;
 
-import com.radixpro.enigma.xchg.domain.SimpleDate;
-import com.radixpro.enigma.xchg.domain.SimpleDateTime;
-import com.radixpro.enigma.xchg.domain.SimpleTime;
+import com.radixpro.enigma.xchg.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,15 +21,20 @@ public class PresentableDateTimeTest {
    private final int minute = 39;
    private final int second = 5;
    private final boolean cal = true;
+   private final boolean dst = false;
+   private final double offsetForLmt = 0.0;
    private final String expectedDate = "2020/02/13 G";
-   private final String expectedTime = "22:39:05";
+   private final String expectedTime = "22:39:05 No DST UT";
+   private TimeZones timeZone = TimeZones.UT;
    private SimpleDateTime dateTime;
+   private FullDateTime fullDateTime;
    private PresentableDateTime presDateTime;
 
    @Before
    public void setUp() throws Exception {
       dateTime = new SimpleDateTime(new SimpleDate(year, month, day, cal), new SimpleTime(hour, minute, second));
-      presDateTime = new PresentableDateTime(dateTime);
+      fullDateTime = new FullDateTime(dateTime, timeZone, dst, offsetForLmt);
+      presDateTime = new PresentableDateTime(fullDateTime);
    }
 
    @Test

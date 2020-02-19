@@ -41,6 +41,7 @@ public class ChartsStart {
    private Configuration currentConfig;
 
 
+
    @FXML
    void onNewChart() throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsinput.fxml"));
@@ -58,6 +59,19 @@ public class ChartsStart {
    }
 
    @FXML
+   void onPositions() throws IOException {
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsdata.fxml"));
+      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
+      Parent parent = fxmlLoader.load();
+      ChartsData chartsData = new ChartsData(); // todo replace with actual fullchart
+      Scene scene = new Scene(parent, 1000, 800);
+      Stage stage = new Stage();
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.setScene(scene);
+      stage.showAndWait();
+   }
+
+   @FXML
    void onConfigEdit() throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/configedit.fxml"));
       fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
@@ -72,6 +86,8 @@ public class ChartsStart {
    }
 
    public void initialize() {
+//      generalInfo.setFont(new Font("EnigmaAstrology", 24));
+//      generalInfo.setText("apenkop");
       defineConfig();
       defineCharts();
    }

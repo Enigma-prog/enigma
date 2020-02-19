@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.xchg.api;
 
-import com.radixpro.enigma.be.astron.main.FullChart;
 import com.radixpro.enigma.xchg.domain.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,6 +28,10 @@ public class CalculatedFullChartTest {
    @Mock
    private SimpleDateTime simpleDateTimeMock;
    @Mock
+   private SimpleDate simpleDateMock;
+   @Mock
+   private SimpleTime simpleTimeMock;
+   @Mock
    private CalculationSettings settingsMock;
    private FullChart fullChart;
 
@@ -44,6 +47,15 @@ public class CalculatedFullChartTest {
       when(settingsMock.isHeliocentric()).thenReturn(false);
       when(settingsMock.getHouseSystem()).thenReturn(HouseSystems.PLACIDUS);
       when(settingsMock.getCelBodies()).thenReturn(bodies);
+      when(simpleDateMock.getYear()).thenReturn(2020);
+      when(simpleDateMock.getMonth()).thenReturn(2);
+      when(simpleDateMock.getDay()).thenReturn(19);
+      when(simpleDateMock.isGregorian()).thenReturn(true);
+      when(simpleTimeMock.getHour()).thenReturn(19);
+      when(simpleTimeMock.getMinute()).thenReturn(16);
+      when(simpleTimeMock.getSecond()).thenReturn(20);
+      when(simpleDateTimeMock.getDate()).thenReturn(simpleDateMock);
+      when(simpleDateTimeMock.getTime()).thenReturn(simpleTimeMock);
       fullChart = new FullChart(simpleDateTimeMock, locationMock, settingsMock);
    }
 
