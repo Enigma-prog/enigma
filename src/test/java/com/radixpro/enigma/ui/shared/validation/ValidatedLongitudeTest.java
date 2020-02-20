@@ -127,4 +127,22 @@ public class ValidatedLongitudeTest {
       assertEquals(0.0, valLong.getValue(), DELTA);
    }
 
+   @Test
+   public void getDegrees() {
+      valLong = new ValidatedLongitude((longTextOk));
+      assertEquals(152, valLong.getDegrees());
+      //   private final String longTextOk = "152:09:20";
+   }
+
+   @Test
+   public void getMinutes() {
+      valLong = new ValidatedLongitude((longTextOk));
+      assertEquals(9, valLong.getMinutes());
+   }
+
+   @Test
+   public void getSeconds() {
+      valLong = new ValidatedLongitude((longTextOk));
+      assertEquals(20, valLong.getSeconds());
+   }
 }

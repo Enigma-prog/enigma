@@ -11,6 +11,9 @@ public class ValidatedLongitude extends ValidatedInput {
    private final static int LONG_DEGREE_MIN = -180;
    private final static int LONG_DEGREE_MAX = 180;
    private double value;
+   private int degrees;
+   private int minutes;
+   private int seconds;
 
    public ValidatedLongitude(final String input) {
       super(input);
@@ -19,21 +22,18 @@ public class ValidatedLongitude extends ValidatedInput {
 
    @Override
    protected void validate() {
-      int degree;
-      int minute;
-      int second;
       String[] values = input.split(SEXAG_SEPARATOR);
       if (values.length == 2 || values.length == 3) {
          try {
-            degree = Integer.parseInt(values[0]);
-            minute = Integer.parseInt(values[1]);
-            if (values.length == 3) second = Integer.parseInt(values[2]);
-            else second = 0;
-            validated = (degree >= LONG_DEGREE_MIN && degree <= LONG_DEGREE_MAX &&
-                  minute >= MINUTE_MIN && minute <= MINUTE_MAX &&
-                  second >= SECOND_MIN && second <= SECOND_MAX);
-            if (validated && ((Math.abs(degree)) == LONG_DEGREE_MAX)) validated = (minute == 0 && second == 0);
-            if (validated) value = degree + (double) minute / MINUTES_PER_HOUR + (double) second / SECONDS_PER_HOUR;
+            degrees = Integer.parseInt(values[0]);
+            minutes = Integer.parseInt(values[1]);
+            if (values.length == 3) seconds = Integer.parseInt(values[2]);
+            else seconds = 0;
+            validated = (degrees >= LONG_DEGREE_MIN && degrees <= LONG_DEGREE_MAX &&
+                  minutes >= MINUTE_MIN && minutes <= MINUTE_MAX &&
+                  seconds >= SECOND_MIN && seconds <= SECOND_MAX);
+            if (validated && ((Math.abs(degrees)) == LONG_DEGREE_MAX)) validated = (minutes == 0 && seconds == 0);
+            if (validated) value = degrees + (double) minutes / MINUTES_PER_HOUR + (double) seconds / SECONDS_PER_HOUR;
          } catch (NumberFormatException nfe) {
             validated = false;
          }
@@ -43,6 +43,18 @@ public class ValidatedLongitude extends ValidatedInput {
 
    public double getValue() {
       return value;
+   }
+
+   public int getDegrees() {
+      return degrees;
+   }
+
+   public int getMinutes() {
+      return minutes;
+   }
+
+   public int getSeconds() {
+      return seconds;
    }
 
 }

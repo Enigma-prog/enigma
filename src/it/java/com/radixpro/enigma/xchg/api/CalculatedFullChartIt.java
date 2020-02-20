@@ -54,10 +54,15 @@ public class CalculatedFullChartIt {
    private Location location;
    private SimpleDateTime dateTime;
    private CalculationSettings settings;
+   private GeographicCoordinate longCoordinate;
+   private GeographicCoordinate latCoordinate;
+
 
    @Before
    public void setUp() {
-      location = new Location(GEO_LAT, GEO_LONG);
+      latCoordinate = new GeographicCoordinate(52, 13, 0, "N", GEO_LAT);
+      longCoordinate = new GeographicCoordinate(6, 54, 0, "E", GEO_LONG);
+      location = new Location(longCoordinate, latCoordinate, "Enschede");
       final SimpleDate date = new SimpleDate(YEAR, MONTH, DAY, GREGORIAN);
       final SimpleTime time = new SimpleTime(HOUR, MINUTE, SECOND);
       dateTime = new SimpleDateTime(date, time);

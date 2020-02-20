@@ -79,9 +79,10 @@ public class ChartsInput {
 
    private SimpleDate dateInput;
    private SimpleTime timeInput;
-   private double longitudeInput;
-   private double latitudeInput;
    private long newChartId;
+
+   private ValidatedLongitude valLong;
+   private ValidatedLatitude valLat;
 
    @FXML
    void onCalculate() {
@@ -226,7 +227,6 @@ public class ChartsInput {
    private void validateLongitude(final String newLongitude) {
       var valLong = new ValidatedLongitude(newLongitude);
       if (valLong.isValidated()) {
-         longitudeInput = valLong.getValue();
          longitudeValue.setStyle(TEXT_INPUT_DEFAULT_STYLE);
          longitudeOk = true;
       } else {
@@ -249,9 +249,8 @@ public class ChartsInput {
    }
 
    private void validateLatitude(final String newLatitude) {
-      var valLat = new ValidatedLatitude(newLatitude);
+      valLat = new ValidatedLatitude(newLatitude);
       if (valLat.isValidated()) {
-         latitudeInput = valLat.getValue();
          latitudeValue.setStyle(TEXT_INPUT_DEFAULT_STYLE);
          latitudeOk = true;
       } else {
@@ -319,11 +318,17 @@ public class ChartsInput {
       final var inputRating = Ratings.ZZ.ratingForName(rating.getValue());
       final var inputChartType = ChartTypes.UNKNOWN.chartTypeForLocalName((String) subject.getValue());
 
-
-      final var enteredLocation = locationName.getText().trim();    // // todo: add after updating ChartMetaData
+      final var enteredLocation = locationName.getText().trim();
+      String longDir = northsouth.getValue();
+      GeographicCoordinate longitudeCoordinate = new GeographicCoordinate(valLong.getDegrees(), valLong.getMinutes(),
+            valLong.getSeconds(), longDir, valLong.getValue());
+      String latDir = eastwest.getValue();
+      GeographicCoordinate latitudeCoordinate = new GeographicCoordinate(valLat.getDegrees(), valLat.getMinutes(),
+            valLat.getSeconds(), latDir, valLat.getValue());
+      final var location = new Location(longitudeCoordinate, latitudeCoordinate, enteredLocation);
 
       final var dateTime = new SimpleDateTime(dateInput, timeInput);  // todo handle timezone
-      final var location = new Location(latitudeInput, longitudeInput);
+
       final var metaData = new ChartMetaData(inputName, inputDescription, inputSource, inputChartType, inputRating);
 
       final var api = new PersistedChartDataApi();

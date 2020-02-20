@@ -90,4 +90,22 @@ public class ValidatedLatitudeTest {
       assertFalse(new ValidatedLatitude(latText2ManyArgs).isValidated());
    }
 
+   @Test
+   public void getDegrees() {
+      valLat = new ValidatedLatitude(latTextOk);
+      assertEquals(52, valLat.getDegrees());
+   }
+
+   @Test
+   public void getMinutes() {
+      valLat = new ValidatedLatitude(latTextOk);
+      assertEquals(9, valLat.getMinutes());
+   }
+
+   @Test
+   public void getSeconds() {
+      valLat = new ValidatedLatitude(latTextOk);
+      assertEquals(20, valLat.getSeconds());
+   }
+
 }

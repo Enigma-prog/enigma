@@ -120,8 +120,10 @@ public class PersistencyChartDataApiIt {
       final var simpleDate = new SimpleDate(2020, 1, 10, true);
       final var simpleTime = new SimpleTime(22, 52, 0);
       final var simpleDateTime = new SimpleDateTime(simpleDate, simpleTime);
-      final var fullDateTime = new FullDateTime(simpleDateTime, TimeZones.UT, false, 0.0);  // TODO replace dummy values with rel values
-      final var location = new Location(52.0, 7.0);
+      final var fullDateTime = new FullDateTime(simpleDateTime, TimeZones.UT, false, 0.0);  // TODO replace dummy values with real values
+      final var longCoord = new GeographicCoordinate(52, 0, 0, "N", 52.0);
+      final var latCoord = new GeographicCoordinate(7, 0, 0, "E", 7.0);
+      final var location = new Location(longCoord, latCoord, "Name of location");
       final List<Integer> categories = new ArrayList<>();
       categories.add(1);
       final var chartMetaData = new ChartMetaData(name, "description", "source", ChartTypes.NATAL,

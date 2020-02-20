@@ -52,16 +52,25 @@ public class ChartDataObjectDocumentMapperTest {
             .put("second", 15)
             .put("gregorian", true)
             .put("jdut", 1234.5678)
+            .put("locationname", "Enschede")
             .put("geolat", 52.23)
             .put("geolong", 6.9)
+            .put("geolongdeg", 6)
+            .put("geolongmin", 54)
+            .put("geolongsec", 0)
+            .put("geolongdir", "E")
+            .put("geolatdeg", 52)
+            .put("geolatmin", 13)
+            .put("geolatsec", 48)
+            .put("geolatdir", "N")
             .put("name", "Jan")
             .put("description", "description")
             .put("source", "source")
-            .put("sex", "m")
             .put("charttype", 2)
-            .put("rating", 3)
-            .put("categories", catList);
+            .put("rating", 3);
+
    }
+
 
    private ChartData createObject() {
       List<Integer> catList = new ArrayList<>();
@@ -72,7 +81,9 @@ public class ChartDataObjectDocumentMapperTest {
       var time = new SimpleTime(14, 42, 55);
       var dateTime = new SimpleDateTime(date, time);
       var fullDateTime = new FullDateTime(dateTime, TimeZones.UT, false, 0.0);  // todo replace dummy values with real values
-      var location = new Location(52.23, 6.9);
+      var longCoord = new GeographicCoordinate(52, 13, 48, "N", 52.23);
+      var latCoord = new GeographicCoordinate(6, 54, 0, "E", 6.9);
+      var location = new Location(longCoord, latCoord, "Location name");
       var chartMetaData = new ChartMetaData("Jan", "Description", "Source",
             ChartTypes.ELECTION, Ratings.C);
       return new ChartData(id, fullDateTime, location, chartMetaData);
