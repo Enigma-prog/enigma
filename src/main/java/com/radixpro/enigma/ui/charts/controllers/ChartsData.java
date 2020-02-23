@@ -4,7 +4,7 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.ui.charts;
+package com.radixpro.enigma.ui.charts.controllers;
 
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.fxml.FXML;

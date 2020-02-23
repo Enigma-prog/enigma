@@ -1,13 +1,14 @@
 /*
- * Jan Kampherbeek, (c) 2019.
+ * Jan Kampherbeek, (c) 2020.
  * Enigma is open source.
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.ui.charts;
+package com.radixpro.enigma.ui.charts.controllers;
 
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.shared.Help;
+import com.radixpro.enigma.ui.shared.InputStatus;
 import com.radixpro.enigma.ui.shared.validation.*;
 import com.radixpro.enigma.xchg.api.PersistedChartDataApi;
 import com.radixpro.enigma.xchg.domain.*;
@@ -17,10 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,6 +26,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static com.radixpro.enigma.ui.shared.StyleDictionary.INPUT_DEFAULT_STYLE;
+import static com.radixpro.enigma.ui.shared.StyleDictionary.INPUT_ERROR_STYLE;
 
 public class ChartsInput {
 
@@ -51,8 +52,6 @@ public class ChartsInput {
    public TextField localtime;
    @FXML
    public Label lbllocaltime;
-   private static final String TEXT_INPUT_DEFAULT_STYLE = "-fx-background-radius:5; -fx-background-color:blanchedalmond;";
-   private static final String TEXT_INPUT_ERROR_STYLE = "-fx-background-radius:5; -fx-background-color:yellow;";
    @FXML
    public ChoiceBox<String> subject;
    @FXML
@@ -64,30 +63,37 @@ public class ChartsInput {
    @FXML
    public ChoiceBox<String> localeastwest;
    @FXML
+   public CheckBox cbDst;
+   @FXML
    public Button calculatebtn;
+   @FXML
+   public Button cancelBtn;
    @FXML
    public ChoiceBox<String> rating;
    @FXML
    public ChoiceBox<String> timezone;
-   private boolean nameOk = false;
-   private boolean latitudeOk = false;
-   private boolean longitudeOk = false;
-   private boolean dateOk = false;
-   private boolean timeOk = false;
-   private boolean localTimeOk = false;
+
    private boolean timeZoneLocalSelected = false;
-
-   private SimpleDate dateInput;
-   private SimpleTime timeInput;
    private long newChartId;
-
    private ValidatedLongitude valLong;
+   private ValidatedLongitude valLongLocalTime;
    private ValidatedLatitude valLat;
+   private ValidatedChartName valChartName;
+   private ValidatedDate valDate;
+   private ValidatedTime valTime;
+   private InputStatus inputStatus = InputStatus.INCOMPLETE;
 
    @FXML
    void onCalculate() {
       newChartId = saveData();
       Stage stage = (Stage) calculatebtn.getScene().getWindow();
+      stage.close();
+   }
+
+   @FXML
+   void onCancel() {
+      inputStatus = InputStatus.CANCELLED;
+      Stage stage = (Stage) cancelBtn.getScene().getWindow();
       stage.close();
    }
 
@@ -106,12 +112,15 @@ public class ChartsInput {
       stage.showAndWait();
    }
 
+   public InputStatus getInputStatus() {
+      return inputStatus;
+   }
+
    public long getNewChartId() {
       return newChartId;
    }
 
    public void initialize() {
-      setDynamicStyles();
       initSubject();
       initRating();
       initLatitude();
@@ -132,25 +141,6 @@ public class ChartsInput {
             checkTimeZones(newValue));
       localtime.textProperty().addListener((observable, oldValue, newValue) -> validateLocalTime(newValue));
 
-   }
-
-   private void setDynamicStyles() {
-      name.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      source.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      description.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      locationName.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      longitudeValue.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      latitudeValue.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      date.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      time.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      subject.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      rating.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      timezone.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      localtime.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      eastwest.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      northsouth.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      calendar.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-      localeastwest.setStyle(TEXT_INPUT_DEFAULT_STYLE);
    }
 
    private void initSubject() {
@@ -212,79 +202,39 @@ public class ChartsInput {
    }
 
    private void validateName(final String newName) {
-      var valName = new ValidatedChartName(newName);
-      name.setText(valName.getNameText());
-      if (valName.isValidated()) {
-         name.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-         nameOk = true;
-      } else {
-         name.setStyle(TEXT_INPUT_ERROR_STYLE);
-         nameOk = false;
-      }
+      valChartName = new ValidatedChartName(newName);
+      name.setText(valChartName.getNameText());
+      name.setStyle(valChartName.isValidated() ? INPUT_DEFAULT_STYLE : INPUT_ERROR_STYLE);  //textinput
       checkStatus();
    }
 
    private void validateLongitude(final String newLongitude) {
-      var valLong = new ValidatedLongitude(newLongitude);
-      if (valLong.isValidated()) {
-         longitudeValue.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-         longitudeOk = true;
-      } else {
-         longitudeValue.setStyle(TEXT_INPUT_ERROR_STYLE);
-         longitudeOk = false;
-      }
+      valLong = new ValidatedLongitude(newLongitude);
+      longitudeValue.setStyle(valLong.isValidated() ? INPUT_DEFAULT_STYLE : INPUT_ERROR_STYLE);
       checkStatus();
    }
 
    private void validateLocalTime(final String newLocalTime) {
-      var valLocalTime = new ValidatedLongitude(newLocalTime);
-      if (valLocalTime.isValidated()) {
-         localtime.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-         localTimeOk = true;
-      } else {
-         localtime.setStyle(TEXT_INPUT_ERROR_STYLE);
-         localTimeOk = false;
-      }
+      valLongLocalTime = new ValidatedLongitude(newLocalTime);
+      localtime.setStyle(valLongLocalTime.isValidated() ? INPUT_DEFAULT_STYLE : INPUT_ERROR_STYLE);
       checkStatus();
    }
 
    private void validateLatitude(final String newLatitude) {
       valLat = new ValidatedLatitude(newLatitude);
-      if (valLat.isValidated()) {
-         latitudeValue.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-         latitudeOk = true;
-      } else {
-         latitudeValue.setStyle(TEXT_INPUT_ERROR_STYLE);
-         latitudeOk = false;
-      }
+      latitudeValue.setStyle(valLat.isValidated() ? INPUT_DEFAULT_STYLE : INPUT_ERROR_STYLE);
       checkStatus();
    }
 
    private void validateDate(final String newDate) {
-      var valDate = new ValidatedDate(newDate + '/' + calendar.getValue());
-      if (valDate.isValidated()) {
-         date.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-         dateInput = valDate.getSimpleDate();
-         dateOk = true;
-      } else {
-         date.setStyle(TEXT_INPUT_ERROR_STYLE);
-         dateInput = null;
-         dateOk = false;
-      }
+      valDate = new ValidatedDate(newDate + '/' + calendar.getValue());
+      date.setStyle(valDate.isValidated() ? INPUT_DEFAULT_STYLE : INPUT_ERROR_STYLE);
       checkStatus();
    }
 
    private void validateTime(final String newTime) {
-      var valTime = new ValidatedTime(newTime);
-      if (valTime.isValidated()) {
-         time.setStyle(TEXT_INPUT_DEFAULT_STYLE);
-         timeInput = valTime.getSimpleTime();
-         timeOk = true;
-      } else {
-         time.setStyle(TEXT_INPUT_ERROR_STYLE);
-         timeInput = null;
-         timeOk = false;
-      }
+      valTime = new ValidatedTime(newTime);
+      time.setStyle(valTime.isValidated() ? INPUT_DEFAULT_STYLE : INPUT_ERROR_STYLE);
       checkStatus();
    }
 
@@ -293,50 +243,75 @@ public class ChartsInput {
       if (selected == TimeZones.LMT) {
          localtime.setEditable(true);
          localtime.setDisable(false);
+         localtime.setFocusTraversable(true);
          lbllocaltime.setDisable(false);
          localeastwest.setDisable(false);
+         localeastwest.setFocusTraversable(true);
          timeZoneLocalSelected = true;
       } else {
          localtime.setEditable(false);
          localtime.setDisable(true);
+         localtime.setFocusTraversable(false);
          lbllocaltime.setDisable(true);
          localeastwest.setDisable(true);
+         localeastwest.setFocusTraversable(false);
          timeZoneLocalSelected = false;
       }
       checkStatus();
    }
 
    private void checkStatus() {
-      calculatebtn.setDisable(!(nameOk && latitudeOk && longitudeOk && dateOk && timeOk
-            && (localTimeOk || !timeZoneLocalSelected)));
+      boolean inputOk = (valChartName != null && valChartName.isValidated()
+            && valLat != null && valLat.isValidated()
+            && valLong != null && valLong.isValidated()
+            && valDate != null && valDate.isValidated()
+            && valTime != null && valTime.isValidated()
+            && ((valLongLocalTime != null && valLongLocalTime.isValidated()) || !timeZoneLocalSelected));
+      calculatebtn.setDisable(!inputOk);
+      calculatebtn.setFocusTraversable(inputOk);
+      if (inputOk) inputStatus = InputStatus.READY;
    }
 
    private long saveData() {
+      final var api = new PersistedChartDataApi();
+      final long chartId = api.getMaxId() + 1;
+      final var chartData = new ChartData(chartId, constructFullDateTime(), constructLocation(), constructMetaData());
+      api.insert(chartData);
+      return chartId;
+   }
+
+   private ChartMetaData constructMetaData() {
       final var inputName = name.getText();
       final var inputDescription = description.getText().trim();
       final var inputSource = source.getText().trim();
       final var inputRating = Ratings.ZZ.ratingForName(rating.getValue());
-      final var inputChartType = ChartTypes.UNKNOWN.chartTypeForLocalName((String) subject.getValue());
+      final var inputChartType = ChartTypes.UNKNOWN.chartTypeForLocalName(subject.getValue());
+      return new ChartMetaData(inputName, inputDescription, inputSource, inputChartType, inputRating);
+   }
 
+   private Location constructLocation() {
       final var enteredLocation = locationName.getText().trim();
       String longDir = northsouth.getValue();
+      if (longDir.equalsIgnoreCase("O")) longDir = "E";
       GeographicCoordinate longitudeCoordinate = new GeographicCoordinate(valLong.getDegrees(), valLong.getMinutes(),
             valLong.getSeconds(), longDir, valLong.getValue());
       String latDir = eastwest.getValue();
+      if (latDir.equalsIgnoreCase("Z")) latDir = "S";
       GeographicCoordinate latitudeCoordinate = new GeographicCoordinate(valLat.getDegrees(), valLat.getMinutes(),
             valLat.getSeconds(), latDir, valLat.getValue());
-      final var location = new Location(longitudeCoordinate, latitudeCoordinate, enteredLocation);
+      return new Location(longitudeCoordinate, latitudeCoordinate, enteredLocation);
+   }
 
-      final var dateTime = new SimpleDateTime(dateInput, timeInput);  // todo handle timezone
-
-      final var metaData = new ChartMetaData(inputName, inputDescription, inputSource, inputChartType, inputRating);
-
-      final var api = new PersistedChartDataApi();
-      final long chartId = api.getMaxId() + 1;
-      final FullDateTime fullDateTime = new FullDateTime(dateTime, TimeZones.UT, false, 0.0);  // TODO use real values instead of dummy values
-      final var chartData = new ChartData(chartId, fullDateTime, location, metaData);
-      api.insert(chartData);
-      return chartId;
+   private FullDateTime constructFullDateTime() {
+      final var dateTime = new SimpleDateTime(valDate.getSimpleDate(), valTime.getSimpleTime());
+      final TimeZones selectedTimeZone = TimeZones.UT.timeZoneForName(timezone.getValue());
+      final boolean selectedDst = cbDst.isSelected();
+      double offSetForLmt = 0.0;
+      if (selectedTimeZone == TimeZones.LMT) {
+         offSetForLmt = valLongLocalTime.getValue() * 15.0;
+         if (localeastwest.getValue().equalsIgnoreCase("W")) offSetForLmt = -offSetForLmt;
+      }
+      return new FullDateTime(dateTime, selectedTimeZone, selectedDst, offSetForLmt);
    }
 
 }

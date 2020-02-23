@@ -10,12 +10,13 @@ import com.radixpro.enigma.be.persistency.daos.UserDefinedCategoryDao;
 import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersistedUserDefinedCategoryApi {
-
+   private static final Logger LOG = Logger.getLogger(PersistedUserDefinedCategoryApi.class);
    private final static String ERROR = "ERROR";
    private final static String OK = "OK";
    private final UserDefinedCategoryDao dao;
@@ -25,9 +26,14 @@ public class PersistedUserDefinedCategoryApi {
    }
 
    public String insert(final UserDefinedCategory category) {
+      if (category == null) {
+         LOG.error("Trying to insert null for UserDefineCategory.");
+         return ERROR;
+      }
       final DatabaseResults result = dao.insert(category);
       if (result != DatabaseResults.OK) {
-         // TODO handle result, use db error messages in RB
+         LOG.error("Coud not insert UserDefinedCategory, using id " + category.getId() + " and text: "
+               + category.getText() + " .  Got result: " + result);
          return ERROR;
       }
       return OK;

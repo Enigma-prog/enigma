@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel;
 
+import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.xchg.domain.FullDateTime;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
 
@@ -18,7 +19,7 @@ public class PresentableDateTime {
    private final String time;
 
    public PresentableDateTime(final FullDateTime dateTime) {
-      date = constructDateText(dateTime.getDateTime().getDate());
+      date = constructDateText(dateTime.getFullDateTime().getDate());
       time = constructTimeText(dateTime);
    }
 
@@ -31,11 +32,12 @@ public class PresentableDateTime {
    }
 
    private String constructTimeText(final FullDateTime fullDateTime) {
-      final int hour = fullDateTime.getDateTime().getTime().getHour();
-      final int minute = fullDateTime.getDateTime().getTime().getMinute();
-      final int second = fullDateTime.getDateTime().getTime().getSecond();
-      final String zoneTxt = fullDateTime.getTimeZone().name();            // todo check name for timezone, probaby use Rosetta
-      String dstTxt = fullDateTime.isDst() ? "DST" : "No DST";                 // todo internationalize texts
+      final int hour = fullDateTime.getFullDateTime().getTime().getHour();
+      final int minute = fullDateTime.getFullDateTime().getTime().getMinute();
+      final int second = fullDateTime.getFullDateTime().getTime().getSecond();
+      final String zoneTxt = Rosetta.getRosetta().getText(fullDateTime.getTimeZone().getRbKeyForName());
+      String dstKey = fullDateTime.isDst() ? "ui.shared.dst" : "ui.shared.nodst";
+      String dstTxt = Rosetta.getRosetta().getText(dstKey);
       return String.format("%02d:%02d:%02d %s %s", hour, minute, second, dstTxt, zoneTxt);
    }
 

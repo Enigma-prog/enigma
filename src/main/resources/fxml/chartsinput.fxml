@@ -9,8 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="669.0" prefWidth="580.0" stylesheets="@../css/enigma.css"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.radixpro.enigma.ui.charts.ChartsInput">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="669.0" prefWidth="580.0" styleClass="inputpane"
+            stylesheets="@../css/enigma.css" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.radixpro.enigma.ui.charts.controllers.ChartsInput">
     <children>
         <VBox prefHeight="68.0" prefWidth="600.0">
             <children>
@@ -24,9 +25,9 @@
                         </Label>
                     </children>
                 </Pane>
-                <Pane layoutY="300.0" prefHeight="1.0" prefWidth="600.0">
+                <Pane layoutY="300.0" prefHeight="1.0" prefWidth="600.0" styleClass="inputpane">
                     <children>
-                        <GridPane layoutX="8.0" prefHeight="568.0" prefWidth="570.0">
+                        <GridPane layoutX="8.0" prefHeight="568.0" prefWidth="570.0" styleClass="inputpane">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0"
                                                    prefWidth="235.0"/>
@@ -106,48 +107,54 @@
                                 <Label prefHeight="30.0" prefWidth="568.0" styleClass="subtitletext"
                                        text="%ui.charts.input.subtitle.general" GridPane.columnSpan="7"
                                        GridPane.rowIndex="1"/>
-                                <TextField fx:id="name" prefHeight="25.0" prefWidth="342.0" GridPane.columnSpan="7"
-                                           GridPane.rowIndex="3"/>
-                                <ChoiceBox fx:id="subject" prefHeight="25.0" prefWidth="277.0" GridPane.columnSpan="3"
-                                           GridPane.rowIndex="5"/>
-                                <ChoiceBox fx:id="rating" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="4"
+                                <TextField fx:id="name" prefHeight="25.0" prefWidth="342.0" styleClass="inputdefault"
+                                           GridPane.columnSpan="7" GridPane.rowIndex="3"/>
+                                <ChoiceBox fx:id="subject" prefHeight="25.0" prefWidth="277.0" styleClass="inputdefault"
                                            GridPane.columnSpan="3" GridPane.rowIndex="5"/>
-                                <TextField fx:id="source" GridPane.columnSpan="7" GridPane.rowIndex="7"/>
-                                <TextField fx:id="description" GridPane.columnSpan="7" GridPane.rowIndex="9"/>
-                                <TextField fx:id="locationName" GridPane.columnSpan="7" GridPane.rowIndex="13"/>
+                                <ChoiceBox fx:id="rating" prefHeight="25.0" prefWidth="286.0" styleClass="inputdefault"
+                                           GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5"/>
+                                <TextField fx:id="source" styleClass="inputdefault" GridPane.columnSpan="7"
+                                           GridPane.rowIndex="7"/>
+                                <TextField fx:id="description" styleClass="inputdefault" GridPane.columnSpan="7"
+                                           GridPane.rowIndex="9"/>
+                                <TextField fx:id="locationName" styleClass="inputdefault" GridPane.columnSpan="7"
+                                           GridPane.rowIndex="13"/>
                                 <TextField fx:id="longitudeValue" prefHeight="25.0" prefWidth="191.0"
+                                           styleClass="inputdefault" GridPane.rowIndex="15"/>
+                                <ChoiceBox fx:id="eastwest" prefWidth="150.0" styleClass="inputdefault"
+                                           GridPane.columnIndex="2" GridPane.rowIndex="15"/>
+                                <TextField fx:id="latitudeValue" styleClass="inputdefault" GridPane.columnIndex="4"
                                            GridPane.rowIndex="15"/>
-                                <ChoiceBox fx:id="eastwest" prefWidth="150.0" GridPane.columnIndex="2"
-                                           GridPane.rowIndex="15"/>
-                                <TextField fx:id="latitudeValue" GridPane.columnIndex="4" GridPane.rowIndex="15"/>
-                                <ChoiceBox fx:id="northsouth" prefWidth="150.0" GridPane.columnIndex="6"
-                                           GridPane.rowIndex="15"/>
-                                <TextField fx:id="date" GridPane.rowIndex="19"/>
-                                <ChoiceBox fx:id="calendar" prefWidth="150.0" GridPane.columnIndex="2"
+                                <ChoiceBox fx:id="northsouth" prefWidth="150.0" styleClass="inputdefault"
+                                           GridPane.columnIndex="6" GridPane.rowIndex="15"/>
+                                <TextField fx:id="date" styleClass="inputdefault" GridPane.rowIndex="19"/>
+                                <ChoiceBox fx:id="calendar" prefWidth="150.0" styleClass="inputdefault"
+                                           GridPane.columnIndex="2" GridPane.rowIndex="19"/>
+                                <TextField fx:id="time" styleClass="inputdefault" GridPane.columnIndex="4"
                                            GridPane.rowIndex="19"/>
-                                <TextField fx:id="time" GridPane.columnIndex="4" GridPane.rowIndex="19"/>
                                 <CheckBox alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="25.0"
-                                          prefWidth="43.0" textAlignment="RIGHT" GridPane.columnIndex="6"
-                                          GridPane.rowIndex="19"/>
-                                <ChoiceBox fx:id="timezone" prefHeight="25.0" prefWidth="641.0" GridPane.columnSpan="7"
-                                           GridPane.rowIndex="22"/>
-                                <TextField fx:id="localtime" disable="true" editable="false" GridPane.rowIndex="24"/>
-                                <ChoiceBox fx:id="localeastwest" disable="true" prefWidth="150.0"
-                                           GridPane.columnIndex="2" GridPane.rowIndex="24"/>
+                                          prefWidth="43.0" styleClass="inputdefault" textAlignment="RIGHT"
+                                          GridPane.columnIndex="6" GridPane.rowIndex="19"/>
+                                <ChoiceBox fx:id="timezone" prefHeight="25.0" prefWidth="641.0"
+                                           styleClass="inputdefault" GridPane.columnSpan="7" GridPane.rowIndex="22"/>
+                                <TextField fx:id="localtime" disable="true" editable="false" focusTraversable="false"
+                                           styleClass="inputdefault" GridPane.rowIndex="24"/>
+                                <ChoiceBox fx:id="localeastwest" disable="true" focusTraversable="false"
+                                           prefWidth="150.0" styleClass="inputdefault" GridPane.columnIndex="2"
+                                           GridPane.rowIndex="24"/>
                                 <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="6"
                                            GridPane.rowIndex="26">
                                     <buttons>
                                         <Button fx:id="calculatebtn" defaultButton="true" disable="true"
-                                                mnemonicParsing="false" onAction="#onCalculate"
+                                                focusTraversable="false" mnemonicParsing="false" onAction="#onCalculate"
                                                 text="%ui.shared.btn.calculate"/>
-                                        <Button cancelButton="true" mnemonicParsing="false"
-                                                text="%ui.shared.btn.cancel"/>
+                                        <Button fx:id="cancelBtn" cancelButton="true" mnemonicParsing="false"
+                                                onAction="#onCancel" text="%ui.shared.btn.cancel"/>
                                         <Button fx:id="helpbtn" mnemonicParsing="false" onAction="#onHelp"
                                                 text="%ui.shared.btn.help"/>
                                     </buttons>
                                 </ButtonBar>
-                                <Label text="%ui.charts.input.time.dst" GridPane.columnIndex="6"
-                                       GridPane.rowIndex="18"/>
+                                <Label text="%ui.shared.dst" GridPane.columnIndex="6" GridPane.rowIndex="18"/>
                             </children>
                         </GridPane>
                     </children>

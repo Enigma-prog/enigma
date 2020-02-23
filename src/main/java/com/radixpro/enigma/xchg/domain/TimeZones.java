@@ -96,4 +96,7 @@ public enum TimeZones {
       return observableList;
    }
 
+   public double getOffset() {
+      return offset;
+   }
 }

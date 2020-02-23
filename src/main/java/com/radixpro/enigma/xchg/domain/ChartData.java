@@ -24,7 +24,7 @@ public class ChartData {
       this.fullDateTime = fullDateTime;
       this.location = location;
       this.chartMetaData = chartMetaData;
-      this.julianDay = new JulianDay(fullDateTime.getDateTime());  // todo correct jd for timezoen and dst
+      this.julianDay = new JulianDay(fullDateTime.getFullDateTime());  // todo correct jd for timezoen and dst
    }
 
 

@@ -4,10 +4,11 @@
  * Please check the file copyright.txt in the root of the source for further details.
  */
 
-package com.radixpro.enigma.ui.charts;
+package com.radixpro.enigma.ui.charts.controllers;
 
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.configs.ConfigEdit;
+import com.radixpro.enigma.ui.shared.InputStatus;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableChartData;
 import com.radixpro.enigma.xchg.api.PersistedChartDataApi;
 import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
@@ -53,9 +54,10 @@ public class ChartsStart {
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setScene(scene);
       stage.showAndWait();
-
-      long newChartId = chartsInput.getNewChartId();
-      addChart(newChartId);
+      if (chartsInput.getInputStatus() == InputStatus.READY) {
+         long newChartId = chartsInput.getNewChartId();
+         addChart(newChartId);
+      }
    }
 
    @FXML

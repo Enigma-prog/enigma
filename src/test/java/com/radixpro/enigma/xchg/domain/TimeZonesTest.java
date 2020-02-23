@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TimeZonesTest {
 
+   private static final double DELTA = 0.00000001;
    private TimeZones timeZone;
 
    @Before
@@ -42,17 +43,22 @@ public class TimeZonesTest {
 
    @Test
    public void timeZoneForName() {
-      assertEquals(timeZone.ICT, timeZone.timeZoneForName("+07:00: ICT/Indochina Time"));
+      assertEquals(TimeZones.ICT, timeZone.timeZoneForName("+07:00: ICT/Indochina Time"));
    }
 
    @Test
    public void timeZoneForNameNotFound() {
-      assertEquals(timeZone.UT, timeZone.timeZoneForName("i do not exist"));
+      assertEquals(TimeZones.UT, timeZone.timeZoneForName("i do not exist"));
    }
 
    @Test
    public void getObservableList() {
       var observableList = timeZone.getObservableList();
       assertEquals(33, observableList.size());
+   }
+
+   @Test
+   public void getOffset() {
+      assertEquals(1.0, TimeZones.CET.getOffset(), DELTA);
    }
 }

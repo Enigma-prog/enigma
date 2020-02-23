@@ -20,8 +20,8 @@ public class ChartDataObjectDocumentMapper {
     */
    public Document object2Document(final ChartData chartData) {
       //noinspection ConstantConditions
-      final SimpleDate date = chartData.getFullDateTime().getDateTime().getDate();
-      final SimpleTime time = chartData.getFullDateTime().getDateTime().getTime();
+      final SimpleDate date = chartData.getFullDateTime().getFullDateTime().getDate();
+      final SimpleTime time = chartData.getFullDateTime().getFullDateTime().getTime();
       final GeographicCoordinate longInput = chartData.getLocation().getLongInput();
       final GeographicCoordinate latInput = chartData.getLocation().getLatInput();
       return Document.createDocument("_id", chartData.getId())   // todo add timezone, dst, offsetForLmt + additional metadata
@@ -32,6 +32,9 @@ public class ChartDataObjectDocumentMapper {
             .put("minute", time.getMinute())
             .put("second", time.getSecond())
             .put("gregorian", date.isGregorian())
+            .put("timezone", chartData.getFullDateTime().getTimeZone().getId())
+            .put("dst", chartData.getFullDateTime().isDst())
+            .put("offsetforlmt", chartData.getFullDateTime().getOffsetForLmt())
             .put("jdut", chartData.getJulianDayForUt())
             .put("locationname", chartData.getLocation().getName())
             .put("geolat", chartData.getLocation().getGeoLat())
@@ -56,7 +59,11 @@ public class ChartDataObjectDocumentMapper {
       var date = new SimpleDate((int) doc.get("year"), (int) doc.get("month"), (int) doc.get("day"), (boolean) doc.get("gregorian"));
       var time = new SimpleTime((int) doc.get("hour"), (int) doc.get("minute"), (int) doc.get("second"));
       var dateTime = new SimpleDateTime(date, time);
-      var fullDateTime = new FullDateTime(dateTime, TimeZones.UT, false, 0.0); // TODO replace dummy values with real values
+
+      int zoneId = (int) doc.get("timezone");
+      TimeZones timeZone = TimeZones.UT.timeZoneForId(zoneId);
+      var fullDateTime = new FullDateTime(dateTime, timeZone,
+            (boolean) doc.get("dst"), (double) doc.get("offsetforlmt"));
       var longInput = new GeographicCoordinate((int) doc.get("geolongdeg"), (int) doc.get("geolongmin"),
             (int) doc.get("geolongsec"), (String) doc.get("geolongdir"), (double) doc.get("geolong"));
       var latInput = new GeographicCoordinate((int) doc.get("geolatdeg"), (int) doc.get("geolatmin"),

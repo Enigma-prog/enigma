@@ -9,7 +9,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.radixpro.enigma.ui.charts.ChartsData">
+            xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.radixpro.enigma.ui.charts.controllers.ChartsData">
     <children>
         <GridPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../css/enigma.css">
             <columnConstraints>

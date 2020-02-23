@@ -44,7 +44,7 @@ public class ChartDataTest {
       when(simpleTimeMock.getSecond()).thenReturn(20);
       when(simpleDateTimeMock.getDate()).thenReturn(simpleDateMock);
       when(simpleDateTimeMock.getTime()).thenReturn(simpleTimeMock);
-      when(fullDateTimeMock.getDateTime()).thenReturn(simpleDateTimeMock);
+      when(fullDateTimeMock.getFullDateTime()).thenReturn(simpleDateTimeMock);
       chartData = new ChartData(id, fullDateTimeMock, locationMock, chartMetaDataMock);
    }
 

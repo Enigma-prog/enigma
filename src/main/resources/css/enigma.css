@@ -6,8 +6,7 @@
     -fx-text-fill: midnightblue;
 }
 .button {
-   -fx-background-color: steelblue;
-   -fx-text-fill: azure;
+   -fx-text-fill: midnightblue;
 }
 .radio-button {
      -fx-padding: 6;
@@ -31,9 +30,7 @@
 }
 .subtitlepane {
     -fx-background-color: blanchedalmond;
-}.titlepane {
-     -fx-background-color: steelblue;
- }
+}
 .titletext {
     -fx-font-size: 28;
     -fx-text-fill: blanchedalmond;
@@ -43,6 +40,15 @@
     -fx-font-size: 20;
     -fx-text-fill: steelblue;
     -fx-alignment: center;
+}
+.inputpane {
+     -fx-background-color: blanchedalmond;
+}
+.inputdefault {
+    -fx-background-radius:5;
+}
+.inputerror {
+    -fx-background-radius:5;
 }
 error {
     -fx-control-inner-background: yellow;
