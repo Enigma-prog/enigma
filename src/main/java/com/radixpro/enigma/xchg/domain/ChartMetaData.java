@@ -6,8 +6,12 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 import java.io.Serializable;
 
+@Getter
 public class ChartMetaData implements Serializable {
 
    // todo add entered location
@@ -17,32 +21,12 @@ public class ChartMetaData implements Serializable {
    private final ChartTypes chartType;
    private final Ratings rating;
 
-   public ChartMetaData(final String name, final String description, final String source, final ChartTypes chartType,
-                        final Ratings rating) {
+   public ChartMetaData(@NonNull final String name, @NonNull final String description, @NonNull final String source,
+                        @NonNull final ChartTypes chartType, @NonNull final Ratings rating) {
       this.name = name;
       this.description = description;
       this.source = source;
       this.chartType = chartType;
       this.rating = rating;
-   }
-
-   public String getName() {
-      return name;
-   }
-
-   public String getDescription() {
-      return description;
-   }
-
-   public String getSource() {
-      return source;
-   }
-
-   public ChartTypes getChartType() {
-      return chartType;
-   }
-
-   public Ratings getRating() {
-      return rating;
    }
 }

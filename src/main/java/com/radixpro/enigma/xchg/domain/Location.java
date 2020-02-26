@@ -6,18 +6,21 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 import java.io.Serializable;
 
+@Getter
 public class Location implements Serializable {
 
    private final GeographicCoordinate longInput;
    private final GeographicCoordinate latInput;
    private final String name;
-   private double geoLat;
-   private double geoLong;
 
 
-   public Location(final GeographicCoordinate longInput, final GeographicCoordinate latInput, final String name) {
+   public Location(@NonNull final GeographicCoordinate longInput, @NonNull final GeographicCoordinate latInput,
+                   @NonNull final String name) {
       this.longInput = longInput;
       this.latInput = latInput;
       this.name = name;
@@ -30,18 +33,5 @@ public class Location implements Serializable {
    public double getGeoLong() {
       return longInput.getValue();
    }
-
-   public String getName() {
-      return name;
-   }
-
-   public GeographicCoordinate getLongInput() {
-      return longInput;
-   }
-
-   public GeographicCoordinate getLatInput() {
-      return latInput;
-   }
-
 
 }

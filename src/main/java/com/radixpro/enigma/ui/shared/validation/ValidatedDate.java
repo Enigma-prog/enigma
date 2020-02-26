@@ -8,13 +8,17 @@ package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.api.DateTimeApi;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.val;
 
 public class ValidatedDate extends ValidatedInput {
 
+   @Getter
    private SimpleDate simpleDate;
    private final DateTimeApi dateTimeApi;
 
-   public ValidatedDate(final String input) {
+   public ValidatedDate(@NonNull final String input) {
       super(input);
       dateTimeApi = new DateTimeApi();
       validate();
@@ -24,7 +28,7 @@ public class ValidatedDate extends ValidatedInput {
    protected void validate() {
       int day, month, year;
       boolean gregorian;
-      String[] values = input.split(DATE_SEPARATOR);
+      val values = input.split(DATE_SEPARATOR);
       if (values.length != 4) {
          validated = false;
       } else {
@@ -42,7 +46,4 @@ public class ValidatedDate extends ValidatedInput {
       if (!validated) simpleDate = new SimpleDate(0, 1, 1, false);
    }
 
-   public SimpleDate getSimpleDate() {
-      return simpleDate;
-   }
 }

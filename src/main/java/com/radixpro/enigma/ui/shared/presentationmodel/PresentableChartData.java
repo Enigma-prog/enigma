@@ -7,10 +7,14 @@
 package com.radixpro.enigma.ui.shared.presentationmodel;
 
 import com.radixpro.enigma.xchg.domain.ChartData;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.val;
 
 /**
  * Wrapper around ChartData; enables the use in a tableview.
  */
+@Getter
 public class PresentableChartData {
 
    final long chartId;
@@ -19,7 +23,7 @@ public class PresentableChartData {
    final String chartDataDescr;
    final ChartData originalData;
 
-   public PresentableChartData(final ChartData chartData) {
+   public PresentableChartData(@NonNull final ChartData chartData) {
       chartId = chartData.getId();
       chartName = chartData.getChartMetaData().getName();
       chartDescr = chartData.getChartMetaData().getDescription();
@@ -27,29 +31,9 @@ public class PresentableChartData {
       originalData = chartData;
    }
 
-   public long getChartId() {
-      return chartId;
-   }
-
-   public String getChartName() {
-      return chartName;
-   }
-
-   public String getChartDescr() {
-      return chartDescr;
-   }
-
-   public String getChartDataDescr() {
-      return chartDataDescr;
-   }
-
-   public ChartData getOriginalData() {
-      return originalData;
-   }
-
-   private String createDataDescription(final ChartData chartData) {
-      StringBuilder descrSb = new StringBuilder();
-      var dateTime4Text = new PresentableDateTime(chartData.getFullDateTime());
+   private String createDataDescription(@NonNull final ChartData chartData) {
+      val descrSb = new StringBuilder();
+      val dateTime4Text = new PresentableDateTime(chartData.getFullDateTime());
       descrSb.append(dateTime4Text.getDate());
       descrSb.append(" ");
       descrSb.append(dateTime4Text.getTime());

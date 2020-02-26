@@ -7,47 +7,32 @@
 package com.radixpro.enigma.be.astron.main;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import com.radixpro.enigma.xchg.domain.SimpleDate;
 import com.radixpro.enigma.xchg.domain.SimpleDateTime;
-import com.radixpro.enigma.xchg.domain.SimpleTime;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.val;
 
 public class JulianDay {
 
    private final SeFrontend seFrontend;
+   @Getter
    private double jdNrEt;
+   @Getter
    private double jdNrUt;
 
-   public JulianDay(final SimpleDateTime dateTime) {
+   public JulianDay(@NonNull final SimpleDateTime dateTime) {
       seFrontend = SeFrontend.getFrontend();
       calculateJdNr(dateTime);
    }
 
-   private void calculateJdNr(final SimpleDateTime dateTime) {
+   private void calculateJdNr(@NonNull final SimpleDateTime dateTime) {
       // Julian Day for ET [0], and Julian Day for UT [1]
-      final SimpleDate date = dateTime.getDate();
-      final SimpleTime time = dateTime.getTime();
+      val date = dateTime.getDate();
+      val time = dateTime.getTime();
       double[] jdNrs = seFrontend.getJulianDay(date.getYear(), date.getMonth(), date.getDay(),
             time.getHour(), time.getMinute(), time.getSecond(), date.isGregorian());
       jdNrEt = jdNrs[0];
       jdNrUt = jdNrs[1];
    }
 
-   /**
-    * Julian Day number for Ephemeris time/ Dynamical time. This can be ignored for calculations by the SE as the
-    * SE already handles this.
-    *
-    * @return calculated Julian day number for ET.
-    */
-   public double getJdNrEt() {
-      return jdNrEt;
-   }
-
-   /**
-    * Julian Day number for Universal Time
-    *
-    * @return calculated JUlian day number for UT.
-    */
-   public double getJdNrUt() {
-      return jdNrUt;
-   }
 }

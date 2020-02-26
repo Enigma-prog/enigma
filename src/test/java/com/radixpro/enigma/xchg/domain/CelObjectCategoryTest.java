@@ -21,7 +21,7 @@ public class CelObjectCategoryTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("celobjectcat.extraplut", category.getRbKeyForName());
+      assertEquals("celobjectcat.extraplut", category.getNameForRB());
    }
 
 }

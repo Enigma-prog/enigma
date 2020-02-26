@@ -6,6 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
+@Getter
 public enum ObserverPositions {
    UNKNOWN(0, "observerpositions.unknown"),
    GEOCENTRIRC(1, "observerpositions.geocentric"),
@@ -15,17 +19,9 @@ public enum ObserverPositions {
    private final int id;
    private final String nameForRB;
 
-   ObserverPositions(final int id, final String nameForRB) {
+   ObserverPositions(final int id, @NonNull final String nameForRB) {
       this.id = id;
       this.nameForRB = nameForRB;
-   }
-
-   public int getId() {
-      return id;
-   }
-
-   public String getRbKeyForName() {
-      return nameForRB;
    }
 
    public ObserverPositions getObserverPositionForId(final int id) {

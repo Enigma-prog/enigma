@@ -6,84 +6,83 @@
 
 package com.radixpro.enigma.xchg.api;
 
+import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.daos.ChartDataDao;
-import com.radixpro.enigma.be.persistency.results.ChartDataResult;
-import com.radixpro.enigma.be.persistency.results.DatabaseResults;
+import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.xchg.domain.ChartData;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersistedChartDataApi {
 
-   private final static String ERROR = "ERROR";
-   private final static String OK = "OK";
    private final ChartDataDao dao;
 
    public PersistedChartDataApi() {
       dao = new ChartDataDao();
    }
 
-   public String insert(final ChartData chartData) {
-      final DatabaseResults result = dao.insert(chartData);
-      if (result != DatabaseResults.OK) {
-         // TODO handle result, use db error messages in RB
-         return ERROR;
+   public void insert(@NonNull final ChartData chartData) {
+      try {
+         dao.insert(chartData);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return OK;
    }
 
-   public String update(final ChartData chartData) {
-      final DatabaseResults result = dao.update(chartData);
-      if (result == DatabaseResults.NOT_FOUND) {
-         return "NOTFOUND";
+   public void update(@NonNull final ChartData chartData) {
+      try {
+         dao.update(chartData);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      if (result == DatabaseResults.UNKNOWN_ERROR) {
-         return ERROR;
-      }
-      return OK;
    }
 
-   public String delete(final ChartData chartData) {
-      final DatabaseResults result = dao.delete(chartData);
-      if (result != DatabaseResults.OK) {
-         // TODO handle result, use db error messages in RB
-         return ERROR;
+   public void delete(@NonNull final ChartData chartData) {
+      try {
+         dao.delete(chartData);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return OK;
    }
 
    public List<ChartData> read(final long id) {
-      ChartDataResult result = dao.read(id);
-      if (result.getDatabaseResult() != DatabaseResults.OK) {
-         // todo: throw exception
-         return null;
+      List<ChartData> chartDataResult = new ArrayList<>();
+      try {
+         chartDataResult = dao.read(id);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return result.getChartDataList();
+      return chartDataResult;
    }
 
    public List<ChartData> readAll() {
-      ChartDataResult result = dao.readAll();
-      if (result.getDatabaseResult() != DatabaseResults.OK) {
-         // todo: throw exception
-         return new ArrayList<>();
-      } else return result.getChartDataList();
+      List<ChartData> chartDataResult = new ArrayList<>();
+      try {
+         chartDataResult = dao.readAll();
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
+      }
+      return chartDataResult;
    }
 
-   public List<ChartData> search(final String searchName) {
-      ChartDataResult result = dao.search(searchName);
-      if (result.getDatabaseResult() != DatabaseResults.OK) { // TODO handle NOT_FOUND
-         // todo: throw exception
-         return null;
+   public List<ChartData> search(@NonNull final String searchName) {
+      List<ChartData> chartDataResult = new ArrayList<>();
+      try {
+         chartDataResult = dao.search(searchName);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return result.getChartDataList();
+      return chartDataResult;
    }
 
    public long getMaxId() {
-      long maxId = dao.getMaxId();
-      if (maxId < 0) {
-         // todo: throw exception
-         return -1;
+      long maxId = -1L;
+      try {
+         maxId = dao.getMaxId();
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
       return maxId;
    }

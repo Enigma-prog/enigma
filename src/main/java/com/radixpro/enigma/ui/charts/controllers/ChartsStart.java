@@ -22,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.val;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -88,8 +89,6 @@ public class ChartsStart {
    }
 
    public void initialize() {
-//      generalInfo.setFont(new Font("EnigmaAstrology", 24));
-//      generalInfo.setText("apenkop");
       defineConfig();
       defineCharts();
    }
@@ -99,21 +98,19 @@ public class ChartsStart {
    }
 
    private void defineConfig() {
-      PersistedPropertyApi propApi = new PersistedPropertyApi();
-      int currentConfigId = Integer.parseInt(propApi.read("config").get(0).getValue());
-      PersistedConfigurationApi confApi = new PersistedConfigurationApi();
+      val propApi = new PersistedPropertyApi();
+      val currentConfigId = Integer.parseInt(propApi.read("config").get(0).getValue());
+      val confApi = new PersistedConfigurationApi();
       currentConfig = confApi.read(currentConfigId).get(0);
    }
 
    private void addChart(final long chartId) {
-      var api = new PersistedChartDataApi();
-      final var chartData = api.read(chartId).get(0);
-      final var presentableChartData = new PresentableChartData(chartData);
+      val api = new PersistedChartDataApi();
+      val chartData = api.read(chartId).get(0);
+      val presentableChartData = new PresentableChartData(chartData);
       colName.setCellValueFactory(new PropertyValueFactory<>("chartName"));
       colData.setCellValueFactory(new PropertyValueFactory<>("chartDataDescr"));
-
       tvCharts.getItems().add(presentableChartData);
-
    }
 
 }

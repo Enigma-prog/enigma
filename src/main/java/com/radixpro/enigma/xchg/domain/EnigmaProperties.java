@@ -6,6 +6,9 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
@@ -15,13 +18,14 @@ public class EnigmaProperties {
 
    private static final String EXTENSION = ".properties";
    private static final String NOT_FOUND = "Cannot read properties.";
+   @Getter
    private Properties properties;
 
-   public EnigmaProperties(final String propType) {
+   public EnigmaProperties(@NonNull final String propType) {
       processProperties(propType);
    }
 
-   private void processProperties(final String propType) {
+   private void processProperties(@NonNull final String propType) {
       String rootPath = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
       if (rootPath == null) throw new RuntimeException(NOT_FOUND);
       String appConfigPath = rootPath + propType + EXTENSION;
@@ -33,7 +37,4 @@ public class EnigmaProperties {
       }
    }
 
-   public Properties getProperties() {
-      return properties;
-   }
 }

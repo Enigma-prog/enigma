@@ -6,11 +6,11 @@
 
 package com.radixpro.enigma.be.persistency.daos;
 
+import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.ConfigurationObjectDocumentMapper;
-import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
-import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
+import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
@@ -32,49 +32,57 @@ public class ConfigurationDao {
       mapper = new ConfigurationObjectDocumentMapper();
    }
 
-   public DatabaseResults insert(final Configuration config) {
-      var databaseResult = DatabaseResults.OK;
+   public void insert(@NonNull final Configuration config) throws DatabaseException {
+      WriteResult insertResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult insertResult = collection.insert(mapper.object2Document(config));
-         if (insertResult.getAffectedCount() != 1) {
-            databaseResult = DatabaseResults.NOT_UNIQUE;
-         }
+         insertResult = collection.insert(mapper.object2Document(config));
       } catch (Exception e) {
-         LOG.error("Exception when inserting configuration. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when inserting configuration. " + config.toString() + " . Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when inserting configuration.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return databaseResult;
+      if (insertResult.getAffectedCount() != 1) {
+         LOG.error("Exception when inserting configuration, probably duplicate key: " + config.toString());
+         throw new DatabaseException("Exception when inserting configuration, probably duplicate key.");
+      }
    }
 
-   public DatabaseResults update(final Configuration config) {
-      var databaseResult = DatabaseResults.OK;
+   public void update(@NonNull final Configuration config) throws DatabaseException {
+      WriteResult updateResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult updateResult = collection.update(mapper.object2Document(config));
-         if ((updateResult.getAffectedCount() == 0)) {
-            databaseResult = DatabaseResults.NOT_FOUND;
-         }
+         updateResult = collection.update(mapper.object2Document(config));
       } catch (Exception e) {
-         LOG.error("Exception when updating configuration. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when updating configuration: " + config.toString() + " . Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when updating configuration.");
+
       } finally {
          closeCollectionAndDatabase();
       }
-      return databaseResult;
+      if ((updateResult.getAffectedCount() == 0)) {
+         LOG.error("Exception when updating configuration, original does not exist: " + config.toString());
+         throw new DatabaseException("Exception when inserting configuration, poriginal does not exist.");
+      }
    }
 
-   public DatabaseResults delete(final Configuration config) {
+   public void delete(@NonNull final Configuration config) throws DatabaseException {
       openCollectionAndDatabase();
-      collection.remove(mapper.object2Document(config));
-      closeCollectionAndDatabase();
-      return DatabaseResults.OK;
+      try {
+         collection.remove(mapper.object2Document(config));
+      } catch (Exception e) {
+         LOG.error("Exception when deleting Configuration " + config.toString() + " . Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when deleting Configuration.");
+      } finally {
+         closeCollectionAndDatabase();
+      }
    }
 
-   public ConfigurationResult read(final long id) {
-      var databaseResult = DatabaseResults.OK;
+   public List<Configuration> read(final long id) throws DatabaseException {
       List<Configuration> configList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
@@ -82,31 +90,29 @@ public class ConfigurationDao {
          if (doc != null) configList.add(mapper.document2Object(doc));
       } catch (Exception e) {
          LOG.error("Exception when reading configuration. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         throw new DatabaseException("Exception when reading configuration. Orignal message: " + e.getMessage());
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ConfigurationResult(configList, databaseResult);
+      return configList;
    }
 
-   public ConfigurationResult search(final String searchName) {
-      var databaseResult = DatabaseResults.OK;
+   public List<Configuration> search(@NonNull final String searchName) throws DatabaseException {
       List<Configuration> configList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          Document doc = collection.find(Filters.eq("name", searchName)).firstOrDefault();
          if (doc != null) configList.add(mapper.document2Object(doc));
       } catch (Exception e) {
-         LOG.error("Exception when reading configuration. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         LOG.error("Exception when searching configuration using arg " + searchName + ": " + e.getMessage());
+         throw new DatabaseException("Exception when searching for configuration.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ConfigurationResult(configList, databaseResult);
+      return configList;
    }
 
-   public ConfigurationResult readAll() {
-      var databaseResult = DatabaseResults.OK;
+   public List<Configuration> readAll() throws DatabaseException {
       List<Configuration> configList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
@@ -116,14 +122,14 @@ public class ConfigurationDao {
          }
       } catch (Exception e) {
          LOG.error("Exception when reading all configurations. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         throw new DatabaseException("Exception when reading all configurations.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ConfigurationResult(configList, databaseResult);
+      return configList;
    }
 
-   public long getMaxId() {
+   public long getMaxId() throws DatabaseException {
       long maxId = 0;
       try {
          openCollectionAndDatabase();
@@ -133,7 +139,7 @@ public class ConfigurationDao {
          }
       } catch (Exception e) {
          LOG.error("Exception when reading max id for configurations. " + e.getMessage());
-         maxId = -1L;                                // TODO extend error handling
+         throw new DatabaseException("Exception when retrieving max Id for Configurations.");
       } finally {
          closeCollectionAndDatabase();
       }

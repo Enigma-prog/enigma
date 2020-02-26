@@ -21,7 +21,7 @@ public class ObserverPositionsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("observerpositions.heliocentric", observerPosition.getRbKeyForName());
+      assertEquals("observerpositions.heliocentric", observerPosition.getNameForRB());
    }
 
 

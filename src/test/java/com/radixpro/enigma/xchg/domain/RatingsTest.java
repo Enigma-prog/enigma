@@ -21,7 +21,7 @@ public class RatingsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("ratings.c", rating.getRbKeyForName());
+      assertEquals("ratings.c", rating.getNameForRB());
    }
 
    @Test

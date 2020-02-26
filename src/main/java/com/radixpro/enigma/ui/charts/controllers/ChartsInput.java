@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.val;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -239,7 +240,7 @@ public class ChartsInput {
    }
 
    private void checkTimeZones(final String newValue) {
-      TimeZones selected = TimeZones.UT.timeZoneForName(newValue);
+      val selected = TimeZones.UT.timeZoneForName(newValue);
       if (selected == TimeZones.LMT) {
          localtime.setEditable(true);
          localtime.setDisable(false);
@@ -261,7 +262,7 @@ public class ChartsInput {
    }
 
    private void checkStatus() {
-      boolean inputOk = (valChartName != null && valChartName.isValidated()
+      val inputOk = (valChartName != null && valChartName.isValidated()
             && valLat != null && valLat.isValidated()
             && valLong != null && valLong.isValidated()
             && valDate != null && valDate.isValidated()
@@ -273,39 +274,39 @@ public class ChartsInput {
    }
 
    private long saveData() {
-      final var api = new PersistedChartDataApi();
-      final long chartId = api.getMaxId() + 1;
-      final var chartData = new ChartData(chartId, constructFullDateTime(), constructLocation(), constructMetaData());
+      val api = new PersistedChartDataApi();
+      long chartId = api.getMaxId() + 1;
+      val chartData = new ChartData(chartId, constructFullDateTime(), constructLocation(), constructMetaData());
       api.insert(chartData);
       return chartId;
    }
 
    private ChartMetaData constructMetaData() {
-      final var inputName = name.getText();
-      final var inputDescription = description.getText().trim();
-      final var inputSource = source.getText().trim();
-      final var inputRating = Ratings.ZZ.ratingForName(rating.getValue());
-      final var inputChartType = ChartTypes.UNKNOWN.chartTypeForLocalName(subject.getValue());
+      val inputName = name.getText();
+      val inputDescription = description.getText().trim();
+      val inputSource = source.getText().trim();
+      val inputRating = Ratings.ZZ.ratingForName(rating.getValue());
+      val inputChartType = ChartTypes.UNKNOWN.chartTypeForLocalName(subject.getValue());
       return new ChartMetaData(inputName, inputDescription, inputSource, inputChartType, inputRating);
    }
 
    private Location constructLocation() {
-      final var enteredLocation = locationName.getText().trim();
+      val enteredLocation = locationName.getText().trim();
       String longDir = northsouth.getValue();
       if (longDir.equalsIgnoreCase("O")) longDir = "E";
-      GeographicCoordinate longitudeCoordinate = new GeographicCoordinate(valLong.getDegrees(), valLong.getMinutes(),
+      val longitudeCoordinate = new GeographicCoordinate(valLong.getDegrees(), valLong.getMinutes(),
             valLong.getSeconds(), longDir, valLong.getValue());
       String latDir = eastwest.getValue();
       if (latDir.equalsIgnoreCase("Z")) latDir = "S";
-      GeographicCoordinate latitudeCoordinate = new GeographicCoordinate(valLat.getDegrees(), valLat.getMinutes(),
+      val latitudeCoordinate = new GeographicCoordinate(valLat.getDegrees(), valLat.getMinutes(),
             valLat.getSeconds(), latDir, valLat.getValue());
       return new Location(longitudeCoordinate, latitudeCoordinate, enteredLocation);
    }
 
    private FullDateTime constructFullDateTime() {
-      final var dateTime = new SimpleDateTime(valDate.getSimpleDate(), valTime.getSimpleTime());
-      final TimeZones selectedTimeZone = TimeZones.UT.timeZoneForName(timezone.getValue());
-      final boolean selectedDst = cbDst.isSelected();
+      val dateTime = new SimpleDateTime(valDate.getSimpleDate(), valTime.getSimpleTime());
+      val selectedTimeZone = TimeZones.UT.timeZoneForName(timezone.getValue());
+      val selectedDst = cbDst.isSelected();
       double offSetForLmt = 0.0;
       if (selectedTimeZone == TimeZones.LMT) {
          offSetForLmt = valLongLocalTime.getValue() * 15.0;

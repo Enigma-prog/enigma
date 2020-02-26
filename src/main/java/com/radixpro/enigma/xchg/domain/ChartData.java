@@ -7,8 +7,13 @@
 package com.radixpro.enigma.xchg.domain;
 
 import com.radixpro.enigma.be.astron.main.JulianDay;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
+@ToString
+@Getter
 public class ChartData {
 
    @Id
@@ -18,30 +23,13 @@ public class ChartData {
    private final ChartMetaData chartMetaData;
    private final JulianDay julianDay;
 
-   public ChartData(final long id, final FullDateTime fullDateTime,
-                    final Location location, final ChartMetaData chartMetaData) {
+   public ChartData(final long id, @NonNull final FullDateTime fullDateTime,
+                    @NonNull final Location location, @NonNull final ChartMetaData chartMetaData) {
       this.id = id;
       this.fullDateTime = fullDateTime;
       this.location = location;
       this.chartMetaData = chartMetaData;
       this.julianDay = new JulianDay(fullDateTime.getFullDateTime());  // todo correct jd for timezoen and dst
-   }
-
-
-   public FullDateTime getFullDateTime() {
-      return fullDateTime;
-   }
-
-   public Location getLocation() {
-      return location;
-   }
-
-   public long getId() {
-      return id;
-   }
-
-   public ChartMetaData getChartMetaData() {
-      return chartMetaData;
    }
 
    public double getJulianDayForUt() {

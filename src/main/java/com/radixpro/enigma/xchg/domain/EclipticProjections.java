@@ -6,25 +6,21 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
+@Getter
 public enum EclipticProjections {
    UNKNOWN(0, "eclipticprojections.unknown"),
    TROPICAL(1, "eclipticprojections.tropical"),
    SIDEREAL(2, "eclipticprojections.sidereal");
 
    private final int id;
-   private final String rbId;
+   private final String nameForRB;
 
-   EclipticProjections(final int id, final String rbId) {
+   EclipticProjections(final int id, @NonNull final String nameForRB) {
       this.id = id;
-      this.rbId = rbId;
-   }
-
-   public int getId() {
-      return id;
-   }
-
-   public String getRbKeyForName() {
-      return rbId;
+      this.nameForRB = nameForRB;
    }
 
    public EclipticProjections getProjectionForId(final int id) {

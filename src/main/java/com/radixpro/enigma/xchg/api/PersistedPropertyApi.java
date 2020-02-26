@@ -6,76 +6,73 @@
 
 package com.radixpro.enigma.xchg.api;
 
+import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.daos.PropertyDao;
-import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.PropertyResult;
+import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.shared.Property;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersistedPropertyApi {
 
-   private final static String ERROR = "ERROR";
-   private final static String OK = "OK";
    private final PropertyDao dao;
 
    public PersistedPropertyApi() {
       dao = new PropertyDao();
    }
 
-   public String insert(final Property property) {
-      final DatabaseResults result = dao.insert(property);
-      if (result != DatabaseResults.OK) {
-         // TODO handle result, use db error messages in RB
-         return ERROR;
+   public void insert(@NonNull final Property property) {
+      try {
+         dao.insert(property);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return OK;
    }
 
-   public String update(final Property prop) {
-      final DatabaseResults result = dao.update(prop);
-      if (result == DatabaseResults.NOT_FOUND) {
-         return "NOTFOUND";
+   public void update(@NonNull final Property prop) {
+      try {
+         dao.update(prop);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      if (result == DatabaseResults.UNKNOWN_ERROR) {
-         return ERROR;
-      }
-      return OK;
    }
 
-   public String delete(final Property prop) {
-      final DatabaseResults result = dao.delete(prop);
-      if (result != DatabaseResults.OK) {
-         // TODO handle result, use db error messages in RB
-         return ERROR;
+   public void delete(@NonNull final Property prop) {
+      try {
+         dao.delete(prop);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return OK;
    }
 
-   public List<Property> read(final String key) {
-      PropertyResult result = dao.read(key);
-      if (result.getDatabaseResult() != DatabaseResults.OK) {
-         // todo: throw exception
-         return null;
+   public List<Property> read(@NonNull final String key) {
+      List<Property> propList = new ArrayList<>();
+      try {
+         propList = dao.read(key);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return result.getProperties();
+      return propList;
    }
 
    public List<Property> readAll() {
-      PropertyResult result = dao.readAll();
-      if (result.getDatabaseResult() != DatabaseResults.OK) {
-         // todo: throw exception
-         return new ArrayList<>();
+      List<Property> propList = new ArrayList<>();
+      try {
+         propList = dao.readAll();
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return result.getProperties();
+      return propList;
    }
 
    public long getMaxId() {
-      long maxId = dao.getMaxId();
-      if (maxId < 0) {
-         // todo: throw exception
-         return -1;
+      long maxId = -1L;
+      try {
+         maxId = dao.getMaxId();
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
       return maxId;
    }

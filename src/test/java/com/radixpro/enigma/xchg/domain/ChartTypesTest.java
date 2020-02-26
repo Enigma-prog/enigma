@@ -16,7 +16,7 @@ public class ChartTypesTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("charttype.event", chartType.getRbKeyForName());
+      assertEquals("charttype.event", chartType.getNameForRB());
    }
 
    @Test

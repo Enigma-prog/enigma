@@ -8,7 +8,11 @@ package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.Location;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.val;
 
+@Getter
 public class HorizontalPosition {
 
    private double azimuth;
@@ -23,8 +27,8 @@ public class HorizontalPosition {
     * @param location   geographic longitude and latitude
     * @param flags      settings for calculation
     */
-   public HorizontalPosition(final SeFrontend seFrontend, final double jdUt,
-                             final double[] eclCoord, final Location location,
+   public HorizontalPosition(@NonNull final SeFrontend seFrontend, final double jdUt,
+                             @NonNull final double[] eclCoord, @NonNull final Location location,
                              final int flags) {
       calculate(seFrontend, jdUt, eclCoord, location, flags);
    }
@@ -34,18 +38,10 @@ public class HorizontalPosition {
       this.altitude = altitude;
    }
 
-   private void calculate(final SeFrontend seFrontend, final double jdUt, final double[] eclCoord,
-                          final Location location, final int flags) {
-      double[] result = seFrontend.getHorizontalPosition(jdUt, eclCoord, location, flags);
+   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt, @NonNull final double[] eclCoord,
+                          @NonNull final Location location, final int flags) {
+      val result = seFrontend.getHorizontalPosition(jdUt, eclCoord, location, flags);
       azimuth = result[0];
       altitude = result[1];   // true altitude, index 2 = apparent altitude
-   }
-
-   public double getAzimuth() {
-      return azimuth;
-   }
-
-   public double getAltitude() {
-      return altitude;
    }
 }

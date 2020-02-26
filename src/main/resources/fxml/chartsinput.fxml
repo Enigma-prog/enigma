@@ -132,7 +132,8 @@
                                            GridPane.columnIndex="2" GridPane.rowIndex="19"/>
                                 <TextField fx:id="time" styleClass="inputdefault" GridPane.columnIndex="4"
                                            GridPane.rowIndex="19"/>
-                                <CheckBox alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="25.0"
+                                <CheckBox fx:id="cbDst" alignment="CENTER_RIGHT" mnemonicParsing="false"
+                                          prefHeight="25.0"
                                           prefWidth="43.0" styleClass="inputdefault" textAlignment="RIGHT"
                                           GridPane.columnIndex="6" GridPane.rowIndex="19"/>
                                 <ChoiceBox fx:id="timezone" prefHeight="25.0" prefWidth="641.0"

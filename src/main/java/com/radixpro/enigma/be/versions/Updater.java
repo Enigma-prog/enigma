@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Updater {
 
-   private static final Logger LOG = Logger.getLogger(VersionController.class);
+   private static final Logger LOG = Logger.getLogger(Updater.class);
    private final PersistedPropertyApi propApi;
 
    public Updater(final PersistedPropertyApi propApi) {

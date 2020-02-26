@@ -6,6 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
+@Getter
 public enum Aspects {
    UNKNOWN(0, -1, -1.0, false, "aspects.unknown"),
    CONJUNCTION(1, 1, 0.0, true, "aspects.conjunction"),
@@ -39,32 +43,12 @@ public enum Aspects {
    private final boolean ecliptical;
    private final String fullRbId;
 
-   Aspects(final int id, final int importance, final double angle, final boolean ecliptical, final String rbId) {
+   Aspects(final int id, final int importance, final double angle, final boolean ecliptical, @NonNull final String rbId) {
       this.id = id;
       this.importance = importance;
       this.ecliptical = ecliptical;
       this.angle = angle;
       this.fullRbId = rbId;
-   }
-
-   public int getId() {
-      return id;
-   }
-
-   public double getAngle() {
-      return angle;
-   }
-
-   public int getImportance() {
-      return importance;
-   }
-
-   public boolean isEcliptical() {
-      return ecliptical;
-   }
-
-   public String getFullRbId() {
-      return fullRbId;
    }
 
    public Aspects getAspectForId(int id) {

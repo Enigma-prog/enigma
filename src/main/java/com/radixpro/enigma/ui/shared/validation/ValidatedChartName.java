@@ -8,31 +8,33 @@ package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.api.PersistedChartDataApi;
 import com.radixpro.enigma.xchg.domain.ChartData;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.val;
 
 import java.util.List;
 
 public class ValidatedChartName extends ValidatedInput {
 
+   @Getter
    private String nameText;
 
-   public ValidatedChartName(final String input) {
+   public ValidatedChartName(@NonNull final String input) {
       super(input);
       validate();
    }
 
    @Override
    protected void validate() {
+      List<ChartData> existingChart;
       validated = true;
       nameText = input.trim();
       if (nameText.length() < 1) validated = false;
       else {
-         var api = new PersistedChartDataApi();
-         List<ChartData> existingChart = api.search(nameText);
-         if (existingChart.size() > 0) validated = false;
+         val api = new PersistedChartDataApi();
+         existingChart = api.search(nameText);
+         validated = existingChart.isEmpty();
       }
    }
 
-   public String getNameText() {
-      return nameText;
-   }
 }

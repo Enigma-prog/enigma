@@ -6,9 +6,13 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 /**
  * Housesystems for calculation, internal id and id for SE.
  */
+@Getter
 public enum HouseSystems {
    UNKNOWN(0, "", "houses.unknown", 0, false, false, false),
    NONE(-1, "", "houses.none", 0, false, false, false),
@@ -43,7 +47,7 @@ public enum HouseSystems {
    private final boolean cuspIsStart;
 
 
-   HouseSystems(final int id, final String seId, final String nameForRB, final int nrOfCusps,
+   HouseSystems(final int id, @NonNull final String seId, @NonNull final String nameForRB, final int nrOfCusps,
                 final boolean counterClockwise, final boolean quadrantSystem, final boolean cuspIsStart) {
       this.id = id;
       this.seId = seId;
@@ -52,34 +56,6 @@ public enum HouseSystems {
       this.counterClockwise = counterClockwise;
       this.quadrantSystem = quadrantSystem;
       this.cuspIsStart = cuspIsStart;
-   }
-
-   public String getSeId() {
-      return seId;
-   }
-
-   public int getId() {
-      return id;
-   }
-
-   public int getNrOfCusps() {
-      return nrOfCusps;
-   }
-
-   public String getRbKeyForName() {
-      return nameForRB;
-   }
-
-   public boolean isCounterClockwise() {
-      return counterClockwise;
-   }
-
-   public boolean isQuadrantSystem() {
-      return quadrantSystem;
-   }
-
-   public boolean isCuspIsStart() {
-      return cuspIsStart;
    }
 
    public HouseSystems getSystemForId(int id) {

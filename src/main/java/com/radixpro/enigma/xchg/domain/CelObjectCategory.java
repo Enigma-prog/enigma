@@ -6,6 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
+@Getter
 public enum CelObjectCategory {
    UNKNOWN(0, "celobjectcat.unknown"),
    CLASSICS(1, "celobjectcat.classic"),
@@ -19,17 +23,9 @@ public enum CelObjectCategory {
    private final int id;
    private final String nameForRB;
 
-   CelObjectCategory(final int id, final String nameForRB) {
+   CelObjectCategory(final int id, @NonNull final String nameForRB) {
       this.id = id;
       this.nameForRB = nameForRB;
-   }
-
-   public int getId() {
-      return id;
-   }
-
-   public String getRbKeyForName() {
-      return nameForRB;
    }
 
 }

@@ -6,24 +6,21 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 /**
  * DTO for the result of a SE calculation for houses, holds array with positions and a possible error Message.
  */
+@Getter
 public class SePositionResultHouses {
 
    private final double[] ascMc;
    private final double[] cusps;
 
-   public SePositionResultHouses(final double[] ascMc, final double[] cusps) {
+   public SePositionResultHouses(@NonNull final double[] ascMc, @NonNull final double[] cusps) {
       this.ascMc = ascMc;
       this.cusps = cusps;
    }
 
-   public double[] getAscMc() {
-      return ascMc;
-   }
-
-   public double[] getCusps() {
-      return cusps;
-   }
 }

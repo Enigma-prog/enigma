@@ -37,7 +37,7 @@ public class CelestialObjectsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("celobject.jupiter", celBody.getRbKeyForName());
+      assertEquals("celobject.jupiter", celBody.getNameForRB());
    }
 
    @Test

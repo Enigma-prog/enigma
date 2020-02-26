@@ -12,6 +12,8 @@ import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.be.astron.main.JulianDay;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.be.astron.main.Obliquity;
+import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +23,25 @@ import java.util.List;
  */
 public class FullChart {
 
+   @Getter
    private final SimpleDateTime simpleDateTime;
+   @Getter
    private final Location location;
+   @Getter
    private final CalculationSettings settings;
+   @Getter
+   private MundaneValues mundaneValues;
+   @Getter
+   private List<CelObjectPosition> bodies;
+   @Getter
+   private double obliquity;
    private final SeFrontend seFrontend;
    private final JulianDay julianDay;
    private long flagsValue;
    private List<SeFlags> allFlags;
-   private MundaneValues mundaneValues;
-   private List<CelObjectPosition> bodies;
-   private double obliquity;
 
-   public FullChart(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
+   public FullChart(@NonNull final SimpleDateTime simpleDateTime, @NonNull final Location location,
+                    @NonNull final CalculationSettings settings) {
       this.simpleDateTime = simpleDateTime;
       this.location = location;
       this.settings = settings;
@@ -74,30 +83,6 @@ public class FullChart {
 
    private void calculateObliquity() {
       obliquity = new Obliquity(seFrontend, julianDay.getJdNrUt()).getTrueObliquity();
-   }
-
-   public MundaneValues getMundaneValues() {
-      return mundaneValues;
-   }
-
-   public List<CelObjectPosition> getBodies() {
-      return bodies;
-   }
-
-   public SimpleDateTime getSimpleDateTime() {
-      return simpleDateTime;
-   }
-
-   public Location getLocation() {
-      return location;
-   }
-
-   public CalculationSettings getSettings() {
-      return settings;
-   }
-
-   public double getObliquity() {
-      return obliquity;
    }
 
    public double getJulianDayForUt() {

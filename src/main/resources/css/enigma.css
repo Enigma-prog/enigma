@@ -31,9 +31,17 @@
 .subtitlepane {
     -fx-background-color: blanchedalmond;
 }
+.errorpane {
+    -fx-background-color: yellow;
+}
 .titletext {
     -fx-font-size: 28;
     -fx-text-fill: blanchedalmond;
+    -fx-alignment: center;
+}
+.errortitletext {
+    -fx-font-size: 28;
+    -fx-text-fill: red;
     -fx-alignment: center;
 }
 .subtitletext {

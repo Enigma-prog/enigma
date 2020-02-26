@@ -9,6 +9,8 @@ package com.radixpro.enigma.be.astron.core;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.xchg.domain.Location;
+import lombok.NonNull;
+import lombok.val;
 import org.apache.log4j.Logger;
 import swisseph.SweDate;
 import swisseph.SwissEph;
@@ -57,8 +59,8 @@ public class SeFrontend {
     */
    public double[] getJulianDay(final int year, final int month, final int day, final int hour, final int min,
                                 final int sec, final boolean gregFlag) {
-      var sweDate = new SweDate();
-      final var checkValidInput = false;
+      val sweDate = new SweDate();
+      val checkValidInput = false;
       return sweDate.getJDfromUTC(year, month, day, hour, min, sec, gregFlag, checkValidInput);
    }
 
@@ -87,12 +89,12 @@ public class SeFrontend {
     * @param flags    combined settings for the SE
     * @return calculated positions
     */
-   public double[] getHorizontalPosition(final double jdUt, final double[] eclCoord,
-                                         final Location location, final int flags) {
+   public double[] getHorizontalPosition(final double jdUt, @NonNull final double[] eclCoord,
+                                         @NonNull final Location location, final int flags) {
       double[] geoPos = {location.getGeoLong(), location.getGeoLat(), 0.0};
       double[] eclPos = {eclCoord[0], eclCoord[1], eclCoord[2]};
-      double atPress = 0.0;
-      double atTemp = 0.0;
+      val atPress = 0.0;
+      val atTemp = 0.0;
       var azAlt = new double[3];
       swissEph.swe_azalt(jdUt, flags, geoPos, atPress, atTemp, eclPos, azAlt);
       return azAlt;
@@ -108,7 +110,7 @@ public class SeFrontend {
     * @param nrOfCusps number of cusps for the current housesystem
     * @return calculated positions
     */
-   public SePositionResultHouses getPositionsForHouses(final double jdUt, final int flags, final Location location,
+   public SePositionResultHouses getPositionsForHouses(final double jdUt, final int flags, @NonNull final Location location,
                                                        final int system, final int nrOfCusps) {
       var cusps = new double[nrOfCusps + 1];
       var ascMc = new double[10];
@@ -116,17 +118,17 @@ public class SeFrontend {
       return new SePositionResultHouses(ascMc, cusps);
    }
 
-   public double[] convertToEquatorial(final double[] eclipticValues, final double obliquity) {
+   public double[] convertToEquatorial(@NonNull final double[] eclipticValues, final double obliquity) {
       SwissLib swissLib = new SwissLib();
-      double[] equatorialValues = new double[3];
+      var equatorialValues = new double[3];
       swissLib.swe_cotrans(eclipticValues, equatorialValues, -obliquity);  // obliquity must be negative !
       return equatorialValues;
    }
 
    public boolean isValidDate(final int year, final int month, final int day, final boolean gregorian) {
-      final var sweDate1 = new SweDate(year, month, day, 0.0, gregorian);
-      final var calculatedJulDay = sweDate1.getJulDay();
-      final var sweDate2 = new SweDate(calculatedJulDay, gregorian);
+      val sweDate1 = new SweDate(year, month, day, 0.0, gregorian);
+      val calculatedJulDay = sweDate1.getJulDay();
+      val sweDate2 = new SweDate(calculatedJulDay, gregorian);
       return (sweDate1.getYear() == sweDate2.getYear() && sweDate1.getMonth() == sweDate2.getMonth() &&
             sweDate1.getDay() == sweDate2.getDay());
    }

@@ -6,23 +6,31 @@
 
 package com.radixpro.enigma.ui.shared.validation;
 
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.val;
+
 public class ValidatedLongitude extends ValidatedInput {
 
    private final static int LONG_DEGREE_MIN = -180;
    private final static int LONG_DEGREE_MAX = 180;
+   @Getter
    private double value;
+   @Getter
    private int degrees;
+   @Getter
    private int minutes;
+   @Getter
    private int seconds;
 
-   public ValidatedLongitude(final String input) {
+   public ValidatedLongitude(@NonNull final String input) {
       super(input);
       validate();
    }
 
    @Override
    protected void validate() {
-      String[] values = input.split(SEXAG_SEPARATOR);
+      val values = input.split(SEXAG_SEPARATOR);
       if (values.length == 2 || values.length == 3) {
          try {
             degrees = Integer.parseInt(values[0]);
@@ -39,22 +47,6 @@ public class ValidatedLongitude extends ValidatedInput {
          }
       }
       if (!validated) value = 0.0;
-   }
-
-   public double getValue() {
-      return value;
-   }
-
-   public int getDegrees() {
-      return degrees;
-   }
-
-   public int getMinutes() {
-      return minutes;
-   }
-
-   public int getSeconds() {
-      return seconds;
    }
 
 }

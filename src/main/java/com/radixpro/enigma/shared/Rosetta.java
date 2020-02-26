@@ -7,6 +7,9 @@
 package com.radixpro.enigma.shared;
 
 import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -25,10 +28,10 @@ public class Rosetta {
    private static final String DUTCH = "du";
    private static final String ENGLISH = "en";
    private static final String PROP_LANG = "lang";
-   private static final String PROPERTIES = "i18n";
    private static Rosetta instance = null;
    private ResourceBundle resourceBundle;
    private ResourceBundle helpResourceBundle;
+   @Getter
    private Locale locale;
 
    private Rosetta() {
@@ -53,17 +56,17 @@ public class Rosetta {
     *
     * @param language use "en" for English or "du" for Dutch (case-sensitive).
     */
-   public void setLanguage(final String language) {
+   public void setLanguage(@NonNull final String language) {
       if (language.equals(ENGLISH) || language.equals(DUTCH)) {
-         var propApi = new PersistedPropertyApi();
-         Property currentProp = propApi.read(PROP_LANG).get(0);    // todo handle not found
-         Property langProp = new Property(currentProp.getId(), PROP_LANG, language);
+         PersistedPropertyApi propApi;
+         propApi = new PersistedPropertyApi();
+         val currentProp = propApi.read(PROP_LANG).get(0);
+         val langProp = new Property(currentProp.getId(), PROP_LANG, language);
          propApi.update(langProp);
          reInitialize();
       } else {
          LOG.error("Unsupported language encountered: " + language);
       }
-
    }
 
    private void reInitialize() {
@@ -72,9 +75,10 @@ public class Rosetta {
    }
 
    private void initi18N() {
-      var propApi = new PersistedPropertyApi();
-      Property currentProp = propApi.read(PROP_LANG).get(0);  // todo handle not found
-      String language = currentProp.getValue();
+      val propApi = new PersistedPropertyApi();
+      Property currentProp;
+      currentProp = propApi.read(PROP_LANG).get(0);
+      val language = currentProp.getValue();
       if (language.equals(DUTCH)) locale = new Locale(DUTCH, DUTCH.toUpperCase());
       else locale = new Locale(ENGLISH, ENGLISH.toUpperCase());
    }
@@ -84,15 +88,12 @@ public class Rosetta {
       helpResourceBundle = ResourceBundle.getBundle(RB_HELP_LOCATION, locale);
    }
 
-   public String getText(final String key) {
+   public String getText(@NonNull final String key) {
       return resourceBundle.getString(key);
    }
 
-   public String getHelpText(final String key) {
+   public String getHelpText(@NonNull final String key) {
       return helpResourceBundle.getString(key);
    }
 
-   public Locale getLocale() {
-      return locale;
-   }
 }

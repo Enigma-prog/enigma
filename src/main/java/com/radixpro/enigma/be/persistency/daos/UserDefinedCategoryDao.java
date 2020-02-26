@@ -6,11 +6,11 @@
 
 package com.radixpro.enigma.be.persistency.daos;
 
+import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.UserDefinedCategoryObjectDocumentMapper;
-import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.UserDefinedCategoryResult;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
+import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
@@ -33,81 +33,86 @@ public class UserDefinedCategoryDao {
       mapper = new UserDefinedCategoryObjectDocumentMapper();
    }
 
-   public DatabaseResults insert(final UserDefinedCategory category) {
-      var databaseResult = DatabaseResults.OK;
+   public void insert(@NonNull final UserDefinedCategory category) throws DatabaseException {
+      WriteResult insertResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult insertResult = collection.insert(mapper.object2Document(category));
-         if (insertResult.getAffectedCount() != 1) {
-            databaseResult = DatabaseResults.NOT_UNIQUE;
-         }
+         insertResult = collection.insert(mapper.object2Document(category));
       } catch (Exception e) {
-         LOG.error("Exception when inserting user defined category. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when inserting user defined category: " + category.toString() + " . Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when inserting UserDefinedCategory.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return databaseResult;
+      if (insertResult.getAffectedCount() != 1) {
+         LOG.error("Could not insert UserDefinedCategory as it is not unique: " + category);
+         throw new DatabaseException("Could not insert UserDefinedCategory as it is not unique.");
+      }
    }
 
-   public DatabaseResults update(final UserDefinedCategory category) {
-      var databaseResult = DatabaseResults.OK;
+   public void update(@NonNull final UserDefinedCategory category) throws DatabaseException {
+      WriteResult updateResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult updateResult = collection.update(mapper.object2Document(category));
-         if ((updateResult.getAffectedCount() == 0)) {
-            databaseResult = DatabaseResults.NOT_FOUND;
-         }
+         updateResult = collection.update(mapper.object2Document(category));
       } catch (Exception e) {
-         LOG.error("Exception when updating user defined category. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when updating user defined category: " + category.toString() + " . Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when updating UserDefinedCategory.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return databaseResult;
+      if ((updateResult.getAffectedCount() == 0)) {
+         LOG.error("Could not update UserDefinedCategory as it does ont exist: " + category);
+         throw new DatabaseException("Could not update UserDefinedCategory as it does not exist.");
+      }
    }
 
-   public DatabaseResults delete(final UserDefinedCategory category) {
+   public void delete(@NonNull final UserDefinedCategory category) throws DatabaseException {
       openCollectionAndDatabase();
-      collection.remove(mapper.object2Document(category));
+      try {
+         collection.remove(mapper.object2Document(category));
+      } catch (Exception e) {
+         LOG.error("Exception when deleting UserDefinedCategory : " + category.toString() + " . Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when deleting UserDefinedCategory.");
+      }
       closeCollectionAndDatabase();
-      return DatabaseResults.OK;
    }
 
-   public UserDefinedCategoryResult read(final long catId) {
-      var databaseResult = DatabaseResults.OK;
+   public List<UserDefinedCategory> read(final long catId) throws DatabaseException {
       List<UserDefinedCategory> catList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          final Document doc = collection.find(Filters.eq("_id", catId)).firstOrDefault();
          if (doc != null) catList.add(mapper.document2Object(doc));
       } catch (Exception e) {
-         LOG.error("Exception when reading user defined category. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         LOG.error("Exception when reading user defined category using arg: " + catId + ": " + e.getMessage());
+         throw new DatabaseException("Exception when reading UserDefinedCategory.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new UserDefinedCategoryResult(catList, databaseResult);
+      return catList;
    }
 
-   public UserDefinedCategoryResult search(final String searchText) {
-      var databaseResult = DatabaseResults.OK;
+   public List<UserDefinedCategory> search(@NonNull final String searchText) throws DatabaseException {
       List<UserDefinedCategory> catList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          final Document doc = collection.find(Filters.eq("text", searchText)).firstOrDefault();
          if (doc != null) catList.add(mapper.document2Object(doc));
       } catch (Exception e) {
-         LOG.error("Exception when searching user defined category. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         LOG.error("Exception when searching user defined category using arg: . " + searchText + " . Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when searching UserDefinedCategory.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new UserDefinedCategoryResult(catList, databaseResult);
+      return catList;
    }
 
-   public UserDefinedCategoryResult readAll() {
-      var databaseResult = DatabaseResults.OK;
+   public List<UserDefinedCategory> readAll() throws DatabaseException {
       List<UserDefinedCategory> catList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
@@ -117,14 +122,14 @@ public class UserDefinedCategoryDao {
          }
       } catch (Exception e) {
          LOG.error("Exception when reading all user defined categories. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         throw new DatabaseException("Exception when reading all user defined categories.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new UserDefinedCategoryResult(catList, databaseResult);
+      return catList;
    }
 
-   public long getMaxId() {
+   public long getMaxId() throws DatabaseException {
       long maxId = 0;
       try {
          openCollectionAndDatabase();
@@ -133,8 +138,8 @@ public class UserDefinedCategoryDao {
             maxId = (long) cat.get("_id");
          }
       } catch (Exception e) {
-         LOG.error("Exception when reading max id for user defined category. " + e.getMessage());
-         maxId = -1L;                                // TODO extend error handling
+         LOG.error("Error when retrieving max id for UserDefinedCategory: " + e.getMessage());
+         throw new DatabaseException("Error when retrieving max id for UserDefinedCategory.");
       } finally {
          closeCollectionAndDatabase();
       }
@@ -151,6 +156,5 @@ public class UserDefinedCategoryDao {
       collection.close();
       nitriteDb.close();
    }
-
 
 }

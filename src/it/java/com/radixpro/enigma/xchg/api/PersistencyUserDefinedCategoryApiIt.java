@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Integration test for persistency of UserDefinedCategory.
@@ -38,40 +38,28 @@ public class PersistencyUserDefinedCategoryApiIt {
 
    @Test
    public void insert() {
-      String result = api.insert(userDefinedCategory1);
-      assertEquals("OK", result);
-   }
-
-   @Test
-   public void insertDuplicate() {
-      String result = api.insert(userDefinedCategory1);
-      String result2 = api.insert(userDefinedCategory1);
-      assertEquals("OK", result);
-      assertEquals("ERROR", result2);
+      try {
+         api.insert(userDefinedCategory1);
+         assertTrue("No exception occurred.", true);
+      } catch (Exception e) {
+         fail("Exception when inserting UserDefinedCategory.");
+      }
    }
 
    @Test
    public void update() {
       api.insert(userDefinedCategory1);
       var updateCat = new UserDefinedCategory(1, "ein");
-      String result = api.update(updateCat);
+      api.update(updateCat);
       UserDefinedCategory resultCat = api.read(1).get(0);
       assertEquals("ein", resultCat.getText());
-   }
-
-   @Test
-   public void updateNotExist() {
-      api.insert(userDefinedCategory1);
-      var updateCat = new UserDefinedCategory(4, "four");
-      String result = api.update(updateCat);
-      assertEquals("NOTFOUND", result);
    }
 
    @Test
    public void read() {
       api.insert(userDefinedCategory1);
       api.insert(userDefinedCategory2);
-      UserDefinedCategory cat = api.read(1).get(0);
+      var cat = api.read(1).get(0);
       assertEquals("one", cat.getText());
    }
 
@@ -87,7 +75,7 @@ public class PersistencyUserDefinedCategoryApiIt {
    public void searchNotFound() {
       api.insert(userDefinedCategory1);
       api.insert(userDefinedCategory2);
-      List result = api.search("five");
+      List<UserDefinedCategory> result = api.search("five");
       assertEquals(0, result.size());
    }
 

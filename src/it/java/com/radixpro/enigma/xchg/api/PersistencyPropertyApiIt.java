@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Integration test for persistency of Property.
@@ -37,33 +37,21 @@ public class PersistencyPropertyApiIt {
 
    @Test
    public void insert() {
-      String result = api.insert(prop1);
-      assertEquals("OK", result);
-   }
-
-   @Test
-   public void insertDuplicate() {
-      String result = api.insert(prop1);
-      String result2 = api.insert(prop1);
-      assertEquals("OK", result);
-      assertEquals("ERROR", result2);
+      try {
+         api.insert(prop1);
+         assertTrue("No exception occurred", true);
+      } catch (Exception e) {
+         fail("Exception when inserting Property.");
+      }
    }
 
    @Test
    public void update() {
       api.insert(prop1);
       var updateProp = new Property(1L, "one", "Erste");
-      String result = api.update(updateProp);
+      api.update(updateProp);
       Property resultPair = api.read("one").get(0);
       assertEquals("Erste", resultPair.getValue());
-   }
-
-   @Test
-   public void updateNotExist() {
-      api.insert(prop1);
-      var updateProp = new Property(4L, "four", "fourth in line");
-      String result = api.update(updateProp);
-      assertEquals("NOTFOUND", result);
    }
 
    @Test

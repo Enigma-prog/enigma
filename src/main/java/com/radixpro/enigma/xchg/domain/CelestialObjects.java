@@ -6,9 +6,13 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 /**
  * Celestial bodies and id's to access the SE.
  */
+@Getter
 public enum CelestialObjects {
    UNKNOWN(0, -1, CelObjectCategory.UNKNOWN, "celobject.unknown"),
    SUN(1, 0, CelObjectCategory.CLASSICS, "celobject.sun"),
@@ -46,27 +50,12 @@ public enum CelestialObjects {
    private final String nameForRB;
    private final CelObjectCategory category;
 
-   CelestialObjects(final int id, final long seId, final CelObjectCategory category, final String nameForRB) {
+   CelestialObjects(final int id, final long seId, @NonNull final CelObjectCategory category,
+                    @NonNull final String nameForRB) {
       this.id = id;
       this.seId = seId;
       this.category = category;
       this.nameForRB = nameForRB;
-   }
-
-   public int getId() {
-      return id;
-   }
-
-   public long getSeId() {
-      return seId;
-   }
-
-   public CelObjectCategory getCategory() {
-      return category;
-   }
-
-   public String getRbKeyForName() {
-      return nameForRB;
    }
 
    public CelestialObjects getCelObjectForId(int id) {

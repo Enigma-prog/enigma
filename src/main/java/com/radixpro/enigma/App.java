@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma;
 
+import com.radixpro.enigma.shared.Rosetta;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +15,6 @@ import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -35,8 +35,9 @@ public class App extends Application {
    }
 
    private void showDashboard() {
+
       FXMLLoader loader = new FXMLLoader();
-      loader.setResources(ResourceBundle.getBundle("rb/texts", new Locale("du", "DU")));
+      loader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
       loader.setLocation(getClass().getResource("/fxml/dashboard.fxml"));
       Parent root = null;
       try {

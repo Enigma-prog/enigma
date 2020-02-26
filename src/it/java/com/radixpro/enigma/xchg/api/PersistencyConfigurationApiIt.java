@@ -14,7 +14,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Integration test for persistency of Configuration.
@@ -39,34 +39,22 @@ public class PersistencyConfigurationApiIt {
 
    @Test
    public void insert() {
-      String result = api.insert(configuration1);
-      assertEquals("OK", result);
+      try {
+         api.insert(configuration1);
+         assertTrue("No exception occurred.", true);
+      } catch (Exception e) {
+         fail("Exception when inserting Configuration");
+      }
    }
 
-   @Test
-   public void insertDuplicate() {
-      String result = api.insert(configuration1);
-      String result2 = api.insert(configuration1);
-      assertEquals("OK", result);
-      assertEquals("ERROR", result2);
-   }
 
    @Test
    public void update() {
       api.insert(configuration1);
       var updateConfig = createConfiguration(1L, "ein");
-      String result = api.update(updateConfig);
+      api.update(updateConfig);
       Configuration resultConfig = api.read(1).get(0);
       assertEquals("ein", resultConfig.getName());
-   }
-
-   @Test
-   public void updateNotExist() {
-      api.insert(configuration1);
-      var updateConfig = createConfiguration(4, "four");
-      String result = api.update(updateConfig);
-      assertEquals("NOTFOUND", result);
-      assertEquals(1, 1);
    }
 
    @Test

@@ -6,9 +6,13 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 /**
  * Container for the result of a SE calculation for celestial bodies.
  */
+@Getter
 public class SePositionResultCelObjects {
 
    private final double[] allPositions;
@@ -22,17 +26,10 @@ public class SePositionResultCelObjects {
     *                     speed of deviation, speed of distance.
     * @param errorMsg     Errormessage or empty String.
     */
-   public SePositionResultCelObjects(final double[] allPositions, final String errorMsg) {
+   public SePositionResultCelObjects(@NonNull final double[] allPositions, @NonNull final String errorMsg) {
       this.allPositions = allPositions;
       this.errorMsg = errorMsg;
    }
 
-   public double[] getAllPositions() {
-      return allPositions;
-   }
-
-   public String getErrorMsg() {
-      return errorMsg;
-   }
 
 }

@@ -1893,3 +1893,148 @@
 2020-02-22 12:13:19,991 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-02-22 12:13:20,062 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-02-22 12:13:20,077 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:33,131 INFO  App:32 - Started Enigma.
+2020-02-24 12:00:33,879 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:33,881 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-24 12:00:38,659 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:38,741 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:38,755 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:49,036 ERROR ChartDataDao:125 - Exception when searching chart, using arg: j. Original message: null
+2020-02-24 12:00:49,044 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:50,609 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:50,987 ERROR ChartDataDao:125 - Exception when searching chart, using arg: jan. Original message: null
+2020-02-24 12:00:50,998 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:52,827 ERROR ChartDataDao:125 - Exception when searching chart, using arg: jan. Original message: null
+2020-02-24 12:00:52,840 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:52,848 ERROR ChartDataDao:125 - Exception when searching chart, using arg: jan. Original message: null
+2020-02-24 12:00:52,854 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:55,094 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:55,441 ERROR ChartDataDao:125 - Exception when searching chart, using arg: j. Original message: null
+2020-02-24 12:00:55,452 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:57,719 ERROR ChartDataDao:125 - Exception when searching chart, using arg: j. Original message: null
+2020-02-24 12:00:57,731 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:58,115 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:00:58,500 ERROR ChartDataDao:125 - Exception when searching chart, using arg: jan. Original message: null
+2020-02-24 12:00:58,509 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:01:16,600 INFO  SeFrontend:41 - Created singleton instance for SeFrontend.
+2020-02-24 12:01:27,196 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:02:57,580 INFO  App:32 - Started Enigma.
+2020-02-24 12:02:58,084 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:02:58,086 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-24 12:03:00,508 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:03:00,595 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:03:00,611 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:03:06,726 ERROR ChartDataDao:125 - Exception when searching chart, using arg: j. Original message: null
+2020-02-24 12:03:06,735 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:03:07,048 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:03:07,378 ERROR ChartDataDao:125 - Exception when searching chart, using arg: jan. Original message: null
+2020-02-24 12:03:07,389 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:03:20,178 INFO  SeFrontend:41 - Created singleton instance for SeFrontend.
+2020-02-24 12:03:34,431 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:45,660 INFO  App:32 - Started Enigma.
+2020-02-24 12:06:46,063 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:46,064 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-24 12:06:51,044 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:51,111 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:51,127 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:55,964 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:56,204 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:56,324 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:06:56,514 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:06,964 INFO  SeFrontend:41 - Created singleton instance for SeFrontend.
+2020-02-24 12:07:12,459 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:12,480 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:12,480 ERROR Nitrite:274 - Underlying store is null. Nitrite has not been initialized properly.
+2020-02-24 12:07:12,498 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:19,705 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:20,057 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:20,416 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:20,693 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:28,328 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 12:07:28,819 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:16,500 INFO  App:32 - Started Enigma.
+2020-02-24 16:39:16,922 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:16,923 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-24 16:39:19,121 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:19,189 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:19,204 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:24,628 ERROR ChartDataDao:123 - Exception when searching chart, using arg: j. Original message: null
+2020-02-24 16:39:24,635 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:25,112 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:25,287 ERROR ChartDataDao:123 - Exception when searching chart, using arg: jan. Original message: null
+2020-02-24 16:39:25,295 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:25,985 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:26,192 ERROR ChartDataDao:123 - Exception when searching chart, using arg: j. Original message: null
+2020-02-24 16:39:26,208 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:27,089 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:27,391 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:27,562 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:27,899 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:29,105 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:29,126 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:30,469 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:30,725 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:31,738 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-24 16:39:31,967 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-25 22:52:16,445 INFO  App:33 - Started Enigma.
+2020-02-25 22:52:17,124 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-25 22:52:17,124 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-25 22:52:19,673 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-25 22:52:19,755 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-25 22:52:19,770 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:29:53,111 INFO  App:32 - Started Enigma.
+2020-02-26 17:29:53,249 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:29:53,962 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:29:53,962 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 17:29:56,577 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:29:56,591 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:30:00,803 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....
+2020-02-26 17:31:43,653 INFO  App:32 - Started Enigma.
+2020-02-26 17:31:43,819 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:31:44,098 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:31:44,099 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 17:31:45,937 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:31:45,951 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:31:47,662 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....
+2020-02-26 17:38:57,760 INFO  App:32 - Started Enigma.
+2020-02-26 17:38:57,918 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:38:58,210 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:38:58,211 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 17:39:00,567 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:39:00,583 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:39:02,645 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....
+2020-02-26 17:40:57,705 INFO  App:32 - Started Enigma.
+2020-02-26 17:40:57,857 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:40:58,117 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:40:58,118 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 17:41:00,145 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:41:00,158 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:41:02,358 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....
+2020-02-26 17:42:07,669 INFO  App:32 - Started Enigma.
+2020-02-26 17:42:07,819 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:42:08,102 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:42:08,103 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 17:42:10,503 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:42:10,517 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:42:12,165 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....
+2020-02-26 17:43:29,099 INFO  App:32 - Started Enigma.
+2020-02-26 17:43:29,264 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:43:29,542 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:43:29,543 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 17:43:31,495 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:43:31,508 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 17:43:33,853 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....
+2020-02-26 20:26:24,129 INFO  App:32 - Started Enigma.
+2020-02-26 20:26:24,314 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:26:24,639 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:26:24,639 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 20:26:26,821 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:26:26,834 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:26:28,697 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....
+2020-02-26 20:27:18,811 INFO  App:32 - Started Enigma.
+2020-02-26 20:27:18,968 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:27:19,242 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:27:19,243 INFO  VersionController:53 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-02-26 20:27:21,428 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:27:21,441 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-02-26 20:27:23,137 INFO  FailFastHandler:29 - Showing termination message as a unrecoverable error occurred. Cause of error: Dit is maar een test.....

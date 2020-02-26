@@ -6,11 +6,11 @@
 
 package com.radixpro.enigma.be.persistency.daos;
 
+import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.ChartDataObjectDocumentMapper;
-import com.radixpro.enigma.be.persistency.results.ChartDataResult;
-import com.radixpro.enigma.be.persistency.results.DatabaseResults;
 import com.radixpro.enigma.xchg.domain.ChartData;
+import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 
@@ -33,67 +33,71 @@ public class ChartDataDao {
       mapper = new ChartDataObjectDocumentMapper();
    }
 
-   public DatabaseResults insert(final ChartData chartData) {
-      var databaseResult = DatabaseResults.OK;
+   public void insert(@NonNull final ChartData chartData) throws DatabaseException {
+      WriteResult insertResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult insertResult = collection.insert(mapper.object2Document(chartData));
-         if (insertResult.getAffectedCount() != 1) {
-            databaseResult = DatabaseResults.NOT_UNIQUE;
-         }
+         insertResult = collection.insert(mapper.object2Document(chartData));
       } catch (Exception e) {
-         LOG.error("Exception when inserting chart. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when inserting chart: " + chartData.toString() + ". Original message: "
+               + e.getMessage());
+         throw new DatabaseException("Exception when inserting chart.");
       } finally {
          closeCollectionAndDatabase();
+      }
+      if (insertResult.getAffectedCount() != 1) {
+         LOG.error("Exception when inserting chart, probably duplicate key: " + chartData.toString());
+         throw new DatabaseException("Exception when inserting chart, probably duplicate key.");
       }
       nitriteDb.commit();
-      return databaseResult;
    }
 
-   public DatabaseResults update(final ChartData chartData) {
-      var databaseResult = DatabaseResults.OK;
+   public void update(@NonNull final ChartData chartData) throws DatabaseException {
+      WriteResult updateResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult updateResult = collection.update(mapper.object2Document(chartData));
-         if ((updateResult.getAffectedCount() == 0)) {
-            databaseResult = DatabaseResults.NOT_FOUND;
-         }
+         updateResult = collection.update(mapper.object2Document(chartData));
       } catch (Exception e) {
-         LOG.error("Exception when updating chart. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when updating chart: " + chartData.toString() + " . Original message: " + e.getMessage());
+         throw new DatabaseException("Exception when updating chart.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return databaseResult;
+      if ((updateResult.getAffectedCount() == 0)) {
+         LOG.error("Exception when updating chart, original does not exist: " + chartData.toString());
+         throw new DatabaseException("Exception when inserting chart, original does not exist.");
+      }
    }
 
-   public DatabaseResults delete(final ChartData chartData) {
+   public void delete(@NonNull final ChartData chartData) throws DatabaseException {
       openCollectionAndDatabase();
-      Document chartDoc = mapper.object2Document(chartData);
-      collection.remove(chartDoc);
-      closeCollectionAndDatabase();
-      return DatabaseResults.OK;
+      try {
+         Document chartDoc = mapper.object2Document(chartData);
+         collection.remove(chartDoc);
+      } catch (Exception e) {
+         LOG.error("Exception when deleting chart: " + chartData.toString() + " . Original message: " + e.getMessage());
+         throw new DatabaseException("Exception when deleting chart.");
+      } finally {
+         closeCollectionAndDatabase();
+      }
    }
 
-   public ChartDataResult read(final long chartId) {
-      var databaseResult = DatabaseResults.OK;
+   public List<ChartData> read(final long chartId) throws DatabaseException {
       List<ChartData> chartDataList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          Document chartDoc = collection.find(eq("_id", chartId)).firstOrDefault();
          if (chartDoc != null) chartDataList.add(mapper.document2Object(chartDoc));
       } catch (Exception e) {
-         LOG.error("Exception when reading chart. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when reading chart using chartId :" + chartId + ". Original message: " + e.getMessage());
+         throw new DatabaseException("Exception when reading chart.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataResult(chartDataList, databaseResult);
+      return chartDataList;
    }
 
-   public ChartDataResult readAll() {
-      var databaseResult = DatabaseResults.OK;
+   public List<ChartData> readAll() throws DatabaseException {
       List<ChartData> chartDataList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
@@ -102,30 +106,29 @@ public class ChartDataDao {
             chartDataList.add(mapper.document2Object(foundChartData));
       } catch (Exception e) {
          LOG.error("Exception when reading all charts. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         throw new DatabaseException("Exception when reading all charts.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataResult(chartDataList, databaseResult);
+      return chartDataList;
    }
 
-   public ChartDataResult search(final String searchName) {
-      var databaseResult = DatabaseResults.OK;
+   public List<ChartData> search(@NonNull final String searchName) throws DatabaseException {
       List<ChartData> chartDataList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          Document chartDoc = collection.find(eq("name", searchName)).firstOrDefault();
          if (chartDoc != null) chartDataList.add(mapper.document2Object(chartDoc));
       } catch (Exception e) {
-         LOG.error("Exception when searching chart. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when searching chart, using arg: " + searchName + ". Original message: " + e.getMessage());
+         throw new DatabaseException("Exception when searching chart.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new ChartDataResult(chartDataList, databaseResult);
+      return chartDataList;
    }
 
-   public long getMaxId() {
+   public long getMaxId() throws DatabaseException {
       long maxId = 0;
       try {
          openCollectionAndDatabase();
@@ -135,7 +138,7 @@ public class ChartDataDao {
          }
       } catch (Exception e) {
          LOG.error("Exception when reading max id for charts. " + e.getMessage());
-         maxId = -1L;                                // TODO extend error handling
+         throw new DatabaseException("Exception when reading max id for charts. Original message : " + e.getMessage());
       } finally {
          closeCollectionAndDatabase();
       }

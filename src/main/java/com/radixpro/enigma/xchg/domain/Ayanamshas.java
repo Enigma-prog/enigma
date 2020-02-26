@@ -6,6 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
+@Getter
 public enum Ayanamshas {
    UNKNOWN(-2, -1, "ayanamshas.unknown"),
    NONE(-1, -1, "ayanamshas.none"),
@@ -54,22 +58,10 @@ public enum Ayanamshas {
    private final int seId;
    private final int id;
 
-   Ayanamshas(final int id, final int seId, final String nameForRB) {
+   Ayanamshas(final int id, final int seId, @NonNull final String nameForRB) {
       this.id = id;
       this.seId = seId;
       this.nameForRB = nameForRB;
-   }
-
-   public int getSeId() {
-      return seId;
-   }
-
-   public int getId() {
-      return id;
-   }
-
-   public String getRbKeyForName() {
-      return nameForRB;
    }
 
    public Ayanamshas getAyanamshaForId(int id) {

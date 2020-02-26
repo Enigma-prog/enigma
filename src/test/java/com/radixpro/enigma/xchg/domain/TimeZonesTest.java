@@ -28,7 +28,7 @@ public class TimeZonesTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("timezone.amt", timeZone.getRbKeyForName());
+      assertEquals("timezone.amt", timeZone.getNameForRB());
    }
 
    @Test

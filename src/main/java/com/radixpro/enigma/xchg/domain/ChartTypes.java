@@ -9,10 +9,13 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public enum ChartTypes {
    UNKNOWN(0, "charttype.unknown"),
    FEMALE(1, "charttype.female"),
@@ -25,19 +28,10 @@ public enum ChartTypes {
    private final int id;
    private final String nameForRB;
 
-   ChartTypes(final int id, final String nameForRB) {
+   ChartTypes(final int id, @NonNull final String nameForRB) {
       this.id = id;
       this.nameForRB = nameForRB;
    }
-
-   public int getId() {
-      return id;
-   }
-
-   public String getRbKeyForName() {
-      return nameForRB;
-   }
-
 
    public ChartTypes chartTypeForId(final int id) {
       for (ChartTypes chartType : ChartTypes.values()) {
@@ -48,7 +42,7 @@ public enum ChartTypes {
       return ChartTypes.UNKNOWN;
    }
 
-   public ChartTypes chartTypeForLocalName(final String localName) {
+   public ChartTypes chartTypeForLocalName(@NonNull final String localName) {
       final Rosetta rosetta = Rosetta.getRosetta();
       for (ChartTypes chartType : ChartTypes.values()) {
          if (rosetta.getText(chartType.nameForRB).equals(localName)) {

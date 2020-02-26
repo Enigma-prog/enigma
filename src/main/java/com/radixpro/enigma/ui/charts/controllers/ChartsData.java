@@ -9,6 +9,7 @@ package com.radixpro.enigma.ui.charts.controllers;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import lombok.val;
 
 public class ChartsData {
 
@@ -21,7 +22,7 @@ public class ChartsData {
    }
 
    public void populate() {
-      final String titlePrefix = Rosetta.getRosetta().getText("ui.charts.data.pagetitleprefix");
+      val titlePrefix = Rosetta.getRosetta().getText("ui.charts.data.pagetitleprefix");
       lblTitle.setText(titlePrefix + " " + "Jan");   // todo add name and other metadata to FullChart and use correct name
 
 

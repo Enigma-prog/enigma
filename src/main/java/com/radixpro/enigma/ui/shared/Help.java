@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import lombok.NonNull;
 
 public class Help {
 
@@ -29,11 +30,11 @@ public class Help {
       stage.close();
    }
 
-   public void setTitle(final String title) {
+   public void setTitle(@NonNull final String title) {
       lblHelpTitle.setText(title);
    }
 
-   public void setContent(final String content) {
+   public void setContent(@NonNull final String content) {
       helpText.getEngine().loadContent(PREFIX + content + POSTFIX);
    }
 

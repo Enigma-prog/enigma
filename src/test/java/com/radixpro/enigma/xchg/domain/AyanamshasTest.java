@@ -32,7 +32,7 @@ public class AyanamshasTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("ayanamshas.kugler2", ayanamsha.getRbKeyForName());
+      assertEquals("ayanamshas.kugler2", ayanamsha.getNameForRB());
    }
 
    @Test

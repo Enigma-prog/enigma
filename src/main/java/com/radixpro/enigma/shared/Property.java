@@ -6,28 +6,22 @@
 
 package com.radixpro.enigma.shared;
 
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
+
+@ToString
+@Getter
 public class Property {
 
    private final long id;
    private final String key;
    private final String value;
 
-   public Property(final long id, final String key, final String value) {
+   public Property(final long id, @NonNull final String key, @NonNull final String value) {
       this.id = id;
       this.key = key;
       this.value = value;
-   }
-
-   public long getId() {
-      return id;
-   }
-
-   public String getKey() {
-      return key;
-   }
-
-   public String getValue() {
-      return value;
    }
 
 }

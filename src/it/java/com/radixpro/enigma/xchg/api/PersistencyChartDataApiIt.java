@@ -13,7 +13,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Integration test for persistency of ChartData.
@@ -40,16 +40,12 @@ public class PersistencyChartDataApiIt {
 
    @Test
    public void insert() {
-      String result = api.insert(chartData1);
-      assertEquals("OK", result);
-   }
-
-   @Test
-   public void insertDuplicate() {
-      String result = api.insert(chartData1);
-      String result2 = api.insert(chartData1);
-      assertEquals("OK", result);
-      assertEquals("ERROR", result2);
+      try {
+         api.insert(chartData1);
+         assertTrue("No exception occurred.", true);
+      } catch (Exception e) {
+         fail("Excetion during insert of ChartData.");
+      }
    }
 
    @Test
@@ -59,14 +55,6 @@ public class PersistencyChartDataApiIt {
       api.update(updateChartData);
       ChartData chartData = api.read(1).get(0);
       assertEquals("ein", chartData.getChartMetaData().getName());
-   }
-
-   @Test
-   public void updateNotExist() {
-      api.insert(chartData1);
-      var updateChartData = createChartData(4, "four");
-      String result = api.update(updateChartData);
-      assertEquals("NOTFOUND", result);
    }
 
    @Test

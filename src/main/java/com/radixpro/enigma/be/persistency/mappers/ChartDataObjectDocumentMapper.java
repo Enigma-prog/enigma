@@ -7,6 +7,8 @@
 package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.*;
+import lombok.NonNull;
+import lombok.val;
 import org.dizitart.no2.Document;
 
 public class ChartDataObjectDocumentMapper {
@@ -18,13 +20,13 @@ public class ChartDataObjectDocumentMapper {
     * @param chartData The object to save in Nitrite.
     * @return Document for Nitrite.
     */
-   public Document object2Document(final ChartData chartData) {
+   public Document object2Document(@NonNull final ChartData chartData) {
       //noinspection ConstantConditions
-      final SimpleDate date = chartData.getFullDateTime().getFullDateTime().getDate();
-      final SimpleTime time = chartData.getFullDateTime().getFullDateTime().getTime();
-      final GeographicCoordinate longInput = chartData.getLocation().getLongInput();
-      final GeographicCoordinate latInput = chartData.getLocation().getLatInput();
-      return Document.createDocument("_id", chartData.getId())   // todo add timezone, dst, offsetForLmt + additional metadata
+      val date = chartData.getFullDateTime().getFullDateTime().getDate();
+      val time = chartData.getFullDateTime().getFullDateTime().getTime();
+      val longInput = chartData.getLocation().getLongInput();
+      val latInput = chartData.getLocation().getLatInput();
+      return Document.createDocument("_id", chartData.getId())   // todo add additional metadata
             .put("year", date.getYear())
             .put("month", date.getMonth())
             .put("day", date.getDay())
@@ -54,22 +56,21 @@ public class ChartDataObjectDocumentMapper {
             .put("rating", chartData.getChartMetaData().getRating().getId());
    }
 
-   public ChartData document2Object(final Document doc) {
-      long id = (long) doc.get("_id");
-      var date = new SimpleDate((int) doc.get("year"), (int) doc.get("month"), (int) doc.get("day"), (boolean) doc.get("gregorian"));
-      var time = new SimpleTime((int) doc.get("hour"), (int) doc.get("minute"), (int) doc.get("second"));
-      var dateTime = new SimpleDateTime(date, time);
+   public ChartData document2Object(@NonNull final Document doc) {
+      val id = (long) doc.get("_id");
+      val date = new SimpleDate((int) doc.get("year"), (int) doc.get("month"), (int) doc.get("day"), (boolean) doc.get("gregorian"));
+      val time = new SimpleTime((int) doc.get("hour"), (int) doc.get("minute"), (int) doc.get("second"));
+      val dateTime = new SimpleDateTime(date, time);
 
-      int zoneId = (int) doc.get("timezone");
-      TimeZones timeZone = TimeZones.UT.timeZoneForId(zoneId);
-      var fullDateTime = new FullDateTime(dateTime, timeZone,
-            (boolean) doc.get("dst"), (double) doc.get("offsetforlmt"));
-      var longInput = new GeographicCoordinate((int) doc.get("geolongdeg"), (int) doc.get("geolongmin"),
+      val zoneId = (int) doc.get("timezone");
+      val timeZone = TimeZones.UT.timeZoneForId(zoneId);
+      val fullDateTime = new FullDateTime(dateTime, timeZone, (boolean) doc.get("dst"), (double) doc.get("offsetforlmt"));
+      val longInput = new GeographicCoordinate((int) doc.get("geolongdeg"), (int) doc.get("geolongmin"),
             (int) doc.get("geolongsec"), (String) doc.get("geolongdir"), (double) doc.get("geolong"));
-      var latInput = new GeographicCoordinate((int) doc.get("geolatdeg"), (int) doc.get("geolatmin"),
+      val latInput = new GeographicCoordinate((int) doc.get("geolatdeg"), (int) doc.get("geolatmin"),
             (int) doc.get("geolatsec"), (String) doc.get("geolatdir"), (double) doc.get("geolat"));
-      var location = new Location(longInput, latInput, (String) doc.get("locationname"));
-      var chartMetaData = new ChartMetaData((String) doc.get("name"), (String) doc.get("description"),
+      val location = new Location(longInput, latInput, (String) doc.get("locationname"));
+      val chartMetaData = new ChartMetaData((String) doc.get("name"), (String) doc.get("description"),
             (String) doc.get("source"), ChartTypes.UNKNOWN.chartTypeForId((int) doc.get("charttype")),
             Ratings.ZZ.getRatingForId((int) doc.get("rating")));
       return new ChartData(id, fullDateTime, location, chartMetaData);

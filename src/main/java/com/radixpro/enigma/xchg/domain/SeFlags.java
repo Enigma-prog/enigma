@@ -6,12 +6,15 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+
 import static swisseph.SweConst.*;
 
 /**
  * Different parameters that define a calculation.
  * The long are values will be or'ed to define the flag value for the SE.
  */
+@Getter
 public enum SeFlags {
    SWISSEPH(SEFLG_SWIEPH),             // 2L
    HELIOCENTRIC(SEFLG_HELCTR),         // 8L
@@ -25,9 +28,5 @@ public enum SeFlags {
 
    SeFlags(long seValue) {
       this.seValue = seValue;
-   }
-
-   public long getSeValue() {
-      return seValue;
    }
 }

@@ -8,6 +8,8 @@ package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.*;
 import com.radixpro.enigma.xchg.domain.config.*;
+import lombok.NonNull;
+import lombok.val;
 import org.dizitart.no2.Document;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class ConfigurationObjectDocumentMapper {
     * @param config The objhect to save in Nitrite.
     * @return Document for Nitrite.
     */
-   public Document object2Document(final Configuration config) {
+   public Document object2Document(@NonNull final Configuration config) {
       //noinspection ConstantConditions
       return Document.createDocument("_id", config.getId())
             .put("parentid", config.getParentId())
@@ -38,23 +40,23 @@ public class ConfigurationObjectDocumentMapper {
             .put("supportedaspects", config.getDelinConfiguration().getAspectConfiguration().getAspects());
    }
 
-   public Configuration document2Object(final Document doc) {
-      long id = (long) doc.get("_id");
-      long parentId = (long) doc.get("parentid");
-      var name = (String) doc.get("name");
-      var description = (String) doc.get("description");
-      var houseSystem = HouseSystems.UNKNOWN.getSystemForId((int) doc.get("housesystem"));
-      var ayanamsha = Ayanamshas.UNKNOWN.getAyanamshaForId((int) doc.get("ayanamsha"));
-      var eclipticProjection = EclipticProjections.UNKNOWN.getProjectionForId((int) doc.get("eclipticprojection"));
-      var observerPosition = ObserverPositions.UNKNOWN.getObserverPositionForId((int) doc.get("observerposition"));
-      AspectOrbStructure aspectOrbStructure = (AspectOrbStructure) doc.get("aspectorbstructure");  // todo use id
-      double aspectBaseOrb = (double) doc.get("aspectbaseorb");
-      boolean aspectDrawInOutGoing = (boolean) doc.get("aspectdrawinoutgoing");
-      var celObjects = (ArrayList<ConfiguredCelObject>) doc.get("celestialobjects");
-      var astronConfig = new AstronConfiguration(houseSystem, ayanamsha, eclipticProjection, observerPosition, celObjects);
-      var supportedAspects = (ArrayList<ConfiguredAspect>) doc.get("supportedaspects");
-      var aspectConfiguration = new AspectConfiguration(supportedAspects, aspectBaseOrb, aspectOrbStructure, aspectDrawInOutGoing);
-      var delinConfig = new DelinConfiguration(aspectConfiguration);
+   public Configuration document2Object(@NonNull final Document doc) {
+      val id = (long) doc.get("_id");
+      val parentId = (long) doc.get("parentid");
+      val name = (String) doc.get("name");
+      val description = (String) doc.get("description");
+      val houseSystem = HouseSystems.UNKNOWN.getSystemForId((int) doc.get("housesystem"));
+      val ayanamsha = Ayanamshas.UNKNOWN.getAyanamshaForId((int) doc.get("ayanamsha"));
+      val eclipticProjection = EclipticProjections.UNKNOWN.getProjectionForId((int) doc.get("eclipticprojection"));
+      val observerPosition = ObserverPositions.UNKNOWN.getObserverPositionForId((int) doc.get("observerposition"));
+      val aspectOrbStructure = (AspectOrbStructure) doc.get("aspectorbstructure");  // todo use id
+      val aspectBaseOrb = (double) doc.get("aspectbaseorb");
+      val aspectDrawInOutGoing = (boolean) doc.get("aspectdrawinoutgoing");
+      val celObjects = (ArrayList<ConfiguredCelObject>) doc.get("celestialobjects");
+      val astronConfig = new AstronConfiguration(houseSystem, ayanamsha, eclipticProjection, observerPosition, celObjects);
+      val supportedAspects = (ArrayList<ConfiguredAspect>) doc.get("supportedaspects");
+      val aspectConfiguration = new AspectConfiguration(supportedAspects, aspectBaseOrb, aspectOrbStructure, aspectDrawInOutGoing);
+      val delinConfig = new DelinConfiguration(aspectConfiguration);
       return new Configuration(id, parentId, name, description, astronConfig, delinConfig);
    }
 

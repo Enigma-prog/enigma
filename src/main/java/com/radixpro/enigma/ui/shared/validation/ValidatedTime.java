@@ -7,9 +7,12 @@
 package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.domain.SimpleTime;
+import lombok.Getter;
+import lombok.val;
 
 public class ValidatedTime extends ValidatedInput {
 
+   @Getter
    private SimpleTime simpleTime;
 
    public ValidatedTime(final String input) {
@@ -22,7 +25,7 @@ public class ValidatedTime extends ValidatedInput {
       int hour;
       int minute;
       int second;
-      String[] values = input.split(SEXAG_SEPARATOR);
+      val values = input.split(SEXAG_SEPARATOR);
       if (values.length == 2 || values.length == 3) {
          try {
             hour = Integer.parseInt(values[0]);
@@ -38,10 +41,6 @@ public class ValidatedTime extends ValidatedInput {
          }
       }
       if (!validated) simpleTime = new SimpleTime(0, 0, 0);
-   }
-
-   public SimpleTime getSimpleTime() {
-      return simpleTime;
    }
 
 }

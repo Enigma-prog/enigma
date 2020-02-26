@@ -27,7 +27,7 @@ public class EclipticProjectionsTest {
 
    @Test
    public void getRbKeyForName() {
-      assertEquals("eclipticprojections.sidereal", projection.getRbKeyForName());
+      assertEquals("eclipticprojections.sidereal", projection.getNameForRB());
    }
 
    @Test

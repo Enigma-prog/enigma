@@ -6,89 +6,86 @@
 
 package com.radixpro.enigma.xchg.api;
 
+import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.daos.ConfigurationDao;
-import com.radixpro.enigma.be.persistency.results.ConfigurationResult;
-import com.radixpro.enigma.be.persistency.results.DatabaseResults;
+import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersistedConfigurationApi {
 
-   private final static String ERROR = "ERROR";
-   private final static String OK = "OK";
    private final ConfigurationDao dao;
 
    public PersistedConfigurationApi() {
       dao = new ConfigurationDao();
    }
 
-   public String insert(final Configuration configuration) {
-      final DatabaseResults result = dao.insert(configuration);
-      if (result != DatabaseResults.OK) {
-         // TODO handle result, use db error messages in RB
-         return ERROR;
+   public void insert(@NonNull final Configuration configuration) {
+      try {
+         dao.insert(configuration);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return OK;
    }
 
-   public String update(final Configuration configuration) {
-      final DatabaseResults result = dao.update(configuration);
-      if (result == DatabaseResults.NOT_FOUND) {
-         return "NOTFOUND";
+   public void update(@NonNull final Configuration configuration) {
+      try {
+         dao.update(configuration);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      if (result == DatabaseResults.UNKNOWN_ERROR) {
-         return ERROR;
-      }
-      return OK;
    }
 
-   public String delete(final Configuration configuration) {
-      final DatabaseResults result = dao.delete(configuration);
-      if (result != DatabaseResults.OK) {
-         // TODO handle result, use db error messages in RB
-         return ERROR;
+   public void delete(@NonNull final Configuration configuration) {
+      try {
+         dao.delete(configuration);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return OK;
    }
 
    public List<Configuration> read(final int id) {
-      ConfigurationResult result = dao.read(id);
-      if (result.getDatabaseResult() != DatabaseResults.OK) {
-         // todo: throw exception
-         return null;
+      List<Configuration> configs = new ArrayList<>();
+      try {
+         configs = dao.read(id);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return result.getConfigurations();
+      return configs;
    }
 
-   public List<Configuration> search(final String searchName) {
-      ConfigurationResult result = dao.search(searchName);
-      if (result.getDatabaseResult() != DatabaseResults.OK) {
-         // todo: throw exception
-         return null;
+   public List<Configuration> search(@NonNull final String searchName) {
+      List<Configuration> configs = new ArrayList<>();
+      try {
+         configs = dao.search(searchName);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return result.getConfigurations();
+      return configs;
    }
 
    public List<Configuration> readAll() {
-      ConfigurationResult result = dao.readAll();
-      if (result.getDatabaseResult() != DatabaseResults.OK) {
-         // todo: throw exception
-         return new ArrayList<>();
+      List<Configuration> configs = new ArrayList<>();
+      try {
+         configs = dao.readAll();
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
-      return result.getConfigurations();
+      return configs;
    }
 
    public long getMaxId() {
-      long maxId = dao.getMaxId();
-      if (maxId < 0) {
-         // todo: throw exception
-         return -1;
+      long maxId = -1L;
+      try {
+         maxId = dao.getMaxId();
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
       }
       return maxId;
    }
-
 
 }
 

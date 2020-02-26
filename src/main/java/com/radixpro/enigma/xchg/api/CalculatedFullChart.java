@@ -12,6 +12,7 @@ import com.radixpro.enigma.xchg.domain.CalculationSettings;
 import com.radixpro.enigma.xchg.domain.FullChart;
 import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SimpleDateTime;
+import lombok.NonNull;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class CalculatedFullChart {
 
    private final FullChart fullchart;
 
-   public CalculatedFullChart(final SimpleDateTime simpleDateTime, final Location location, final CalculationSettings settings) {
+   public CalculatedFullChart(@NonNull final SimpleDateTime simpleDateTime, @NonNull final Location location,
+                              @NonNull final CalculationSettings settings) {
       fullchart = new FullChart(simpleDateTime, location, settings);
    }
 

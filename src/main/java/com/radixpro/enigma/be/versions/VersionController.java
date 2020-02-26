@@ -50,12 +50,7 @@ public class VersionController {
       }
       String codeVersion = EnigmaDictionary.VERSION;
       LOG.info("Current version of code : " + codeVersion + " . Current version of database : " + dbVersion);
-      if (codeVersion.compareTo(dbVersion) > 0) {  // code has a higher version than the database
-         // TODO perform checks per version
-
-      }
-
-
+      // add checks for new versions here
    }
 
 }

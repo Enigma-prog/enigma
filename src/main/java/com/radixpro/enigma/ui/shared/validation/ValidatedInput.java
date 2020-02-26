@@ -6,6 +6,9 @@
 
 package com.radixpro.enigma.ui.shared.validation;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 public abstract class ValidatedInput {
 
    protected static final String DATE_SEPARATOR = "/";
@@ -19,14 +22,11 @@ public abstract class ValidatedInput {
    protected static final int SECONDS_PER_HOUR = 3600;
    protected static final String SEXAG_SEPARATOR = ":";
    protected final String input;
+   @Getter
    protected boolean validated = false;
 
-   public ValidatedInput(final String input) {
+   public ValidatedInput(@NonNull final String input) {
       this.input = input;
-   }
-
-   public boolean isValidated() {
-      return validated;
    }
 
    protected abstract void validate();

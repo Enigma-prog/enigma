@@ -8,10 +8,13 @@ package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
+import lombok.Getter;
+import lombok.NonNull;
 
 /**
  * Calculated positions for a specific coordinateset for a celestial body.
  */
+@Getter
 public class CelObjectSinglePosition {
 
    private String errorMsg = "";
@@ -22,11 +25,13 @@ public class CelObjectSinglePosition {
    private double deviationSpeed;
    private double distanceSpeed;
 
-   public CelObjectSinglePosition(final SeFrontend seFrontend, final Double jdUt, final CelestialObjects celBody, final int flags) {
+   public CelObjectSinglePosition(@NonNull final SeFrontend seFrontend, final double jdUt,
+                                  @NonNull final CelestialObjects celBody, final int flags) {
       calculate(seFrontend, jdUt, celBody, flags);
    }
 
-   private void calculate(final SeFrontend seFrontend, final Double jdUt, final CelestialObjects celBody, final int flags) {
+   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt,
+                          @NonNull final CelestialObjects celBody, final int flags) {
       SePositionResultCelObjects sePositionResult = seFrontend.getPositionsForCelBody(jdUt, (int) celBody.getSeId(), flags);
       errorMsg = sePositionResult.getErrorMsg();
       mainPosition = sePositionResult.getAllPositions()[0];
@@ -37,31 +42,4 @@ public class CelObjectSinglePosition {
       distanceSpeed = sePositionResult.getAllPositions()[5];
    }
 
-   public String getErrorMsg() {
-      return errorMsg;
-   }
-
-   public double getMainPosition() {
-      return mainPosition;
-   }
-
-   public double getDeviationPosition() {
-      return deviationPosition;
-   }
-
-   public double getDistancePosition() {
-      return distancePosition;
-   }
-
-   public double getMainSpeed() {
-      return mainSpeed;
-   }
-
-   public double getDeviationSpeed() {
-      return deviationSpeed;
-   }
-
-   public double getDistanceSpeed() {
-      return distanceSpeed;
-   }
 }

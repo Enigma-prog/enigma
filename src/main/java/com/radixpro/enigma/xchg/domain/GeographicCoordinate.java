@@ -6,6 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+
+@Getter
 public class GeographicCoordinate {
 
    private final int degrees;
@@ -14,7 +18,7 @@ public class GeographicCoordinate {
    private final String direction;
    private final double value;
 
-   public GeographicCoordinate(final int degrees, final int minutes, final int seconds, final String direction,
+   public GeographicCoordinate(final int degrees, final int minutes, final int seconds, @NonNull final String direction,
                                final double value) {
       this.degrees = degrees;
       this.minutes = minutes;
@@ -23,23 +27,4 @@ public class GeographicCoordinate {
       this.value = value;
    }
 
-   public int getDegrees() {
-      return degrees;
-   }
-
-   public int getMinutes() {
-      return minutes;
-   }
-
-   public int getSeconds() {
-      return seconds;
-   }
-
-   public String getDirection() {
-      return direction;
-   }
-
-   public double getValue() {
-      return value;
-   }
 }

@@ -6,8 +6,13 @@
 
 package com.radixpro.enigma.xchg.domain.config;
 
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
+@ToString
+@Getter
 public class Configuration {
 
    @Id
@@ -19,8 +24,9 @@ public class Configuration {
    private final DelinConfiguration delinConfiguration;
 
 
-   public Configuration(final long id, final long parentId, final String name, final String description,
-                        final AstronConfiguration astronConfiguration, final DelinConfiguration delinConfiguration) {
+   public Configuration(final long id, final long parentId, @NonNull final String name,
+                        @NonNull final String description, @NonNull final AstronConfiguration astronConfiguration,
+                        @NonNull final DelinConfiguration delinConfiguration) {
       this.id = id;
       this.parentId = parentId;
       this.name = name;
@@ -29,27 +35,4 @@ public class Configuration {
       this.delinConfiguration = delinConfiguration;
    }
 
-   public long getId() {
-      return id;
-   }
-
-   public long getParentId() {
-      return parentId;
-   }
-
-   public String getName() {
-      return name;
-   }
-
-   public String getDescription() {
-      return description;
-   }
-
-   public AstronConfiguration getAstronConfiguration() {
-      return astronConfiguration;
-   }
-
-   public DelinConfiguration getDelinConfiguration() {
-      return delinConfiguration;
-   }
 }

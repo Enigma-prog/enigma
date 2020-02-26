@@ -6,11 +6,11 @@
 
 package com.radixpro.enigma.be.persistency.daos;
 
+import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.PropertyDocumentMapper;
-import com.radixpro.enigma.be.persistency.results.DatabaseResults;
-import com.radixpro.enigma.be.persistency.results.PropertyResult;
 import com.radixpro.enigma.shared.Property;
+import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
@@ -32,65 +32,68 @@ public class PropertyDao {
       mapper = new PropertyDocumentMapper();
    }
 
-   public DatabaseResults insert(final Property pair) {
-      var databaseResult = DatabaseResults.OK;
+   public void insert(final Property pair) throws DatabaseException {
+      WriteResult insertResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult insertResult = collection.insert(mapper.object2Document(pair));
-         if (insertResult.getAffectedCount() != 1) {
-            databaseResult = DatabaseResults.NOT_UNIQUE;
-         }
+         insertResult = collection.insert(mapper.object2Document(pair));
       } catch (Exception e) {
-         LOG.error("Exception when inserting property. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when inserting property: " + pair.toString() + " . Original message: " + e.getMessage());
+         throw new DatabaseException("Exception when inserting property");
       } finally {
          closeCollectionAndDatabase();
       }
-      return databaseResult;
+      if (insertResult.getAffectedCount() != 1) {
+         LOG.error("Could not insert Property because there is a duplicate key: " + pair.toString());
+         throw new DatabaseException("Could not insert Property because there is a duplicate key.");
+      }
    }
 
-   public DatabaseResults update(final Property pair) {
-      var databaseResult = DatabaseResults.OK;
+   public void update(final Property pair) throws DatabaseException {
+      WriteResult updateResult;
       try {
          openCollectionAndDatabase();
-         final WriteResult updateResult = collection.update(mapper.object2Document(pair));
-         if ((updateResult.getAffectedCount() == 0)) {
-            databaseResult = DatabaseResults.NOT_FOUND;
-         }
+         updateResult = collection.update(mapper.object2Document(pair));
       } catch (Exception e) {
-         LOG.error("Exception when updating property. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;
+         LOG.error("Exception when updating property: " + pair.toString() + " . Original message: " + e.getMessage());
+         throw new DatabaseException("Exception when updating property.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return databaseResult;
+      if ((updateResult.getAffectedCount() == 0)) {
+         LOG.error("Could not update Property because it does not exist: " + pair.toString());
+         throw new DatabaseException("Could not update Property because it does not exist.");
+      }
    }
 
-   public DatabaseResults delete(final Property pair) {
+   public void delete(final Property pair) throws DatabaseException {
       openCollectionAndDatabase();
-      collection.remove(mapper.object2Document(pair));
-      closeCollectionAndDatabase();
-      return DatabaseResults.OK;
+      try {
+         collection.remove(mapper.object2Document(pair));
+      } catch (Exception e) {
+         LOG.error("Exception when deleing property: " + pair.toString() + " . Original message: " + e.getMessage());
+         throw new DatabaseException("Exception when deleing property.");
+      } finally {
+         closeCollectionAndDatabase();
+      }
    }
 
-   public PropertyResult read(final String key) {
-      var databaseResult = DatabaseResults.OK;
+   public List<Property> read(@NonNull final String key) throws DatabaseException {
       List<Property> propList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
          final Document doc = collection.find(Filters.eq("key", key)).firstOrDefault();
          if (doc != null) propList.add(mapper.document2Object(doc));
       } catch (Exception e) {
-         LOG.error("Exception when reading property. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         LOG.error("Exception when reading property using arg: " + key + ": " + e.getMessage());
+         throw new DatabaseException("Exception when reading Property.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new PropertyResult(propList, databaseResult);
+      return propList;
    }
 
-   public PropertyResult readAll() {
-      var databaseResult = DatabaseResults.OK;
+   public List<Property> readAll() throws DatabaseException {
       List<Property> propList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
@@ -100,14 +103,14 @@ public class PropertyDao {
          }
       } catch (Exception e) {
          LOG.error("Exception when reading all properties. " + e.getMessage());
-         databaseResult = DatabaseResults.UNKNOWN_ERROR;   // TODO extend error handling
+         throw new DatabaseException("Exception when reading all Porperties.");
       } finally {
          closeCollectionAndDatabase();
       }
-      return new PropertyResult(propList, databaseResult);
+      return propList;
    }
 
-   public long getMaxId() {
+   public long getMaxId() throws DatabaseException {
       long maxId = 0;
       try {
          openCollectionAndDatabase();
@@ -117,7 +120,7 @@ public class PropertyDao {
          }
       } catch (Exception e) {
          LOG.error("Exception when reading max id for property. " + e.getMessage());
-         maxId = -1L;                                // TODO extend error handling
+         throw new DatabaseException("Exception when reading max id for Properties.");
       } finally {
          closeCollectionAndDatabase();
       }
