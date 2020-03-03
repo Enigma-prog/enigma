@@ -9,8 +9,10 @@ package com.radixpro.enigma.xchg.domain;
 import lombok.Getter;
 import lombok.NonNull;
 
+import java.io.Serializable;
+
 @Getter
-public class GeographicCoordinate {
+public class GeographicCoordinate implements Serializable {
 
    private final int degrees;
    private final int minutes;

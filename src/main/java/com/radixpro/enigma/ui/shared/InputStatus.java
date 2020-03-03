@@ -9,5 +9,5 @@ package com.radixpro.enigma.ui.shared;
 public enum InputStatus {
    INCOMPLETE,
    CANCELLED,
-   READY;
+   READY
 }

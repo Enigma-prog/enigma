@@ -27,6 +27,7 @@ public class PropertyDao {
    private final PropertyDocumentMapper mapper;
    private Nitrite nitriteDb;
    private NitriteCollection collection;
+   private static final String ORG_MSG = " . Original message: ";
 
    public PropertyDao() {
       mapper = new PropertyDocumentMapper();
@@ -38,7 +39,7 @@ public class PropertyDao {
          openCollectionAndDatabase();
          insertResult = collection.insert(mapper.object2Document(pair));
       } catch (Exception e) {
-         LOG.error("Exception when inserting property: " + pair.toString() + " . Original message: " + e.getMessage());
+         LOG.error("Exception when inserting property: " + pair.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when inserting property");
       } finally {
          closeCollectionAndDatabase();
@@ -55,7 +56,7 @@ public class PropertyDao {
          openCollectionAndDatabase();
          updateResult = collection.update(mapper.object2Document(pair));
       } catch (Exception e) {
-         LOG.error("Exception when updating property: " + pair.toString() + " . Original message: " + e.getMessage());
+         LOG.error("Exception when updating property: " + pair.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when updating property.");
       } finally {
          closeCollectionAndDatabase();
@@ -71,7 +72,7 @@ public class PropertyDao {
       try {
          collection.remove(mapper.object2Document(pair));
       } catch (Exception e) {
-         LOG.error("Exception when deleing property: " + pair.toString() + " . Original message: " + e.getMessage());
+         LOG.error("Exception when deleing property: " + pair.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when deleing property.");
       } finally {
          closeCollectionAndDatabase();

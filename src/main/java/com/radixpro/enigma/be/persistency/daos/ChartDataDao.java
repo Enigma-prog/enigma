@@ -28,6 +28,7 @@ public class ChartDataDao {
    private final ChartDataObjectDocumentMapper mapper;
    private Nitrite nitriteDb;
    private NitriteCollection collection;
+   private static final String ORG_MSG = " Original message: ";
 
    public ChartDataDao() {
       mapper = new ChartDataObjectDocumentMapper();
@@ -39,7 +40,7 @@ public class ChartDataDao {
          openCollectionAndDatabase();
          insertResult = collection.insert(mapper.object2Document(chartData));
       } catch (Exception e) {
-         LOG.error("Exception when inserting chart: " + chartData.toString() + ". Original message: "
+         LOG.error("Exception when inserting chart: " + chartData.toString() + ORG_MSG
                + e.getMessage());
          throw new DatabaseException("Exception when inserting chart.");
       } finally {
@@ -58,7 +59,7 @@ public class ChartDataDao {
          openCollectionAndDatabase();
          updateResult = collection.update(mapper.object2Document(chartData));
       } catch (Exception e) {
-         LOG.error("Exception when updating chart: " + chartData.toString() + " . Original message: " + e.getMessage());
+         LOG.error("Exception when updating chart: " + chartData.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when updating chart.");
       } finally {
          closeCollectionAndDatabase();
@@ -75,7 +76,7 @@ public class ChartDataDao {
          Document chartDoc = mapper.object2Document(chartData);
          collection.remove(chartDoc);
       } catch (Exception e) {
-         LOG.error("Exception when deleting chart: " + chartData.toString() + " . Original message: " + e.getMessage());
+         LOG.error("Exception when deleting chart: " + chartData.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when deleting chart.");
       } finally {
          closeCollectionAndDatabase();
@@ -89,7 +90,7 @@ public class ChartDataDao {
          Document chartDoc = collection.find(eq("_id", chartId)).firstOrDefault();
          if (chartDoc != null) chartDataList.add(mapper.document2Object(chartDoc));
       } catch (Exception e) {
-         LOG.error("Exception when reading chart using chartId :" + chartId + ". Original message: " + e.getMessage());
+         LOG.error("Exception when reading chart using chartId :" + chartId + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when reading chart.");
       } finally {
          closeCollectionAndDatabase();
@@ -120,7 +121,7 @@ public class ChartDataDao {
          Document chartDoc = collection.find(eq("name", searchName)).firstOrDefault();
          if (chartDoc != null) chartDataList.add(mapper.document2Object(chartDoc));
       } catch (Exception e) {
-         LOG.error("Exception when searching chart, using arg: " + searchName + ". Original message: " + e.getMessage());
+         LOG.error("Exception when searching chart, using arg: " + searchName + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when searching chart.");
       } finally {
          closeCollectionAndDatabase();
@@ -138,7 +139,7 @@ public class ChartDataDao {
          }
       } catch (Exception e) {
          LOG.error("Exception when reading max id for charts. " + e.getMessage());
-         throw new DatabaseException("Exception when reading max id for charts. Original message : " + e.getMessage());
+         throw new DatabaseException("Exception when reading max id for charts." + ORG_MSG + e.getMessage());
       } finally {
          closeCollectionAndDatabase();
       }

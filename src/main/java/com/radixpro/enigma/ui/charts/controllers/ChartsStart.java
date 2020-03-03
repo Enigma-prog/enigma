@@ -39,15 +39,12 @@ public class ChartsStart {
    TableColumn<String, PresentableChartData> colName;
    @FXML
    TableColumn<String, PresentableChartData> colData;
-
-   private Configuration currentConfig;
-
-
+   private static final String ROSETTA_LOC = "rb/texts";
 
    @FXML
    void onNewChart() throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsinput.fxml"));
-      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
+      fxmlLoader.setResources(ResourceBundle.getBundle(ROSETTA_LOC, Rosetta.getRosetta().getLocale()));
       Parent parent = fxmlLoader.load();
       ChartsInput chartsInput = fxmlLoader.getController();
       Scene scene = new Scene(parent, 600, 800);
@@ -64,7 +61,7 @@ public class ChartsStart {
    @FXML
    void onPositions() throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsdata.fxml"));
-      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
+      fxmlLoader.setResources(ResourceBundle.getBundle(ROSETTA_LOC, Rosetta.getRosetta().getLocale()));
       Parent parent = fxmlLoader.load();
       ChartsData chartsData = new ChartsData();
       // define actual fullchart for ChartsData
@@ -78,7 +75,7 @@ public class ChartsStart {
    @FXML
    void onConfigEdit() throws IOException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/configedit.fxml"));
-      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
+      fxmlLoader.setResources(ResourceBundle.getBundle(ROSETTA_LOC, Rosetta.getRosetta().getLocale()));
 
       Parent parent = fxmlLoader.load();
       ConfigEdit configEdit = fxmlLoader.getController();
@@ -102,7 +99,8 @@ public class ChartsStart {
       val propApi = new PersistedPropertyApi();
       val currentConfigId = Integer.parseInt(propApi.read("config").get(0).getValue());
       val confApi = new PersistedConfigurationApi();
-      currentConfig = confApi.read(currentConfigId).get(0);
+      Configuration currentConfig = confApi.read(currentConfigId).get(0);
+      // show config
    }
 
    private void addChart(final long chartId) {

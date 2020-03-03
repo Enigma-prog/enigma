@@ -14,12 +14,14 @@ import org.dizitart.no2.Document;
 public class ChartDataObjectDocumentMapper {
 
    /**
-    * Convert object for chart-data to a Nitrite Document. Disabled check for ConstantConditions by IntelliJ Analyzer.
+    * Convert object for chart-data to a Nitrite Document.
+    * Disabled some checks for ConstantConditions by IntelliJ Analyzer.
     * SonarLint does not see any problem here.
     *
     * @param chartData The object to save in Nitrite.
     * @return Document for Nitrite.
     */
+   @SuppressWarnings({"unchecked", "ConstantConditions", "RedundantSuppression"})
    public Document object2Document(@NonNull final ChartData chartData) {
       //noinspection ConstantConditions
       val date = chartData.getFullDateTime().getSimpleDateTime().getDate();

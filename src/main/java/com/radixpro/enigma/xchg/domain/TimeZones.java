@@ -86,8 +86,7 @@ public enum TimeZones {
       for (TimeZones timeZone : TimeZones.values()) {
          localnames.add(rosetta.getText(timeZone.nameForRB));
       }
-      ObservableList<String> observableList = FXCollections.observableArrayList(localnames);
-      return observableList;
+      return FXCollections.observableArrayList(localnames);
    }
 
 }

@@ -12,8 +12,8 @@ import lombok.val;
 
 public class ValidatedLongitude extends ValidatedInput {
 
-   private final static int LONG_DEGREE_MIN = -180;
-   private final static int LONG_DEGREE_MAX = 180;
+   private static final int LONG_DEGREE_MIN = -180;
+   private static final int LONG_DEGREE_MAX = 180;
    @Getter
    private double value;
    @Getter

@@ -60,8 +60,7 @@ public class SeFrontend {
    public double[] getJulianDay(final int year, final int month, final int day, final int hour, final int min,
                                 final int sec, final boolean gregFlag) {
       val sweDate = new SweDate();
-      val checkValidInput = false;
-      return sweDate.getJDfromUTC(year, month, day, hour, min, sec, gregFlag, checkValidInput);
+      return sweDate.getJDfromUTC(year, month, day, hour, min, sec, gregFlag, false);
    }
 
    /**

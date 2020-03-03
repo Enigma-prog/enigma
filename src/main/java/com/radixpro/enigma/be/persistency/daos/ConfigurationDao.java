@@ -27,6 +27,7 @@ public class ConfigurationDao {
    private final ConfigurationObjectDocumentMapper mapper;
    private Nitrite nitriteDb;
    private NitriteCollection collection;
+   private static final String ORG_MSG = " . Original message: ";
 
    public ConfigurationDao() {
       mapper = new ConfigurationObjectDocumentMapper();
@@ -38,8 +39,7 @@ public class ConfigurationDao {
          openCollectionAndDatabase();
          insertResult = collection.insert(mapper.object2Document(config));
       } catch (Exception e) {
-         LOG.error("Exception when inserting configuration. " + config.toString() + " . Original message: "
-               + e.getMessage());
+         LOG.error("Exception when inserting configuration. " + config.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when inserting configuration.");
       } finally {
          closeCollectionAndDatabase();
@@ -56,8 +56,7 @@ public class ConfigurationDao {
          openCollectionAndDatabase();
          updateResult = collection.update(mapper.object2Document(config));
       } catch (Exception e) {
-         LOG.error("Exception when updating configuration: " + config.toString() + " . Original message: "
-               + e.getMessage());
+         LOG.error("Exception when updating configuration: " + config.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when updating configuration.");
 
       } finally {
@@ -74,8 +73,7 @@ public class ConfigurationDao {
       try {
          collection.remove(mapper.object2Document(config));
       } catch (Exception e) {
-         LOG.error("Exception when deleting Configuration " + config.toString() + " . Original message: "
-               + e.getMessage());
+         LOG.error("Exception when deleting Configuration " + config.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when deleting Configuration.");
       } finally {
          closeCollectionAndDatabase();
@@ -90,7 +88,7 @@ public class ConfigurationDao {
          if (doc != null) configList.add(mapper.document2Object(doc));
       } catch (Exception e) {
          LOG.error("Exception when reading configuration. " + e.getMessage());
-         throw new DatabaseException("Exception when reading configuration. Orignal message: " + e.getMessage());
+         throw new DatabaseException("Exception when reading configuration" + ORG_MSG + e.getMessage());
       } finally {
          closeCollectionAndDatabase();
       }

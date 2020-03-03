@@ -24,8 +24,8 @@ public class UserDefinedCategoryDao {
 
    private static final Logger LOG = Logger.getLogger(UserDefinedCategoryDao.class);
    private Nitrite nitriteDb;
-
    private static final String COLLECTION_NAME = "userdefinedcategory";
+   private static final String ORG_MSG = " . Original message: ";
    private NitriteCollection collection;
    private final UserDefinedCategoryObjectDocumentMapper mapper;
 
@@ -39,8 +39,7 @@ public class UserDefinedCategoryDao {
          openCollectionAndDatabase();
          insertResult = collection.insert(mapper.object2Document(category));
       } catch (Exception e) {
-         LOG.error("Exception when inserting user defined category: " + category.toString() + " . Original message: "
-               + e.getMessage());
+         LOG.error("Exception when inserting user defined category: " + category.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when inserting UserDefinedCategory.");
       } finally {
          closeCollectionAndDatabase();
@@ -57,8 +56,7 @@ public class UserDefinedCategoryDao {
          openCollectionAndDatabase();
          updateResult = collection.update(mapper.object2Document(category));
       } catch (Exception e) {
-         LOG.error("Exception when updating user defined category: " + category.toString() + " . Original message: "
-               + e.getMessage());
+         LOG.error("Exception when updating user defined category: " + category.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when updating UserDefinedCategory.");
       } finally {
          closeCollectionAndDatabase();
@@ -74,8 +72,7 @@ public class UserDefinedCategoryDao {
       try {
          collection.remove(mapper.object2Document(category));
       } catch (Exception e) {
-         LOG.error("Exception when deleting UserDefinedCategory : " + category.toString() + " . Original message: "
-               + e.getMessage());
+         LOG.error("Exception when deleting UserDefinedCategory : " + category.toString() + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when deleting UserDefinedCategory.");
       }
       closeCollectionAndDatabase();
@@ -103,7 +100,7 @@ public class UserDefinedCategoryDao {
          final Document doc = collection.find(Filters.eq("text", searchText)).firstOrDefault();
          if (doc != null) catList.add(mapper.document2Object(doc));
       } catch (Exception e) {
-         LOG.error("Exception when searching user defined category using arg: . " + searchText + " . Original message: "
+         LOG.error("Exception when searching user defined category using arg: . " + searchText + ORG_MSG
                + e.getMessage());
          throw new DatabaseException("Exception when searching UserDefinedCategory.");
       } finally {

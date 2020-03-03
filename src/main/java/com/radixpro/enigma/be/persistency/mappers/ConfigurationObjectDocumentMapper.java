@@ -40,6 +40,7 @@ public class ConfigurationObjectDocumentMapper {
             .put("supportedaspects", config.getDelinConfiguration().getAspectConfiguration().getAspects());
    }
 
+   @SuppressWarnings("unchecked")
    public Configuration document2Object(@NonNull final Document doc) {
       val id = (long) doc.get("_id");
       val parentId = (long) doc.get("parentid");

@@ -8,5 +8,9 @@ package com.radixpro.enigma.shared;
 
 public class EnigmaDictionary {
 
+   private EnigmaDictionary() {
+      // prevent instantiation
+   }
+
    public static final String VERSION = "2020.1";
 }

@@ -26,7 +26,9 @@ public class ValidatedDate extends ValidatedInput {
 
    @Override
    protected void validate() {
-      int day, month, year;
+      int day;
+      int month;
+      int year;
       boolean gregorian;
       val values = input.split(DATE_SEPARATOR);
       if (values.length != 4) {

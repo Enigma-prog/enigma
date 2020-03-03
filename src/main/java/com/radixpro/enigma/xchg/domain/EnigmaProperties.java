@@ -6,8 +6,11 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.shared.FailFastHandler;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.val;
+import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,8 +19,8 @@ import java.util.Properties;
 
 public class EnigmaProperties {
 
+   private static final Logger LOG = Logger.getLogger(EnigmaProperties.class);
    private static final String EXTENSION = ".properties";
-   private static final String NOT_FOUND = "Cannot read properties.";
    @Getter
    private Properties properties;
 
@@ -26,14 +29,14 @@ public class EnigmaProperties {
    }
 
    private void processProperties(@NonNull final String propType) {
-      String rootPath = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
-      if (rootPath == null) throw new RuntimeException(NOT_FOUND);
-      String appConfigPath = rootPath + propType + EXTENSION;
+      val rootPath = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
+      if (rootPath == null) new FailFastHandler().terminate("Could not define rootPath for Properties.");
+      val appConfigPath = rootPath + propType + EXTENSION;
       properties = new Properties();
       try {
          properties.load(new FileInputStream(appConfigPath));
       } catch (IOException e) {
-         e.printStackTrace();
+         LOG.error("Exception when reading properties : " + e.getMessage());
       }
    }
 
