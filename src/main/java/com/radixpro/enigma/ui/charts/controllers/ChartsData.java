@@ -23,7 +23,8 @@ public class ChartsData {
 
    public void populate() {
       val titlePrefix = Rosetta.getRosetta().getText("ui.charts.data.pagetitleprefix");
-      lblTitle.setText(titlePrefix + " " + "Jan");   // todo add name and other metadata to FullChart and use correct name
+      lblTitle.setText(titlePrefix + " " + "Jan");
+      // add name and other metadata to FullChart and use correct name
 
 
    }

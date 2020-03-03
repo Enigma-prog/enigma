@@ -49,7 +49,7 @@ public class ConfigurationObjectDocumentMapper {
       val ayanamsha = Ayanamshas.UNKNOWN.getAyanamshaForId((int) doc.get("ayanamsha"));
       val eclipticProjection = EclipticProjections.UNKNOWN.getProjectionForId((int) doc.get("eclipticprojection"));
       val observerPosition = ObserverPositions.UNKNOWN.getObserverPositionForId((int) doc.get("observerposition"));
-      val aspectOrbStructure = (AspectOrbStructure) doc.get("aspectorbstructure");  // todo use id
+      val aspectOrbStructure = (AspectOrbStructure) doc.get("aspectorbstructure");
       val aspectBaseOrb = (double) doc.get("aspectbaseorb");
       val aspectDrawInOutGoing = (boolean) doc.get("aspectdrawinoutgoing");
       val celObjects = (ArrayList<ConfiguredCelObject>) doc.get("celestialobjects");

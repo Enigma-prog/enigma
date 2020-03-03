@@ -83,7 +83,7 @@ public class ChartDataObjectDocumentMapperTest {
       var date = new SimpleDate(2020, 1, 12, true);
       var time = new SimpleTime(14, 42, 55);
       var dateTime = new SimpleDateTime(date, time);
-      var fullDateTime = new FullDateTime(dateTime, TimeZones.UT, false, 0.0);  // todo replace dummy values with real values
+      var fullDateTime = new FullDateTime(dateTime, TimeZones.UT, false, 0.0);
       var longCoord = new GeographicCoordinate(52, 13, 48, "N", 52.23);
       var latCoord = new GeographicCoordinate(6, 54, 0, "E", 6.9);
       var location = new Location(longCoord, latCoord, "Location name");

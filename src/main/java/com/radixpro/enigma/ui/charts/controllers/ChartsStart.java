@@ -66,7 +66,8 @@ public class ChartsStart {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsdata.fxml"));
       fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
       Parent parent = fxmlLoader.load();
-      ChartsData chartsData = new ChartsData(); // todo replace with actual fullchart
+      ChartsData chartsData = new ChartsData();
+      // define actual fullchart for ChartsData
       Scene scene = new Scene(parent, 1000, 800);
       Stage stage = new Stage();
       stage.initModality(Modality.APPLICATION_MODAL);

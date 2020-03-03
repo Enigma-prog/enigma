@@ -14,7 +14,6 @@ import java.io.Serializable;
 @Getter
 public class ChartMetaData implements Serializable {
 
-   // todo add entered location
    private final String name;
    private final String description;
    private final String source;

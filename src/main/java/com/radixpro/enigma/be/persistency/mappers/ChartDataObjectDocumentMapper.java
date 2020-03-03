@@ -26,7 +26,7 @@ public class ChartDataObjectDocumentMapper {
       val time = chartData.getFullDateTime().getSimpleDateTime().getTime();
       val longInput = chartData.getLocation().getLongInput();
       val latInput = chartData.getLocation().getLatInput();
-      return Document.createDocument("_id", chartData.getId())   // todo add additional metadata
+      return Document.createDocument("_id", chartData.getId())
             .put("year", date.getYear())
             .put("month", date.getMonth())
             .put("day", date.getDay())
