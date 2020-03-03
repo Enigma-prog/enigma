@@ -7,8 +7,6 @@
 package com.radixpro.enigma.xchg.api;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import com.radixpro.enigma.be.astron.main.JulianDay;
-import com.radixpro.enigma.xchg.domain.SimpleDateTime;
 
 public class DateTimeApi {
 
@@ -22,11 +20,4 @@ public class DateTimeApi {
       return seFrontend.isValidDate(year, month, day, gregorian);
    }
 
-   public double getJulianDateTimeForEt(final SimpleDateTime dateTime) {
-      return new JulianDay(dateTime).getJdNrEt();
-   }
-
-   public double getJulianDateTimeForUt(final SimpleDateTime dateTime) {
-      return new JulianDay(dateTime).getJdNrUt();
-   }
 }

@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ChartDataTest {
@@ -22,12 +21,6 @@ public class ChartDataTest {
    @Mock
    private FullDateTime fullDateTimeMock;
    @Mock
-   private SimpleDateTime simpleDateTimeMock;
-   @Mock
-   private SimpleDate simpleDateMock;
-   @Mock
-   private SimpleTime simpleTimeMock;
-   @Mock
    private Location locationMock;
    @Mock
    private ChartMetaData chartMetaDataMock;
@@ -35,19 +28,8 @@ public class ChartDataTest {
 
    @Before
    public void setUp() {
-      when(simpleDateMock.getYear()).thenReturn(2020);
-      when(simpleDateMock.getMonth()).thenReturn(2);
-      when(simpleDateMock.getDay()).thenReturn(19);
-      when(simpleDateMock.isGregorian()).thenReturn(true);
-      when(simpleTimeMock.getHour()).thenReturn(19);
-      when(simpleTimeMock.getMinute()).thenReturn(16);
-      when(simpleTimeMock.getSecond()).thenReturn(20);
-      when(simpleDateTimeMock.getDate()).thenReturn(simpleDateMock);
-      when(simpleDateTimeMock.getTime()).thenReturn(simpleTimeMock);
-      when(fullDateTimeMock.getFullDateTime()).thenReturn(simpleDateTimeMock);
       chartData = new ChartData(id, fullDateTimeMock, locationMock, chartMetaDataMock);
    }
-
 
    @Test
    public void getSimpleDateTime() {

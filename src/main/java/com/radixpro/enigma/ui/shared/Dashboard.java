@@ -9,7 +9,6 @@ package com.radixpro.enigma.ui.shared;
 import com.radixpro.enigma.shared.EnigmaDictionary;
 import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.shared.Rosetta;
-import com.radixpro.enigma.xchg.api.VersionApi;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +51,6 @@ public class Dashboard {
    }
 
    public void initialize() {
-      new VersionApi().checkAndUpdate();
       version.setText(EnigmaDictionary.VERSION);
    }
 

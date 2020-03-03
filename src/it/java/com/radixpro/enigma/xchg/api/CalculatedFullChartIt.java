@@ -52,7 +52,7 @@ public class CalculatedFullChartIt {
    private static final double GEO_LAT = 52.21666667;
    private static final double GEO_LONG = 6.9;
    private Location location;
-   private SimpleDateTime dateTime;
+   private FullDateTime fullDateTime;
    private CalculationSettings settings;
    private GeographicCoordinate longCoordinate;
    private GeographicCoordinate latCoordinate;
@@ -65,7 +65,8 @@ public class CalculatedFullChartIt {
       location = new Location(longCoordinate, latCoordinate, "Enschede");
       final SimpleDate date = new SimpleDate(YEAR, MONTH, DAY, GREGORIAN);
       final SimpleTime time = new SimpleTime(HOUR, MINUTE, SECOND);
-      dateTime = new SimpleDateTime(date, time);
+      final SimpleDateTime dateTime = new SimpleDateTime(date, time);
+      fullDateTime = new FullDateTime(dateTime, TimeZones.UT, false, 0.0);
       List<CelestialObjects> requestedBodies = new ArrayList<>();
       requestedBodies.add(CelestialObjects.SUN);
       requestedBodies.add(CelestialObjects.MOON);
@@ -84,8 +85,8 @@ public class CalculatedFullChartIt {
 
    @Test
    public void testDefaultApi() {
-      CalculatedFullChart calculatedFullChart = new CalculatedFullChart(dateTime, location, settings);
-      assertEquals(dateTime, calculatedFullChart.getDateTime());
+      CalculatedFullChart calculatedFullChart = new CalculatedFullChart(fullDateTime, location, settings);
+      assertEquals(fullDateTime, calculatedFullChart.getDateTime());
       assertEquals(location, calculatedFullChart.getLocation());
       assertEquals(settings, calculatedFullChart.getSettings());
 
@@ -96,7 +97,7 @@ public class CalculatedFullChartIt {
       assertEquals(23.447072308, calculatedFullChart.getObliquity(), DELTA);
 
       // longitudes
-      assertEquals(2434406.81770833, calculatedFullChart.getJdNrForUt(), 0.00001);  // Jd for UT
+      assertEquals(2434406.81770833, calculatedFullChart.getDateTime().getJdUt(), 0.00001);  // Jd for UT
       assertEquals(309.1185106790, bodies.get(SUN).getEclipticalPosition().getMainPosition(), DELTA);  // Sun
       assertEquals(121.764999, bodies.get(MOON).getEclipticalPosition().getMainPosition(), DELTA);   // Moon (test was 121.7647365976)
       assertEquals(305.8677131365, bodies.get(MERCURY).getEclipticalPosition().getMainPosition(), DELTA);  // Mercury

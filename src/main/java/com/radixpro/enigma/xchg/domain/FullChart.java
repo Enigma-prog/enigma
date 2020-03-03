@@ -9,7 +9,6 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.be.astron.assist.CombinedFlags;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
-import com.radixpro.enigma.be.astron.main.JulianDay;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.be.astron.main.Obliquity;
 import lombok.Getter;
@@ -24,7 +23,7 @@ import java.util.List;
 public class FullChart {
 
    @Getter
-   private final SimpleDateTime simpleDateTime;
+   private final FullDateTime fullDateTime;
    @Getter
    private final Location location;
    @Getter
@@ -36,17 +35,17 @@ public class FullChart {
    @Getter
    private double obliquity;
    private final SeFrontend seFrontend;
-   private final JulianDay julianDay;
+   private final double jdUt;
    private long flagsValue;
    private List<SeFlags> allFlags;
 
-   public FullChart(@NonNull final SimpleDateTime simpleDateTime, @NonNull final Location location,
+   public FullChart(@NonNull final FullDateTime fullDateTime, @NonNull final Location location,
                     @NonNull final CalculationSettings settings) {
-      this.simpleDateTime = simpleDateTime;
+      this.fullDateTime = fullDateTime;
       this.location = location;
       this.settings = settings;
+      this.jdUt = fullDateTime.getJdUt();
       seFrontend = SeFrontend.getFrontend();
-      julianDay = new JulianDay(simpleDateTime);
       calculateFlags();
       calculateHouses();
       calculateBodies();
@@ -71,21 +70,21 @@ public class FullChart {
    }
 
    private void calculateHouses() {
-      mundaneValues = new MundaneValues(seFrontend, julianDay.getJdNrUt(), (int) flagsValue, location, settings.getHouseSystem());
+      mundaneValues = new MundaneValues(seFrontend, jdUt, (int) flagsValue, location, settings.getHouseSystem());
    }
 
    private void calculateBodies() {
       bodies = new ArrayList<>();
       for (int i = 0; i < settings.getCelBodies().size(); i++) {
-         bodies.add(new CelObjectPosition(seFrontend, julianDay.getJdNrUt(), settings.getCelBodies().get(i), location, allFlags));
+         bodies.add(new CelObjectPosition(seFrontend, jdUt, settings.getCelBodies().get(i), location, allFlags));
       }
    }
 
    private void calculateObliquity() {
-      obliquity = new Obliquity(seFrontend, julianDay.getJdNrUt()).getTrueObliquity();
+      obliquity = new Obliquity(seFrontend, jdUt).getTrueObliquity();
    }
 
    public double getJulianDayForUt() {
-      return julianDay.getJdNrUt();
+      return jdUt;
    }
 }

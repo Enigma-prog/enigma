@@ -7,6 +7,7 @@
 package com.radixpro.enigma;
 
 import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.xchg.api.VersionApi;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,12 +31,12 @@ public class App extends Application {
    @Override
    public void start(Stage primaryStage) {
       LOG.info("Started Enigma.");
+      new VersionApi().checkAndUpdate();
       this.primaryStage = primaryStage;
       showDashboard();
    }
 
    private void showDashboard() {
-
       FXMLLoader loader = new FXMLLoader();
       loader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
       loader.setLocation(getClass().getResource("/fxml/dashboard.fxml"));

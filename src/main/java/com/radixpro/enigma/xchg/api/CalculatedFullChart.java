@@ -10,8 +10,8 @@ import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.xchg.domain.CalculationSettings;
 import com.radixpro.enigma.xchg.domain.FullChart;
+import com.radixpro.enigma.xchg.domain.FullDateTime;
 import com.radixpro.enigma.xchg.domain.Location;
-import com.radixpro.enigma.xchg.domain.SimpleDateTime;
 import lombok.NonNull;
 
 import java.util.List;
@@ -23,9 +23,9 @@ public class CalculatedFullChart {
 
    private final FullChart fullchart;
 
-   public CalculatedFullChart(@NonNull final SimpleDateTime simpleDateTime, @NonNull final Location location,
+   public CalculatedFullChart(@NonNull final FullDateTime fullDateTime, @NonNull final Location location,
                               @NonNull final CalculationSettings settings) {
-      fullchart = new FullChart(simpleDateTime, location, settings);
+      fullchart = new FullChart(fullDateTime, location, settings);
    }
 
    public List<CelObjectPosition> getBodies() {
@@ -40,8 +40,8 @@ public class CalculatedFullChart {
       return fullchart.getSettings();
    }
 
-   public SimpleDateTime getDateTime() {
-      return fullchart.getSimpleDateTime();
+   public FullDateTime getDateTime() {
+      return fullchart.getFullDateTime();
    }
 
    public Location getLocation() {
@@ -52,8 +52,5 @@ public class CalculatedFullChart {
       return fullchart.getObliquity();
    }
 
-   public double getJdNrForUt() {
-      return fullchart.getJulianDayForUt();
-   }
 
 }

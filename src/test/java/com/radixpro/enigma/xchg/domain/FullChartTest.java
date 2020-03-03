@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class FullChartTest {
 
    @Mock
-   private SimpleDateTime simpleDateTimeMock;
+   private FullDateTime fullDateTimeMock;
    @Mock
    private SimpleDate simpleDateMock;
    @Mock
@@ -44,17 +44,7 @@ public class FullChartTest {
       when(settingsMock.isSidereal()).thenReturn(true);
       when(settingsMock.getHouseSystem()).thenReturn(HouseSystems.AXIAL);
       when(settingsMock.getCelBodies()).thenReturn(celBodies);
-      when(simpleDateMock.getYear()).thenReturn(2020);
-      when(simpleDateMock.getMonth()).thenReturn(2);
-      when(simpleDateMock.getDay()).thenReturn(19);
-      when(simpleDateMock.isGregorian()).thenReturn(true);
-      when(simpleTimeMock.getHour()).thenReturn(19);
-      when(simpleTimeMock.getMinute()).thenReturn(16);
-      when(simpleTimeMock.getSecond()).thenReturn(20);
-      when(simpleDateTimeMock.getDate()).thenReturn(simpleDateMock);
-      when(simpleDateTimeMock.getTime()).thenReturn(simpleTimeMock);
-
-      fullChart = new FullChart(simpleDateTimeMock, locationMock, settingsMock);
+      fullChart = new FullChart(fullDateTimeMock, locationMock, settingsMock);
    }
 
    @Test
@@ -69,7 +59,7 @@ public class FullChartTest {
 
    @Test
    public void getDateTime() {
-      assertEquals(simpleDateTimeMock, fullChart.getSimpleDateTime());
+      assertEquals(fullDateTimeMock, fullChart.getFullDateTime());
    }
 
    @Test

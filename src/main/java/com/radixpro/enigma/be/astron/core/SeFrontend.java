@@ -64,7 +64,6 @@ public class SeFrontend {
       return sweDate.getJDfromUTC(year, month, day, hour, min, sec, gregFlag, checkValidInput);
    }
 
-
    /**
     * Calculate ecliptical or equatorial positions for a body
     *

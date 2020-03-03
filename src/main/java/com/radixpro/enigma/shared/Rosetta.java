@@ -76,8 +76,7 @@ public class Rosetta {
 
    private void initi18N() {
       val propApi = new PersistedPropertyApi();
-      Property currentProp;
-      currentProp = propApi.read(PROP_LANG).get(0);
+      Property currentProp = propApi.read(PROP_LANG).get(0);
       val language = currentProp.getValue();
       if (language.equals(DUTCH)) locale = new Locale(DUTCH, DUTCH.toUpperCase());
       else locale = new Locale(ENGLISH, ENGLISH.toUpperCase());

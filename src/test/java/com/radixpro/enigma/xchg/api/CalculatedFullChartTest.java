@@ -26,11 +26,11 @@ public class CalculatedFullChartTest {
    @Mock
    private Location locationMock;
    @Mock
-   private SimpleDateTime simpleDateTimeMock;
-   @Mock
-   private SimpleDate simpleDateMock;
-   @Mock
-   private SimpleTime simpleTimeMock;
+   private FullDateTime fullDateTimeMock;
+   //   @Mock
+//   private SimpleDate simpleDateMock;
+//   @Mock
+//   private SimpleTime simpleTimeMock;
    @Mock
    private CalculationSettings settingsMock;
    private FullChart fullChart;
@@ -47,16 +47,16 @@ public class CalculatedFullChartTest {
       when(settingsMock.isHeliocentric()).thenReturn(false);
       when(settingsMock.getHouseSystem()).thenReturn(HouseSystems.PLACIDUS);
       when(settingsMock.getCelBodies()).thenReturn(bodies);
-      when(simpleDateMock.getYear()).thenReturn(2020);
-      when(simpleDateMock.getMonth()).thenReturn(2);
-      when(simpleDateMock.getDay()).thenReturn(19);
-      when(simpleDateMock.isGregorian()).thenReturn(true);
-      when(simpleTimeMock.getHour()).thenReturn(19);
-      when(simpleTimeMock.getMinute()).thenReturn(16);
-      when(simpleTimeMock.getSecond()).thenReturn(20);
-      when(simpleDateTimeMock.getDate()).thenReturn(simpleDateMock);
-      when(simpleDateTimeMock.getTime()).thenReturn(simpleTimeMock);
-      fullChart = new FullChart(simpleDateTimeMock, locationMock, settingsMock);
+//      when(simpleDateMock.getYear()).thenReturn(2020);
+//      when(simpleDateMock.getMonth()).thenReturn(2);
+//      when(simpleDateMock.getDay()).thenReturn(19);
+//      when(simpleDateMock.isGregorian()).thenReturn(true);
+//      when(simpleTimeMock.getHour()).thenReturn(19);
+//      when(simpleTimeMock.getMinute()).thenReturn(16);
+//      when(simpleTimeMock.getSecond()).thenReturn(20);
+//      when(fullDateTimeMock.getDate()).thenReturn(simpleDateMock);
+//      when(fullDateTimeMock.getTime()).thenReturn(simpleTimeMock);
+      fullChart = new FullChart(fullDateTimeMock, locationMock, settingsMock);
    }
 
    @Test
@@ -76,7 +76,7 @@ public class CalculatedFullChartTest {
 
    @Test
    public void getDateTime() {
-      assertEquals(simpleDateTimeMock, fullChart.getSimpleDateTime());
+      assertEquals(fullDateTimeMock, fullChart.getFullDateTime());
    }
 
    @Test

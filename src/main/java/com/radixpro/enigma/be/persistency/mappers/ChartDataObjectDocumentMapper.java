@@ -22,8 +22,8 @@ public class ChartDataObjectDocumentMapper {
     */
    public Document object2Document(@NonNull final ChartData chartData) {
       //noinspection ConstantConditions
-      val date = chartData.getFullDateTime().getFullDateTime().getDate();
-      val time = chartData.getFullDateTime().getFullDateTime().getTime();
+      val date = chartData.getFullDateTime().getSimpleDateTime().getDate();
+      val time = chartData.getFullDateTime().getSimpleDateTime().getTime();
       val longInput = chartData.getLocation().getLongInput();
       val latInput = chartData.getLocation().getLatInput();
       return Document.createDocument("_id", chartData.getId())   // todo add additional metadata
@@ -37,7 +37,7 @@ public class ChartDataObjectDocumentMapper {
             .put("timezone", chartData.getFullDateTime().getTimeZone().getId())
             .put("dst", chartData.getFullDateTime().isDst())
             .put("offsetforlmt", chartData.getFullDateTime().getOffsetForLmt())
-            .put("jdut", chartData.getJulianDayForUt())
+            .put("jdut", chartData.getFullDateTime().getJdUt())
             .put("locationname", chartData.getLocation().getName())
             .put("geolat", chartData.getLocation().getGeoLat())
             .put("geolong", chartData.getLocation().getGeoLong())

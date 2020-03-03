@@ -23,7 +23,7 @@ public class PresentableDateTime {
    private final String time;
 
    public PresentableDateTime(@NonNull final FullDateTime dateTime) {
-      date = constructDateText(dateTime.getFullDateTime().getDate());
+      date = constructDateText(dateTime.getSimpleDateTime().getDate());
       time = constructTimeText(dateTime);
    }
 
@@ -36,9 +36,9 @@ public class PresentableDateTime {
    }
 
    private String constructTimeText(@NonNull final FullDateTime fullDateTime) {
-      val hour = fullDateTime.getFullDateTime().getTime().getHour();
-      val minute = fullDateTime.getFullDateTime().getTime().getMinute();
-      val second = fullDateTime.getFullDateTime().getTime().getSecond();
+      val hour = fullDateTime.getSimpleDateTime().getTime().getHour();
+      val minute = fullDateTime.getSimpleDateTime().getTime().getMinute();
+      val second = fullDateTime.getSimpleDateTime().getTime().getSecond();
       val zoneTxt = Rosetta.getRosetta().getText(fullDateTime.getTimeZone().getNameForRB());
       val dstKey = fullDateTime.isDst() ? "ui.shared.dst" : "ui.shared.nodst";
       val dstTxt = Rosetta.getRosetta().getText(dstKey);

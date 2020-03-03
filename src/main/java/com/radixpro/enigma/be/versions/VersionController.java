@@ -33,19 +33,21 @@ public class VersionController {
    }
 
    private void performFullInitialisation() {
-      LOG.info("No database, performing full initiialization.");
+      LOG.info("No database, performing full initialization.");
       updater.performFullUpdate();
 
    }
 
    private void performCheckedInitialisation() {
+      LOG.info("Performing checked initialization.");
       PersistedPropertyApi api = new PersistedPropertyApi();
       String dbVersion;
       try {
          Property versionProp = api.read("version").get(0);
          dbVersion = versionProp.getValue();
       } catch (Exception e) {
-         LOG.error("Could not read version from database. Assumed database is not yet installed and set version to 0");
+         LOG.error("Could not read version from database. Assumed database is not yet installed and set version to 0. "
+               + e.getMessage());
          dbVersion = "0";
       }
       String codeVersion = EnigmaDictionary.VERSION;
