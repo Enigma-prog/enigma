@@ -10,9 +10,11 @@ import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.configs.ConfigEdit;
 import com.radixpro.enigma.ui.shared.InputStatus;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableChartData;
+import com.radixpro.enigma.xchg.api.CalculatedFullChart;
 import com.radixpro.enigma.xchg.api.PersistedChartDataApi;
 import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
 import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
+import com.radixpro.enigma.xchg.domain.*;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,8 @@ import javafx.stage.Stage;
 import lombok.val;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ChartsStart {
@@ -54,7 +58,27 @@ public class ChartsStart {
       stage.showAndWait();
       if (chartsInput.getInputStatus() == InputStatus.READY) {
          long newChartId = chartsInput.getNewChartId();
-         addChart(newChartId);
+         val chartData = addChart(newChartId);
+         // temporary solution, replace with data from configuration
+         List<CelestialObjects> requestedBodies = new ArrayList<>();
+         requestedBodies.add(CelestialObjects.SUN);
+         requestedBodies.add(CelestialObjects.MOON);
+         requestedBodies.add(CelestialObjects.MERCURY);
+         requestedBodies.add(CelestialObjects.VENUS);
+         requestedBodies.add(CelestialObjects.MARS);
+         requestedBodies.add(CelestialObjects.JUPITER);
+         requestedBodies.add(CelestialObjects.SATURN);
+         requestedBodies.add(CelestialObjects.URANUS);
+         requestedBodies.add(CelestialObjects.NEPTUNE);
+         requestedBodies.add(CelestialObjects.PLUTO);
+         requestedBodies.add(CelestialObjects.CHEIRON);
+         requestedBodies.add(CelestialObjects.MEAN_NODE);
+         val settings = new CalculationSettings(requestedBodies, HouseSystems.PLACIDUS, Ayanamshas.NONE, false,
+               false, false);
+         CalculatedFullChart calculatedFullChart = new CalculatedFullChart(chartData.getFullDateTime(),
+               chartData.getLocation(), settings);
+         // show positions
+         // show drawing
       }
    }
 
@@ -103,13 +127,14 @@ public class ChartsStart {
       // show config
    }
 
-   private void addChart(final long chartId) {
+   private ChartData addChart(final long chartId) {
       val api = new PersistedChartDataApi();
       val chartData = api.read(chartId).get(0);
       val presentableChartData = new PresentableChartData(chartData);
       colName.setCellValueFactory(new PropertyValueFactory<>("chartName"));
       colData.setCellValueFactory(new PropertyValueFactory<>("chartDataDescr"));
       tvCharts.getItems().add(presentableChartData);
+      return chartData;
    }
 
 }
