@@ -2214,3 +2214,20 @@
 2020-03-04 21:38:33,353 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-03-04 21:38:33,353 ERROR Nitrite:274 - Underlying store is null. Nitrite has not been initialized properly.
 2020-03-04 21:38:33,369 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-04 21:52:20,096 INFO  App:33 - Started Enigma.
+2020-03-04 21:52:20,105 INFO  VersionController:36 - No database, performing full initialization.
+2020-03-04 21:52:20,109 INFO  Updater:35 - Updating to version 2020.1
+2020-03-04 21:52:20,175 ERROR PropertyDao:42 - Exception when inserting property: Property(id=1, key=version, value=2020.1) . Original message: NO2.2012: Directory .\db does not exists
+2020-03-04 21:54:33,300 INFO  App:33 - Started Enigma.
+2020-03-04 21:54:33,307 INFO  VersionController:36 - No database, performing full initialization.
+2020-03-04 21:54:33,309 INFO  Updater:35 - Updating to version 2020.1
+2020-03-04 21:54:33,711 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-04 21:54:33,728 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-04 21:54:33,739 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-04 21:54:33,739 INFO  Updater:39 - Inserted properties for 2020.1
+2020-03-04 21:54:33,765 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-04 21:54:33,765 INFO  Updater:74 - Inserted configurations for 2020.1
+2020-03-04 21:54:33,766 INFO  Updater:30 - Full initialization completed.
+2020-03-04 21:54:33,791 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-04 21:54:36,519 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-04 21:54:36,527 INFO  Nitrite:309 - Nitrite database has been closed successfully.
