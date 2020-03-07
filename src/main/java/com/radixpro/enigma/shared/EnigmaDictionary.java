@@ -13,4 +13,7 @@ public class EnigmaDictionary {
    }
 
    public static final String VERSION = "2020.1";
+   public static final String DEGREESIGN = "\u00B0";
+   public static final String MINUTESIGN = "\u2032";
+   public static final String SECONDSIGN = "\u2033";
 }

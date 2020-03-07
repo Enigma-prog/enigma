@@ -1,0 +1,26 @@
+/*
+ * Jan Kampherbeek, (c) 2020.
+ * Enigma is open source.
+ * Please check the file copyright.txt in the root of the source for further details.
+ */
+
+package com.radixpro.enigma.ui.shared.presentationmodel.valuetypes;
+
+import lombok.Getter;
+
+/**
+ * Parent for classes that construct a formatted value.
+ */
+public abstract class AbstractValueType {
+
+   protected double value;
+   @Getter
+   protected String formattedPosition;
+
+   public AbstractValueType(final double value) {
+      this.value = value;
+   }
+
+   protected abstract void performFormatting();
+
+}
