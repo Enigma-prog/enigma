@@ -28,7 +28,7 @@ public class PlusMinusValue extends AbstractSexagValue {
 
    private String addPlusMinus(final String tempPosition) {
       final String sign = (value >= 0.0 ? "+" : "-");
-      String tempResult = tempPosition;
+      String tempResult;
       if (tempPosition.startsWith("  ")) {
          tempResult = "  " + sign + tempPosition.substring(2);
       } else if (tempPosition.startsWith(" ")) {

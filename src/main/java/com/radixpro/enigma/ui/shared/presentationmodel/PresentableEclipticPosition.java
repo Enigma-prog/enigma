@@ -6,26 +6,45 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel;
 
+import com.radixpro.enigma.ui.shared.glyphs.CelObject2GlyphMapper;
+import com.radixpro.enigma.ui.shared.glyphs.Sign2GlyphMapper;
+import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongAndGlyphValue;
+import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
 import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
+import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.val;
 
 /**
- * Wrapper around CelObjectSinglePosition; enables the use in a tableview.
+ * Wrapper around CelObjectSinglePosition for the ecliptic values; enables the use in a tableview.
  */
+@Getter
 public class PresentableEclipticPosition {
 
-   @Getter
-   private double formattedLongitude;
-   private double formattedLongSpeed;
-   private double formattedLatitude;
-   private double formattedLatSpeed;
+   private String formattedLongitude;
+   private String formattedLongSpeed;
+   private String formattedLatitude;
+   private String formattedLatSpeed;
    private String signGlyph;
    private String celBodyGlyph;
 
 
-   public PresentableEclipticPosition(@NonNull final CelObjectSinglePosition celObjectSinglePosition) {
-      celObjectSinglePosition.getMainPosition();
+   public PresentableEclipticPosition(@NonNull final CelestialObjects celestialObject,
+                                      @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
+      createPresentablePosition(celestialObject, celObjectSinglePosition);
+   }
+
+   private void createPresentablePosition(@NonNull final CelestialObjects celestialObject,
+                                          @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
+      val mainPosition = celObjectSinglePosition.getMainPosition();
+      val longWithGlyph = new LongAndGlyphValue(mainPosition).getLongWithGlyph();
+      formattedLongitude = longWithGlyph.getPosition();
+      signGlyph = new Sign2GlyphMapper().getGlyph(longWithGlyph.getSignIndex());
+      formattedLongSpeed = new PlusMinusValue(celObjectSinglePosition.getMainSpeed()).getFormattedPosition();
+      formattedLatitude = new PlusMinusValue(celObjectSinglePosition.getDeviationPosition()).getFormattedPosition();
+      formattedLatSpeed = new PlusMinusValue(celObjectSinglePosition.getDeviationSpeed()).getFormattedPosition();
+      celBodyGlyph = new CelObject2GlyphMapper().getGlyph(celestialObject);
    }
 
 

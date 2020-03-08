@@ -13,7 +13,7 @@ import lombok.Getter;
  */
 public abstract class AbstractValueType {
 
-   protected double value;
+   protected final double value;
    @Getter
    protected String formattedPosition;
 

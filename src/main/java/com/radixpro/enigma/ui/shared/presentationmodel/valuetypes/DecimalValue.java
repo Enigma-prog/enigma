@@ -22,10 +22,17 @@ public class DecimalValue extends AbstractValueType {
 
    @Override
    protected void performFormatting() {
-      val degHour = (int) value;
-      val fraction = (int) ((value - degHour) * 100000000);
+      val absValue = Math.abs(value);
+      val degHour = (int) absValue;
+      val fraction = (int) ((absValue - degHour) * 100000000);
       String content = "%2d" + "." + "%08d";
-      formattedPosition = String.format(content, degHour, fraction);
+      String tempResult = String.format(content, degHour, fraction);
+      val sign = (value >= 0.0 ? " " : "-");
+      if (tempResult.startsWith(" ")) {
+         formattedPosition = " " + sign + tempResult.substring(1);
+      } else {
+         formattedPosition = sign + tempResult;
+      }
    }
 
 }
