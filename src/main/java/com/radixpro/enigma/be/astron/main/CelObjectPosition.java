@@ -28,6 +28,8 @@ public class CelObjectPosition {
    private CelObjectSinglePosition equatorialPosition;
    @Getter
    private HorizontalPosition horizontalPosition;
+   @Getter
+   private final CelestialObjects celestialBody;
    private int eclipticalFlags;
    private int equatorialFlags;
    private int horizontalFlags;
@@ -35,9 +37,10 @@ public class CelObjectPosition {
    public CelObjectPosition(@NonNull final SeFrontend seFrontend, final double jdUt,
                             @NonNull final CelestialObjects celBody, @NonNull final Location location,
                             @NonNull final List<SeFlags> flagList) {
+      this.celestialBody = celBody;
       final List<SeFlags> localFlagList = new ArrayList<>(flagList); // need copy to prevent changing the content of flaglist.
       defineFlags(localFlagList);
-      calculate(seFrontend, jdUt, celBody, location);
+      calculate(seFrontend, jdUt, location);
    }
 
    private void defineFlags(@NonNull final List<SeFlags> localFlagList) {
@@ -48,10 +51,9 @@ public class CelObjectPosition {
       horizontalFlags = (int) SeFlags.HORIZONTAL.getSeValue();
    }
 
-   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt,
-                          @NonNull final CelestialObjects celBody, @NonNull final Location location) {
-      eclipticalPosition = new CelObjectSinglePosition(seFrontend, jdUt, celBody, eclipticalFlags);
-      equatorialPosition = new CelObjectSinglePosition(seFrontend, jdUt, celBody, equatorialFlags);
+   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt, @NonNull final Location location) {
+      eclipticalPosition = new CelObjectSinglePosition(seFrontend, jdUt, celestialBody, eclipticalFlags);
+      equatorialPosition = new CelObjectSinglePosition(seFrontend, jdUt, celestialBody, equatorialFlags);
       val eclipticalCoordinates = new double[]{eclipticalPosition.getMainPosition(),
             eclipticalPosition.getDeviationPosition(), eclipticalPosition.getDistancePosition()};
       horizontalPosition = new HorizontalPosition(seFrontend, jdUt, eclipticalCoordinates, location,

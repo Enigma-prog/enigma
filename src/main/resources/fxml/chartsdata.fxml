@@ -8,7 +8,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="950.0" prefWidth="1500.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="950.0" prefWidth="1500.0" stylesheets="@../css/enigma.css"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.radixpro.enigma.ui.charts.controllers.ChartsData">
     <children>
@@ -18,85 +18,99 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="300.0" prefWidth="365.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="10.0" prefWidth="20.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="300.0" prefWidth="365.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="200.0" prefWidth="210.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="300.0" prefWidth="365.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="200.0" prefWidth="210.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="100.0" minHeight="60.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
                 <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="2.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="280.0" minHeight="280.0" prefHeight="280.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="380.0" minHeight="280.0" prefHeight="380.0" vgrow="SOMETIMES"/>
                 <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="280.0" minHeight="280.0" prefHeight="280.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="380.0" minHeight="280.0" prefHeight="380.0" vgrow="SOMETIMES"/>
                 <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES"/>
                 <RowConstraints maxHeight="280.0" minHeight="280.0" prefHeight="280.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
                 <Pane prefHeight="50.0" prefWidth="990.0" GridPane.columnSpan="7">
                     <children>
-                        <Label fx:id="lblTitle" layoutX="460.0" layoutY="49.0" text="Label"/>
+                        <Label fx:id="lblTitle" layoutX="460.0" layoutY="24.0" text="Label"/>
                     </children>
                 </Pane>
-                <ScrollPane prefHeight="280.0" prefWidth="735.0" GridPane.columnSpan="3" GridPane.rowIndex="2"
-                            GridPane.columnIndex="0">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="720.0">
-                            <children>
-                                <TableView prefHeight="280.0" prefWidth="720.0">
-                                    <columns>
-                                        <TableColumn prefWidth="30.0" text=""/>
-                                        <TableColumn prefWidth="165.0" text="Longitude"/>
-                                        <TableColumn prefWidth="30.0" text=""/>
-                                        <TableColumn prefWidth="165.0" text="Speed"/>
-                                        <TableColumn prefWidth="165.0" text="Latitude"/>
-                                        <TableColumn prefWidth="165.0" text="Speed"/>
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </ScrollPane>
+                <TableView fx:id="tvEclipticData" prefHeight="380.0" prefWidth="380.0" GridPane.columnIndex="0"
+                           GridPane.columnSpan="1" GridPane.rowIndex="2" stylesheets="@../css/enigma.css">
+                    <columns>
+                        <TableColumn fx:id="tvEclColBodyGlyph" prefWidth="30.0" text=""/>
+                        <TableColumn fx:id="tvEclColLongitude" prefWidth="80.0"
+                                     text="%ui.charts.data.tvecliptic.longitude"/>
+                        <TableColumn fx:id="tvEclColSignGlyph" prefWidth="30.0" text=""/>
+                        <TableColumn fx:id="tvEclColLongSpeed" prefWidth="80.0"
+                                     text="%ui.charts.data.tvecliptic.longspeed"/>
+                        <TableColumn fx:id="tvEclColLatitude" prefWidth="80.0"
+                                     text="%ui.charts.data.tvecliptic.latitude"/>
+                        <TableColumn fx:id="tvEclColLatSpeed" prefWidth="80.0"
+                                     text="%ui.charts.data.tvecliptic.latspeed"/>
+                    </columns>
+                </TableView>
 
+                <TableView fx:id="tvEquatorialData" prefHeight="280.0" prefWidth="360.0" GridPane.columnIndex="2"
+                           GridPane.columnSpan="1" GridPane.rowIndex="2">
+                    <columns>
+                        <TableColumn fx:id="tvEquColBodyGlyph" prefWidth="30.0" text=""/>
+                        <TableColumn fx:id="tvEquColRa" prefWidth="80.0" text="%ui.charts.data.tvequator.ra"/>
+                        <TableColumn fx:id="tvEquColRaSpeed" prefWidth="80.0" text="%ui.charts.data.tvequator.raspeed"/>
+                        <TableColumn fx:id="tvEquColDecl" prefWidth="80.0" text="%ui.charts.data.tvequator.decl"/>
+                        <TableColumn fx:id="tvEquColDeclSpeed" prefWidth="80.0"
+                                     text="%ui.charts.data.tvequator.declspeed"/>
+                    </columns>
+                </TableView>
 
-                <TableView prefHeight="280.0" prefWidth="365.0" GridPane.columnIndex="4" GridPane.columnSpan="3"
+                <TableView fx:id="tvHorizontalData" prefHeight="280.0" prefWidth="200.0" GridPane.columnIndex="4"
                            GridPane.rowIndex="2">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="A1"/>
-                        <TableColumn prefWidth="75.0" text="A2"/>
+                        <TableColumn fx:id="tvHorColBodyGlyph" prefWidth="30.0" text=""/>
+                        <TableColumn fx:id="tvHorColAzimuth" prefWidth="80.0"
+                                     text="%ui.charts.data.tvhorizontal.azimuth"/>
+                        <TableColumn fx:id="tvHorColAltitude" prefWidth="80.0"
+                                     text="%ui.charts.data.tvhorizontal.altitude"/>
                     </columns>
                 </TableView>
-                <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+
+
+                <TableView fx:id="tvDistanceData" prefHeight="280.0" prefWidth="200.0" GridPane.columnIndex="6"
+                           GridPane.rowIndex="2">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="B1"/>
-                        <TableColumn prefWidth="75.0" text="B2"/>
+                        <TableColumn fx:id="tvDistColBodyGlyph" prefWidth="30.0" text=""/>
+                        <TableColumn fx:id="tvDistColDistance" prefWidth="80.0" text="%ui.charts.data.tvdistance.radv"/>
+                        <TableColumn fx:id="tvDistColDistSpeed" prefWidth="80.0"
+                                     text="%ui.charts.data.tvdistance.radvspeed"/>
                     </columns>
                 </TableView>
-                <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+
+                <TableView fx:id="tvMundaneData" prefHeight="280.0" prefWidth="250.0" GridPane.columnIndex="0"
+                           GridPane.rowIndex="4" GridPane.columnSpan="3">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="C1"/>
-                        <TableColumn prefWidth="75.0" text="C2"/>
+                        <TableColumn fx:id="tvMundColName" prefWidth="30.0" text=""/>
+                        <TableColumn fx:id="tvMundColLongitude" prefWidth="80.0"
+                                     text="%ui.charts.data.tvmundane.longitude"/>
+                        <TableColumn fx:id="tvMundColSignGlyph" prefWidth="30.0" text=""/>
+                        <TableColumn fx:id="tvMundColRa" prefWidth="80.0" text="%ui.charts.data.tvmundane.ra"/>
+                        <TableColumn fx:id="tvMundColDecl" prefWidth="80.0" text="%ui.charts.data.tvmundane.decl"/>
+                        <TableColumn fx:id="tvMundColAzimuth" prefWidth="80.0"
+                                     text="%ui.charts.data.tvmundane.azimuth"/>
+                        <TableColumn fx:id="tvMundColAltitude" prefWidth="80.0"
+                                     text="%ui.charts.data.tvmundane.altitude"/>
+
                     </columns>
                 </TableView>
-                <TableView prefHeight="112.0" prefWidth="230.0" GridPane.rowIndex="6">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="D1"/>
-                        <TableColumn prefWidth="75.0" text="D2"/>
-                    </columns>
-                </TableView>
-                <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="F1"/>
-                        <TableColumn prefWidth="75.0" text="F2"/>
-                    </columns>
-                </TableView>
-                <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="G1"/>
-                        <TableColumn prefWidth="75.0" text="G2"/>
-                    </columns>
-                </TableView>
+
+
                 <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="3"
-                            GridPane.rowIndex="4"/>
+                            GridPane.rowIndex="4">
+                    <content>
+                        <Label fx:id="lblLocName" text="Location"/>
+                    </content>
+                </ScrollPane>
 
             </children>
         </GridPane>

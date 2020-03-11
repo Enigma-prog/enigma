@@ -44,6 +44,7 @@ public class ChartsStart {
    @FXML
    TableColumn<String, PresentableChartData> colData;
    private static final String ROSETTA_LOC = "rb/texts";
+   private CalculatedFullChart currentFullChart;
 
    @FXML
    void onNewChart() throws IOException {
@@ -75,25 +76,16 @@ public class ChartsStart {
          requestedBodies.add(CelestialObjects.MEAN_NODE);
          val settings = new CalculationSettings(requestedBodies, HouseSystems.PLACIDUS, Ayanamshas.NONE, false,
                false, false);
-         CalculatedFullChart calculatedFullChart = new CalculatedFullChart(chartData.getFullDateTime(),
+         currentFullChart = new CalculatedFullChart(chartData.getFullDateTime(),
                chartData.getLocation(), settings);
-         // show positions
+         showPositions();
          // show drawing
       }
    }
 
    @FXML
    void onPositions() throws IOException {
-      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsdata.fxml"));
-      fxmlLoader.setResources(ResourceBundle.getBundle(ROSETTA_LOC, Rosetta.getRosetta().getLocale()));
-      Parent parent = fxmlLoader.load();
-      ChartsData chartsData = new ChartsData();
-      // define actual fullchart for ChartsData
-      Scene scene = new Scene(parent, 1000, 800);
-      Stage stage = new Stage();
-      stage.initModality(Modality.APPLICATION_MODAL);
-      stage.setScene(scene);
-      stage.showAndWait();
+      showPositions();
    }
 
    @FXML
@@ -135,6 +127,19 @@ public class ChartsStart {
       colData.setCellValueFactory(new PropertyValueFactory<>("chartDataDescr"));
       tvCharts.getItems().add(presentableChartData);
       return chartData;
+   }
+
+   private void showPositions() throws IOException {
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartsdata.fxml"));
+      fxmlLoader.setResources(ResourceBundle.getBundle(ROSETTA_LOC, Rosetta.getRosetta().getLocale()));
+      Parent parent = fxmlLoader.load();
+      ChartsData chartsData = fxmlLoader.getController();
+      chartsData.setCalculatedFullChart(currentFullChart);
+      Scene scene = new Scene(parent, 1500, 950);
+      Stage stage = new Stage();
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.setScene(scene);
+      stage.showAndWait();
    }
 
 }

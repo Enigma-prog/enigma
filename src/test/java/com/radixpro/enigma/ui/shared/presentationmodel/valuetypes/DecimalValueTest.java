@@ -13,29 +13,23 @@ import static org.junit.Assert.assertEquals;
 public class DecimalValueTest {
 
    private DecimalValue decimalValue;
-   private double value1 = 12.386759267;
-   private double value2 = 0.002;
-   private double value3 = -1.5;
-   private String expectedValue1 = " 12.38675926";
-   private String expectedValue2 = "  0.00200000";
-   private String expectedValue3 = " -1.50000000";
 
    @Test
    public void getFormattedPosition() {
-      decimalValue = new DecimalValue(value1);
-      assertEquals(expectedValue1, decimalValue.getFormattedPosition());
+      decimalValue = new DecimalValue(12.386759267);
+      assertEquals(" 12.38675926", decimalValue.getFormattedPosition());
    }
 
    @Test
    public void getFormattedPositionWithLeadingSpace() {
-      decimalValue = new DecimalValue(value2);
-      assertEquals(expectedValue2, decimalValue.getFormattedPosition());
+      decimalValue = new DecimalValue(0.002);
+      assertEquals("  0.00200000", decimalValue.getFormattedPosition());
    }
 
    @Test
    public void getFormattedPositionNegative() {
-      decimalValue = new DecimalValue(value3);
-      assertEquals(expectedValue3, decimalValue.getFormattedPosition());
+      decimalValue = new DecimalValue(-1.5);
+      assertEquals(" -1.50000000", decimalValue.getFormattedPosition());
    }
 
 }

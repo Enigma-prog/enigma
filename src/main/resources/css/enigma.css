@@ -61,4 +61,10 @@
 error {
     -fx-control-inner-background: yellow;
 }
+@font-face {
+    src: url("/resources/fonts/EnigmaAstrology.ttf");
+}
+.glyph {
+    -fx-font-family: "EnigmaAstrology";
+}
 
