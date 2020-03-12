@@ -77,6 +77,16 @@ public class PersistedChartDataApi {
       return chartDataResult;
    }
 
+   public List<ChartData> searchWildCard(@NonNull final String searchArgument) {
+      List<ChartData> chartDataResult = new ArrayList<>();
+      try {
+         chartDataResult = dao.searchWildCard(searchArgument);
+      } catch (DatabaseException de) {
+         new FailFastHandler().terminate(de.getMessage());
+      }
+      return chartDataResult;
+   }
+
    public long getMaxId() {
       long maxId = -1L;
       try {

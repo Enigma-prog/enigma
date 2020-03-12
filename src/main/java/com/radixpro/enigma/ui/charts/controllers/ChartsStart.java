@@ -38,6 +38,8 @@ public class ChartsStart {
    @FXML
    Button btnNewChart;
    @FXML
+   Button btnSearchChart;
+   @FXML
    TableView<PresentableChartData> tvCharts;
    @FXML
    TableColumn<String, PresentableChartData> colName;
@@ -81,6 +83,52 @@ public class ChartsStart {
          showPositions();
          // show drawing
       }
+   }
+
+   @FXML
+   void onSearchChart() throws IOException {
+      // show search window
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/chartssearch.fxml"));
+      fxmlLoader.setResources(ResourceBundle.getBundle(ROSETTA_LOC, Rosetta.getRosetta().getLocale()));
+      Parent parent = fxmlLoader.load();
+      ChartsSearch chartsSearch = fxmlLoader.getController();
+      Scene scene = new Scene(parent, 600, 400);
+      Stage stage = new Stage();
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.setScene(scene);
+      stage.showAndWait();
+      // read selected chart
+      if (chartsSearch.isSelectionMade()) {
+         ChartData chartData = chartsSearch.getSelectedItem();
+         val presentableChartData = new PresentableChartData(chartData);
+         colName.setCellValueFactory(new PropertyValueFactory<>("chartName"));
+         colData.setCellValueFactory(new PropertyValueFactory<>("chartDataDescr"));
+         tvCharts.getItems().add(presentableChartData);
+         // temporary solution, replace with data from configuration
+         List<CelestialObjects> requestedBodies = new ArrayList<>();
+         requestedBodies.add(CelestialObjects.SUN);
+         requestedBodies.add(CelestialObjects.MOON);
+         requestedBodies.add(CelestialObjects.MERCURY);
+         requestedBodies.add(CelestialObjects.VENUS);
+         requestedBodies.add(CelestialObjects.MARS);
+         requestedBodies.add(CelestialObjects.JUPITER);
+         requestedBodies.add(CelestialObjects.SATURN);
+         requestedBodies.add(CelestialObjects.URANUS);
+         requestedBodies.add(CelestialObjects.NEPTUNE);
+         requestedBodies.add(CelestialObjects.PLUTO);
+         requestedBodies.add(CelestialObjects.CHEIRON);
+         requestedBodies.add(CelestialObjects.MEAN_NODE);
+         val settings = new CalculationSettings(requestedBodies, HouseSystems.PLACIDUS, Ayanamshas.NONE, false,
+               false, false);
+         currentFullChart = new CalculatedFullChart(chartData.getFullDateTime(),
+               chartData.getLocation(), settings);
+         showPositions();
+         // show drawing
+
+      }
+
+
+      // voeg horoscopen toe aan bestaande set
    }
 
    @FXML
@@ -135,7 +183,7 @@ public class ChartsStart {
       Parent parent = fxmlLoader.load();
       ChartsData chartsData = fxmlLoader.getController();
       chartsData.setCalculatedFullChart(currentFullChart);
-      Scene scene = new Scene(parent, 1500, 950);
+      Scene scene = new Scene(parent, 980, 1000);
       Stage stage = new Stage();
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setScene(scene);

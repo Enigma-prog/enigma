@@ -31,7 +31,6 @@ public class PresentableCelObjectPositionTest {
    private CelObjectSinglePosition equPositionMock;
    @Mock
    private HorizontalPosition horizontalPositionMock;
-   private CelestialObjects celestialObject;
    private PresentableCelObjectPosition presPos;
 
    @Before
@@ -40,6 +39,8 @@ public class PresentableCelObjectPositionTest {
       when(eclPositionMock.getDeviationPosition()).thenReturn(2.25);
       when(eclPositionMock.getMainSpeed()).thenReturn(0.3333334);
       when(eclPositionMock.getDeviationSpeed()).thenReturn(-0.0528);
+      when(eclPositionMock.getDistancePosition()).thenReturn(8.532897658210534);
+      when(eclPositionMock.getDistanceSpeed()).thenReturn(0.5);
       when(equPositionMock.getMainPosition()).thenReturn(100.5);
       when(equPositionMock.getDeviationPosition()).thenReturn(-0.25);
       when(equPositionMock.getMainSpeed()).thenReturn(-1.3333334);
@@ -111,4 +112,15 @@ public class PresentableCelObjectPositionTest {
    public void getFormattedAltitude() {
       assertEquals("-12" + DEGREESIGN + "30" + MINUTESIGN + "00" + SECONDSIGN, presPos.getFormattedAltitude());
    }
+
+   @Test
+   public void getFormattedDistance() {
+      assertEquals("  8.53289765", presPos.getFormattedDistance());
+   }
+
+   @Test
+   public void getFormattedDistSpeed() {
+      assertEquals("  0.50000000", presPos.getFormattedDistSpeed());
+   }
+
 }

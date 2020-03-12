@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../css/enigma.css"
-            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.radixpro.enigma.ui.charts.controllers.ChartsStart">
     <children>
         <VBox layoutX="0.0" layoutY="0.0" prefHeight="539.0" prefWidth="1000">
@@ -29,6 +29,8 @@
                                     <items>
                                         <MenuItem id="mItemChartsNew" mnemonicParsing="false" onAction="#onNewChart"
                                                   text="%ui.charts.start.menu.charts.new"/>
+                                        <MenuItem id="mItemChartsSearch" mnemonicParsing="false"
+                                                  onAction="#onSearchChart" text="%ui.charts.start.menu.charts.search"/>
                                     </items>
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Configurations">
@@ -109,6 +111,8 @@
                             <buttons>
                                 <Button fx:id="btnNewChart" mnemonicParsing="false" onAction="#onNewChart"
                                         text="%ui.charts.start.btn.new"/>
+                                <Button fx:id="btnSearchChart" mnemonicParsing="false" onAction="#onSearchChart"
+                                        text="%ui.charts.start.btn.search"/>
                                 <Button fx:id="btnPositions" mnemonicParsing="false" onAction="#onPositions"
                                         text="%ui.charts.start.btn.positions"/>
                             </buttons>

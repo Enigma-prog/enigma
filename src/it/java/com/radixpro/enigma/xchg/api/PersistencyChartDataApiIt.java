@@ -89,6 +89,14 @@ public class PersistencyChartDataApiIt {
    }
 
    @Test
+   public void searchWildCard() {
+      api.insert(chartData1);
+      api.insert(chartData2);
+      ChartData chartData = api.searchWildCard("wo").get(0);
+      assertEquals("two", chartData.getChartMetaData().getName());
+   }
+
+   @Test
    public void searchNotFound() {
       api.insert(chartData1);
       api.insert(chartData2);

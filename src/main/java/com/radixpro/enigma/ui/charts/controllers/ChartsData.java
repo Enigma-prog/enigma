@@ -9,7 +9,9 @@ package com.radixpro.enigma.ui.charts.controllers;
 import com.radixpro.enigma.be.astron.assist.HousePosition;
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.shared.Rosetta;
-import com.radixpro.enigma.ui.shared.presentationmodel.*;
+import com.radixpro.enigma.ui.shared.presentationmodel.PresentableCelObjectPosition;
+import com.radixpro.enigma.ui.shared.presentationmodel.PresentableEclipticPosition;
+import com.radixpro.enigma.ui.shared.presentationmodel.PresentableMundanePosition;
 import com.radixpro.enigma.xchg.api.CalculatedFullChart;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import javafx.fxml.FXML;
@@ -29,7 +31,7 @@ public class ChartsData {
    @FXML
    Label lblLocName;
    @FXML
-   TableView tvEclipticData;
+   TableView tvCelObjectData;
    @FXML
    TableColumn<String, PresentableEclipticPosition> tvEclColBodyGlyph;
    @FXML
@@ -42,10 +44,10 @@ public class ChartsData {
    TableColumn<String, PresentableEclipticPosition> tvEclColLatitude;
    @FXML
    TableColumn<String, PresentableEclipticPosition> tvEclColLatSpeed;
-   @FXML
-   TableView tvEquatorialData;
-   @FXML
-   TableColumn<String, PresentableEclipticPosition> tvEquColBodyGlyph;
+   //   @FXML
+//   TableView tvEquatorialData;
+//   @FXML
+//   TableColumn<String, PresentableEclipticPosition> tvEquColBodyGlyph;
    @FXML
    TableColumn<String, PresentableEclipticPosition> tvEquColRa;
    @FXML
@@ -54,18 +56,18 @@ public class ChartsData {
    TableColumn<String, PresentableEclipticPosition> tvEquColDecl;
    @FXML
    TableColumn<String, PresentableEclipticPosition> tvEquColDeclSpeed;
-   @FXML
-   TableView tvHorizontalData;
-   @FXML
-   TableColumn<String, PresentableEclipticPosition> tvHorColBodyGlyph;
+   //   @FXML
+//   TableView tvHorizontalData;
+//   @FXML
+//   TableColumn<String, PresentableEclipticPosition> tvHorColBodyGlyph;
    @FXML
    TableColumn<String, PresentableEclipticPosition> tvHorColAzimuth;
    @FXML
    TableColumn<String, PresentableEclipticPosition> tvHorColAltitude;
-   @FXML
-   TableView tvDistanceData;
-   @FXML
-   TableColumn<String, PresentableEclipticPosition> tvDistColBodyGlyph;
+   //   @FXML
+//   TableView tvDistanceData;
+//   @FXML
+//   TableColumn<String, PresentableEclipticPosition> tvDistColBodyGlyph;
    @FXML
    TableColumn<String, PresentableEclipticPosition> tvDistColDistance;
    @FXML
@@ -100,14 +102,11 @@ public class ChartsData {
       // add name and other metadata to FullChart and use correct name
       lblLocName.setText(calculatedFullChart.getLocation().getName());
       CelestialObjects celObject;
-      final String glyphFont = " -fx-font-family: \"EnigmaAstrology\";  -fx-font-size: 18;";
+      final String glyphFont = " -fx-font-family: \"EnigmaAstrology\";  -fx-font-size: 14;";
       final String dataFont = "-fx-font-family: \"Courier\";";
       tvEclColBodyGlyph.setStyle(glyphFont);
       tvEclColSignGlyph.setStyle(glyphFont);
       tvEclColLongitude.setStyle(dataFont);
-      tvEquColBodyGlyph.setStyle(glyphFont);
-      tvHorColBodyGlyph.setStyle(glyphFont);
-      tvDistColBodyGlyph.setStyle(glyphFont);
       tvMundColSignGlyph.setStyle(glyphFont);
 
       final List<CelObjectPosition> bodies = calculatedFullChart.getBodies();
@@ -116,47 +115,58 @@ public class ChartsData {
       for (int i = 0; i < count; i++) {
          CelObjectPosition celObjectPosition = calculatedFullChart.getBodies().get(i);
          celObject = celObjectPosition.getCelestialBody();
-         val presEclipticPos = new PresentableEclipticPosition(celObject, celObjectPosition.getEclipticalPosition());
+
+//         val presEclipticPos = new PresentableEclipticPosition(celObject, celObjectPosition.getEclipticalPosition());
+         val presPos = new PresentableCelObjectPosition(celObjectPosition, celObjectPosition.getHorizontalPosition());   // TODO should be one parameter
          tvEclColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
          tvEclColLongitude.setCellValueFactory(new PropertyValueFactory<>("formattedLongitude"));
          tvEclColSignGlyph.setCellValueFactory(new PropertyValueFactory<>("signGlyph"));
          tvEclColLongSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedLongSpeed"));
          tvEclColLatitude.setCellValueFactory(new PropertyValueFactory<>("formattedLatitude"));
          tvEclColLatSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedLatSpeed"));
-         tvEclipticData.getItems().add(presEclipticPos);
-      }
-      // equatorial
-      for (int i = 0; i < count; i++) {
-         CelObjectPosition celObjectPosition = calculatedFullChart.getBodies().get(i);
-         celObject = celObjectPosition.getCelestialBody();
-         val presEquatorialPos = new PresentableEquatorialPosition(celObject, celObjectPosition.getEquatorialPosition());
-         tvEquColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
          tvEquColRa.setCellValueFactory(new PropertyValueFactory<>("formattedRightAscension"));
          tvEquColRaSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedRaSpeed"));
          tvEquColDecl.setCellValueFactory(new PropertyValueFactory<>("formattedDeclination"));
          tvEquColDeclSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedDeclSpeed"));
-         tvEquatorialData.getItems().add(presEquatorialPos);
-      }
-      // horizontal
-      for (int i = 0; i < count; i++) {
-         CelObjectPosition celObjectPosition = calculatedFullChart.getBodies().get(i);
-         celObject = celObjectPosition.getCelestialBody();
-         val presHorizontalPos = new PresentableHorizontalPosition(celObject, celObjectPosition.getHorizontalPosition());
-         tvHorColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
          tvHorColAzimuth.setCellValueFactory(new PropertyValueFactory<>("formattedAzimuth"));
          tvHorColAltitude.setCellValueFactory(new PropertyValueFactory<>("formattedAltitude"));
-         tvHorizontalData.getItems().add(presHorizontalPos);
-      }
-      // distance
-      for (int i = 0; i < count; i++) {
-         CelObjectPosition celObjectPosition = calculatedFullChart.getBodies().get(i);
-         celObject = celObjectPosition.getCelestialBody();
-         val presDistancePos = new PresentableDistancePosition(celObject, celObjectPosition.getEclipticalPosition());
-         tvDistColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
          tvDistColDistance.setCellValueFactory(new PropertyValueFactory<>("formattedDistance"));
          tvDistColDistSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedDistSpeed"));
-         tvDistanceData.getItems().add(presDistancePos);
+
+         tvCelObjectData.getItems().add(presPos);
       }
+//      // equatorial
+//      for (int i = 0; i < count; i++) {
+//         CelObjectPosition celObjectPosition = calculatedFullChart.getBodies().get(i);
+//         celObject = celObjectPosition.getCelestialBody();
+//         val presEquatorialPos = new PresentableEquatorialPosition(celObject, celObjectPosition.getEquatorialPosition());
+//         tvEquColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
+//         tvEquColRa.setCellValueFactory(new PropertyValueFactory<>("formattedRightAscension"));
+//         tvEquColRaSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedRaSpeed"));
+//         tvEquColDecl.setCellValueFactory(new PropertyValueFactory<>("formattedDeclination"));
+//         tvEquColDeclSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedDeclSpeed"));
+//         tvEquatorialData.getItems().add(presEquatorialPos);
+//      }
+//      // horizontal
+//      for (int i = 0; i < count; i++) {
+//         CelObjectPosition celObjectPosition = calculatedFullChart.getBodies().get(i);
+//         celObject = celObjectPosition.getCelestialBody();
+//         val presHorizontalPos = new PresentableHorizontalPosition(celObject, celObjectPosition.getHorizontalPosition());
+//         tvHorColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
+//         tvHorColAzimuth.setCellValueFactory(new PropertyValueFactory<>("formattedAzimuth"));
+//         tvHorColAltitude.setCellValueFactory(new PropertyValueFactory<>("formattedAltitude"));
+//         tvHorizontalData.getItems().add(presHorizontalPos);
+//      }
+//      // distance
+//      for (int i = 0; i < count; i++) {
+//         CelObjectPosition celObjectPosition = calculatedFullChart.getBodies().get(i);
+//         celObject = celObjectPosition.getCelestialBody();
+//         val presDistancePos = new PresentableDistancePosition(celObject, celObjectPosition.getEclipticalPosition());
+//         tvDistColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
+//         tvDistColDistance.setCellValueFactory(new PropertyValueFactory<>("formattedDistance"));
+//         tvDistColDistSpeed.setCellValueFactory(new PropertyValueFactory<>("formattedDistSpeed"));
+//         tvDistanceData.getItems().add(presDistancePos);
+//      }
 
       val rosetta = Rosetta.getRosetta();
       handlePresMundPos(rosetta.getText("ui.shared.mc"), calculatedFullChart.getHouseValues().getMc());

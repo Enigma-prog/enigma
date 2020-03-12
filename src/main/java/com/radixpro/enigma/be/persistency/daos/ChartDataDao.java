@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.dizitart.no2.FindOptions.sort;
 import static org.dizitart.no2.filters.Filters.eq;
+import static org.dizitart.no2.filters.Filters.regex;
 
 
 public class ChartDataDao {
@@ -122,6 +123,24 @@ public class ChartDataDao {
          if (chartDoc != null) chartDataList.add(mapper.document2Object(chartDoc));
       } catch (Exception e) {
          LOG.error("Exception when searching chart, using arg: " + searchName + ORG_MSG + e.getMessage());
+         throw new DatabaseException("Exception when searching chart.");
+      } finally {
+         closeCollectionAndDatabase();
+      }
+      return chartDataList;
+   }
+
+   public List<ChartData> searchWildCard(@NonNull final String searchArg) throws DatabaseException {
+      List<ChartData> chartDataList = new ArrayList<>();
+      try {
+         openCollectionAndDatabase();
+         final String regExString = ".*" + searchArg + ".*";
+         Cursor cursor = collection.find(regex("name", regExString));
+         for (Document chartDoc : cursor) {
+            chartDataList.add(mapper.document2Object(chartDoc));
+         }
+      } catch (Exception e) {
+         LOG.error("Exception when searching chart, using arg: " + searchArg + ORG_MSG + e.getMessage());
          throw new DatabaseException("Exception when searching chart.");
       } finally {
          closeCollectionAndDatabase();

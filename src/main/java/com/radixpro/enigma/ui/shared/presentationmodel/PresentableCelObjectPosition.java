@@ -10,6 +10,7 @@ import com.radixpro.enigma.be.astron.assist.HorizontalPosition;
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.ui.shared.glyphs.CelObject2GlyphMapper;
 import com.radixpro.enigma.ui.shared.glyphs.Sign2GlyphMapper;
+import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.DecimalValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongAndGlyphValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlainDmsValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
@@ -35,6 +36,8 @@ public class PresentableCelObjectPosition {
    private String formattedDeclSpeed;
    private String formattedAzimuth;
    private String formattedAltitude;
+   private String formattedDistance;
+   private String formattedDistSpeed;
 
    /**
     * Constructor populates all properties.
@@ -66,6 +69,8 @@ public class PresentableCelObjectPosition {
       formattedDeclSpeed = new PlusMinusValue(equPos.getDeviationSpeed()).getFormattedPosition();
       formattedAzimuth = new PlainDmsValue(horPos.getAzimuth()).getFormattedPosition();
       formattedAltitude = new PlusMinusValue(horPos.getAltitude()).getFormattedPosition();
+      formattedDistance = new DecimalValue(eclPos.getDistancePosition()).getFormattedPosition();
+      formattedDistSpeed = new DecimalValue(eclPos.getDistanceSpeed()).getFormattedPosition();
    }
 
 }
