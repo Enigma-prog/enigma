@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="669.0" prefWidth="580.0" styleClass="inputpane"
             stylesheets="@../css/enigma.css" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="com.radixpro.enigma.ui.charts.controllers.ChartsInput">
+            fx:controller="com.radixpro.enigma.ui.charts.screens.ChartsInput">
     <children>
         <VBox prefHeight="68.0" prefWidth="600.0">
             <children>

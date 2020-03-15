@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1000.0" prefWidth="940.0" stylesheets="@../css/enigma.css"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
-            fx:controller="com.radixpro.enigma.ui.charts.controllers.ChartsData">
+            fx:controller="com.radixpro.enigma.ui.charts.screens.ChartsData">
     <children>
         <GridPane layoutX="0.0" layoutY="0.0" prefHeight="1000.0" prefWidth="940.0" stylesheets="@../css/enigma.css">
             <columnConstraints>
