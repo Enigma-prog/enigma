@@ -6,6 +6,11 @@
 
 package com.radixpro.enigma.ui.charts.screens;
 
+import com.radixpro.enigma.be.astron.assist.HousePosition;
+import com.radixpro.enigma.shared.Range;
+import com.radixpro.enigma.ui.charts.screens.helpers.ChartDrawMetrics;
+import com.radixpro.enigma.ui.charts.screens.helpers.Point;
+import com.radixpro.enigma.ui.charts.screens.helpers.RectTriangle;
 import com.radixpro.enigma.xchg.api.CalculatedFullChart;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
@@ -20,24 +25,31 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.NonNull;
+import lombok.val;
+
+import java.util.List;
 
 
 public class ChartsDrawing2d {
 
+   private ChartDrawMetrics metrics;
+
    private Canvas canvas;
    private CalculatedFullChart fullChart;
    private GraphicsContext gc;
-   private double radius = 580;
+   private double offsetAsc;
 
    public void setFullChart(@NonNull final CalculatedFullChart fullChart) {
       this.fullChart = fullChart;
       final Stage stage = new Stage();
-      performDraw(stage);
+      drawChart(stage);
    }
 
-   private void performDraw(@NonNull final Stage stage) {
+   private void drawChart(@NonNull final Stage stage) {
+      metrics = new ChartDrawMetrics();
+      offsetAsc = fullChart.getHouseValues().getAscendant().getLongitude() % 30;
 
-      canvas = new Canvas(700, 700);
+      canvas = new Canvas(metrics.getCanvasDimension(), metrics.getCanvasDimension());
       gc = canvas.getGraphicsContext2D();
 
       Pane chartPane = new Pane(canvas);
@@ -64,7 +76,7 @@ public class ChartsDrawing2d {
       gridPane.getRowConstraints().add(0, rowConstraintsTitle);
       gridPane.getRowConstraints().add(1, rowConstraintsChart);
       gridPane.getRowConstraints().add(2, rowConstraintsButtons);
-      gridPane.setGridLinesVisible(true);
+      gridPane.setGridLinesVisible(false);
 
       gridPane.add(lblName, 0, 0, 2, 1);          // node col row colspan rowspan
       gridPane.add(chartPane, 0, 1, 2, 1);
@@ -73,7 +85,7 @@ public class ChartsDrawing2d {
 
       stage.setMinHeight(400.0);
       stage.setMinWidth(320.0);
-      stage.setScene(new Scene(gridPane, 800, 1000));  // pane, hor pos, vert pos
+      stage.setScene(new Scene(gridPane, 700, 1000));  // pane, hor pos, vert pos
       stage.setTitle("Drawing of chart");
       stage.show();
 
@@ -81,7 +93,7 @@ public class ChartsDrawing2d {
       canvas.widthProperty().bind(chartPane.widthProperty());
       canvas.heightProperty().bind(chartPane.heightProperty());
 
-      radius = (Math.min(canvas.getWidth(), canvas.getHeight())) * 0.8;
+      metrics.setCanvasDimension(Math.min(canvas.getWidth(), canvas.getHeight()));
 
       stageSizeChangeListener(stage);
       performDraw();
@@ -90,12 +102,12 @@ public class ChartsDrawing2d {
 
    private void stageSizeChangeListener(Stage stage) {
       stage.widthProperty().addListener((observable, oldValue, newValue) -> {
-         radius = (Math.min(canvas.getWidth(), canvas.getHeight())) * 0.8;
+         metrics.setCanvasDimension(Math.min(canvas.getWidth(), canvas.getHeight()));
          performDraw();
       });
 
       stage.heightProperty().addListener((observable, oldValue, newValue) -> {
-         radius = (Math.min(canvas.getWidth(), canvas.getHeight())) * 0.8;
+         metrics.setCanvasDimension(Math.min(canvas.getWidth(), canvas.getHeight()));
          performDraw();
       });
 
@@ -103,13 +115,118 @@ public class ChartsDrawing2d {
    }
 
    private void performDraw() {
+
       gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
       gc.setFill(Color.WHITE);
       gc.fill();
       gc.setStroke(Color.BLUE);
       gc.setLineWidth(2d);
       gc.setGlobalAlpha(0.5d);
-      gc.strokeOval(60, 60, radius, radius);  // x-as, y-as, breedte, hoogte
+      drawCircle(metrics.getOffsetOuterCircle(), metrics.getSizeOuterCircle());
+      drawCircle(metrics.getOffsetSignsCircle(), metrics.getSizeSignsCircle());
+      drawCircle(metrics.getOffsetHousesCircle(), metrics.getSizeHousesCircle());
+      drawSignSeparators();
+      drawCorners();
+      drawHouses();
+   }
+
+   private void drawCircle(final double offset, final double size) {
+      gc.strokeOval(offset, offset, size, size);
+   }
+
+   private void drawSignSeparators() {
+//      int startY = (int) (metrics.getOffsetOuterCircle() + metrics.getSizeOuterCircle() / 2);
+//      int startX = startY;
+//      Point center = new Point(startX, startY);
+
+      val hypothenusaSmall = (int) Math.round(metrics.getSizeOuterCircle() / 2);
+      val hypothenusaLarge = (int) Math.round(metrics.getSizeSignsCircle() / 2);
+      double angle = 30 - offsetAsc % 30;
+
+
+      val outerOffset = metrics.getOffsetOuterCircle();
+      for (int i = 1; i <= 12; i++) {
+         Point startPointFromCenter = new RectTriangle(hypothenusaSmall, angle).getPointAtEndOfHyp();
+         Point endPointFromCenter = new RectTriangle(hypothenusaLarge, angle).getPointAtEndOfHyp();
+         int corrForXY = (int) (outerOffset + Math.round(metrics.getSizeOuterCircle() / 2));
+         int realX1 = corrForXY + startPointFromCenter.getXPos();
+         int realY1 = corrForXY + startPointFromCenter.getYPos();
+         int realX2 = corrForXY + endPointFromCenter.getXPos();
+         int realY2 = corrForXY + endPointFromCenter.getYPos();
+         gc.setLineWidth(2d);
+         gc.strokeLine(realX1, realY1, realX2, realY2);
+         angle += 30.0;
+      }
+   }
+
+   private void drawCorners() {
+      gc.setLineWidth(4.0);
+
+      double distanceFromCenter = metrics.getSizeOuterCircle() / 2 + metrics.getOffsetOuterCircle();
+      double xPos1 = 0.0;
+      double yPos1 = distanceFromCenter;
+      double xPos2 = distanceFromCenter - metrics.getSizeHousesCircle() / 2;
+      double yPos2 = distanceFromCenter;
+      gc.strokeLine(xPos1, yPos1, xPos2, yPos2);  // asc line
+
+      xPos1 = distanceFromCenter + metrics.getSizeHousesCircle() / 2;
+      yPos1 = distanceFromCenter;
+      xPos2 = distanceFromCenter * 2.0;
+      yPos2 = distanceFromCenter;
+      gc.strokeLine(xPos1, yPos1, xPos2, yPos2);  // desc line
+
+      double angleMc = new Range(0, 360).checkValue((int) (fullChart.getHouseValues().getAscendant().getLongitude()
+            - fullChart.getHouseValues().getMc().getLongitude()));
+
+      int hypothenusaLarge = (int) Math.round(metrics.getSizeOuterCircle() / 2 + metrics.getOffsetOuterCircle());
+      int hypothenusaSmall = (int) Math.round(metrics.getSizeHousesCircle() / 2);
+      Point point1 = new RectTriangle(hypothenusaSmall, angleMc).getPointAtEndOfHyp();
+      Point point2 = new RectTriangle(hypothenusaLarge, angleMc).getPointAtEndOfHyp();
+
+      val outerOffset = metrics.getOffsetOuterCircle();
+      int corrForXY = (int) (outerOffset + Math.round(metrics.getSizeOuterCircle() / 2));
+      int realX1 = corrForXY + point1.getXPos();
+      int realY1 = corrForXY + point1.getYPos();
+      int realX2 = corrForXY + point2.getXPos();
+      int realY2 = corrForXY + point2.getYPos();
+      gc.strokeLine(realX1, realY1, realX2, realY2);  // ic
+
+      point1 = new RectTriangle(hypothenusaSmall, angleMc + 180.0).getPointAtEndOfHyp();
+      point2 = new RectTriangle(hypothenusaLarge, angleMc + 180.0).getPointAtEndOfHyp();
+      realX1 = corrForXY + point1.getXPos();
+      realY1 = corrForXY + point1.getYPos();
+      realX2 = corrForXY + point2.getXPos();
+      realY2 = corrForXY + point2.getYPos();
+      gc.strokeLine(realX1, realY1, realX2, realY2);  // ic
+   }
+
+   private void drawHouses() {
+      gc.setLineWidth(1.0);
+      val houseSystem = fullChart.getSettings().getHouseSystem();
+      val quadrant = houseSystem.isQuadrantSystem();
+      double angle;
+      double asc = fullChart.getHouseValues().getAscendant().getLongitude();
+      val outerOffset = metrics.getOffsetOuterCircle();
+      int corrForXY = (int) (outerOffset + Math.round(metrics.getSizeOuterCircle() / 2));
+      final List<HousePosition> cusps = fullChart.getHouseValues().getCusps();
+      int hypothenusaLarge = (int) Math.round(metrics.getSizeSignsCircle() / 2);
+      int hypothenusaSmall = (int) Math.round(metrics.getSizeHousesCircle() / 2);
+
+      for (int i = 1; i <= 12; i++) {
+         if (!quadrant || (i != 1 && i != 4 && i != 7 && i != 10)) {
+            double longitude = cusps.get(i).getLongitude();
+            angle = asc - longitude;
+
+            Point point1 = new RectTriangle(hypothenusaSmall, angle).getPointAtEndOfHyp();
+            Point point2 = new RectTriangle(hypothenusaLarge, angle).getPointAtEndOfHyp();
+            int realX1 = corrForXY + point1.getXPos();
+            int realY1 = corrForXY + point1.getYPos();
+            int realX2 = corrForXY + point2.getXPos();
+            int realY2 = corrForXY + point2.getYPos();
+            gc.strokeLine(realX1, realY1, realX2, realY2);
+         }
+
+      }
 
    }
 
