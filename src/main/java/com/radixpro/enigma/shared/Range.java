@@ -11,9 +11,9 @@ package com.radixpro.enigma.shared;
  */
 public class Range {
 
-   private int min;
-   private int max;
-   private int range;
+   private double min;
+   private double max;
+   private double range;
 
    /**
     * Constructor defines min and max values.
@@ -21,15 +21,15 @@ public class Range {
     * @param minValue Minimal value, inclusive.
     * @param maxValue Maximum value, exclusive.
     */
-   public Range(final int minValue, final int maxValue) {
+   public Range(final double minValue, final double maxValue) {
       if (minValue >= maxValue) throw new RuntimeException("INput for Range has wrong sequence");
       this.min = minValue;
       this.max = maxValue;
       range = max - min;
    }
 
-   public int checkValue(final int inputValue) {
-      int workValue = inputValue;
+   public double checkValue(final double inputValue) {
+      double workValue = inputValue;
       while (workValue >= max) workValue = workValue - range;
       while (workValue < min) workValue = workValue + range;
       return workValue;

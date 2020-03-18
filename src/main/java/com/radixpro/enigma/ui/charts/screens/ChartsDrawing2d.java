@@ -148,11 +148,11 @@ public class ChartsDrawing2d {
       for (int i = 1; i <= 12; i++) {
          Point startPointFromCenter = new RectTriangle(hypothenusaSmall, angle).getPointAtEndOfHyp();
          Point endPointFromCenter = new RectTriangle(hypothenusaLarge, angle).getPointAtEndOfHyp();
-         int corrForXY = (int) (outerOffset + Math.round(metrics.getSizeOuterCircle() / 2));
-         int realX1 = corrForXY + startPointFromCenter.getXPos();
-         int realY1 = corrForXY + startPointFromCenter.getYPos();
-         int realX2 = corrForXY + endPointFromCenter.getXPos();
-         int realY2 = corrForXY + endPointFromCenter.getYPos();
+         double corrForXY = outerOffset + metrics.getSizeOuterCircle() / 2;
+         double realX1 = corrForXY + startPointFromCenter.getXPos();
+         double realY1 = corrForXY + startPointFromCenter.getYPos();
+         double realX2 = corrForXY + endPointFromCenter.getXPos();
+         double realY2 = corrForXY + endPointFromCenter.getYPos();
          gc.setLineWidth(2d);
          gc.strokeLine(realX1, realY1, realX2, realY2);
          angle += 30.0;
@@ -175,20 +175,20 @@ public class ChartsDrawing2d {
       yPos2 = distanceFromCenter;
       gc.strokeLine(xPos1, yPos1, xPos2, yPos2);  // desc line
 
-      double angleMc = new Range(0, 360).checkValue((int) (fullChart.getHouseValues().getAscendant().getLongitude()
-            - fullChart.getHouseValues().getMc().getLongitude()));
+      double angleMc = new Range(0.0, 360.0).checkValue(fullChart.getHouseValues().getAscendant().getLongitude()
+            - fullChart.getHouseValues().getMc().getLongitude());
 
-      int hypothenusaLarge = (int) Math.round(metrics.getSizeOuterCircle() / 2 + metrics.getOffsetOuterCircle());
-      int hypothenusaSmall = (int) Math.round(metrics.getSizeHousesCircle() / 2);
+      double hypothenusaLarge = metrics.getSizeOuterCircle() / 2 + metrics.getOffsetOuterCircle();
+      double hypothenusaSmall = metrics.getSizeHousesCircle() / 2;
       Point point1 = new RectTriangle(hypothenusaSmall, angleMc).getPointAtEndOfHyp();
       Point point2 = new RectTriangle(hypothenusaLarge, angleMc).getPointAtEndOfHyp();
 
       val outerOffset = metrics.getOffsetOuterCircle();
-      int corrForXY = (int) (outerOffset + Math.round(metrics.getSizeOuterCircle() / 2));
-      int realX1 = corrForXY + point1.getXPos();
-      int realY1 = corrForXY + point1.getYPos();
-      int realX2 = corrForXY + point2.getXPos();
-      int realY2 = corrForXY + point2.getYPos();
+      double corrForXY = outerOffset + metrics.getSizeOuterCircle() / 2;
+      double realX1 = corrForXY + point1.getXPos();
+      double realY1 = corrForXY + point1.getYPos();
+      double realX2 = corrForXY + point2.getXPos();
+      double realY2 = corrForXY + point2.getYPos();
       gc.strokeLine(realX1, realY1, realX2, realY2);  // ic
 
       point1 = new RectTriangle(hypothenusaSmall, angleMc + 180.0).getPointAtEndOfHyp();
@@ -207,22 +207,21 @@ public class ChartsDrawing2d {
       double angle;
       double asc = fullChart.getHouseValues().getAscendant().getLongitude();
       val outerOffset = metrics.getOffsetOuterCircle();
-      int corrForXY = (int) (outerOffset + Math.round(metrics.getSizeOuterCircle() / 2));
+      double corrForXY = outerOffset + Math.round(metrics.getSizeOuterCircle() / 2);
       final List<HousePosition> cusps = fullChart.getHouseValues().getCusps();
-      int hypothenusaLarge = (int) Math.round(metrics.getSizeSignsCircle() / 2);
-      int hypothenusaSmall = (int) Math.round(metrics.getSizeHousesCircle() / 2);
+      double hypothenusaLarge = metrics.getSizeSignsCircle() / 2;
+      double hypothenusaSmall = metrics.getSizeHousesCircle() / 2;
 
       for (int i = 1; i <= 12; i++) {
          if (!quadrant || (i != 1 && i != 4 && i != 7 && i != 10)) {
             double longitude = cusps.get(i).getLongitude();
             angle = asc - longitude;
-
             Point point1 = new RectTriangle(hypothenusaSmall, angle).getPointAtEndOfHyp();
             Point point2 = new RectTriangle(hypothenusaLarge, angle).getPointAtEndOfHyp();
-            int realX1 = corrForXY + point1.getXPos();
-            int realY1 = corrForXY + point1.getYPos();
-            int realX2 = corrForXY + point2.getXPos();
-            int realY2 = corrForXY + point2.getYPos();
+            double realX1 = corrForXY + point1.getXPos();
+            double realY1 = corrForXY + point1.getYPos();
+            double realX2 = corrForXY + point2.getXPos();
+            double realY2 = corrForXY + point2.getYPos();
             gc.strokeLine(realX1, realY1, realX2, realY2);
          }
 

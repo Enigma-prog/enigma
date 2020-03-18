@@ -14,8 +14,8 @@ import lombok.Getter;
 @Getter
 public class Point {
 
-   private final int xPos;
-   private final int yPos;
+   private final double xPos;
+   private final double yPos;
 
    /**
     * Constructor defines both points.
@@ -23,7 +23,7 @@ public class Point {
     * @param xPos the coordinate on the x-axis
     * @param yPos the coordinate on the y-axis
     */
-   public Point(final int xPos, final int yPos) {
+   public Point(final double xPos, final double yPos) {
       this.xPos = xPos;
       this.yPos = yPos;
    }
