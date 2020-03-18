@@ -13,8 +13,9 @@ import static org.junit.Assert.assertEquals;
 
 public class PointTest {
 
-   private final int xValue = 330;
-   private final int yValue = 220;
+   private static final double DELTA = 0.00000001;
+   private final double xValue = 330.0;
+   private final double yValue = 220.0;
    private Point point;
 
    @Before
@@ -24,11 +25,11 @@ public class PointTest {
 
    @Test
    public void getXPos() {
-      assertEquals(xValue, point.getXPos());
+      assertEquals(xValue, point.getXPos(), DELTA);
    }
 
    @Test
    public void getYPos() {
-      assertEquals(yValue, point.getYPos());
+      assertEquals(yValue, point.getYPos(), DELTA);
    }
 }

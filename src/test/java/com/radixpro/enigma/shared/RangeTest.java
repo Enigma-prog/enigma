@@ -13,31 +13,33 @@ import static org.junit.Assert.assertEquals;
 
 public class RangeTest {
 
+   private static final double DELTA = 0.00000001;
    private Range range;
+
 
    @Before
    public void setUp() throws Exception {
-      range = new Range(100, 200);
+      range = new Range(100.0, 200.0);
    }
 
    @Test
    public void checkValueNoChange() {
-      assertEquals(150, range.checkValue(150));
+      assertEquals(150.0, range.checkValue(150.0), DELTA);
    }
 
    @Test
    public void checkValueToLarge() {
-      assertEquals(120, range.checkValue(220));
+      assertEquals(120.0, range.checkValue(220.0), DELTA);
    }
 
    @Test
    public void checkValueToSmall() {
-      assertEquals(150, range.checkValue(50));
+      assertEquals(150.0, range.checkValue(50.0), DELTA);
    }
 
    @Test
    public void checkValueNegative() {
-      assertEquals(150, range.checkValue(-50));
+      assertEquals(150.0, range.checkValue(-50.0), DELTA);
    }
 
 }

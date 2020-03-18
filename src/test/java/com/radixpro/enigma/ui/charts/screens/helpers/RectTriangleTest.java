@@ -12,22 +12,24 @@ import static org.junit.Assert.assertEquals;
 
 public class RectTriangleTest {
 
+   private static final double DELTA = 0.00000001;
+
    @Test
    public void getPointAtEndOfHypFirstQuadrant() {
-      int hypothenusa = 100;
+      double hypothenusa = 100.0;
       double angle = 10.0;
       Point result = new RectTriangle(hypothenusa, angle).getPointAtEndOfHyp();
-      assertEquals(17, result.getYPos());
-      assertEquals(98, result.getXPos());
+      assertEquals(17.3648177667, result.getYPos(), DELTA);
+      assertEquals(98.4807753012, result.getXPos(), DELTA);
    }
 
    @Test
    public void getPointAtEndOfHypSecondQuadrant() {
-      int hypothenusa = 100;
+      double hypothenusa = 100.0;
       double angle = 152.0;
       Point result = new RectTriangle(hypothenusa, angle).getPointAtEndOfHyp();
-      assertEquals(47, result.getYPos());
-      assertEquals(-88, result.getXPos());
+      assertEquals(46.947156279, result.getYPos(), DELTA);
+      assertEquals(-88.294759286, result.getXPos(), DELTA);
    }
 
 
