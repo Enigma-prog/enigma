@@ -31,29 +31,33 @@ public class SexagesimalFormatterTest {
 
    @Test
    public void formatIntegerPartIs2HappyFlow() {
-      assertEquals("01" + DEGREESIGN + "30" + MINUTESIGN + "00" + SECONDSIGN, formatter2.format(value2Format));
+      assertEquals("01" + DEGREESIGN + "30" + MINUTESIGN + "00" + SECONDSIGN, formatter2.formatDms(value2Format));
    }
 
    @Test
    public void formatIntegerPartIs3HappyFlow() {
-      assertEquals("001" + DEGREESIGN + "30" + MINUTESIGN + "00" + SECONDSIGN, formatter3.format(value2Format));
+      assertEquals("001" + DEGREESIGN + "30" + MINUTESIGN + "00" + SECONDSIGN, formatter3.formatDms(value2Format));
    }
 
    @Test
    public void formatIntegerPartIs8HappyFlow() {
-      assertEquals("001" + DEGREESIGN + "30" + MINUTESIGN + "00" + SECONDSIGN, formatter8.format(value2Format));
+      assertEquals("001" + DEGREESIGN + "30" + MINUTESIGN + "00" + SECONDSIGN, formatter8.formatDms(value2Format));
    }
 
    @Test
    public void formatIntegerPartis3Complex() {
       value2Format = 113.90786111111;
-      assertEquals("113" + DEGREESIGN + "54" + MINUTESIGN + "28" + SECONDSIGN, formatter3.format(value2Format));
+      assertEquals("113" + DEGREESIGN + "54" + MINUTESIGN + "28" + SECONDSIGN, formatter3.formatDms(value2Format));
    }
 
    @Test
    public void formatIntegerPartis3CorrectRounding() {
       value2Format = 1.01666388889;
-      assertEquals("001" + DEGREESIGN + "00" + MINUTESIGN + "59" + SECONDSIGN, formatter3.format(value2Format));
+      assertEquals("001" + DEGREESIGN + "00" + MINUTESIGN + "59" + SECONDSIGN, formatter3.formatDms(value2Format));
    }
 
+   @Test
+   public void formatDm() {
+      assertEquals("01" + DEGREESIGN + "30" + MINUTESIGN, formatter2.formatDm(value2Format));
+   }
 }

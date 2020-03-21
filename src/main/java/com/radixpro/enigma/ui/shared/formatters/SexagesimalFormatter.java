@@ -26,9 +26,20 @@ public class SexagesimalFormatter {
       this.lengthOfIntegerPart = lengthOfIntegerPart;
    }
 
-   public String format(final double value2Format) {
+   /**
+    * Format a double into a string with degrees, minutes and seconds.
+    *
+    * @param value2Format the value to format.
+    * @return the formatted string.
+    */
+   public String formatDms(final double value2Format) {
       return performFormatting(value2Format);
    }
+
+   public String formatDm(final double value2Format) {
+      return performFormatting(value2Format).substring(0, lengthOfIntegerPart + 4);
+   }
+
 
    private String performFormatting(final double value2Format) {
       val degHour = (int) value2Format;

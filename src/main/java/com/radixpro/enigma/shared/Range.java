@@ -13,7 +13,7 @@ public class Range {
 
    private double min;
    private double max;
-   private double range;
+   private double actualRange;
 
    /**
     * Constructor defines min and max values.
@@ -22,16 +22,16 @@ public class Range {
     * @param maxValue Maximum value, exclusive.
     */
    public Range(final double minValue, final double maxValue) {
-      if (minValue >= maxValue) throw new RuntimeException("INput for Range has wrong sequence");
+      if (minValue >= maxValue) throw new RuntimeException("Input for Range has wrong sequence");
       this.min = minValue;
       this.max = maxValue;
-      range = max - min;
+      actualRange = max - min;
    }
 
    public double checkValue(final double inputValue) {
       double workValue = inputValue;
-      while (workValue >= max) workValue = workValue - range;
-      while (workValue < min) workValue = workValue + range;
+      while (workValue >= max) workValue = workValue - actualRange;
+      while (workValue < min) workValue = workValue + actualRange;
       return workValue;
    }
 
