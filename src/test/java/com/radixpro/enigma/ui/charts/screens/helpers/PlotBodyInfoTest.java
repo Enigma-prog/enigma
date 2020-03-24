@@ -45,6 +45,6 @@ public class PlotBodyInfoTest {
 
    @Test
    public void getPosText() {
-      assertEquals("32°30′00″", plotBodyInfo.getPosText());
+      assertEquals("02°30′", plotBodyInfo.getPosText());
    }
 }

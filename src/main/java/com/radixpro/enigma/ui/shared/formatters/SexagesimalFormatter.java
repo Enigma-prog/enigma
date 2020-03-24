@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.ui.shared.formatters;
 
+import com.radixpro.enigma.shared.Range;
 import lombok.val;
 
 import static com.radixpro.enigma.shared.EnigmaDictionary.*;
@@ -42,8 +43,9 @@ public class SexagesimalFormatter {
 
 
    private String performFormatting(final double value2Format) {
-      val degHour = (int) value2Format;
-      val fraction = value2Format - degHour;
+      val tempValue = new Range(0.0, 360.0).checkValue(value2Format);
+      val degHour = (int) tempValue;
+      val fraction = tempValue - degHour;
       val fractionalMinute = fraction * 60.0;
       val minute = (int) fractionalMinute;
       val second = (int) ((fractionalMinute - minute) * 60.0);
