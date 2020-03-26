@@ -160,62 +160,45 @@ public class RadixWheel {
 
    private void drawCorners() {
       prepareThickLines();
-      // Ascendant and descendant
-      val distanceFromCenter = metrics.getDiameterOuterCircle() + metrics.getOffsetOuterCircle();
-      var xPos1 = 0.0;
-      var xPos2 = distanceFromCenter - metrics.getDiameterHousesCircle() - (metrics.getWidthThickLines() / 2);
-      gc.strokeLine(xPos1, distanceFromCenter, xPos2, distanceFromCenter);  // asc line
-      xPos1 = distanceFromCenter + metrics.getDiameterHousesCircle() + (metrics.getWidthThickLines() / 2);
-      xPos2 = distanceFromCenter * 2.0;
-      gc.strokeLine(xPos1, distanceFromCenter, xPos2, distanceFromCenter);  // desc line
-      // MC and IC
-      val angleMc = new Range(0.0, 360.0).checkValue(cfChart.getHouseValues().getAscendant().getLongitude()
-            - cfChart.getHouseValues().getMc().getLongitude());
-      val hypothenusaLarge = metrics.getDiameterOuterCircle() + metrics.getOffsetOuterCircle();
-      val hypothenusaSmall = metrics.getDiameterHousesCircle() + (metrics.getWidthThickLines() / 2);
-      var point1 = new RectTriangle(hypothenusaSmall, angleMc).getPointAtEndOfHyp();
-      var point2 = new RectTriangle(hypothenusaLarge, angleMc).getPointAtEndOfHyp();
-      drawLine(point1, point2);     // MC
-      point1 = new RectTriangle(hypothenusaSmall, angleMc + 180.0).getPointAtEndOfHyp();
-      point2 = new RectTriangle(hypothenusaLarge, angleMc + 180.0).getPointAtEndOfHyp();
-      drawLine(point1, point2);    // IC
+      val angleMc = cfChart.getHouseValues().getAscendant().getLongitude()
+            - cfChart.getHouseValues().getMc().getLongitude();
+      val cornerLines = new CornerLines(metrics);
+      double[] coordinates = cornerLines.defineCoordinates(angleMc);
+      gc.strokeLine(coordinates[0], coordinates[1], coordinates[2], coordinates[3]);         // asc
+      gc.strokeLine(coordinates[4], coordinates[5], coordinates[6], coordinates[7]);         // desc
+      gc.strokeLine(coordinates[8], coordinates[9], coordinates[10], coordinates[11]);       // mc
+      gc.strokeLine(coordinates[12], coordinates[13], coordinates[14], coordinates[15]);     // ic
    }
 
    private void drawHouses() {
       prepareSmallLines();
       val quadrantSystem = cfChart.getSettings().getHouseSystem().isQuadrantSystem();
       double angle;
+      double[] positions;
       val asc = cfChart.getHouseValues().getAscendant().getLongitude();
       val cusps = cfChart.getHouseValues().getCusps();
+      val cuspLine = new CuspLine(metrics);
       for (int i = 1; i <= 12; i++) {
          if (!quadrantSystem || (i != 1 && i != 4 && i != 7 && i != 10)) {
             val longitude = cusps.get(i).getLongitude();
             angle = asc - longitude;
-            val point1 = new RectTriangle(metrics.getDiameterHousesCircle(), angle).getPointAtEndOfHyp();
-            val point2 = new RectTriangle(metrics.getDiameterSignsCircle(), angle).getPointAtEndOfHyp();
-            drawLine(point1, point2);
+            positions = cuspLine.defineCoordinates(angle);
+            gc.strokeLine(positions[0], positions[1], positions[2], positions[3]);
          }
       }
    }
 
    private void drawCornerPositions() {
       preparePositonTexts();
-      // Ascendant and descendant
-      var xPos = metrics.getOffsetOuterCircle() / 2.0;
-      val yPos = metrics.getDiameterOuterCircle() + metrics.getOffsetOuterCircle() - metrics.getWidthThickLines();
+      val angleMc = cfChart.getHouseValues().getAscendant().getLongitude() - cfChart.getHouseValues().getMc().getLongitude();
+      val cornerPositions = new CornerPositions(metrics);
+      double[] coordinates = cornerPositions.defineCoordinates(angleMc);
       String posText = new SexagesimalFormatter(2).formatDm(cfChart.getHouseValues().getAscendant().getLongitude() % 30.0);
-      gc.fillText(posText, xPos, yPos);
-      xPos = metrics.getDiameterOuterCircle() * 2.0 + metrics.getOffsetOuterCircle() * 1.25;
-      gc.fillText(posText, xPos, yPos);
-      // MC and IC
-      val angleMc = new Range(0.0, 360.0).checkValue(cfChart.getHouseValues().getAscendant().getLongitude()
-            - cfChart.getHouseValues().getMc().getLongitude());
-      val hypothenusa = metrics.getDiameterOuterCircle() + metrics.getOffsetOuterCircle() / 2.0;
-      var point = new RectTriangle(hypothenusa, angleMc).getPointAtEndOfHyp();
+      gc.fillText(posText, coordinates[0], coordinates[1]);
+      gc.fillText(posText, coordinates[2], coordinates[3]);
       posText = new SexagesimalFormatter(2).formatDm(cfChart.getHouseValues().getMc().getLongitude() % 30.0);
-      writeText(posText, point, 0.0, 0.0);
-      point = new RectTriangle(hypothenusa, angleMc + 180.0).getPointAtEndOfHyp();
-      writeText(posText, point, 0.0, 0.0);
+      gc.fillText(posText, coordinates[4], coordinates[5]);
+      gc.fillText(posText, coordinates[6], coordinates[7]);
    }
 
    private void drawCuspPositions() {
@@ -223,29 +206,13 @@ public class RadixWheel {
       val quadrantSystem = cfChart.getSettings().getHouseSystem().isQuadrantSystem();
       val asc = cfChart.getHouseValues().getAscendant().getLongitude();
       val cusps = cfChart.getHouseValues().getCusps();
-      double hypothenusa;
+      val cuspPosition = new CuspPosition(metrics);
+      double[] coordinates;
       for (int i = 1; i <= 12; i++) {
          if (!quadrantSystem || (i != 1 && i != 4 && i != 7 && i != 10)) {
-            val quadrant = defineQuadrant(asc - cusps.get(i).getLongitude());
-            switch (quadrant) {
-               case 1:
-                  hypothenusa = metrics.getDiameterCuspTextsLeft();
-                  break;
-               case 2:
-                  hypothenusa = metrics.getDiameterCuspTextsTop();
-                  break;
-               case 3:
-                  hypothenusa = metrics.getDiameterCuspTextsRight();
-                  break;
-               case 4:
-                  hypothenusa = metrics.getDiameterCuspTextsBottom();
-                  break;
-               default:
-                  hypothenusa = 0.0;
-            }
-            val startPoint = new RectTriangle(hypothenusa, asc - cusps.get(i).getLongitude() + 180.0).getPointAtEndOfHyp();
+            coordinates = cuspPosition.defineCoordinates(new Range(0.0, 360.0).checkValue(asc - cusps.get(i).getLongitude()));
             val posText = new SexagesimalFormatter(2).formatDm(cusps.get(i).getLongitude() % 30.0);
-            writeText(posText, startPoint, 0.0, 0.0);
+            gc.fillText(posText, coordinates[0], coordinates[1]);
          }
       }
    }
@@ -295,23 +262,22 @@ public class RadixWheel {
             plotBodyInfos.get(i).setCorrectedAngle(angle2 + minDist);
          }
       }
-      val hypothenusa = metrics.getDiameterCelBodiesMedium() / 2;
+      val celObject = new CelObject(metrics);
       for (PlotBodyInfo bodyInfo : plotBodyInfos) {
          gc.setFont(new Font(GLYPH_FONTNAME, metrics.getSizeGlyphFont()));  // TODO add to prepare function
-         val startPoint = new RectTriangle(hypothenusa, bodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();
          val bodyIndex = bodyInfo.getCelObject().getId();
-         writeText(new GlyphForCelObject(bodyIndex).getGlyph(), startPoint, -metrics.getOffSetGlyphs(), metrics.getOffSetGlyphs());
+         val coordinates = celObject.defineCoordinates(bodyInfo.getCorrectedAngle());
+         gc.fillText(new GlyphForCelObject(bodyIndex).getGlyph(), coordinates[0], coordinates[1]);
          drawConnectLines(bodyInfo);
-         drawPosition(bodyInfo);
+         drawCelObjectPosition(bodyInfo);
       }
    }
 
-
    private void drawConnectLines(@NonNull final PlotBodyInfo plotBodyInfo) {
       prepareConnectLines();
-      val hypothenusa1 = metrics.getDiameterCelBodiesMedium() / 2 - metrics.getDistanceConnectLines();
+      val hypothenusa1 = metrics.getDiameterCelBodiesMedium() - metrics.getDistanceConnectLines();
       val hypothenusa2 = metrics.getSizeHousesCircle() / 2;
-      val hypothenusa3 = metrics.getDiameterCelBodiesMedium() / 2 + metrics.getDistanceConnectLines();
+      val hypothenusa3 = metrics.getDiameterCelBodiesMedium() + metrics.getDistanceConnectLines();
       val hypothenusa4 = metrics.getSizeSignsCircle() / 2;
       var startPoint = new RectTriangle(hypothenusa1, plotBodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();
       var endPoint = new RectTriangle(hypothenusa2, plotBodyInfo.getAngleFromAsc() + 180.0).getPointAtEndOfHyp();
@@ -325,29 +291,10 @@ public class RadixWheel {
       gc.setGlobalAlpha(0.6);
    }
 
-   private void drawPosition(@NonNull final PlotBodyInfo plotBodyInfo) {
-      double hypothenusa;
-      int quadrant = defineQuadrant(plotBodyInfo.getAngleFromAsc());
-      switch (quadrant) {
-         case 1:
-            hypothenusa = metrics.getDiameterPosTextsLeft();
-            break;
-         case 2:
-            hypothenusa = metrics.getDiameterPosTextsTop();
-            break;
-         case 3:
-            hypothenusa = metrics.getDiameterPosTextsRight();
-            break;
-         case 4:
-            hypothenusa = metrics.getDiameterPosTextsBottom();
-            break;
-         default:
-            hypothenusa = 0.0;
-      }
-      Point centerPoint = new RectTriangle(hypothenusa, plotBodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();
+   private void drawCelObjectPosition(@NonNull final PlotBodyInfo plotBodyInfo) {
       gc.setFont(new Font(TEXT_FONTNAME, metrics.getSizeTextFont()));
-      gc.fillText(plotBodyInfo.getPosText(), centerPoint.getXPos() + corrForXY, centerPoint.getYPos() + corrForXY);
-      writeText(plotBodyInfo.getPosText(), centerPoint, 0.0, 0.0);
+      double[] coordinates = new CelObjectPlotPosition(metrics).defineCoordinates(plotBodyInfo.getCorrectedAngle());
+      gc.fillText(plotBodyInfo.getPosText(), coordinates[0], coordinates[1]);
    }
 
    // quadrants 0f 90 degrees each: 1 with the asc as center, 3 with the desc as center, 2 top, between 1 and 3,

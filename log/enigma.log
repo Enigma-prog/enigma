@@ -6371,3 +6371,222 @@
 2020-03-24 11:47:45,998 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-03-24 11:47:49,926 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
 2020-03-24 11:47:49,940 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:09:01,738 INFO  App:33 - Started Enigma.
+2020-03-24 22:09:01,758 INFO  VersionController:42 - Performing checked initialization.
+2020-03-24 22:09:01,902 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:09:01,903 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-24 22:09:01,927 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:09:04,918 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:09:04,944 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:09:08,312 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-24 22:09:08,331 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:15:39,794 INFO  App:33 - Started Enigma.
+2020-03-24 22:15:39,805 INFO  VersionController:42 - Performing checked initialization.
+2020-03-24 22:15:40,036 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:15:40,037 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-24 22:15:40,069 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:15:42,897 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:15:42,915 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:15:50,746 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-24 22:15:50,759 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:45:26,749 INFO  App:33 - Started Enigma.
+2020-03-24 22:45:26,758 INFO  VersionController:42 - Performing checked initialization.
+2020-03-24 22:45:26,913 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:45:26,913 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-24 22:45:26,936 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:45:30,286 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:45:30,305 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:45:33,955 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-24 22:45:33,970 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:46:41,267 INFO  App:33 - Started Enigma.
+2020-03-24 22:46:41,275 INFO  VersionController:42 - Performing checked initialization.
+2020-03-24 22:46:41,451 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:46:41,452 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-24 22:46:41,479 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:46:43,999 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:46:44,015 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-24 22:46:47,811 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-24 22:46:47,825 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 20:42:17,036 INFO  App:33 - Started Enigma.
+2020-03-25 20:42:17,052 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 20:42:17,213 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 20:42:17,214 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 20:42:17,238 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 20:42:20,526 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 20:42:20,555 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:13:32,498 INFO  App:33 - Started Enigma.
+2020-03-25 21:13:32,506 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:13:32,685 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:13:32,685 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:13:32,711 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:13:34,994 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:13:35,014 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:13:40,723 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 21:13:40,737 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:48:33,011 INFO  App:33 - Started Enigma.
+2020-03-25 21:48:33,023 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:48:33,195 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:48:33,196 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:48:33,225 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:48:35,992 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:48:36,016 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:48:39,845 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 21:48:39,860 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:49:47,261 INFO  App:33 - Started Enigma.
+2020-03-25 21:49:47,271 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:49:47,476 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:49:47,476 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:49:47,500 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:49:50,739 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:49:50,759 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:49:53,797 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 21:49:53,811 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:50:50,064 INFO  App:33 - Started Enigma.
+2020-03-25 21:50:50,072 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:50:50,224 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:50:50,225 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:50:50,249 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:51:04,081 INFO  App:33 - Started Enigma.
+2020-03-25 21:51:04,090 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:51:04,297 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:51:04,298 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:51:04,332 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:51:07,225 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:51:07,245 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:51:11,329 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 21:51:11,343 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:52:34,008 INFO  App:33 - Started Enigma.
+2020-03-25 21:52:34,016 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:52:34,187 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:52:34,187 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:52:34,216 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:52:36,390 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:52:36,407 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:52:39,869 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 21:52:39,889 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:54:56,314 INFO  App:33 - Started Enigma.
+2020-03-25 21:54:56,321 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:54:56,493 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:54:56,493 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:54:56,518 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:54:59,439 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:54:59,457 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:55:03,107 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 21:55:03,122 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:56:23,723 INFO  App:33 - Started Enigma.
+2020-03-25 21:56:23,731 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 21:56:23,885 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:56:23,886 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 21:56:23,912 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:56:26,781 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:56:26,798 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 21:56:31,066 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 21:56:31,081 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:00:36,313 INFO  App:33 - Started Enigma.
+2020-03-25 22:00:36,324 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 22:00:36,550 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:00:36,551 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 22:00:36,583 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:00:39,464 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:00:39,484 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:00:42,735 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 22:00:42,749 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:08:37,196 INFO  App:33 - Started Enigma.
+2020-03-25 22:08:37,203 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 22:08:37,364 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:08:37,365 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 22:08:37,389 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:08:39,570 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:08:39,589 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:08:43,778 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 22:08:43,791 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:29:06,345 INFO  App:33 - Started Enigma.
+2020-03-25 22:29:06,353 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 22:29:06,537 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:29:06,538 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 22:29:06,564 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:29:08,810 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:29:08,828 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:29:12,095 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 22:29:12,109 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:32:17,091 INFO  App:33 - Started Enigma.
+2020-03-25 22:32:17,098 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 22:32:17,244 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:32:17,244 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 22:32:17,271 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:32:19,624 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:32:19,643 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:32:22,921 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 22:32:22,935 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:39:16,432 INFO  App:33 - Started Enigma.
+2020-03-25 22:39:16,441 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 22:39:16,630 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:39:16,630 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 22:39:16,657 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:39:19,195 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:39:19,213 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:39:22,938 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 22:39:22,953 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:40:38,303 INFO  App:33 - Started Enigma.
+2020-03-25 22:40:38,310 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 22:40:38,462 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:40:38,463 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 22:40:38,488 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:40:44,858 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:40:44,876 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:40:48,607 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 22:40:48,621 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:45:22,903 INFO  App:33 - Started Enigma.
+2020-03-25 22:45:22,911 INFO  VersionController:42 - Performing checked initialization.
+2020-03-25 22:45:23,086 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:45:23,087 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-25 22:45:23,123 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:45:25,452 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:45:25,471 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-25 22:45:28,648 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-25 22:45:28,671 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:25:26,056 INFO  App:33 - Started Enigma.
+2020-03-26 16:25:26,074 INFO  VersionController:42 - Performing checked initialization.
+2020-03-26 16:25:26,200 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:25:26,200 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-26 16:25:26,222 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:25:29,220 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:25:29,250 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:25:32,921 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-26 16:25:32,942 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:28:23,318 INFO  App:33 - Started Enigma.
+2020-03-26 16:28:23,327 INFO  VersionController:42 - Performing checked initialization.
+2020-03-26 16:28:23,502 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:28:23,503 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-26 16:28:23,528 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:28:26,368 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:28:26,387 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:28:29,537 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-26 16:28:29,551 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:30:53,198 INFO  App:33 - Started Enigma.
+2020-03-26 16:30:53,208 INFO  VersionController:42 - Performing checked initialization.
+2020-03-26 16:30:53,396 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:30:53,397 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-26 16:30:53,425 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:30:57,708 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:30:57,725 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:31:01,099 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-26 16:31:01,113 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:45:12,690 INFO  App:33 - Started Enigma.
+2020-03-26 16:45:12,698 INFO  VersionController:42 - Performing checked initialization.
+2020-03-26 16:45:12,850 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:45:12,850 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-26 16:45:12,876 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:45:15,124 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:45:15,142 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:45:18,455 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-26 16:45:18,476 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:46:33,703 INFO  App:33 - Started Enigma.
+2020-03-26 16:46:33,711 INFO  VersionController:42 - Performing checked initialization.
+2020-03-26 16:46:33,848 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:46:33,848 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-03-26 16:46:33,875 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:46:36,092 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:46:36,111 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-03-26 16:46:39,987 INFO  SeFrontend:43 - Created singleton instance for SeFrontend.
+2020-03-26 16:46:40,007 INFO  Nitrite:309 - Nitrite database has been closed successfully.

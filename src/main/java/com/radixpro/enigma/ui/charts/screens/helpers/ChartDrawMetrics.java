@@ -27,8 +27,8 @@ public class ChartDrawMetrics {
 
    private double offSetGlyphs;           // correction to make sure the x-y-coordinates are at the center of the glyph
    private double diameterCelBodiesMedium;// radius for celestial Bodies (default)
-   private double diameterCelBodiesLarge; // radius for celestial Bodies (more distant if there is lack of space)
-   private double diameterCelBodiesSmall; // radius for celestial Bodies (if it is crowded)
+   //   private double diameterCelBodiesLarge; // radius for celestial Bodies (more distant if there is lack of space)
+//   private double diameterCelBodiesSmall; // radius for celestial Bodies (if it is crowded)
    private double minAngleObjects;        // the minimum angle between celestial objects (to prevent overlap)
    private double distanceConnectLines;   // the distance between the plotposition for the glyph and the connect line
    private double diameterPosTextsLeft;   // distance for position texts in the left part of the chart
@@ -94,9 +94,9 @@ public class ChartDrawMetrics {
       diameterCuspTextsTop = canvasDimension * 0.33;
       diameterCuspTextsBottom = canvasDimension * 0.33;
 
-      diameterCelBodiesSmall = canvasDimension * 0.45;
-      diameterCelBodiesMedium = canvasDimension * 0.5;
-      diameterCelBodiesLarge = canvasDimension * 0.55;
+//      diameterCelBodiesSmall = canvasDimension * 0.45;
+      diameterCelBodiesMedium = canvasDimension * 0.25;
+//      diameterCelBodiesLarge = canvasDimension * 0.55;
 
       minAngleObjects = sizeGlyphFont / 4.2;  // value is in degrees
       distanceConnectLines = canvasDimension * 0.02;
