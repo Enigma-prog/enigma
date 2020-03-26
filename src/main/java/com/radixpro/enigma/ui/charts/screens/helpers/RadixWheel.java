@@ -221,10 +221,10 @@ public class RadixWheel {
       prepareGlyphs();
       double angle = 165.0 + offsetAsc % 30;      // 180 degrees (correct quadrant) minus 15 (glyph in center of sign).
       for (int i = 1; i <= 12; i++) {
-         Point startPoint = new RectTriangle(metrics.getDiameterSignGlyphsCircle(), angle).getPointAtEndOfHyp();
+         Point point = new RectTriangle(metrics.getDiameterSignGlyphsCircle(), angle).getPointAtEndOfHyp();
          int signIndex = (int) (cfChart.getHouseValues().getAscendant().getLongitude() / 30) + i;
          if (signIndex > 12) signIndex -= 12;
-         writeText(new GlyphForSign(signIndex).getGlyph(), startPoint, -metrics.getOffSetGlyphs(), metrics.getOffSetGlyphs());
+         gc.fillText(new GlyphForSign(signIndex).getGlyph(), point.getXPos() + corrForXY - metrics.getOffSetGlyphs(), point.getYPos() + corrForXY + metrics.getOffSetGlyphs());
          angle -= 30.0;
          if (angle < 0.0) angle += 360.0;
       }
@@ -281,10 +281,12 @@ public class RadixWheel {
       val hypothenusa4 = metrics.getSizeSignsCircle() / 2;
       var startPoint = new RectTriangle(hypothenusa1, plotBodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();
       var endPoint = new RectTriangle(hypothenusa2, plotBodyInfo.getAngleFromAsc() + 180.0).getPointAtEndOfHyp();
-      drawLine(startPoint, endPoint);
+      gc.strokeLine(startPoint.getXPos() + corrForXY, startPoint.getYPos() + corrForXY,
+            endPoint.getXPos() + corrForXY, endPoint.getYPos() + corrForXY);
       startPoint = new RectTriangle(hypothenusa3, plotBodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();
       endPoint = new RectTriangle(hypothenusa4, plotBodyInfo.getAngleFromAsc() + 180.0).getPointAtEndOfHyp();
-      drawLine(startPoint, endPoint);
+      gc.strokeLine(startPoint.getXPos() + corrForXY, startPoint.getYPos() + corrForXY,
+            endPoint.getXPos() + corrForXY, endPoint.getYPos() + corrForXY);
       gc.setStroke(Color.BLACK);
       gc.setFill(Color.BLACK);
       gc.setLineWidth(1d);
@@ -295,28 +297,6 @@ public class RadixWheel {
       gc.setFont(new Font(TEXT_FONTNAME, metrics.getSizeTextFont()));
       double[] coordinates = new CelObjectPlotPosition(metrics).defineCoordinates(plotBodyInfo.getCorrectedAngle());
       gc.fillText(plotBodyInfo.getPosText(), coordinates[0], coordinates[1]);
-   }
-
-   // quadrants 0f 90 degrees each: 1 with the asc as center, 3 with the desc as center, 2 top, between 1 and 3,
-   // 4 bottom, between 2 and 4.
-   private int defineQuadrant(final double degreesFromAsc) {
-      val angleForQuadrant = new Range(0, 360).checkValue(degreesFromAsc);
-      var quadrant = 0;
-      if (0.0 <= angleForQuadrant && angleForQuadrant < 45.0) quadrant = 1;
-      else if (45.0 <= angleForQuadrant && angleForQuadrant < 135.0) quadrant = 2;
-      else if (135.0 <= angleForQuadrant && angleForQuadrant < 225.0) quadrant = 3;
-      else if (225.0 <= angleForQuadrant && angleForQuadrant < 315.0) quadrant = 4;
-      else if (315.0 <= angleForQuadrant && angleForQuadrant < 360.0) quadrant = 1;
-      return quadrant;
-   }
-
-   private void drawLine(@NonNull final Point point1, @NonNull final Point point2) {
-      gc.strokeLine(point1.getXPos() + corrForXY, point1.getYPos() + corrForXY,
-            point2.getXPos() + corrForXY, point2.getYPos() + corrForXY);
-   }
-
-   private void writeText(@NonNull final String text, @NonNull final Point point, final double xOffset, final double yOffset) {
-      gc.fillText(text, point.getXPos() + corrForXY + xOffset, point.getYPos() + corrForXY + yOffset);
    }
 
 }
