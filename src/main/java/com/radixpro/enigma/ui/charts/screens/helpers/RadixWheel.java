@@ -177,12 +177,13 @@ public class RadixWheel {
       double[] positions;
       val asc = cfChart.getHouseValues().getAscendant().getLongitude();
       val cusps = cfChart.getHouseValues().getCusps();
-      val cuspLine = new CuspLine(metrics);
+      CuspLinePlotCoordinates cuspLine;
       for (int i = 1; i <= 12; i++) {
          if (!quadrantSystem || (i != 1 && i != 4 && i != 7 && i != 10)) {
             val longitude = cusps.get(i).getLongitude();
             angle = asc - longitude;
-            positions = cuspLine.defineCoordinates(angle);
+            cuspLine = PlotCoordinatesFactory.createCuspLinePlotCoordinates(angle, metrics);
+            positions = cuspLine.defineCoordinates(angle, metrics);
             gc.strokeLine(positions[0], positions[1], positions[2], positions[3]);
          }
       }
@@ -206,11 +207,14 @@ public class RadixWheel {
       val quadrantSystem = cfChart.getSettings().getHouseSystem().isQuadrantSystem();
       val asc = cfChart.getHouseValues().getAscendant().getLongitude();
       val cusps = cfChart.getHouseValues().getCusps();
-      val cuspPosition = new CuspPosition(metrics);
+      CuspTextPlotCoordinates cuspText;
       double[] coordinates;
+      double angle;
       for (int i = 1; i <= 12; i++) {
          if (!quadrantSystem || (i != 1 && i != 4 && i != 7 && i != 10)) {
-            coordinates = cuspPosition.defineCoordinates(new Range(0.0, 360.0).checkValue(asc - cusps.get(i).getLongitude()));
+            angle = new Range(0.0, 360.0).checkValue(asc - cusps.get(i).getLongitude());
+            cuspText = PlotCoordinatesFactory.createCuspTextPlotCoordinates(angle + 180.0, metrics);
+            coordinates = cuspText.defineCoordinates(angle, metrics);
             val posText = new SexagesimalFormatter(2).formatDm(cusps.get(i).getLongitude() % 30.0);
             gc.fillText(posText, coordinates[0], coordinates[1]);
          }

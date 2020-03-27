@@ -13,7 +13,7 @@ import lombok.Getter;
  * This object is mutable as the value for canvasDimension can be set.
  */
 @Getter
-public class ChartDrawMetrics {
+public class ChartDrawMetrics implements DrawMetrics {
 
    private static final double BASE_DIMENSION = 700;
    private double canvasDimension;
@@ -21,14 +21,10 @@ public class ChartDrawMetrics {
    private double sizeSignsCircle;        // size of circle between houses and signs
    private double offsetHousesCircle;     // distance on x- and y-axis for drawing houses circle
    private double sizeHousesCircle;       // size of circle between aspect-space and houses
-   private double sizeSignGlyphsCircle;   // size of circle for placing sygn glyphs
    private double sizeGlyphFont;          // size for glyphs, measured in points, both for signs and celestial bodies
    private double sizeTextFont;           // size for text, measured in points
-
    private double offSetGlyphs;           // correction to make sure the x-y-coordinates are at the center of the glyph
    private double diameterCelBodiesMedium;// radius for celestial Bodies (default)
-   //   private double diameterCelBodiesLarge; // radius for celestial Bodies (more distant if there is lack of space)
-//   private double diameterCelBodiesSmall; // radius for celestial Bodies (if it is crowded)
    private double minAngleObjects;        // the minimum angle between celestial objects (to prevent overlap)
    private double distanceConnectLines;   // the distance between the plotposition for the glyph and the connect line
    private double diameterPosTextsLeft;   // distance for position texts in the left part of the chart
@@ -66,6 +62,7 @@ public class ChartDrawMetrics {
     *
     * @param newDimension new size of the canvasm it should the minimum of the height and width.
     */
+   @Override
    public void setCanvasDimension(final double newDimension) {
       this.canvasDimension = newDimension;
       defineValues();
@@ -76,7 +73,6 @@ public class ChartDrawMetrics {
       sizeSignsCircle = canvasDimension * 0.7;
       sizeHousesCircle = canvasDimension * 0.4;
       offsetHousesCircle = offsetOuterCircle + ((sizeOuterCircle - sizeHousesCircle) / 2);
-//      sizeSignGlyphsCircle = canvasDimension * 0.75;
       sizeGlyphFont = canvasDimension * 0.035;
       sizeTextFont = canvasDimension * 0.013;
       widthThickLines = canvasDimension * 0.0075;
@@ -93,11 +89,7 @@ public class ChartDrawMetrics {
       diameterCuspTextsRight = canvasDimension * 0.31;
       diameterCuspTextsTop = canvasDimension * 0.33;
       diameterCuspTextsBottom = canvasDimension * 0.33;
-
-//      diameterCelBodiesSmall = canvasDimension * 0.45;
       diameterCelBodiesMedium = canvasDimension * 0.25;
-//      diameterCelBodiesLarge = canvasDimension * 0.55;
-
       minAngleObjects = sizeGlyphFont / 4.2;  // value is in degrees
       distanceConnectLines = canvasDimension * 0.02;
 

@@ -12,7 +12,7 @@ import lombok.val;
 import static com.radixpro.enigma.shared.EnigmaDictionary.*;
 
 /**
- * Formatter for sexagesimal results.
+ * Formats into sexagesimal results.
  */
 public class SexagesimalFormatter {
 
@@ -21,7 +21,7 @@ public class SexagesimalFormatter {
    /**
     * Constructor, defines the length of the hours/degrees in the formatted result.
     *
-    * @param lengthOfIntegerPart Expects 2 or 3, any other value is considered to be 3.
+    * @param lengthOfIntegerPart Expects 2 or 3, any other value is handled as 3.
     */
    public SexagesimalFormatter(final int lengthOfIntegerPart) {
       this.lengthOfIntegerPart = lengthOfIntegerPart;
@@ -37,16 +37,21 @@ public class SexagesimalFormatter {
       return performFormatting(value2Format);
    }
 
+   /**
+    * Format a double into a string with degrees and minutes.
+    *
+    * @param value2Format the value to format.
+    * @return the formatted string.
+    */
    public String formatDm(final double value2Format) {
       return performFormatting(value2Format).substring(0, lengthOfIntegerPart + 4);
    }
 
-
    private String performFormatting(final double value2Format) {
-      val tempValue = new Range(0.0, 360.0).checkValue(value2Format);
+      double tempValue = new Range(0.0, 360.0).checkValue(value2Format);
       val degHour = (int) tempValue;
       val fraction = tempValue - degHour;
-      val fractionalMinute = fraction * 60.0;
+      double fractionalMinute = fraction * 60.0;
       val minute = (int) fractionalMinute;
       val second = (int) ((fractionalMinute - minute) * 60.0);
       val degHourFormat = lengthOfIntegerPart == 2 ? "%02d" : "%03d";

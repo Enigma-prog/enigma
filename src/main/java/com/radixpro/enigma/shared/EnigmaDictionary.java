@@ -6,6 +6,9 @@
 
 package com.radixpro.enigma.shared;
 
+/**
+ * Dictionary with static constants that can be used globally.
+ */
 public class EnigmaDictionary {
 
    private EnigmaDictionary() {

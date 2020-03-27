@@ -16,6 +16,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Enuim with ratings for the reliability of the time for a chart, as define buy Louise Rodden.
+ * Adds a code 'ZZ' as fallback if the rating is unknown.
+ * Is persistable as part of a saved chart.
+ */
 @Getter
 public enum Ratings implements Serializable {
    ZZ(0, "ratings.zz"),
@@ -35,6 +40,12 @@ public enum Ratings implements Serializable {
       this.nameForRB = nameForRB;
    }
 
+   /**
+    * Return the rating for a specified id.
+    *
+    * @param id The id for the rating.
+    * @return The resulting rating.
+    */
    public Ratings getRatingForId(final int id) {
       for (Ratings rating : Ratings.values()) {
          if (rating.getId() == id) {
@@ -44,6 +55,12 @@ public enum Ratings implements Serializable {
       return Ratings.ZZ;
    }
 
+   /**
+    * Return the rating for a specified name, using names as 'AA', 'X' etc.
+    *
+    * @param ratingName The anme for the rating.
+    * @return The resulting rating.
+    */
    public Ratings ratingForName(@NonNull final String ratingName) {
       final Rosetta rosetta = Rosetta.getRosetta();
       for (Ratings rating : Ratings.values()) {
@@ -55,6 +72,11 @@ public enum Ratings implements Serializable {
    }
 
 
+   /**
+    * Return an observable list with all ratings, to be used in the UI.
+    *
+    * @return The resulting observable list.
+    */
    public ObservableList<String> getObservableList() {
       final Rosetta rosetta = Rosetta.getRosetta();
       final List<String> ratingNames = new ArrayList<>();
@@ -63,6 +85,5 @@ public enum Ratings implements Serializable {
       }
       return FXCollections.observableArrayList(ratingNames);
    }
-
 
 }

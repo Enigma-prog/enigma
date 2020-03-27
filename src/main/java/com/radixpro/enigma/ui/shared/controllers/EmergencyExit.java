@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import lombok.Setter;
 
 /**
- * Controller for popup that handles terminating Enigma in case of a unrecoverable error.
+ * Controller for popup that handles terminating Enigma in case of an unrecoverable error.
  */
 public class EmergencyExit {
 
