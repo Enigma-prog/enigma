@@ -116,6 +116,13 @@ public class SeFrontend {
       return new SePositionResultHouses(ascMc, cusps);
    }
 
+   /**
+    * Convert ecliptic coordinates to equatorial coordinates.
+    *
+    * @param eclipticValues Array with Longitude and Latitude in degrees.
+    * @param obliquity      Obliquity (Epsilon) in degrees.
+    * @return Array with right ascensiona nd declination in degrees.
+    */
    public double[] convertToEquatorial(@NonNull final double[] eclipticValues, final double obliquity) {
       SwissLib swissLib = new SwissLib();
       var equatorialValues = new double[3];
@@ -123,6 +130,15 @@ public class SeFrontend {
       return equatorialValues;
    }
 
+   /**
+    * Checks if a date is valid.
+    *
+    * @param year      The year of the date.
+    * @param month     The month of the date.
+    * @param day       The day of the date.
+    * @param gregorian True if gregorian calendar, otherwise false.
+    * @return True if date is valid, otherwise false.
+    */
    public boolean isValidDate(final int year, final int month, final int day, final boolean gregorian) {
       val sweDate1 = new SweDate(year, month, day, 0.0, gregorian);
       val calculatedJulDay = sweDate1.getJulDay();

@@ -95,7 +95,8 @@
                     <tabs>
                         <Tab text="Astronomical">
                             <content>
-                                <AnchorPane minHeight="100.0" minWidth="800.0" prefHeight="180.0" prefWidth="800.0"/>
+                                <AnchorPane fx:id="btnConfig" minHeight="100.0" minWidth="800.0" prefHeight="180.0"
+                                            prefWidth="800.0"/>
                             </content>
                         </Tab>
                         <Tab text="Aspects">
@@ -109,6 +110,7 @@
                     <children>
                         <ButtonBar prefHeight="40.0" prefWidth="900.0">
                             <buttons>
+                                <Button mnemonicParsing="false" onAction="#onConfig" text="Config"/>
                                 <Button fx:id="btnNewChart" mnemonicParsing="false" onAction="#onNewChart"
                                         text="%ui.charts.start.btn.new"/>
                                 <Button fx:id="btnSearchChart" mnemonicParsing="false" onAction="#onSearchChart"

@@ -40,6 +40,8 @@ public class MundaneValuesTest {
    private SePositionResultCelObjects sePositionResultCelObjectsMock;
    @Mock
    private Location locationMock;
+   private int flags = 3;
+   private double jdUt = 1234567.8912;
    private MundaneValues mundaneValues;
 
    @Before
@@ -52,8 +54,6 @@ public class MundaneValuesTest {
             anyInt())).thenReturn(sePositionResultHousesMock);
       when(seFrontendMock.getPositionsForCelBody(anyDouble(), anyInt(), anyInt())).thenReturn(sePositionResultCelObjectsMock);
       when(seFrontendMock.getHorizontalPosition(anyDouble(), any(), any(), anyInt())).thenReturn(new double[]{100.0, -30.0});
-      int flags = 3;
-      double jdUt = 1234567.8912;
       mundaneValues = new MundaneValues(seFrontendMock, jdUt, flags, locationMock, system);
    }
 
@@ -88,5 +88,16 @@ public class MundaneValuesTest {
    public void getArmc() {
       assertEquals(3.3, mundaneValues.getArmc(), delta);
    }
+
+   @Test
+   public void getArmcForLargeArmc() {
+      final double[] ascMc = {1.1, 2.2, 353.3, 4.4, 5.5, 6.6, 7.7, 8.8, 0.0, 0.0};  // Asc,MC,ARMC,Vertex,Eastpoint.
+      when(sePositionResultHousesMock.getAscMc()).thenReturn(ascMc);
+      when(seFrontendMock.getPositionsForHouses(anyDouble(), anyInt(), any(), anyInt(),
+            anyInt())).thenReturn(sePositionResultHousesMock);
+      mundaneValues = new MundaneValues(seFrontendMock, jdUt, flags, locationMock, system);
+      assertEquals(353.3, mundaneValues.getArmc(), delta);
+   }
+
 
 }

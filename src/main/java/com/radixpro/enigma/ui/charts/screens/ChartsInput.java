@@ -15,18 +15,13 @@ import com.radixpro.enigma.xchg.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.val;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import static com.radixpro.enigma.ui.shared.StyleDictionary.INPUT_DEFAULT_STYLE;
 import static com.radixpro.enigma.ui.shared.StyleDictionary.INPUT_ERROR_STYLE;
@@ -100,17 +95,18 @@ public class ChartsInput {
 
    @FXML
    void onHelp() throws IOException {
-      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/help.fxml"));
-      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
-      Parent parent = fxmlLoader.load();
-      Help help = fxmlLoader.getController();
-      help.setTitle(Rosetta.getRosetta().getHelpText("help.chartsinput.title"));
-      help.setContent(Rosetta.getRosetta().getHelpText("help.chartsinput.content"));
-      Scene scene = new Scene(parent, 530, 600);
-      Stage stage = new Stage();
-      stage.initModality(Modality.APPLICATION_MODAL);
-      stage.setScene(scene);
-      stage.showAndWait();
+//      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/help.fxml"));
+//      fxmlLoader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
+//      Parent parent = fxmlLoader.load();
+//      Help help = fxmlLoader.getController();
+//      help.setTitle(Rosetta.getRosetta().getHelpText("help.chartsinput.title"));
+//      help.setContent(Rosetta.getRosetta().getHelpText("help.chartsinput.content"));
+//      Scene scene = new Scene(parent, 530, 600);
+//      Stage stage = new Stage();
+//      stage.initModality(Modality.APPLICATION_MODAL);
+//      stage.setScene(scene);
+//      stage.showAndWait();
+      Help help = new Help(Rosetta.getRosetta().getHelpText("help.chartsinput.title"), Rosetta.getRosetta().getHelpText("help.chartsinput.content"));
    }
 
    public InputStatus getInputStatus() {

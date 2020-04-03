@@ -28,7 +28,7 @@ public class CuspTextPlotCoordinatesTest {
    private CuspTextPlotCoordinates cuspTextCoordinates;
 
    @Before
-   public void setUp() throws Exception {
+   public void setUp() {
       when(rectTriangleMock.getCoordinates(anyDouble())).thenReturn(coords);
       cuspTextCoordinates = new CuspTextPlotCoordinates(rectTriangleMock);
    }

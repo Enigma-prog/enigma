@@ -10,6 +10,9 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
+/**
+ * DTO for a date and the calendar.
+ */
 @Getter
 public class SimpleDate implements Serializable {
    private final int year;
@@ -18,7 +21,7 @@ public class SimpleDate implements Serializable {
    private final boolean gregorian;
 
    /**
-    * DTO for a date
+    * The constructor defines all members.
     *
     * @param year      the astronomical year
     * @param month     month, 1..12

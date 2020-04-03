@@ -24,6 +24,14 @@ public class AspectConfiguration implements Serializable {
    private final List<ConfiguredAspect> aspects;
    private final boolean drawInOutGoing;
 
+   /**
+    * Constructor defines all members.
+    *
+    * @param aspects        Supported aspects including orb-percentage.
+    * @param baseOrb        The base orb.
+    * @param orbStructure   Structure to be used for orbs.
+    * @param drawInOutGoing Indicates if separate glyphs will be used for in- and outgoing aspects.
+    */
    public AspectConfiguration(@NonNull final List<ConfiguredAspect> aspects, final double baseOrb,
                               @NonNull final AspectOrbStructure orbStructure, final boolean drawInOutGoing) {
       this.aspects = aspects;

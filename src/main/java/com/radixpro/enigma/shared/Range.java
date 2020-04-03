@@ -16,7 +16,8 @@ public class Range {
    private double actualRange;
 
    /**
-    * Constructor defines min and max values.
+    * Constructor defines min and max values. The input parameters should be in the correct sequence,
+    * otherwise a Runtime Exception will be thrown.
     *
     * @param minValue Minimal value, inclusive.
     * @param maxValue Maximum value, exclusive.
@@ -28,6 +29,12 @@ public class Range {
       actualRange = max - min;
    }
 
+   /**
+    * Checks if a value in the defined range. If not, the value will be adapted so that it does fit.
+    *
+    * @param inputValue The value to check.
+    * @return The checked, and possibly adapted, value.
+    */
    public double checkValue(final double inputValue) {
       double workValue = inputValue;
       while (workValue >= max) workValue = workValue - actualRange;

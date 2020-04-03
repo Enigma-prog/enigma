@@ -13,6 +13,9 @@ import org.dizitart.no2.objects.Id;
 
 import java.io.Serializable;
 
+/**
+ * Persistable category for a chart, the content is defined by the user.
+ */
 @Getter
 @ToString
 public class UserDefinedCategory implements Serializable {
@@ -21,6 +24,12 @@ public class UserDefinedCategory implements Serializable {
    private final long id;   // Nitrite Id
    private final String text;
 
+   /**
+    * Constructor defines all members.
+    *
+    * @param id   The id for the category
+    * @param text The text for the category (defined by the user).
+    */
    public UserDefinedCategory(final long id, @NonNull final String text) {
       this.id = id;
       this.text = text;

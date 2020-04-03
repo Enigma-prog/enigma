@@ -13,7 +13,7 @@ import lombok.NonNull;
 import lombok.val;
 
 /**
- * Equatorial position: right ascendsion and declination.
+ * Equatorial position: right ascension and declination.
  * Converts from ecliptic coördinates to equatorial coördinates. Can only be used for house positions as a zero latitude
  * is assumed. There is no need for conversion of planetary positions as they already contain equatorial values.
  */
@@ -23,10 +23,23 @@ public class EquatorialPosition {
    private double rightAscension;
    private double declination;
 
+   /**
+    * Constructor for positions that need to be calculated.
+    *
+    * @param seFrontend Instance (singleton) of SeFrontend.
+    * @param longitude  THe longitude in degrees.
+    * @param jdUt       Julian Day for UT.
+    */
    public EquatorialPosition(@NonNull final SeFrontend seFrontend, final double longitude, final double jdUt) {
       calculatePositions(seFrontend, longitude, jdUt);
    }
 
+   /**
+    * Constructor for already known equaotrila positions.
+    *
+    * @param rightAscension Right Ascendsion in degrees.
+    * @param declination    Decliantion in de degrees.
+    */
    public EquatorialPosition(final double rightAscension, final double declination) {
       this.rightAscension = rightAscension;
       this.declination = declination;

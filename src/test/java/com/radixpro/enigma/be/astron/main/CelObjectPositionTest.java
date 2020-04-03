@@ -19,6 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -63,5 +64,10 @@ public class CelObjectPositionTest {
    @Test
    public void getHorizontalPosition() {
       assertNotNull(celObjectPosition.getHorizontalPosition());
+   }
+
+   @Test
+   public void getCelestialBody() {
+      assertEquals(celBodyToCalc, celObjectPosition.getCelestialBody());
    }
 }

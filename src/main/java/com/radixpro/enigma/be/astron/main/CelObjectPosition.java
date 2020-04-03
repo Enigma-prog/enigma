@@ -20,6 +20,9 @@ import lombok.val;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Coordiantes for a celestial object: ecliptical, equatorial and horizontal.
+ */
 public class CelObjectPosition {
 
    @Getter
@@ -34,6 +37,15 @@ public class CelObjectPosition {
    private int equatorialFlags;
    private int horizontalFlags;
 
+   /**
+    * Constructor defines all members.
+    *
+    * @param seFrontend Instantiation (singleton) of SeFrontend.
+    * @param jdUt       Julian Day number in UT.
+    * @param celBody    The celestial body.
+    * @param location   The location.
+    * @param flagList   A list with fglags to be used.
+    */
    public CelObjectPosition(@NonNull final SeFrontend seFrontend, final double jdUt,
                             @NonNull final CelestialObjects celBody, @NonNull final Location location,
                             @NonNull final List<SeFlags> flagList) {

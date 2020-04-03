@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.val;
 
+/**
+ * Horizontal coordinates: azimuth and altitude. Converts from ecliptical coordinates to horizontal coordinates.
+ */
 @Getter
 public class HorizontalPosition {
 
@@ -21,11 +24,11 @@ public class HorizontalPosition {
    /**
     * Calculate horizontal position.
     *
-    * @param seFrontend Instance of SeFrontend
-    * @param jdUt       Julian day number
-    * @param eclCoord   ecliptical coördinates: index 0 = longitude, 1 = latitude, 2 = distance
-    * @param location   geographic longitude and latitude
-    * @param flags      settings for calculation
+    * @param seFrontend Instance (singleton) of SeFrontend.
+    * @param jdUt       Julian day number for UT.
+    * @param eclCoord   ecliptical coördinates: index 0 = longitude, 1 = latitude, 2 = distance.
+    * @param location   geographic longitude and latitude.
+    * @param flags      settings for calculation.
     */
    public HorizontalPosition(@NonNull final SeFrontend seFrontend, final double jdUt,
                              @NonNull final double[] eclCoord, @NonNull final Location location,
@@ -33,6 +36,12 @@ public class HorizontalPosition {
       calculate(seFrontend, jdUt, eclCoord, location, flags);
    }
 
+   /**
+    * Constructor using known coordinates.
+    *
+    * @param azimuth  Azimuth in degrees.
+    * @param altitude Altitude in degrees.
+    */
    public HorizontalPosition(final double azimuth, final double altitude) {
       this.azimuth = azimuth;
       this.altitude = altitude;

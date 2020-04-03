@@ -16,6 +16,12 @@ public class CuspTextPlotCoordinates implements PlotCoordinates {
 
    final RectTriangleAbsolute rectTriangle;
 
+   /**
+    * Constructor should be used via factory.
+    *
+    * @param rectTriangle An already instantiated RectTriangleAbsolute.
+    * @see com.radixpro.enigma.ui.shared.factories.PlotCoordinatesFactory
+    */
    public CuspTextPlotCoordinates(@NonNull RectTriangleAbsolute rectTriangle) {
       this.rectTriangle = rectTriangle;
    }

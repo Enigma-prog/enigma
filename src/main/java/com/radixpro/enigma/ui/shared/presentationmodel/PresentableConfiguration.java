@@ -1,0 +1,40 @@
+/*
+ * Jan Kampherbeek, (c) 2020.
+ * Enigma is open source.
+ * Please check the file copyright.txt in the root of the source for further details.
+ */
+
+package com.radixpro.enigma.ui.shared.presentationmodel;
+
+import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.xchg.domain.config.Configuration;
+import lombok.Getter;
+import lombok.NonNull;
+
+/**
+ * Wrapper for Configuration; enables the use in a tableview.
+ */
+@Getter
+public class PresentableConfiguration {
+
+   private final long configId;
+   private final String configName;
+   private final String configDescription;
+   private final String standardIndication;
+   private final Configuration originalConfig;
+
+   /**
+    * All members are populated using the Configuration.
+    *
+    * @param configuration The configuration to present.
+    */
+   public PresentableConfiguration(@NonNull final Configuration configuration) {
+      configId = configuration.getId();
+      configName = configuration.getName();
+      configDescription = configuration.getDescription();
+      standardIndication = configuration.getParentId() == 0L ?
+            Rosetta.getRosetta().getText("ui.shared.yes") : Rosetta.getRosetta().getText("ui.shared.no");
+      originalConfig = configuration;
+   }
+
+}

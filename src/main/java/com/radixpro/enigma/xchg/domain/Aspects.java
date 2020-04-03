@@ -9,6 +9,9 @@ package com.radixpro.enigma.xchg.domain;
 import lombok.Getter;
 import lombok.NonNull;
 
+/**
+ * Enum of supported aspects.
+ */
 @Getter
 public enum Aspects {
    UNKNOWN(0, -1, -1.0, false, "aspects.unknown"),
@@ -43,6 +46,16 @@ public enum Aspects {
    private final boolean ecliptical;
    private final String fullRbId;
 
+   /**
+    * Aspects contain the following members:
+    *
+    * @param id         The id to recognize the aspect
+    * @param importance The importance: 1..3, 1 indicating the highest importance. -1 indicates that the aspect is
+    *                   unknown and should er occur.
+    * @param angle      Angle of the aspect in degrees.
+    * @param ecliptical True if the aspect is ecliptical. Is false for parallel and contra-parallel.
+    * @param rbId       Id for the resource bundle to retrieve the name of the aspect.
+    */
    Aspects(final int id, final int importance, final double angle, final boolean ecliptical, @NonNull final String rbId) {
       this.id = id;
       this.importance = importance;
@@ -51,6 +64,12 @@ public enum Aspects {
       this.fullRbId = rbId;
    }
 
+   /**
+    * Retrieve aspect for a given id.
+    *
+    * @param id The id of the Aspect to return.
+    * @return If id is found the resulting aspect, otherwise Aspects.UNKNOWN.
+    */
    public Aspects getAspectForId(int id) {
       for (Aspects aspect : Aspects.values()) {
          if (aspect.getId() == id) {

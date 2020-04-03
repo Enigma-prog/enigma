@@ -52,7 +52,7 @@ public enum Ayanamshas {
    DHRUVA(36, 36, "ayanamshas.dhruva"),
    ARYABHATA_522(37, 37, "ayanamshas.aryabhata522"),
    BRITTON(38, 38, "ayanamshas.britton"),
-   GAQQLACTIC_CTR_0CAP(39, 39, "ayanamshas.galcenter0cap");
+   GALACTIC_CTR_0CAP(39, 39, "ayanamshas.galcenter0cap");
 
    private final String nameForRB;
    private final int seId;

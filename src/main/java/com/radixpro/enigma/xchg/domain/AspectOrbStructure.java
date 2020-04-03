@@ -7,7 +7,7 @@
 package com.radixpro.enigma.xchg.domain;
 
 /**
- * Structure for an orb for an aspect.
+ * Structure of an orb for an aspect.
  */
 public enum AspectOrbStructure {
    ASPECT,

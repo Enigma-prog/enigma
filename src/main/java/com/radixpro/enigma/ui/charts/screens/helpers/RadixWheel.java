@@ -8,6 +8,7 @@ package com.radixpro.enigma.ui.charts.screens.helpers;
 
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.shared.Range;
+import com.radixpro.enigma.ui.shared.factories.PlotCoordinatesFactory;
 import com.radixpro.enigma.ui.shared.formatters.SexagesimalFormatter;
 import com.radixpro.enigma.xchg.api.CalculatedFullChart;
 import javafx.scene.canvas.GraphicsContext;
@@ -149,10 +150,11 @@ public class RadixWheel {
    private void drawDegreeLines() {
       prepareSmallLines();
       double angle = 30 - offsetAsc % 30;
-      final DegreeLine degreeLine = new DegreeLine(metrics);
       double[] positions;
+      DegreeLinePlotCoordinates degreeLine;
       for (int i = 0; i <= 359; i++) {
-         positions = degreeLine.defineCoordinates(i, angle);
+         degreeLine = PlotCoordinatesFactory.createDegreeLinePlotCoordinates(angle, metrics);
+         positions = degreeLine.defineCoordinates(i, metrics);
          gc.strokeLine(positions[0], positions[1], positions[2], positions[3]);
          angle += 1.0;
       }

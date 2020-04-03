@@ -11,10 +11,13 @@ import lombok.NonNull;
 import lombok.val;
 import org.dizitart.no2.Document;
 
+/**
+ * Converter between ChartData and JSON document as persisted in Nitrite.
+ */
 public class ChartDataObjectDocumentMapper {
 
    /**
-    * Convert object for chart-data to a Nitrite Document.
+    * Converts instance of ChartData to a Nitrite Document.
     * Disabled some checks for ConstantConditions by IntelliJ Analyzer.
     * SonarLint does not see any problem here.
     *
@@ -58,6 +61,12 @@ public class ChartDataObjectDocumentMapper {
             .put("rating", chartData.getChartMetaData().getRating().getId());
    }
 
+   /**
+    * Convert Nitrite document to an instance of ChartData.
+    *
+    * @param doc The document with the JSON from Nitrite.
+    * @return The resulting instance of ChartData.
+    */
    public ChartData document2Object(@NonNull final Document doc) {
       val id = (long) doc.get("_id");
       val date = new SimpleDate((int) doc.get("year"), (int) doc.get("month"), (int) doc.get("day"), (boolean) doc.get("gregorian"));
@@ -77,6 +86,5 @@ public class ChartDataObjectDocumentMapper {
             Ratings.ZZ.getRatingForId((int) doc.get("rating")));
       return new ChartData(id, fullDateTime, location, chartMetaData);
    }
-
 
 }

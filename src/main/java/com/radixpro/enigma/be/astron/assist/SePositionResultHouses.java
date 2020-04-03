@@ -18,6 +18,13 @@ public class SePositionResultHouses {
    private final double[] ascMc;
    private final double[] cusps;
 
+   /**
+    * Constructor defines all elements.
+    *
+    * @param ascMc Array with from 0 to 7: Ascendant, MC, ARMC, Vertex, equatorial ascendant,
+    *              co-ascendant (Walter Koch), co-ascendant (Michael Munkasey), polar ascendant (M. Munkasey)
+    * @param cusps Array with teh cusps starting at position 1. Position 0 is not used.
+    */
    public SePositionResultHouses(@NonNull final double[] ascMc, @NonNull final double[] cusps) {
       this.ascMc = ascMc;
       this.cusps = cusps;

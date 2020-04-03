@@ -11,7 +11,7 @@ public class StyleDictionary {
    private StyleDictionary() {
       // prevent instantiation
    }
-
+   public static final String STYLESHEET = "css/enigma.css";
    public static final String INPUT_DEFAULT_STYLE = "-fx-background-radius:5; ";
    public static final String INPUT_ERROR_STYLE = "-fx-background-radius:5;  -fx-background-color:yellow;";
 

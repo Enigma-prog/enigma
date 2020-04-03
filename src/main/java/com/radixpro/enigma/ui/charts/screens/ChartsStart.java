@@ -8,6 +8,7 @@ package com.radixpro.enigma.ui.charts.screens;
 
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.configs.ConfigEdit;
+import com.radixpro.enigma.ui.configs.ConfigOverview;
 import com.radixpro.enigma.ui.shared.InputStatus;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableChartData;
 import com.radixpro.enigma.xchg.api.CalculatedFullChart;
@@ -48,6 +49,11 @@ public class ChartsStart {
    TableColumn<String, PresentableChartData> colData;
    private static final String ROSETTA_LOC = "rb/texts";
    private CalculatedFullChart currentFullChart;
+
+   @FXML
+   void onConfig() {
+      ConfigOverview configOverview = new ConfigOverview();
+   }
 
    @FXML
    void onNewChart() throws IOException {

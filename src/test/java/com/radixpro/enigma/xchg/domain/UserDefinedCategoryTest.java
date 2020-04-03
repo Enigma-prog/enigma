@@ -31,4 +31,9 @@ public class UserDefinedCategoryTest {
    public void getText() {
       assertEquals(text, category.getText());
    }
+
+   @Test
+   public void testToString() {
+      assertEquals("UserDefinedCategory(id=13, text=myText)", category.toString());
+   }
 }

@@ -28,6 +28,15 @@ public class AstronConfiguration implements Serializable {
    private final ObserverPositions observerPosition;
    private final List<ConfiguredCelObject> celObjects;
 
+   /**
+    * Constructor defines all memebers.
+    *
+    * @param houseSystem        Selected house system.
+    * @param ayanamsha          Selected ayanamasha, Ayanamshas.NONE for tropical zodiac.
+    * @param eclipticProjection Tropical or sidereal zodiac.
+    * @param observerPosition   Positionof the observer.
+    * @param celObjects         The supported celestial objects.
+    */
    public AstronConfiguration(@NonNull final HouseSystems houseSystem,
                               @NonNull final Ayanamshas ayanamsha,
                               @NonNull final EclipticProjections eclipticProjection,

@@ -17,7 +17,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * i18N manager, takes care of Resource Bundles and Locale's.<br/>
+ * i18N manager, takes care of Resource Bundles and Locale's.<br>
  * Implemented as a singleton.
  */
 public class Rosetta {

@@ -25,12 +25,12 @@ public class FullDateTime {
    private final double jdEt;
 
    /**
-    * Constructor
+    * Constructor defines all members.
     *
-    * @param simpleDateTime populatedisntance of SimpleDateTime.
-    * @param timeZone       instance from enum TimeZones which includes offset for UT in decimal hours..
-    * @param dst            true if dst applies, otherwise false, assumed is dst is always one hour.
-    * @param offsetForLmt   if timezone is LMT, this field should present the offset to UT in decimal hours.
+    * @param simpleDateTime Populated instance of SimpleDateTime.
+    * @param timeZone       Instance from enum TimeZones which includes offset for UT in decimal hours.
+    * @param dst            True if dst applies, otherwise false, assumed is dst is always one hour.
+    * @param offsetForLmt   If timezone is LMT, this field should present the offset to UT in decimal hours.
     */
    public FullDateTime(@NonNull final SimpleDateTime simpleDateTime, @NonNull final TimeZones timeZone,
                        final boolean dst, final double offsetForLmt) {

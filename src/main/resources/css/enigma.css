@@ -17,7 +17,7 @@
     -fx-background-color: blanchedalmond;
 }
 .descriptionpane {
-    -fx-background-color: blanchedalmond;
+    -fx-background-color: lightsteelblue;
 }
 .descriptiontext {
     -fx-text-alignment: center;
@@ -27,9 +27,13 @@
 }
 .titlepane {
     -fx-background-color: steelblue;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
 }
 .subtitlepane {
-    -fx-background-color: blanchedalmond;
+    -fx-background-color: lightsteelblue;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
 }
 .errorpane {
     -fx-background-color: yellow;
@@ -38,6 +42,7 @@
     -fx-font-size: 28;
     -fx-text-fill: blanchedalmond;
     -fx-alignment: center;
+    -fx-text-alignment: center;
 }
 .errortitletext {
     -fx-font-size: 28;
@@ -46,11 +51,12 @@
 }
 .subtitletext {
     -fx-font-size: 20;
-    -fx-text-fill: steelblue;
+    -fx-text-fill: midnightblue;
     -fx-alignment: center;
+    -fx-text-alignment: center;
 }
 .inputpane {
-     -fx-background-color: blanchedalmond;
+     -fx-background-color: mintcream;
 }
 .inputdefault {
     -fx-background-radius:5;

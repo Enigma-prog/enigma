@@ -17,10 +17,10 @@ import java.util.ArrayList;
 public class ConfigurationObjectDocumentMapper {
 
    /**
-    * Convert object for configuration to a Nitrite Document. Disabled check for ConstantConditions by IntelliJ
+    * Converts instance of Configuration to a Nitrite Document. Disabled check for ConstantConditions by IntelliJ
     * Analyzer. SonarLint does not see any problem here.
     *
-    * @param config The objhect to save in Nitrite.
+    * @param config The instance to save in Nitrite.
     * @return Document for Nitrite.
     */
    public Document object2Document(@NonNull final Configuration config) {
@@ -40,6 +40,12 @@ public class ConfigurationObjectDocumentMapper {
             .put("supportedaspects", config.getDelinConfiguration().getAspectConfiguration().getAspects());
    }
 
+   /**
+    * Converts JSON document from Nitrite to an instance of Configuration.
+    *
+    * @param doc The JSON document.
+    * @return The resulting instance of Configuration.
+    */
    @SuppressWarnings("unchecked")
    public Configuration document2Object(@NonNull final Document doc) {
       val id = (long) doc.get("_id");

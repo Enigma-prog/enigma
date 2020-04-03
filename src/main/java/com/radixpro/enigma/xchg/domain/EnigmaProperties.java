@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 
+/**
+ * Reads properties, these properties are retrieved from property-files.
+ */
 public class EnigmaProperties {
 
    private static final Logger LOG = Logger.getLogger(EnigmaProperties.class);
@@ -24,6 +27,11 @@ public class EnigmaProperties {
    @Getter
    private Properties properties;
 
+   /**
+    * Constructor.
+    *
+    * @param propType The type of the property, the filename without the extension '.properties'.
+    */
    public EnigmaProperties(@NonNull final String propType) {
       processProperties(propType);
    }

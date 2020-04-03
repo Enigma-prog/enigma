@@ -12,11 +12,19 @@ import lombok.NonNull;
 
 import java.util.List;
 
+/**
+ * Combined result of all flags.
+ */
 public class CombinedFlags {
 
    @Getter
    private final long combinedValue;
 
+   /**
+    * Constructor expects a listof all the flags that will be combined.
+    *
+    * @param flagList The flags.
+    */
    public CombinedFlags(@NonNull final List<SeFlags> flagList) {
       combinedValue = performCombination(flagList);
    }

@@ -26,6 +26,12 @@ public class Obliquity {
       performCalculation(seFrontend, jdUt);
    }
 
+   /**
+    * Constructor defines all members.
+    *
+    * @param seFrontend Instance (singleton) of SeFrontend.
+    * @param jdUt       Julian day number for UT.
+    */
    private void performCalculation(@NonNull final SeFrontend seFrontend, final double jdUt) {
       val flags = 0;
       val calculatedPos = seFrontend.getPositionsForCelBody(jdUt, SE_ECL_NUT, flags);

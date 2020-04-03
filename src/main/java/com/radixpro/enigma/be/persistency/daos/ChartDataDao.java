@@ -21,7 +21,9 @@ import static org.dizitart.no2.FindOptions.sort;
 import static org.dizitart.no2.filters.Filters.eq;
 import static org.dizitart.no2.filters.Filters.regex;
 
-
+/**
+ * Dao for chart data. Reads and persists the data to calcualte a chart, but not the calculated chart itself.
+ */
 public class ChartDataDao {
 
    private static final Logger LOG = Logger.getLogger(ChartDataDao.class);
@@ -31,10 +33,19 @@ public class ChartDataDao {
    private NitriteCollection collection;
    private static final String ORG_MSG = " Original message: ";
 
+   /**
+    * Constructor creates a mapper.
+    */
    public ChartDataDao() {
       mapper = new ChartDataObjectDocumentMapper();
    }
 
+   /**
+    * Insert an instance of ChartData.
+    *
+    * @param chartData The ChartData instance to insert.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public void insert(@NonNull final ChartData chartData) throws DatabaseException {
       WriteResult insertResult;
       try {
@@ -54,6 +65,12 @@ public class ChartDataDao {
       nitriteDb.commit();
    }
 
+   /**
+    * Update an instance of ChartData, the key is the id of ChartData.
+    *
+    * @param chartData The ChartData instance to update.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public void update(@NonNull final ChartData chartData) throws DatabaseException {
       WriteResult updateResult;
       try {
@@ -71,6 +88,12 @@ public class ChartDataDao {
       }
    }
 
+   /**
+    * Delete an instance of ChartData, the key is the id of ChartData.
+    *
+    * @param chartData The ChartData instance to delete.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public void delete(@NonNull final ChartData chartData) throws DatabaseException {
       openCollectionAndDatabase();
       try {
@@ -84,6 +107,13 @@ public class ChartDataDao {
       }
    }
 
+   /**
+    * Read a single instance of ChartData.
+    *
+    * @param chartId Id of the ChartData to retrieve.
+    * @return List with ChartData, the list will be empty if the ChartData is not found.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public List<ChartData> read(final long chartId) throws DatabaseException {
       List<ChartData> chartDataList = new ArrayList<>();
       try {
@@ -99,6 +129,12 @@ public class ChartDataDao {
       return chartDataList;
    }
 
+   /**
+    * Read all instances of ChartData.
+    *
+    * @return A list with all instances of ChartData.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public List<ChartData> readAll() throws DatabaseException {
       List<ChartData> chartDataList = new ArrayList<>();
       try {
@@ -115,6 +151,14 @@ public class ChartDataDao {
       return chartDataList;
    }
 
+
+   /**
+    * Search for an instance of ChartData with the name.
+    *
+    * @param searchName The name to search for. There should be an exact match.
+    * @return A list with found instances of ChartData that have the same name as the searchname.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public List<ChartData> search(@NonNull final String searchName) throws DatabaseException {
       List<ChartData> chartDataList = new ArrayList<>();
       try {
@@ -130,6 +174,13 @@ public class ChartDataDao {
       return chartDataList;
    }
 
+   /**
+    * Search for an instance of ChartData with only a part of the name.
+    *
+    * @param searchArg The argument that should be part of the name.
+    * @return All found instances. If searchARg contains an empty String: all instances.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public List<ChartData> searchWildCard(@NonNull final String searchArg) throws DatabaseException {
       List<ChartData> chartDataList = new ArrayList<>();
       try {
@@ -148,6 +199,12 @@ public class ChartDataDao {
       return chartDataList;
    }
 
+   /**
+    * Find the max Id for a DataChart in the database. Using thuis mimics the use of a sequence.
+    *
+    * @return The max id in the database.
+    * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
+    */
    public long getMaxId() throws DatabaseException {
       long maxId = 0;
       try {

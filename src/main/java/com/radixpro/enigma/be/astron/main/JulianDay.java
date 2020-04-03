@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.val;
 
+/**
+ * Julian Day numbers. HAndles JD nrs for Ephermeris Time (jdnrEt) and Universal Time (jdnrUt).
+ */
 public class JulianDay {
 
    private final SeFrontend seFrontend;
@@ -20,6 +23,11 @@ public class JulianDay {
    @Getter
    private double jdNrUt;
 
+   /**
+    * Constructor calculates the julian day numbers,
+    *
+    * @param dateTime Instance of datetime in UT.
+    */
    public JulianDay(@NonNull final SimpleDateTime dateTime) {
       seFrontend = SeFrontend.getFrontend();
       calculateJdNr(dateTime);

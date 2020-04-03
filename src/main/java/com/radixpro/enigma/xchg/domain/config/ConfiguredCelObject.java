@@ -22,6 +22,14 @@ public class ConfiguredCelObject implements Serializable {
    private final double orbPercentage;
    private final boolean showInDrawing;
 
+   /**
+    * Constructor dfines all memebers.
+    *
+    * @param celObject     The celestial object.
+    * @param glyph         The glyph to be used.
+    * @param orbPercentage Percentage for orb calculation.
+    * @param showInDrawing True if object should be shown in drawing.
+    */
    public ConfiguredCelObject(@NonNull final CelestialObjects celObject,
                               @NonNull final String glyph,
                               final double orbPercentage,

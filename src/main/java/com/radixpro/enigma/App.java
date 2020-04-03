@@ -6,17 +6,11 @@
 
 package com.radixpro.enigma;
 
-import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.ui.shared.Dashboard;
 import com.radixpro.enigma.xchg.api.VersionApi;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
-
-import java.io.IOException;
-import java.util.ResourceBundle;
 
 
 public class App extends Application {
@@ -37,20 +31,7 @@ public class App extends Application {
    }
 
    private void showDashboard() {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
-      loader.setLocation(getClass().getResource("/fxml/dashboard.fxml"));
-      Parent root = null;
-      try {
-         root = loader.load();
-      } catch (IOException e) {
-         LOG.error("Could not start the root app. Exception : " + e.getMessage());
-      }
-      if (root != null) {
-         Scene scene = new Scene(root);
-         primaryStage.setScene(scene);
-         primaryStage.show();
-      }
+      new Dashboard();
    }
 
 

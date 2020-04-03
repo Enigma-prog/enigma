@@ -10,12 +10,22 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
+/**
+ * DTO for the time.
+ */
 @Getter
 public class SimpleTime implements Serializable {
    private final int hour;
    private final int minute;
    private final int second;
 
+   /**
+    * Constructor defines all members.
+    *
+    * @param hour   Hours of the time.
+    * @param minute Minutes of the time.
+    * @param second Seconds of the time.
+    */
    public SimpleTime(final int hour, final int minute, final int second) {
       this.hour = hour;
       this.minute = minute;

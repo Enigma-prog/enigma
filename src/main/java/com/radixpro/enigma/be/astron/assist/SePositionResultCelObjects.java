@@ -22,9 +22,9 @@ public class SePositionResultCelObjects {
    /**
     * Container for the positions of a celestial object.
     *
-    * @param allPositions array with the following values from 0..5 : main position, deviation, distance, speed of main position,
-    *                     speed of deviation, speed of distance.
-    * @param errorMsg     Errormessage or empty String.
+    * @param allPositions Array with the following values from 0..5 : main position, deviation, distance,
+    *                     speed of main position, speed of deviation, speed of distance.
+    * @param errorMsg     Error message or empty String.
     */
    public SePositionResultCelObjects(@NonNull final double[] allPositions, @NonNull final String errorMsg) {
       this.allPositions = allPositions;

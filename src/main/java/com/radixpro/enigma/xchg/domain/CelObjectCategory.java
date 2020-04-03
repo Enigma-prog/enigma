@@ -9,6 +9,9 @@ package com.radixpro.enigma.xchg.domain;
 import lombok.Getter;
 import lombok.NonNull;
 
+/**
+ * Enum with categories for celestial objects.
+ */
 @Getter
 public enum CelObjectCategory {
    UNKNOWN(0, "celobjectcat.unknown"),
@@ -23,6 +26,12 @@ public enum CelObjectCategory {
    private final int id;
    private final String nameForRB;
 
+   /**
+    * Constructor.
+    *
+    * @param id        The id of the category.
+    * @param nameForRB The name to access the resource bundle for a translated text.
+    */
    CelObjectCategory(final int id, @NonNull final String nameForRB) {
       this.id = id;
       this.nameForRB = nameForRB;

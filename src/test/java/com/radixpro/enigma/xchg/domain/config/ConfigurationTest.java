@@ -62,4 +62,9 @@ public class ConfigurationTest {
       assertEquals(description, config.getDescription());
    }
 
+   @Test
+   public void testToString() {
+      String expected = "Configuration(id=3, parentId=1, name=Some config, description=Description of some config., astronConfiguration=astronConfigurationMock, delinConfiguration=delinConfigurationMock)";
+      assertEquals(expected, config.toString());
+   }
 }

@@ -19,7 +19,13 @@ public class HousePosition {
    private final HorizontalPosition horizontalPosition;
    private final double longitude;
 
-
+   /**
+    * Constructor defines all members.
+    *
+    * @param longitude          Longitude in degrees. Latitude is not defined as it is always zero.
+    * @param equatorialPosition Equatorial coordinates.
+    * @param horizontalPosition Hirzontal coordinates.
+    */
    public HousePosition(final double longitude, @NonNull final EquatorialPosition equatorialPosition,
                         @NonNull final HorizontalPosition horizontalPosition) {
       this.longitude = longitude;

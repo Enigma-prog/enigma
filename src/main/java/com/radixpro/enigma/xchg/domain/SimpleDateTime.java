@@ -11,11 +11,20 @@ import lombok.NonNull;
 
 import java.io.Serializable;
 
+/**
+ * DTO for date and time.
+ */
 @Getter
 public class SimpleDateTime implements Serializable {
    private final SimpleDate date;
    private final SimpleTime time;
 
+   /**
+    * Constructor expects an instantiated Date and an instantiated Time .
+    *
+    * @param simpleDate DTO with the date.
+    * @param simpleTime DTO with the time.
+    */
    public SimpleDateTime(@NonNull final SimpleDate simpleDate, @NonNull final SimpleTime simpleTime) {
       this.date = simpleDate;
       this.time = simpleTime;

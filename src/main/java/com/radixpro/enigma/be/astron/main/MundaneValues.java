@@ -33,6 +33,15 @@ public class MundaneValues {
    private HousePosition vertex;
    private double armc;
 
+   /**
+    * Constructor defines all memebers.
+    *
+    * @param seFrontend Instance (singleton) of SeFrontend.
+    * @param jdUt       Julian Day Nr in UT.
+    * @param flags      Combined flags.
+    * @param location   Location.
+    * @param system     The housesystem.
+    */
    public MundaneValues(@NonNull final SeFrontend seFrontend, final double jdUt, final int flags,
                         @NonNull final Location location, @NonNull final HouseSystems system) {
       calculate(seFrontend, jdUt, flags, location, system);
