@@ -14,11 +14,19 @@ import lombok.val;
 
 import java.util.List;
 
+/**
+ * Validation for the name given to a chart. A name is valid if it is not empty and does not yet exist in the database.
+ */
 public class ValidatedChartName extends ValidatedInput {
 
    @Getter
    private String nameText;
 
+   /**
+    * Constructor performs validation.
+    *
+    * @param input The name to validate.
+    */
    public ValidatedChartName(@NonNull final String input) {
       super(input);
       validate();

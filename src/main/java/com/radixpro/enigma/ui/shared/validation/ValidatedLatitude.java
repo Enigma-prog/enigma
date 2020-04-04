@@ -10,19 +10,23 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.val;
 
+/**
+ * Validation for latitude. Latitude should be in the format h:m:s (degrees -89..+89, minutes 0..59, seconds 0..59).
+ * Seconds are optional. Negative degrees indicate south latitude, positive degrees indicate north latitude.
+ */
+@Getter
 public class ValidatedLatitude extends ValidatedInput {
 
-   private static final int LAT_DEGREE_MIN = -89;
-   private static final int LAT_DEGREE_MAX = 89;
-   @Getter
    private double value;
-   @Getter
    private int degrees;
-   @Getter
    private int minutes;
-   @Getter
    private int seconds;
 
+   /**
+    * The constructor performs the validation.
+    *
+    * @param input The latitude to validate.
+    */
    public ValidatedLatitude(@NonNull final String input) {
       super(input);
       validate();
@@ -35,8 +39,7 @@ public class ValidatedLatitude extends ValidatedInput {
          try {
             degrees = Integer.parseInt(values[0]);
             minutes = Integer.parseInt(values[1]);
-            if (values.length == 3) seconds = Integer.parseInt(values[2]);
-            else seconds = 0;
+            seconds = values.length == 3 ? Integer.parseInt(values[2]) : 0;
             validated = (degrees >= LAT_DEGREE_MIN && degrees <= LAT_DEGREE_MAX &&
                   minutes >= MINUTE_MIN && minutes <= MINUTE_MAX &&
                   seconds >= SECOND_MIN && seconds <= SECOND_MAX);

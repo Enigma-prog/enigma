@@ -10,11 +10,20 @@ import com.radixpro.enigma.xchg.domain.SimpleTime;
 import lombok.Getter;
 import lombok.val;
 
+/**
+ * Validation for time. Time should be in the format h:m:s (hours 0..23, minutes 0..59, seconds 0..59).
+ * Seconds are optional.
+ */
 public class ValidatedTime extends ValidatedInput {
 
    @Getter
    private SimpleTime simpleTime;
 
+   /**
+    * The constructor performs the validation.
+    *
+    * @param input The time to validate.
+    */
    public ValidatedTime(final String input) {
       super(input);
       validate();
@@ -30,8 +39,7 @@ public class ValidatedTime extends ValidatedInput {
          try {
             hour = Integer.parseInt(values[0]);
             minute = Integer.parseInt(values[1]);
-            if (values.length == 3) second = Integer.parseInt(values[2]);
-            else second = 0;
+            second = values.length == 3 ? Integer.parseInt(values[2]) : 0;
             validated = (hour >= HOUR_MIN && hour <= HOUR_MAX &&
                   minute >= MINUTE_MIN && minute <= MINUTE_MAX &&
                   second >= SECOND_MIN && second <= SECOND_MAX);

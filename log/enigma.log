@@ -7326,3 +7326,260 @@
 2020-04-03 15:47:12,519 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-04-03 15:47:12,552 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-04-03 15:47:14,864 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 15:51:01,989 INFO  App:27 - Started Enigma.
+2020-04-03 15:51:01,998 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 15:51:02,142 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 15:51:02,143 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 15:51:02,160 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 15:51:05,645 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 15:51:05,675 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 15:51:08,184 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:14:45,794 INFO  App:27 - Started Enigma.
+2020-04-03 16:14:45,802 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:14:45,954 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:14:45,954 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:14:45,972 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:14:48,312 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:14:48,340 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:14:49,946 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:15:57,627 INFO  App:27 - Started Enigma.
+2020-04-03 16:15:57,634 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:15:57,773 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:15:57,774 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:15:57,789 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:16:00,246 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:16:00,271 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:16:01,778 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:18:36,198 INFO  App:27 - Started Enigma.
+2020-04-03 16:18:36,205 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:18:36,346 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:18:36,347 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:18:36,364 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:18:40,390 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:18:40,416 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:18:43,315 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:04,294 INFO  App:27 - Started Enigma.
+2020-04-03 16:19:04,305 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:19:04,487 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:04,488 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:19:04,507 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:07,134 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:07,160 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:08,705 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:51,221 INFO  App:27 - Started Enigma.
+2020-04-03 16:19:51,229 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:19:51,378 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:51,378 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:19:51,394 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:53,630 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:53,655 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:19:55,162 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:20:49,048 INFO  App:27 - Started Enigma.
+2020-04-03 16:20:49,056 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:20:49,193 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:20:49,194 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:20:49,207 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:20:51,525 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:20:51,551 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:20:53,643 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:21:49,867 INFO  App:27 - Started Enigma.
+2020-04-03 16:21:49,875 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:21:50,023 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:21:50,024 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:21:50,038 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:21:52,310 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:21:52,335 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:21:54,314 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:20,880 INFO  App:27 - Started Enigma.
+2020-04-03 16:22:20,889 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:22:21,048 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:21,048 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:22:21,064 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:23,196 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:23,222 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:24,754 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:40,481 INFO  App:27 - Started Enigma.
+2020-04-03 16:22:40,491 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:22:40,620 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:40,621 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:22:40,634 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:42,979 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:43,007 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:22:44,554 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:23:05,983 INFO  App:27 - Started Enigma.
+2020-04-03 16:23:05,993 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:23:06,137 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:23:06,138 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:23:06,153 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:23:08,365 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:23:08,390 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:23:10,507 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:29:37,169 INFO  App:27 - Started Enigma.
+2020-04-03 16:29:37,177 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:29:37,328 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:29:37,329 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:29:37,344 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:29:40,197 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:29:40,222 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:29:42,067 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:33:40,555 INFO  App:27 - Started Enigma.
+2020-04-03 16:33:40,563 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:33:40,684 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:33:40,685 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:33:40,698 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:33:42,797 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:33:42,822 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:33:44,572 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:34:47,720 INFO  App:27 - Started Enigma.
+2020-04-03 16:34:47,727 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 16:34:47,858 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:34:47,859 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 16:34:47,878 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:34:50,183 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:34:50,208 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 16:34:51,692 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:19:12,190 INFO  App:27 - Started Enigma.
+2020-04-03 17:19:12,198 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 17:19:12,341 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:19:12,342 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 17:19:12,355 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:19:14,551 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:19:14,578 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:19:16,391 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:20:28,673 INFO  App:27 - Started Enigma.
+2020-04-03 17:20:28,686 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 17:20:28,836 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:20:28,837 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 17:20:28,850 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:20:31,188 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:20:31,220 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:20:33,415 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:21:12,001 INFO  App:27 - Started Enigma.
+2020-04-03 17:21:12,009 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 17:21:12,138 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:21:12,138 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 17:21:12,151 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:21:14,215 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:21:14,241 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:21:16,328 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:23:31,863 INFO  App:27 - Started Enigma.
+2020-04-03 17:23:31,871 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 17:23:32,005 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:23:32,006 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 17:23:32,020 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:23:34,001 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:23:34,026 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 17:23:36,463 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:40:27,429 INFO  App:27 - Started Enigma.
+2020-04-03 20:40:27,437 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 20:40:27,571 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:40:27,572 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 20:40:27,587 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:40:30,416 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:40:30,442 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:40:32,902 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:40:57,569 INFO  App:27 - Started Enigma.
+2020-04-03 20:40:57,577 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 20:40:57,717 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:40:57,718 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 20:40:57,732 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:41:00,115 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:41:00,139 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 20:41:01,559 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:02:24,403 INFO  App:27 - Started Enigma.
+2020-04-03 21:02:24,412 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 21:02:24,534 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:02:24,535 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 21:02:24,547 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:02:27,697 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:02:27,723 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:02:30,000 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:07:08,603 INFO  App:27 - Started Enigma.
+2020-04-03 21:07:08,612 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 21:07:08,740 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:07:08,741 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 21:07:08,756 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:07:11,214 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:07:11,240 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:07:13,217 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:09:32,989 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:09:56,632 INFO  App:27 - Started Enigma.
+2020-04-03 21:09:56,644 INFO  VersionController:42 - Performing checked initialization.
+2020-04-03 21:09:56,808 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:09:56,809 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-03 21:09:56,824 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:09:59,240 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:09:59,266 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-03 21:10:01,664 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:10:08,567 INFO  App:27 - Started Enigma.
+2020-04-04 16:10:08,578 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:10:08,693 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:10:08,694 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:10:08,712 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:10:11,779 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:10:11,803 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:10:13,642 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:11:21,901 INFO  App:27 - Started Enigma.
+2020-04-04 16:11:21,910 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:11:22,041 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:11:22,042 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:11:22,056 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:11:24,220 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:11:24,245 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:11:26,233 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:12:08,589 INFO  App:27 - Started Enigma.
+2020-04-04 16:12:08,600 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:12:08,800 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:12:08,801 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:12:08,819 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:12:11,604 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:12:11,636 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:12:13,474 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:13:59,487 INFO  App:27 - Started Enigma.
+2020-04-04 16:13:59,495 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:13:59,628 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:13:59,629 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:13:59,643 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:14:02,345 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:14:02,374 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:14:04,267 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:21:45,880 INFO  App:27 - Started Enigma.
+2020-04-04 16:21:45,888 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:21:46,011 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:21:46,012 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:21:46,025 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:21:48,427 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:21:48,455 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:21:50,714 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:22:33,281 INFO  App:27 - Started Enigma.
+2020-04-04 16:22:33,288 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:22:33,444 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:22:33,444 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:22:33,460 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:22:36,110 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:22:36,136 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:22:38,901 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:23:54,618 INFO  App:27 - Started Enigma.
+2020-04-04 16:23:54,628 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:23:54,808 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:23:54,808 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:23:54,827 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:23:57,967 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:23:57,996 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:23:59,829 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:25:04,162 INFO  App:27 - Started Enigma.
+2020-04-04 16:25:04,171 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:25:04,305 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:25:04,306 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:25:04,320 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:25:06,619 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:25:06,645 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:25:08,892 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:41:10,032 INFO  App:27 - Started Enigma.
+2020-04-04 16:41:10,039 INFO  VersionController:42 - Performing checked initialization.
+2020-04-04 16:41:10,169 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:41:10,169 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-04 16:41:10,182 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:41:12,292 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:41:12,319 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-04 16:41:13,844 INFO  Nitrite:309 - Nitrite database has been closed successfully.

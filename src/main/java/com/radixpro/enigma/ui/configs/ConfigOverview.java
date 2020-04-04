@@ -7,16 +7,19 @@
 package com.radixpro.enigma.ui.configs;
 
 import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.ui.shared.Help;
 import com.radixpro.enigma.ui.shared.factories.ButtonFactory;
 import com.radixpro.enigma.ui.shared.factories.LabelFactory;
 import com.radixpro.enigma.ui.shared.factories.PaneFactory;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableConfiguration;
 import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -33,15 +36,23 @@ import static com.radixpro.enigma.ui.shared.StyleDictionary.STYLESHEET;
  * Overview of configurations with the possibility to perform actions on these configurations.
  */
 public class ConfigOverview {
-   private static final double WIDTH = 600.0;
-   private static final double HEIGHT = 700.0;
+   private static final double WIDTH = 700.0;
+   private static final double HEIGHT = 600.0;
    private static final double TITLE_HEIGHT = 45.0;
-   private static final double SUBTITLE_HEIGHT = 30.0;
    private static final double BTN_PANE_HEIGHT = 30.0;
-   private static final double TV_HEIGHT = 200.0;
-
+   private static final double TV_HEIGHT = 400.0;
+   private static final double INSTRUCTION_HEIGHT = 45.0;
+   private static final double SEPARATOR_HEIGHT = 20.0;
    private Stage stage;
    private Rosetta rosetta;
+   private ObservableList<PresentableConfiguration> selectedItems;
+   private Button btnSelect;
+   private Button btnNew;
+   private Button btnDetails;
+   private Button btnEdit;
+   private Button btnDelete;
+   private Button btnHelp;
+   private Button btnExit;
 
    public ConfigOverview() {
       stage = new Stage();
@@ -65,11 +76,15 @@ public class ConfigOverview {
       vBox.setPrefWidth(WIDTH);
       vBox.setPrefHeight(HEIGHT);
       vBox.getChildren().add(0, createPaneTitle());
-      vBox.getChildren().add(1, createPaneStandardSubtitle());
+      vBox.getChildren().add(1, createPaneInstruction());
       vBox.getChildren().add(2, createPaneStandard());
-      vBox.getChildren().add(3, createPaneBtnsAction());
-      vBox.getChildren().add(4, createPaneBtnsGeneral());
+      vBox.getChildren().add(3, createSeparatorPane());
+      vBox.getChildren().add(4, createPaneBtns());
       return vBox;
+   }
+
+   private Pane createSeparatorPane() {
+      return PaneFactory.createPane(SEPARATOR_HEIGHT, WIDTH);
    }
 
    private Pane createPaneTitle() {
@@ -78,9 +93,13 @@ public class ConfigOverview {
       return pane;
    }
 
-   private Pane createPaneStandardSubtitle() {
-      val pane = PaneFactory.createPane(SUBTITLE_HEIGHT, WIDTH, "subtitlepane");
-      pane.getChildren().add(LabelFactory.createLabel(rosetta.getText("ui.configs.overview.stndsubtitle"), "subtitletext", WIDTH));
+   private Pane createPaneInstruction() {
+      val pane = PaneFactory.createPane(INSTRUCTION_HEIGHT, WIDTH);
+      Label lblInstruction = LabelFactory.createLabel(rosetta.getText("ui.configs.overview.instruction"));
+      lblInstruction.setPrefHeight(INSTRUCTION_HEIGHT);
+      lblInstruction.setPrefWidth(WIDTH);
+      lblInstruction.setAlignment(Pos.CENTER);
+      pane.getChildren().add(lblInstruction);
       return pane;
    }
 
@@ -90,15 +109,9 @@ public class ConfigOverview {
       return pane;
    }
 
-   private Pane createPaneBtnsAction() {
+   private Pane createPaneBtns() {
       val pane = PaneFactory.createPane(BTN_PANE_HEIGHT, WIDTH);
-      pane.getChildren().add(createBtnBarAction());
-      return pane;
-   }
-
-   private Pane createPaneBtnsGeneral() {
-      val pane = PaneFactory.createPane(BTN_PANE_HEIGHT, WIDTH);
-      pane.getChildren().add(createBtnBarGeneral());
+      pane.getChildren().add(createButtonBar());
       return pane;
    }
 
@@ -112,6 +125,15 @@ public class ConfigOverview {
       descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("configDescription"));
       TableColumn<String, PresentableConfiguration> stndColumn = new TableColumn<>("Standard ?");
       stndColumn.setCellValueFactory(new PropertyValueFactory<>("standardIndication"));
+      TableViewSelectionModel<PresentableConfiguration> selectionModel = tableView.getSelectionModel();
+      selectionModel.setSelectionMode(SelectionMode.SINGLE);
+      selectedItems = selectionModel.getSelectedItems();
+      selectedItems.addListener(new ListChangeListener<PresentableConfiguration>() {
+         @Override
+         public void onChanged(Change<? extends PresentableConfiguration> change) {
+            onSelect();
+         }
+      });
 
       tableView.getColumns().add(nameColumn);
       tableView.getColumns().add(descriptionColumn);
@@ -126,20 +148,54 @@ public class ConfigOverview {
       return tableView;
    }
 
-   private ButtonBar createBtnBarAction() {
+   private ButtonBar createButtonBar() {
       val buttonBar = new ButtonBar();
-      buttonBar.getButtons().add(ButtonFactory.createButton(rosetta.getText("ui.shared.btn.select"), true));
-      buttonBar.getButtons().add(ButtonFactory.createButton(rosetta.getText("ui.shared.btn.new"), true));
-      buttonBar.getButtons().add(ButtonFactory.createButton(rosetta.getText("ui.shared.btn.delete"), true));
+      btnSelect = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.select"), true);
+      btnNew = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.new"), true);
+      btnDetails = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.details"), true);
+      btnEdit = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.edit"), true);
+      btnDelete = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.delete"), true);
+      btnHelp = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.help"), false);
+      btnExit = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.exit"), false);
+
+      btnHelp.setOnAction(click -> onHelp());
+
+      buttonBar.getButtons().add(btnSelect);
+      buttonBar.getButtons().add(btnDetails);
+      buttonBar.getButtons().add(btnEdit);
+      buttonBar.getButtons().add(btnNew);
+      buttonBar.getButtons().add(btnDelete);
+      buttonBar.getButtons().add(btnHelp);
+      buttonBar.getButtons().add(btnExit);
+
       return buttonBar;
    }
 
-   private ButtonBar createBtnBarGeneral() {
-      val buttonBar = new ButtonBar();
-      buttonBar.getButtons().add(ButtonFactory.createButton(rosetta.getText("ui.shared.btn.help"), false));
-      buttonBar.getButtons().add(ButtonFactory.createButton(rosetta.getText("ui.shared.btn.cancel"), false));
-      buttonBar.getButtons().add(ButtonFactory.createButton(rosetta.getText("ui.shared.btn.ok"), false));
-      return buttonBar;
+
+   private void onSelect() {
+      if (selectedItems.size() > 0) {
+         btnSelect.setDisable(false);
+         btnDetails.setDisable(false);
+         btnNew.setDisable(false);
+         PresentableConfiguration config = selectedItems.get(0);
+         if (config.getStandardIndication().equals("Yes")) {
+            btnEdit.setDisable(true);
+            btnDelete.setDisable(true);
+         } else {
+            btnEdit.setDisable(false);
+            btnDelete.setDisable(false);
+         }
+      } else {
+         btnSelect.setDisable(true);
+         btnDetails.setDisable(true);
+         btnNew.setDisable(true);
+         btnEdit.setDisable(true);
+         btnDelete.setDisable(true);
+      }
+   }
+
+   private void onHelp() {
+      new Help(rosetta.getHelpText("help.configoverview.title"), rosetta.getHelpText("help.configoverview.content"));
    }
 
 }

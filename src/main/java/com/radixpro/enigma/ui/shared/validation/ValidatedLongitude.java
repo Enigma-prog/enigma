@@ -10,19 +10,23 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.val;
 
+/**
+ * Validation for longitude. Longitude should be in the format h:m:s (degrees -180..+180, minutes 0..59, seconds 0..59).
+ * Seconds are optional. Negative degrees indicate west longitude, positive degrees indicate east longitude.
+ */
+@Getter
 public class ValidatedLongitude extends ValidatedInput {
 
-   private static final int LONG_DEGREE_MIN = -180;
-   private static final int LONG_DEGREE_MAX = 180;
-   @Getter
    private double value;
-   @Getter
    private int degrees;
-   @Getter
    private int minutes;
-   @Getter
    private int seconds;
 
+   /**
+    * The constructor performs the validation.
+    *
+    * @param input The longitude to validate.
+    */
    public ValidatedLongitude(@NonNull final String input) {
       super(input);
       validate();
@@ -35,8 +39,7 @@ public class ValidatedLongitude extends ValidatedInput {
          try {
             degrees = Integer.parseInt(values[0]);
             minutes = Integer.parseInt(values[1]);
-            if (values.length == 3) seconds = Integer.parseInt(values[2]);
-            else seconds = 0;
+            seconds = values.length == 3 ? Integer.parseInt(values[2]) : 0;
             validated = (degrees >= LONG_DEGREE_MIN && degrees <= LONG_DEGREE_MAX &&
                   minutes >= MINUTE_MIN && minutes <= MINUTE_MAX &&
                   seconds >= SECOND_MIN && seconds <= SECOND_MAX);

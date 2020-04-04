@@ -98,7 +98,7 @@ public class Help {
    }
 
    private Button createCloseButton() {
-      val button = ButtonFactory.createButton("ui.shared.btn.exit", false);
+      val button = ButtonFactory.createButton(Rosetta.getRosetta().getText("ui.shared.btn.exit"), false);
       button.setOnAction(click -> onClose());
       return button;
    }
