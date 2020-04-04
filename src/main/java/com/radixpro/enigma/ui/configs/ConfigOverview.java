@@ -78,18 +78,18 @@ public class ConfigOverview {
       vBox.getChildren().add(0, createPaneTitle());
       vBox.getChildren().add(1, createPaneInstruction());
       vBox.getChildren().add(2, createPaneStandard());
-      vBox.getChildren().add(3, createSeparatorPane());
+      vBox.getChildren().add(3, createPaneSeparator());
       vBox.getChildren().add(4, createPaneBtns());
       return vBox;
    }
 
-   private Pane createSeparatorPane() {
+   private Pane createPaneSeparator() {
       return PaneFactory.createPane(SEPARATOR_HEIGHT, WIDTH);
    }
 
    private Pane createPaneTitle() {
       val pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "titlepane");
-      pane.getChildren().add(LabelFactory.createLabel(rosetta.getText("ui.configs.overview.title"), "titletext", WIDTH));
+      pane.getChildren().add(LabelFactory.createLabel(rosetta.getText("ui.configs.details.title"), "titletext", WIDTH));
       return pane;
    }
 
@@ -105,7 +105,7 @@ public class ConfigOverview {
 
    private Pane createPaneStandard() {
       val pane = PaneFactory.createPane(TV_HEIGHT, WIDTH);
-      pane.getChildren().add(createTvStandard());
+      pane.getChildren().add(createTableView());
       return pane;
    }
 
@@ -115,25 +115,20 @@ public class ConfigOverview {
       return pane;
    }
 
-   private TableView<PresentableConfiguration> createTvStandard() {
-      val tableView = new TableView();
+   private TableView<PresentableConfiguration> createTableView() {
+      val tableView = new TableView<PresentableConfiguration>();
       tableView.setPrefHeight(TV_HEIGHT);
       tableView.setPrefWidth(WIDTH);
-      TableColumn<String, PresentableConfiguration> nameColumn = new TableColumn<>("Name");
+      TableColumn<PresentableConfiguration, String> nameColumn = new TableColumn<>("Name");
       nameColumn.setCellValueFactory(new PropertyValueFactory<>("configName"));
-      TableColumn<String, PresentableConfiguration> descriptionColumn = new TableColumn<>("Description");
+      TableColumn<PresentableConfiguration, String> descriptionColumn = new TableColumn<>("Description");
       descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("configDescription"));
-      TableColumn<String, PresentableConfiguration> stndColumn = new TableColumn<>("Standard ?");
+      TableColumn<PresentableConfiguration, String> stndColumn = new TableColumn<>("Standard ?");
       stndColumn.setCellValueFactory(new PropertyValueFactory<>("standardIndication"));
       TableViewSelectionModel<PresentableConfiguration> selectionModel = tableView.getSelectionModel();
       selectionModel.setSelectionMode(SelectionMode.SINGLE);
       selectedItems = selectionModel.getSelectedItems();
-      selectedItems.addListener(new ListChangeListener<PresentableConfiguration>() {
-         @Override
-         public void onChanged(Change<? extends PresentableConfiguration> change) {
-            onSelect();
-         }
-      });
+      selectedItems.addListener((ListChangeListener<PresentableConfiguration>) change -> onSelect());
 
       tableView.getColumns().add(nameColumn);
       tableView.getColumns().add(descriptionColumn);
@@ -158,6 +153,7 @@ public class ConfigOverview {
       btnHelp = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.help"), false);
       btnExit = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.exit"), false);
 
+      btnDetails.setOnAction(click -> onDetails());
       btnHelp.setOnAction(click -> onHelp());
 
       buttonBar.getButtons().add(btnSelect);
@@ -192,6 +188,11 @@ public class ConfigOverview {
          btnEdit.setDisable(true);
          btnDelete.setDisable(true);
       }
+   }
+
+   private void onDetails() {
+      PresentableConfiguration config = selectedItems.get(0);
+      new ConfigDetails(config.getConfigId());
    }
 
    private void onHelp() {
