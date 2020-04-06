@@ -76,7 +76,7 @@ public class Updater {
 
       celObjects = createCelObjects(StandardConfigurations.VEDIC);
       astronConfiguration = new AstronConfiguration(HouseSystems.WHOLESIGN, Ayanamshas.LAHIRI,
-            EclipticProjections.TROPICAL, ObserverPositions.GEOCENTRIRC, celObjects);
+            EclipticProjections.SIDEREAL, ObserverPositions.GEOCENTRIRC, celObjects);
       aspects = createAspects(StandardConfigurations.VEDIC);
       aspectConfiguration = new AspectConfiguration(aspects, 8.0, AspectOrbStructure.ASPECT, false);
       delinConfiguration = new DelinConfiguration(aspectConfiguration);

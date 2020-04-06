@@ -12,7 +12,10 @@ import com.radixpro.enigma.ui.shared.factories.LabelFactory;
 import com.radixpro.enigma.ui.shared.factories.PaneFactory;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableProperty;
 import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
+import com.radixpro.enigma.xchg.domain.CelObjectCategory;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
+import com.radixpro.enigma.xchg.domain.config.ConfiguredAspect;
+import com.radixpro.enigma.xchg.domain.config.ConfiguredCelObject;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -24,6 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.val;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +39,7 @@ import static com.radixpro.enigma.ui.shared.StyleDictionary.STYLESHEET;
  */
 public class ConfigDetails {
 
+   private static final Logger LOG = Logger.getLogger(ConfigDetails.class);
    private static final double WIDTH = 500.0;
    private static final double HEIGHT = 600.0;
    private static final double TITLE_HEIGHT = 45.0;
@@ -126,13 +131,6 @@ public class ConfigDetails {
       for (PresentableProperty prop : properties) {
          tableView.getItems().add(prop);
       }
-
-//      PersistedConfigurationApi api = new PersistedConfigurationApi();
-//      List<Configuration> configs = api.readAll();
-//      for (Configuration config : configs) {
-//         PresentableConfiguration presConfig = new PresentableConfiguration(config);
-//         tableView.getItems().add(presConfig);
-//      }
       return tableView;
    }
 
@@ -156,6 +154,102 @@ public class ConfigDetails {
       properties.add(new PresentableProperty("Description", configuration.getDescription()));
       properties.add(new PresentableProperty("Housesystem", rosetta.getText(configuration.getAstronConfiguration().getHouseSystem().getNameForRB())));
       properties.add(new PresentableProperty("Ayanamsha", rosetta.getText(configuration.getAstronConfiguration().getAyanamsha().getNameForRB())));
+      properties.add(new PresentableProperty("Ecliptic projection", rosetta.getText(configuration.getAstronConfiguration().getEclipticProjection().getNameForRB())));
+      properties.add(new PresentableProperty("Observer position", rosetta.getText(configuration.getAstronConfiguration().getObserverPosition().getNameForRB())));
+
+      List<ConfiguredCelObject> celObjects = configuration.getAstronConfiguration().getCelObjects();
+      val classicCelObjectsAsText = new StringBuilder();
+      val modernCelObjectsAsText = new StringBuilder();
+      val extraplutCelObjectsAsText = new StringBuilder();
+      val asteroidCelObjectsAsText = new StringBuilder();
+      val centaurCelObjectsAsText = new StringBuilder();
+      val intersectionsCelObjectsAsText = new StringBuilder();
+      val hypothetsCelObjectsAsText = new StringBuilder();
+
+      int category;
+      String nameText;
+      for (ConfiguredCelObject celObject : celObjects) {
+         category = celObject.getCelObject().getCategory().getId();
+         nameText = rosetta.getText(celObject.getCelObject().getNameForRB()) + " ";
+         switch (category) {
+            case 1:
+               classicCelObjectsAsText.append(nameText);
+               break;
+            case 2:
+               modernCelObjectsAsText.append(nameText);
+               break;
+            case 3:
+               extraplutCelObjectsAsText.append(nameText);
+               break;
+            case 4:
+               asteroidCelObjectsAsText.append(nameText);
+               break;
+            case 5:
+               centaurCelObjectsAsText.append(nameText);
+               break;
+            case 6:
+               intersectionsCelObjectsAsText.append(nameText);
+               break;
+            case 7:
+               hypothetsCelObjectsAsText.append(nameText);
+               break;
+            default:
+               LOG.error("Invalid category for celestial body while showing details of configuration." +
+                     "Received category with Id : " + category + ". Celestial object was not shown.");
+         }
+      }
+      properties.add(new PresentableProperty("Celestial objects and points", ""));
+      if (classicCelObjectsAsText.length() > 0) properties.add(new PresentableProperty(
+            rosetta.getText(CelObjectCategory.CLASSICS.getNameForRB()), classicCelObjectsAsText.toString()));
+      if (modernCelObjectsAsText.length() > 0) properties.add(new PresentableProperty(
+            rosetta.getText(CelObjectCategory.MODERN.getNameForRB()), modernCelObjectsAsText.toString()));
+      if (extraplutCelObjectsAsText.length() > 0) properties.add(new PresentableProperty(
+            rosetta.getText(CelObjectCategory.EXTRA_PLUT.getNameForRB()), extraplutCelObjectsAsText.toString()));
+      if (asteroidCelObjectsAsText.length() > 0) properties.add(new PresentableProperty(
+            rosetta.getText(CelObjectCategory.ASTEROIDS.getNameForRB()), asteroidCelObjectsAsText.toString()));
+      if (centaurCelObjectsAsText.length() > 0) properties.add(new PresentableProperty(
+            rosetta.getText(CelObjectCategory.CENTAURS.getNameForRB()), centaurCelObjectsAsText.toString()));
+      if (intersectionsCelObjectsAsText.length() > 0) properties.add(new PresentableProperty(
+            rosetta.getText(CelObjectCategory.INTERSECTIONS.getNameForRB()), intersectionsCelObjectsAsText.toString()));
+      if (hypothetsCelObjectsAsText.length() > 0) properties.add(new PresentableProperty(
+            rosetta.getText(CelObjectCategory.HYPOTHETS.getNameForRB()), hypothetsCelObjectsAsText.toString()));
+      // TODO create rbName for AspectOrbStructure
+      properties.add(new PresentableProperty("Aspect orb structure", configuration.getDelinConfiguration().getAspectConfiguration().getOrbStructure().name()));
+      properties.add(new PresentableProperty("Aspect base orb", Double.toString(configuration.getDelinConfiguration().getAspectConfiguration().getBaseOrb())));
+      properties.add(new PresentableProperty("Draw ingoing/outgoing", configuration.getDelinConfiguration().getAspectConfiguration().isDrawInOutGoing() ? "Yes" : "No"));
+
+      // add aspects
+      List<ConfiguredAspect> aspects = configuration.getDelinConfiguration().getAspectConfiguration().getAspects();
+      val majorAspectsAsText = new StringBuilder();
+      val minorAspectsAsText = new StringBuilder();
+      val microAspectsAsText = new StringBuilder();
+      // TODO add equatorial aspects as category
+      for (ConfiguredAspect aspect : aspects) {
+         category = aspect.getAspect().getImportance();
+         nameText = rosetta.getText(aspect.getAspect().getFullRbId()) + " ";
+         switch (category) {
+            case 1:
+               majorAspectsAsText.append(nameText);
+               break;
+            case 2:
+               minorAspectsAsText.append(nameText);
+               break;
+            case 3:
+               microAspectsAsText.append(nameText);
+               break;
+            default:
+               LOG.error("Invalid category for aspect body while showing details of configuration." +
+                     "Received category with Id : " + category + ". Aspect was not shown.");
+         }
+      }
+      properties.add(new PresentableProperty("Aspects", ""));
+      if (majorAspectsAsText.length() > 0) properties.add(new PresentableProperty(
+            "Major aspects", majorAspectsAsText.toString()));
+      if (minorAspectsAsText.length() > 0) properties.add(new PresentableProperty(
+            "Minor aspects", minorAspectsAsText.toString()));
+      if (microAspectsAsText.length() > 0) properties.add(new PresentableProperty(
+            "Micro aspects", microAspectsAsText.toString()));
+
       return properties;
    }
 
