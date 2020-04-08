@@ -11,7 +11,6 @@ import com.radixpro.enigma.ui.shared.factories.ButtonFactory;
 import com.radixpro.enigma.ui.shared.factories.LabelFactory;
 import com.radixpro.enigma.ui.shared.factories.PaneFactory;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableProperty;
-import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,6 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
 
@@ -46,20 +46,21 @@ public class ConfigDetails {
    private static final double SEPARATOR_HEIGHT = 20.0;
    private Stage stage;
    private Rosetta rosetta;
-   private Configuration configuration;
+   private final Configuration configuration;
+   private final CelObjectsInConfig celObjectsInConfig;
+   private final AspectsInConfig aspectsInConfig;
    private Button btnExit;
    private Button btnHelp;
 
-   public ConfigDetails(final long idConfig) {
-      defineConfiguration(idConfig);
+
+   public ConfigDetails(@NonNull final Configuration config, @NonNull final CelObjectsInConfig celObjectsInConfig,
+                        @NonNull final AspectsInConfig aspectsInConfig) {
+      this.configuration = config;
+      this.celObjectsInConfig = celObjectsInConfig;
+      this.aspectsInConfig = aspectsInConfig;
       stage = new Stage();
       rosetta = Rosetta.getRosetta();
       showDetails();
-   }
-
-   private void defineConfiguration(final long idConfig) {
-      PersistedConfigurationApi api = new PersistedConfigurationApi();
-      configuration = api.read((int) idConfig).get(0);
    }
 
    private void showDetails() {
@@ -155,7 +156,7 @@ public class ConfigDetails {
       properties.add(new PresentableProperty("Observer position", rosetta.getText(configuration.getAstronConfiguration().getObserverPosition().getNameForRB())));
 
       properties.add(new PresentableProperty("Celestial objects and points", ""));
-      properties.addAll(new CelObjectsInConfig(configuration.getAstronConfiguration().getCelObjects()).getPresentableProperties());
+      properties.addAll(celObjectsInConfig.constructProperties(configuration.getAstronConfiguration().getCelObjects()));
 
       // TODO create rbName for AspectOrbStructure
       // add aspects
@@ -163,7 +164,7 @@ public class ConfigDetails {
       properties.add(new PresentableProperty("Aspect orb structure", configuration.getDelinConfiguration().getAspectConfiguration().getOrbStructure().name()));
       properties.add(new PresentableProperty("Aspect base orb", Double.toString(configuration.getDelinConfiguration().getAspectConfiguration().getBaseOrb())));
       properties.add(new PresentableProperty("Draw ingoing/outgoing", configuration.getDelinConfiguration().getAspectConfiguration().isDrawInOutGoing() ? "Yes" : "No"));
-      properties.addAll(new AspectsInConfig(configuration.getDelinConfiguration().getAspectConfiguration().getAspects()).getPresentableProperties());
+      properties.addAll(aspectsInConfig.constructProperties(configuration.getDelinConfiguration().getAspectConfiguration().getAspects()));
       return properties;
    }
 

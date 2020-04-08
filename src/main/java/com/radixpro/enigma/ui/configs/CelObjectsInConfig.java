@@ -10,7 +10,6 @@ import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableProperty;
 import com.radixpro.enigma.xchg.domain.CelObjectCategory;
 import com.radixpro.enigma.xchg.domain.config.ConfiguredCelObject;
-import lombok.Getter;
 import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
@@ -24,15 +23,15 @@ import java.util.List;
 public class CelObjectsInConfig {
 
    private static final Logger LOG = Logger.getLogger(CelObjectsInConfig.class);
-   @Getter
-   private List<PresentableProperty> presentableProperties;
 
-   public CelObjectsInConfig(@NonNull final List<ConfiguredCelObject> celObjects) {
-      presentableProperties = new ArrayList<>();
-      constructProperties(celObjects);
-   }
-
-   private void constructProperties(@NonNull final List<ConfiguredCelObject> celObjects) {
+   /**
+    * Create presentable properties for celstial objects.
+    *
+    * @param celObjects Celestial objects as defined in the configuration.
+    * @return The resulting presentable properties.
+    */
+   public List<PresentableProperty> constructProperties(@NonNull final List<ConfiguredCelObject> celObjects) {
+      List<PresentableProperty> presentableProperties = new ArrayList<>();
       val rosetta = Rosetta.getRosetta();
       val classicCelObjectsAsText = new StringBuilder();
       val modernCelObjectsAsText = new StringBuilder();
@@ -87,6 +86,8 @@ public class CelObjectsInConfig {
             rosetta.getText(CelObjectCategory.INTERSECTIONS.getNameForRB()), intersectionsCelObjectsAsText.toString()));
       if (hypothetsCelObjectsAsText.length() > 0) presentableProperties.add(new PresentableProperty(
             rosetta.getText(CelObjectCategory.HYPOTHETS.getNameForRB()), hypothetsCelObjectsAsText.toString()));
+
+      return presentableProperties;
    }
 
 }

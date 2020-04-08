@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 public class AspectsTest {
 
@@ -33,13 +33,8 @@ public class AspectsTest {
    }
 
    @Test
-   public void getImportance() {
-      assertEquals(1, aspect.getImportance());
-   }
-
-   @Test
-   public void isEcliptical() {
-      assertTrue(aspect.isEcliptical());
+   public void getCategory() {
+      assertEquals(AspectCategory.MAJOR, aspect.getAspectCategory());
    }
 
    @Test
@@ -49,16 +44,16 @@ public class AspectsTest {
 
    @Test
    public void getAspectForId() {
-      assertEquals(Aspects.BINOVILE, Aspects.UNKNOWN.getAspectForId(21));
+      assertEquals(Aspects.BINOVILE, Aspects.CONJUNCTION.getAspectForId(21));
    }
 
    @Test
-   public void getAspectForIdNotFound() {
-      assertEquals(Aspects.UNKNOWN, Aspects.UNKNOWN.getAspectForId(2000));
+   public void getAspectForIdNotFound() {    // TODO do not return NULL, this is a temperary solution / test
+      assertNull(Aspects.CONJUNCTION.getAspectForId(2000));
    }
 
    @Test
    public void total() {
-      assertEquals(25, Aspects.values().length);
+      assertEquals(24, Aspects.values().length);
    }
 }

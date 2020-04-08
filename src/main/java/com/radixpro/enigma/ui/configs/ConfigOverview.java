@@ -7,6 +7,7 @@
 package com.radixpro.enigma.ui.configs;
 
 import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.ui.configs.factories.ConfigDetailsFactory;
 import com.radixpro.enigma.ui.shared.Help;
 import com.radixpro.enigma.ui.shared.factories.ButtonFactory;
 import com.radixpro.enigma.ui.shared.factories.LabelFactory;
@@ -53,8 +54,10 @@ public class ConfigOverview {
    private Button btnDelete;
    private Button btnHelp;
    private Button btnExit;
+   private PersistedConfigurationApi api;
 
    public ConfigOverview() {
+      api = new PersistedConfigurationApi();
       stage = new Stage();
       rosetta = Rosetta.getRosetta();
       showOverview();
@@ -134,7 +137,6 @@ public class ConfigOverview {
       tableView.getColumns().add(descriptionColumn);
       tableView.getColumns().add(stndColumn);
 
-      PersistedConfigurationApi api = new PersistedConfigurationApi();
       List<Configuration> configs = api.readAll();
       for (Configuration config : configs) {
          PresentableConfiguration presConfig = new PresentableConfiguration(config);
@@ -192,7 +194,8 @@ public class ConfigOverview {
 
    private void onDetails() {
       PresentableConfiguration config = selectedItems.get(0);
-      new ConfigDetails(config.getConfigId());
+      long configId = config.getConfigId();
+      new ConfigDetailsFactory().createConfigDetails(api.read((int) configId).get(0));// TODO use long constently, also in api
    }
 
    private void onHelp() {
