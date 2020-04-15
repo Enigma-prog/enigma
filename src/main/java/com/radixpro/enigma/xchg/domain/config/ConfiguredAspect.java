@@ -8,14 +8,17 @@ package com.radixpro.enigma.xchg.domain.config;
 
 import com.radixpro.enigma.xchg.domain.Aspects;
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.Setter;
 
 import java.io.Serializable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Configuration info for a specific aspect.
  */
 @Getter
+@Setter
 public class ConfiguredAspect implements Serializable {
 
    private final boolean showInDrawing;
@@ -23,11 +26,11 @@ public class ConfiguredAspect implements Serializable {
    private final int orbPercentage;
    private final String glyph;
 
-   public ConfiguredAspect(@NonNull final Aspects aspect, final int orbPercentage, @NonNull final String glyph,
+   public ConfiguredAspect(final Aspects aspect, final int orbPercentage, final String glyph,
                            final boolean showInDrawing) {
-      this.aspect = aspect;
+      this.aspect = checkNotNull(aspect);
       this.orbPercentage = orbPercentage;
-      this.glyph = glyph;
+      this.glyph = checkNotNull(glyph);
       this.showInDrawing = showInDrawing;
    }
 

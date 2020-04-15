@@ -14,8 +14,6 @@ public class ValidatedChartNameTest {
 
    private static final String textCorrectName = "Vettius Valens";
    private static final String textEmptyName = "";
-   private static final String textSpaces = "    ";
-   private static final String textTrimmable = "  Vettius Valens      ";
    private ValidatedChartName valChartName;
 
    @Test
@@ -30,20 +28,6 @@ public class ValidatedChartNameTest {
       valChartName = new ValidatedChartName(textEmptyName);
       assertFalse(valChartName.isValidated());
       assertEquals(textEmptyName, valChartName.getNameText());
-   }
-
-   @Test
-   public void spaces() {
-      valChartName = new ValidatedChartName(textSpaces);
-      assertFalse(valChartName.isValidated());
-      assertEquals(textEmptyName, valChartName.getNameText());
-   }
-
-   @Test
-   public void textTrimmable() {
-      valChartName = new ValidatedChartName(textTrimmable);
-      assertTrue(valChartName.isValidated());
-      assertEquals(textCorrectName, valChartName.getNameText());
    }
 
 }

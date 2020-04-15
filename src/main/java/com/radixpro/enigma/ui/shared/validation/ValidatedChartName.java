@@ -36,7 +36,7 @@ public class ValidatedChartName extends ValidatedInput {
    protected void validate() {
       List<ChartData> existingChart;
       validated = true;
-      nameText = input.trim();
+      nameText = input;
       if (nameText.length() < 1) validated = false;
       else {
          val api = new PersistedChartDataApi();

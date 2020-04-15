@@ -9,8 +9,8 @@ package com.radixpro.enigma.be.astron.assist;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.Location;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Horizontal coordinates: azimuth and altitude. Converts from ecliptical coordinates to horizontal coordinates.
@@ -30,10 +30,9 @@ public class HorizontalPosition {
     * @param location   geographic longitude and latitude.
     * @param flags      settings for calculation.
     */
-   public HorizontalPosition(@NonNull final SeFrontend seFrontend, final double jdUt,
-                             @NonNull final double[] eclCoord, @NonNull final Location location,
-                             final int flags) {
-      calculate(seFrontend, jdUt, eclCoord, location, flags);
+   public HorizontalPosition(final SeFrontend seFrontend, final double jdUt, final double[] eclCoord,
+                             final Location location, final int flags) {
+      calculate(checkNotNull(seFrontend), jdUt, checkNotNull(eclCoord), checkNotNull(location), flags);
    }
 
    /**
@@ -47,10 +46,11 @@ public class HorizontalPosition {
       this.altitude = altitude;
    }
 
-   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt, @NonNull final double[] eclCoord,
-                          @NonNull final Location location, final int flags) {
-      val result = seFrontend.getHorizontalPosition(jdUt, eclCoord, location, flags);
-      azimuth = result[0];
-      altitude = result[1];   // true altitude, index 2 = apparent altitude
+   private void calculate(final SeFrontend seFrontend, final double jdUt, final double[] eclCoord,
+                          final Location location, final int flags) {
+      SeFrontend seFrontendInstance = checkNotNull(seFrontend);
+      double[] horizontalPosition = seFrontendInstance.getHorizontalPosition(jdUt, checkNotNull(eclCoord), checkNotNull(location), flags);
+      azimuth = horizontalPosition[0];
+      altitude = horizontalPosition[1];   // true altitude, index 2 = apparent altitude
    }
 }

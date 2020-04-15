@@ -14,11 +14,12 @@ import com.radixpro.enigma.xchg.domain.HouseSystems;
 import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculated positions for houses and other mundane points.
@@ -42,13 +43,16 @@ public class MundaneValues {
     * @param location   Location.
     * @param system     The housesystem.
     */
-   public MundaneValues(@NonNull final SeFrontend seFrontend, final double jdUt, final int flags,
-                        @NonNull final Location location, @NonNull final HouseSystems system) {
-      calculate(seFrontend, jdUt, flags, location, system);
+   public MundaneValues(final SeFrontend seFrontend, final double jdUt, final int flags, final Location location,
+                        final HouseSystems system) {
+      calculate(checkNotNull(seFrontend), jdUt, flags, checkNotNull(location), checkNotNull(system));
    }
 
-   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt, final int flags,
-                          @NonNull final Location location, @NonNull final HouseSystems system) {
+   private void calculate(final SeFrontend seFrontend, final double jdUt, final int flags, final Location location,
+                          final HouseSystems system) {
+      checkNotNull(seFrontend);
+      checkNotNull(location);
+      checkNotNull(system);
       val seIdAsInt = system.getSeId().charAt(0);
       val positions = seFrontend.getPositionsForHouses(jdUt, flags, location, seIdAsInt, system.getNrOfCusps());
       cusps = new ArrayList<>();
@@ -62,8 +66,10 @@ public class MundaneValues {
       eastpoint = constructEastpoint(positions.getAscMc()[4]);
    }
 
-   private HousePosition constructFullPosition(@NonNull final SeFrontend seFrontend, final double longitude,
-                                               final double jdUt, @NonNull final Location location) {
+   private HousePosition constructFullPosition(final SeFrontend seFrontend, final double longitude, final double jdUt,
+                                               final Location location) {
+      checkNotNull(seFrontend);
+      checkNotNull(location);
       val latitude = 0.0;
       val distance = 1.0;
       val flags = (int) SeFlags.HORIZONTAL.getSeValue();

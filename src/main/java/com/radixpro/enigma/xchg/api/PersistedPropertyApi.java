@@ -10,10 +10,11 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.daos.PropertyDao;
 import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.shared.Property;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PersistedPropertyApi {
 
@@ -23,7 +24,8 @@ public class PersistedPropertyApi {
       dao = new PropertyDao();
    }
 
-   public void insert(@NonNull final Property property) {
+   public void insert(final Property property) {
+      checkNotNull(property);
       try {
          dao.insert(property);
       } catch (DatabaseException de) {
@@ -31,23 +33,26 @@ public class PersistedPropertyApi {
       }
    }
 
-   public void update(@NonNull final Property prop) {
+   public void update(final Property property) {
+      checkNotNull(property);
       try {
-         dao.update(prop);
+         dao.update(property);
       } catch (DatabaseException de) {
          new FailFastHandler().terminate(de.getMessage());
       }
    }
 
-   public void delete(@NonNull final Property prop) {
+   public void delete(final Property property) {
+      checkNotNull(property);
       try {
-         dao.delete(prop);
+         dao.delete(property);
       } catch (DatabaseException de) {
          new FailFastHandler().terminate(de.getMessage());
       }
    }
 
-   public List<Property> read(@NonNull final String key) {
+   public List<Property> read(final String key) {
+      checkNotNull(key);
       List<Property> propList = new ArrayList<>();
       try {
          propList = dao.read(key);

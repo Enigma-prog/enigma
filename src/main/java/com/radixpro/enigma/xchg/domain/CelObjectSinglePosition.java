@@ -9,7 +9,8 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculated positions for a specific coordinateset for a celestial body.
@@ -25,13 +26,13 @@ public class CelObjectSinglePosition {
    private double deviationSpeed;
    private double distanceSpeed;
 
-   public CelObjectSinglePosition(@NonNull final SeFrontend seFrontend, final double jdUt,
-                                  @NonNull final CelestialObjects celBody, final int flags) {
-      calculate(seFrontend, jdUt, celBody, flags);
+   public CelObjectSinglePosition(final SeFrontend seFrontend, final double jdUt, final CelestialObjects celBody,
+                                  final int flags) {
+      calculate(checkNotNull(seFrontend), jdUt, checkNotNull(celBody), flags);
    }
 
-   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt,
-                          @NonNull final CelestialObjects celBody, final int flags) {
+   private void calculate(final SeFrontend seFrontend, final double jdUt,
+                          final CelestialObjects celBody, final int flags) {
       SePositionResultCelObjects sePositionResult = seFrontend.getPositionsForCelBody(jdUt, (int) celBody.getSeId(), flags);
       errorMsg = sePositionResult.getErrorMsg();
       mainPosition = sePositionResult.getAllPositions()[0];

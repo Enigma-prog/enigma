@@ -10,7 +10,6 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.PropertyDocumentMapper;
 import com.radixpro.enigma.shared.Property;
-import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
@@ -18,6 +17,7 @@ import org.dizitart.no2.filters.Filters;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.dizitart.no2.FindOptions.sort;
 
 public class PropertyDao {
@@ -79,7 +79,8 @@ public class PropertyDao {
       }
    }
 
-   public List<Property> read(@NonNull final String key) throws DatabaseException {
+   public List<Property> read(final String key) throws DatabaseException {
+      checkNotNull(key);
       List<Property> propList = new ArrayList<>();
       try {
          openCollectionAndDatabase();

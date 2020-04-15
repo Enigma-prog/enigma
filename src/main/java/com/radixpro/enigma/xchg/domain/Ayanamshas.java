@@ -6,8 +6,13 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.shared.Rosetta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.Getter;
-import lombok.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public enum Ayanamshas {
@@ -58,7 +63,7 @@ public enum Ayanamshas {
    private final int seId;
    private final int id;
 
-   Ayanamshas(final int id, final int seId, @NonNull final String nameForRB) {
+   Ayanamshas(final int id, final int seId, final String nameForRB) {
       this.id = id;
       this.seId = seId;
       this.nameForRB = nameForRB;
@@ -71,6 +76,20 @@ public enum Ayanamshas {
          }
       }
       return Ayanamshas.UNKNOWN;
+   }
+
+   /**
+    * Create an observable list with names of ayanamshas that can be used in the UI.
+    *
+    * @return The constructed observable list.
+    */
+   public ObservableList<String> getObservableList() {
+      final Rosetta rosetta = Rosetta.getRosetta();
+      final List<String> ayanamshaNames = new ArrayList<>();
+      for (Ayanamshas ayanamsha : Ayanamshas.values()) {
+         ayanamshaNames.add(rosetta.getText(ayanamsha.nameForRB));
+      }
+      return FXCollections.observableArrayList(ayanamshaNames);
    }
 
 }

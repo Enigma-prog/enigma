@@ -7,9 +7,10 @@
 package com.radixpro.enigma.xchg.domain;
 
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.io.Serializable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @Getter
 public class GeographicCoordinate implements Serializable {
@@ -20,12 +21,12 @@ public class GeographicCoordinate implements Serializable {
    private final String direction;
    private final double value;
 
-   public GeographicCoordinate(final int degrees, final int minutes, final int seconds, @NonNull final String direction,
+   public GeographicCoordinate(final int degrees, final int minutes, final int seconds, final String direction,
                                final double value) {
       this.degrees = degrees;
       this.minutes = minutes;
       this.seconds = seconds;
-      this.direction = direction;
+      this.direction = checkNotNull(direction);
       this.value = value;
    }
 

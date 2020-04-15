@@ -24,10 +24,11 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 
 public class ChartsDrawing2d {
@@ -41,13 +42,13 @@ public class ChartsDrawing2d {
    private double outerOffset;
    private double corrForXY;
 
-   public void setFullChart(@NonNull final CalculatedFullChart fullChart) {
-      this.fullChart = fullChart;
+   public void setFullChart(final CalculatedFullChart fullChart) {
+      this.fullChart = checkNotNull(fullChart);
       final Stage stage = new Stage();
       drawChart(stage);
    }
 
-   private void drawChart(@NonNull final Stage stage) {
+   private void drawChart(final Stage stage) {
       metrics = new ChartDrawMetrics();
       offsetAsc = fullChart.getHouseValues().getAscendant().getLongitude() % 30;
 
@@ -128,7 +129,7 @@ public class ChartsDrawing2d {
 
 
    // Converts coordinates from RectTriangle to actual positions on the canvas.
-   private List<Double> convertCoordinateSet(@NonNull final Point point1, @NonNull final Point point2) {
+   private List<Double> convertCoordinateSet(final Point point1, final Point point2) {
       List<Double> values = new ArrayList<>();
       values.add(corrForXY + point1.getXPos());
       values.add(corrForXY + point1.getYPos());
@@ -138,7 +139,7 @@ public class ChartsDrawing2d {
    }
 
    // Converts coordinates from RectTriangle to actual positions on the canvas.
-   private List<Double> convertCoordinateSet(@NonNull final Point point) {
+   private List<Double> convertCoordinateSet(final Point point) {
       List<Double> values = new ArrayList<>();
       values.add(corrForXY + point.getXPos());
       values.add(corrForXY + point.getYPos());

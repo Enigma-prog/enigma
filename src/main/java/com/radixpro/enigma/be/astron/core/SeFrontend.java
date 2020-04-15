@@ -9,12 +9,13 @@ package com.radixpro.enigma.be.astron.core;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.xchg.domain.Location;
-import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 import swisseph.SwissLib;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Simple wrapper to access the Java port to the SE by Thomas Mack.
@@ -87,8 +88,10 @@ public class SeFrontend {
     * @param flags    combined settings for the SE
     * @return calculated positions
     */
-   public double[] getHorizontalPosition(final double jdUt, @NonNull final double[] eclCoord,
-                                         @NonNull final Location location, final int flags) {
+   public double[] getHorizontalPosition(final double jdUt, final double[] eclCoord, final Location location,
+                                         final int flags) {
+      checkNotNull(eclCoord);
+      checkNotNull(location);
       double[] geoPos = {location.getGeoLong(), location.getGeoLat(), 0.0};
       double[] eclPos = {eclCoord[0], eclCoord[1], eclCoord[2]};
       val atPress = 0.0;
@@ -108,8 +111,9 @@ public class SeFrontend {
     * @param nrOfCusps number of cusps for the current housesystem
     * @return calculated positions
     */
-   public SePositionResultHouses getPositionsForHouses(final double jdUt, final int flags, @NonNull final Location location,
+   public SePositionResultHouses getPositionsForHouses(final double jdUt, final int flags, final Location location,
                                                        final int system, final int nrOfCusps) {
+      checkNotNull(location);
       var cusps = new double[nrOfCusps + 1];
       var ascMc = new double[10];
       swissEph.swe_houses(jdUt, flags, location.getGeoLat(), location.getGeoLong(), system, cusps, ascMc);
@@ -123,7 +127,8 @@ public class SeFrontend {
     * @param obliquity      Obliquity (Epsilon) in degrees.
     * @return Array with right ascensiona nd declination in degrees.
     */
-   public double[] convertToEquatorial(@NonNull final double[] eclipticValues, final double obliquity) {
+   public double[] convertToEquatorial(final double[] eclipticValues, final double obliquity) {
+      checkNotNull(eclipticValues);
       SwissLib swissLib = new SwissLib();
       var equatorialValues = new double[3];
       swissLib.swe_cotrans(eclipticValues, equatorialValues, -obliquity);  // obliquity must be negative !

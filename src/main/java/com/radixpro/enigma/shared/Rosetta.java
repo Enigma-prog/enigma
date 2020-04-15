@@ -7,14 +7,13 @@
 package com.radixpro.enigma.shared;
 
 import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * i18N manager, takes care of Resource Bundles and Locale's.<br>
@@ -31,7 +30,6 @@ public class Rosetta {
    private static Rosetta instance = null;
    private ResourceBundle resourceBundle;
    private ResourceBundle helpResourceBundle;
-   @Getter
    private Locale locale;
 
    private Rosetta() {
@@ -56,12 +54,12 @@ public class Rosetta {
     *
     * @param language use "en" for English or "du" for Dutch (case-sensitive).
     */
-   public void setLanguage(@NonNull final String language) {
-      if (language.equals(ENGLISH) || language.equals(DUTCH)) {
-         PersistedPropertyApi propApi;
-         propApi = new PersistedPropertyApi();
-         val currentProp = propApi.read(PROP_LANG).get(0);
-         val langProp = new Property(currentProp.getId(), PROP_LANG, language);
+   public void setLanguage(final String language) {
+      final String selLang = checkNotNull(language);
+      if (selLang.equals(ENGLISH) || selLang.equals(DUTCH)) {
+         PersistedPropertyApi propApi = new PersistedPropertyApi();
+         Property currentProp = propApi.read(PROP_LANG).get(0);
+         Property langProp = new Property(currentProp.getId(), PROP_LANG, selLang);
          propApi.update(langProp);
          reInitialize();
       } else {
@@ -75,9 +73,9 @@ public class Rosetta {
    }
 
    private void initi18N() {
-      val propApi = new PersistedPropertyApi();
+      PersistedPropertyApi propApi = new PersistedPropertyApi();
       Property currentProp = propApi.read(PROP_LANG).get(0);
-      val language = currentProp.getValue();
+      String language = currentProp.getValue();
       if (language.equals(DUTCH)) locale = new Locale(DUTCH, DUTCH.toUpperCase());
       else locale = new Locale(ENGLISH, ENGLISH.toUpperCase());
    }
@@ -87,12 +85,15 @@ public class Rosetta {
       helpResourceBundle = ResourceBundle.getBundle(RB_HELP_LOCATION, locale);
    }
 
-   public String getText(@NonNull final String key) {
-      return resourceBundle.getString(key);
+   public String getText(final String key) {
+      return resourceBundle.getString(checkNotNull(key));
    }
 
-   public String getHelpText(@NonNull final String key) {
-      return helpResourceBundle.getString(key);
+   public String getHelpText(final String key) {
+      return helpResourceBundle.getString(checkNotNull(key));
    }
 
+   public Locale getLocale() {
+      return locale;
+   }
 }

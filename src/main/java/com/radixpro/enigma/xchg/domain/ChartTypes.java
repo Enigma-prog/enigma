@@ -10,10 +10,11 @@ import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @Getter
 public enum ChartTypes {
@@ -28,9 +29,9 @@ public enum ChartTypes {
    private final int id;
    private final String nameForRB;
 
-   ChartTypes(final int id, @NonNull final String nameForRB) {
+   ChartTypes(final int id, final String nameForRB) {
       this.id = id;
-      this.nameForRB = nameForRB;
+      this.nameForRB = checkNotNull(nameForRB);
    }
 
    public ChartTypes chartTypeForId(final int id) {
@@ -42,7 +43,8 @@ public enum ChartTypes {
       return ChartTypes.UNKNOWN;
    }
 
-   public ChartTypes chartTypeForLocalName(@NonNull final String localName) {
+   public ChartTypes chartTypeForLocalName(final String localName) {
+      checkNotNull(localName);
       final Rosetta rosetta = Rosetta.getRosetta();
       for (ChartTypes chartType : ChartTypes.values()) {
          if (rosetta.getText(chartType.nameForRB).equals(localName)) {

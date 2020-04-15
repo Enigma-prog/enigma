@@ -15,8 +15,9 @@ import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongAndGlyphVa
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlainDmsValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition; enables the use in a tableview.
@@ -46,13 +47,15 @@ public class PresentableCelObjectPosition {
     *                           Also knows which celestial object we are showing.
     * @param horizontalPosition contains azimuth and altitude
     */
-   public PresentableCelObjectPosition(@NonNull final CelObjectPosition celObjectPosition,
-                                       @NonNull final HorizontalPosition horizontalPosition) {
-      createPresentablePosition(celObjectPosition, horizontalPosition);
+   public PresentableCelObjectPosition(final CelObjectPosition celObjectPosition,
+                                       final HorizontalPosition horizontalPosition) {
+      createPresentablePosition(checkNotNull(celObjectPosition), checkNotNull(horizontalPosition));
    }
 
-   private void createPresentablePosition(@NonNull final CelObjectPosition celObjectPos,
-                                          @NonNull final HorizontalPosition horPos) {
+   private void createPresentablePosition(final CelObjectPosition celObjectPos,
+                                          final HorizontalPosition horPos) {
+      checkNotNull(celObjectPos);
+      checkNotNull(horPos);
       val eclPos = celObjectPos.getEclipticalPosition();
       val equPos = celObjectPos.getEquatorialPosition();
       val mainEclPos = eclPos.getMainPosition();

@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.testsupport.RosettaPreparer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +18,7 @@ public class CelestialObjectsTest {
 
    @Before
    public void setUp() {
+      new RosettaPreparer().setRosetta();
       celBody = CelestialObjects.JUPITER;
    }
 
@@ -42,7 +44,7 @@ public class CelestialObjectsTest {
 
    @Test
    public void total() {
-      assertEquals(30, CelestialObjects.values().length);
+      assertEquals(15, CelestialObjects.values().length);
    }
 
    @Test
@@ -55,4 +57,8 @@ public class CelestialObjectsTest {
       assertEquals(CelestialObjects.UNKNOWN, CelestialObjects.UNKNOWN.getCelObjectForId(7000));
    }
 
+   @Test
+   public void getObservableList() {
+      assertEquals(15, celBody.getObservableList().size());
+   }
 }

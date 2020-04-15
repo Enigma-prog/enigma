@@ -7,7 +7,8 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Dto for all positions for a house-cusp, or other mundane point.
@@ -26,11 +27,11 @@ public class HousePosition {
     * @param equatorialPosition Equatorial coordinates.
     * @param horizontalPosition Hirzontal coordinates.
     */
-   public HousePosition(final double longitude, @NonNull final EquatorialPosition equatorialPosition,
-                        @NonNull final HorizontalPosition horizontalPosition) {
+   public HousePosition(final double longitude, final EquatorialPosition equatorialPosition,
+                        final HorizontalPosition horizontalPosition) {
       this.longitude = longitude;
-      this.equatorialPosition = equatorialPosition;
-      this.horizontalPosition = horizontalPosition;
+      this.equatorialPosition = checkNotNull(equatorialPosition);
+      this.horizontalPosition = checkNotNull(horizontalPosition);
    }
 
 }

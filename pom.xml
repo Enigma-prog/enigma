@@ -23,6 +23,7 @@
         <lombok.version>1.18.12</lombok.version>
         <commons.version>3.9</commons.version>
         <slf4j.version>1.7.5</slf4j.version>
+        <guava.version>28.2-jre</guava.version>
     </properties>
 
     <build>
@@ -87,6 +88,11 @@
             <groupId>org.dizitart</groupId>
             <artifactId>nitrite</artifactId>
             <version>${nitrite.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

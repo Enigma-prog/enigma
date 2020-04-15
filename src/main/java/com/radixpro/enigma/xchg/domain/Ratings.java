@@ -35,7 +35,7 @@ public enum Ratings implements Serializable {
    private final int id;
    private final String nameForRB;
 
-   Ratings(final int id, @NonNull final String nameForRB) {
+   Ratings(final int id, final String nameForRB) {
       this.id = id;
       this.nameForRB = nameForRB;
    }

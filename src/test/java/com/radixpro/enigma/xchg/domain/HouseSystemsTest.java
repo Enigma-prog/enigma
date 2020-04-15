@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.testsupport.RosettaPreparer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +19,7 @@ public class HouseSystemsTest {
 
    @Before
    public void setUp() {
+      new RosettaPreparer().setRosetta();
       houseSystem = HouseSystems.ALCABITIUS;
    }
 
@@ -71,6 +73,11 @@ public class HouseSystemsTest {
    @Test
    public void getSystemForIdNotFound() {
       assertEquals(HouseSystems.UNKNOWN, houseSystem.getSystemForId(1000));
+   }
+
+   @Test
+   public void getObservableList() {
+      assertEquals(23, houseSystem.getObservableList().size());
    }
 
 }

@@ -11,7 +11,8 @@ import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.DecimalValue;
 import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition for the distance values; enables the use in a tableview.
@@ -23,13 +24,15 @@ public class PresentableDistancePosition {
    private String formattedDistSpeed;
    private String celBodyGlyph;
 
-   public PresentableDistancePosition(@NonNull final CelestialObjects celestialObject,
-                                      @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
-      createPresentablePosition(celestialObject, celObjectSinglePosition);
+   public PresentableDistancePosition(final CelestialObjects celestialObject,
+                                      final CelObjectSinglePosition celObjectSinglePosition) {
+      createPresentablePosition(checkNotNull(celestialObject), checkNotNull(celObjectSinglePosition));
    }
 
-   private void createPresentablePosition(@NonNull final CelestialObjects celestialObject,
-                                          @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
+   private void createPresentablePosition(final CelestialObjects celestialObject,
+                                          final CelObjectSinglePosition celObjectSinglePosition) {
+      checkNotNull(celestialObject);
+      checkNotNull(celObjectSinglePosition);
       formattedDistance = new DecimalValue(celObjectSinglePosition.getDistancePosition()).getFormattedPosition();
       formattedDistSpeed = new DecimalValue(celObjectSinglePosition.getDistanceSpeed()).getFormattedPosition();
       celBodyGlyph = new CelObject2GlyphMapper().getGlyph(celestialObject);

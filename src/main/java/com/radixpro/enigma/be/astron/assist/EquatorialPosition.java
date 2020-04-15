@@ -9,8 +9,9 @@ package com.radixpro.enigma.be.astron.assist;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.Obliquity;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Equatorial position: right ascension and declination.
@@ -30,8 +31,8 @@ public class EquatorialPosition {
     * @param longitude  THe longitude in degrees.
     * @param jdUt       Julian Day for UT.
     */
-   public EquatorialPosition(@NonNull final SeFrontend seFrontend, final double longitude, final double jdUt) {
-      calculatePositions(seFrontend, longitude, jdUt);
+   public EquatorialPosition(final SeFrontend seFrontend, final double longitude, final double jdUt) {
+      calculatePositions(checkNotNull(seFrontend), longitude, jdUt);
    }
 
    /**
@@ -45,12 +46,13 @@ public class EquatorialPosition {
       this.declination = declination;
    }
 
-   private void calculatePositions(@NonNull final SeFrontend seFrontend, final double longitude, final double jdUt) {
+   private void calculatePositions(final SeFrontend seFrontend, final double longitude, final double jdUt) {
+      SeFrontend seFrontendInstance = checkNotNull(seFrontend);
       val latitude = 0.0;
       val distance = 1.0;
       final double[] eclipticPositions = {longitude, latitude, distance};
-      val obliquity = new Obliquity(seFrontend, jdUt).getTrueObliquity();
-      final double[] equatorialPositions = seFrontend.convertToEquatorial(eclipticPositions, obliquity);
+      val obliquity = new Obliquity(seFrontendInstance, jdUt).getTrueObliquity();
+      final double[] equatorialPositions = seFrontendInstance.convertToEquatorial(eclipticPositions, obliquity);
       rightAscension = equatorialPositions[0];
       declination = equatorialPositions[1];
    }

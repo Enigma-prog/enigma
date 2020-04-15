@@ -6,8 +6,15 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.shared.Rosetta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.Getter;
-import lombok.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @Getter
 public enum EclipticProjections {
@@ -18,9 +25,9 @@ public enum EclipticProjections {
    private final int id;
    private final String nameForRB;
 
-   EclipticProjections(final int id, @NonNull final String nameForRB) {
+   EclipticProjections(final int id, final String nameForRB) {
       this.id = id;
-      this.nameForRB = nameForRB;
+      this.nameForRB = checkNotNull(nameForRB);
    }
 
    public EclipticProjections getProjectionForId(final int id) {
@@ -30,6 +37,20 @@ public enum EclipticProjections {
          }
       }
       return EclipticProjections.UNKNOWN;
+   }
+
+   /**
+    * Create an observable list with names of ecliptical projections that can be used in the UI, e.g. in a SelectBox.
+    *
+    * @return The constructed observable list.
+    */
+   public ObservableList<String> getObservableList() {
+      final Rosetta rosetta = Rosetta.getRosetta();
+      final List<String> eclipticalProjNames = new ArrayList<>();
+      for (EclipticProjections eclipticProjection : EclipticProjections.values()) {
+         eclipticalProjNames.add(rosetta.getText(eclipticProjection.nameForRB));
+      }
+      return FXCollections.observableArrayList(eclipticalProjNames);
    }
 
 }

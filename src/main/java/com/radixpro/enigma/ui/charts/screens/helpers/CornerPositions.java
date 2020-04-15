@@ -6,8 +6,9 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculates the positions for the corner texts.
@@ -16,8 +17,8 @@ public class CornerPositions {
 
    final ChartDrawMetrics metrics;
 
-   public CornerPositions(@NonNull final ChartDrawMetrics metrics) {
-      this.metrics = metrics;
+   public CornerPositions(final ChartDrawMetrics metrics) {
+      this.metrics = checkNotNull(metrics);
    }
 
    public double[] defineCoordinates(final double angleMc) {

@@ -10,10 +10,11 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.daos.ConfigurationDao;
 import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PersistedConfigurationApi {
 
@@ -23,7 +24,8 @@ public class PersistedConfigurationApi {
       dao = new ConfigurationDao();
    }
 
-   public void insert(@NonNull final Configuration configuration) {
+   public void insert(final Configuration configuration) {
+      checkNotNull(configuration);
       try {
          dao.insert(configuration);
       } catch (DatabaseException de) {
@@ -31,7 +33,8 @@ public class PersistedConfigurationApi {
       }
    }
 
-   public void update(@NonNull final Configuration configuration) {
+   public void update(final Configuration configuration) {
+      checkNotNull(configuration);
       try {
          dao.update(configuration);
       } catch (DatabaseException de) {
@@ -39,7 +42,8 @@ public class PersistedConfigurationApi {
       }
    }
 
-   public void delete(@NonNull final Configuration configuration) {
+   public void delete(final Configuration configuration) {
+      checkNotNull(configuration);
       try {
          dao.delete(configuration);
       } catch (DatabaseException de) {
@@ -57,7 +61,8 @@ public class PersistedConfigurationApi {
       return configs;
    }
 
-   public List<Configuration> search(@NonNull final String searchName) {
+   public List<Configuration> search(final String searchName) {
+      checkNotNull(searchName);
       List<Configuration> configs = new ArrayList<>();
       try {
          configs = dao.search(searchName);

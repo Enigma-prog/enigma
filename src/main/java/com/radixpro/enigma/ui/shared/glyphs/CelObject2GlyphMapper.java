@@ -7,14 +7,16 @@
 package com.radixpro.enigma.ui.shared.glyphs;
 
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Maps a celestial object to the corresponding glyph.
  */
 public class CelObject2GlyphMapper {
 
-   public String getGlyph(@NonNull final CelestialObjects celObject) {
+   public String getGlyph(final CelestialObjects celObject) {
+      checkNotNull(celObject);
       String glyph;
       switch (celObject) {
          case SUN:

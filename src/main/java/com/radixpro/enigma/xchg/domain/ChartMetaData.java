@@ -7,9 +7,10 @@
 package com.radixpro.enigma.xchg.domain;
 
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.io.Serializable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Metadata for a chart, name, description etc.
@@ -32,12 +33,12 @@ public class ChartMetaData implements Serializable {
     * @param chartType   Type of chart.
     * @param rating      Rodden rating.
     */
-   public ChartMetaData(@NonNull final String name, @NonNull final String description, @NonNull final String source,
-                        @NonNull final ChartTypes chartType, @NonNull final Ratings rating) {
-      this.name = name;
-      this.description = description;
-      this.source = source;
-      this.chartType = chartType;
-      this.rating = rating;
+   public ChartMetaData(final String name, final String description, final String source, final ChartTypes chartType,
+                        final Ratings rating) {
+      this.name = checkNotNull(name);
+      this.description = checkNotNull(description);
+      this.source = checkNotNull(source);
+      this.chartType = checkNotNull(chartType);
+      this.rating = checkNotNull(rating);
    }
 }

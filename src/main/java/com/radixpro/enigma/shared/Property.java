@@ -7,8 +7,9 @@
 package com.radixpro.enigma.shared;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @ToString
 @Getter
@@ -18,10 +19,10 @@ public class Property {
    private final String key;
    private final String value;
 
-   public Property(final long id, @NonNull final String key, @NonNull final String value) {
+   public Property(final long id, final String key, final String value) {
       this.id = id;
-      this.key = key;
-      this.value = value;
+      this.key = checkNotNull(key);
+      this.value = checkNotNull(value);
    }
 
 }

@@ -8,15 +8,18 @@ package com.radixpro.enigma.xchg.domain.config;
 
 import com.radixpro.enigma.xchg.domain.AspectOrbStructure;
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Configuration for aspects.
  */
 @Getter
+@Setter
 public class AspectConfiguration implements Serializable {
 
    private final double baseOrb;
@@ -32,11 +35,11 @@ public class AspectConfiguration implements Serializable {
     * @param orbStructure   Structure to be used for orbs.
     * @param drawInOutGoing Indicates if separate glyphs will be used for in- and outgoing aspects.
     */
-   public AspectConfiguration(@NonNull final List<ConfiguredAspect> aspects, final double baseOrb,
-                              @NonNull final AspectOrbStructure orbStructure, final boolean drawInOutGoing) {
-      this.aspects = aspects;
+   public AspectConfiguration(final List<ConfiguredAspect> aspects, final double baseOrb,
+                              final AspectOrbStructure orbStructure, final boolean drawInOutGoing) {
+      this.aspects = checkNotNull(aspects);
       this.baseOrb = baseOrb;
-      this.orbStructure = orbStructure;
+      this.orbStructure = checkNotNull(orbStructure);
       this.drawInOutGoing = drawInOutGoing;
    }
 }

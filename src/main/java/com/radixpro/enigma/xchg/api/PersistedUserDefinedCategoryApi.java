@@ -10,10 +10,11 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.daos.UserDefinedCategoryDao;
 import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PersistedUserDefinedCategoryApi {
    private final UserDefinedCategoryDao dao;
@@ -22,7 +23,8 @@ public class PersistedUserDefinedCategoryApi {
       dao = new UserDefinedCategoryDao();
    }
 
-   public void insert(@NonNull final UserDefinedCategory category) {
+   public void insert(final UserDefinedCategory category) {
+      checkNotNull(category);
       try {
          dao.insert(category);
       } catch (DatabaseException de) {
@@ -30,7 +32,8 @@ public class PersistedUserDefinedCategoryApi {
       }
    }
 
-   public void update(@NonNull final UserDefinedCategory category) {
+   public void update(final UserDefinedCategory category) {
+      checkNotNull(category);
       try {
          dao.update(category);
       } catch (DatabaseException de) {
@@ -38,7 +41,8 @@ public class PersistedUserDefinedCategoryApi {
       }
    }
 
-   public void delete(@NonNull final UserDefinedCategory category) {
+   public void delete(final UserDefinedCategory category) {
+      checkNotNull(category);
       try {
          dao.delete(category);
       } catch (DatabaseException de) {
@@ -56,7 +60,8 @@ public class PersistedUserDefinedCategoryApi {
       return categories;
    }
 
-   public List<UserDefinedCategory> search(@NonNull final String searchText) {
+   public List<UserDefinedCategory> search(final String searchText) {
+      checkNotNull(searchText);
       List<UserDefinedCategory> categories = new ArrayList<>();
       try {
          categories = dao.search(searchText);

@@ -14,11 +14,12 @@ import com.radixpro.enigma.xchg.api.CalculatedFullChart;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import lombok.NonNull;
 import lombok.val;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Image of a radix wheel.
@@ -44,11 +45,11 @@ public class RadixWheel {
     * @param metrics             Dynamic metrics, will be resized if required.
     * @param calculatedFullChart Data for the calcualted chart.
     */
-   public RadixWheel(@NonNull final GraphicsContext gc, @NonNull final ChartDrawMetrics metrics,
-                     @NonNull final CalculatedFullChart calculatedFullChart) {
-      this.gc = gc;
-      this.metrics = metrics;
-      this.cfChart = calculatedFullChart;
+   public RadixWheel(final GraphicsContext gc, final ChartDrawMetrics metrics,
+                     final CalculatedFullChart calculatedFullChart) {
+      this.gc = checkNotNull(gc);
+      this.metrics = checkNotNull(metrics);
+      this.cfChart = checkNotNull(calculatedFullChart);
       defineGlobals();
       performDraw();
    }
@@ -138,7 +139,7 @@ public class RadixWheel {
    private void drawSignSeparators() {
       prepareMediumLines();
       final SignSeparator separator = new SignSeparator(metrics);
-      var angle = 30 - (offsetAsc % 30);
+      double angle = offsetAsc;
       double[] positions;
       for (int i = 1; i <= 12; i++) {
          positions = separator.defineCoordinates(angle);
@@ -162,9 +163,9 @@ public class RadixWheel {
 
    private void drawCorners() {
       prepareThickLines();
-      val angleMc = cfChart.getHouseValues().getAscendant().getLongitude()
+      double angleMc = cfChart.getHouseValues().getAscendant().getLongitude()
             - cfChart.getHouseValues().getMc().getLongitude();
-      val cornerLines = new CornerLines(metrics);
+      CornerLines cornerLines = new CornerLines(metrics);
       double[] coordinates = cornerLines.defineCoordinates(angleMc);
       gc.strokeLine(coordinates[0], coordinates[1], coordinates[2], coordinates[3]);         // asc
       gc.strokeLine(coordinates[4], coordinates[5], coordinates[6], coordinates[7]);         // desc
@@ -174,10 +175,10 @@ public class RadixWheel {
 
    private void drawHouses() {
       prepareSmallLines();
-      val quadrantSystem = cfChart.getSettings().getHouseSystem().isQuadrantSystem();
+      boolean quadrantSystem = cfChart.getSettings().getHouseSystem().isQuadrantSystem();
       double angle;
       double[] positions;
-      val asc = cfChart.getHouseValues().getAscendant().getLongitude();
+      double asc = cfChart.getHouseValues().getAscendant().getLongitude();
       val cusps = cfChart.getHouseValues().getCusps();
       CuspLinePlotCoordinates cuspLine;
       for (int i = 1; i <= 12; i++) {
@@ -279,7 +280,8 @@ public class RadixWheel {
       }
    }
 
-   private void drawConnectLines(@NonNull final PlotBodyInfo plotBodyInfo) {
+   private void drawConnectLines(final PlotBodyInfo plotBodyInfo) {
+      checkNotNull(plotBodyInfo);
       prepareConnectLines();
       val hypothenusa1 = metrics.getDiameterCelBodiesMedium() - metrics.getDistanceConnectLines();
       val hypothenusa2 = metrics.getSizeHousesCircle() / 2;
@@ -299,7 +301,8 @@ public class RadixWheel {
       gc.setGlobalAlpha(0.6);
    }
 
-   private void drawCelObjectPosition(@NonNull final PlotBodyInfo plotBodyInfo) {
+   private void drawCelObjectPosition(final PlotBodyInfo plotBodyInfo) {
+      checkNotNull(plotBodyInfo);
       gc.setFont(new Font(TEXT_FONTNAME, metrics.getSizeTextFont()));
       double[] coordinates = new CelObjectPlotPosition(metrics).defineCoordinates(plotBodyInfo.getCorrectedAngle());
       gc.fillText(plotBodyInfo.getPosText(), coordinates[0], coordinates[1]);

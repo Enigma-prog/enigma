@@ -7,9 +7,10 @@
 package com.radixpro.enigma.xchg.domain;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 import org.dizitart.no2.objects.Id;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @ToString
 @Getter
@@ -21,12 +22,12 @@ public class ChartData {
    private final Location location;
    private final ChartMetaData chartMetaData;
 
-   public ChartData(final long id, @NonNull final FullDateTime fullDateTime,
-                    @NonNull final Location location, @NonNull final ChartMetaData chartMetaData) {
+   public ChartData(final long id, final FullDateTime fullDateTime, final Location location,
+                    final ChartMetaData chartMetaData) {
       this.id = id;
-      this.fullDateTime = fullDateTime;
-      this.location = location;
-      this.chartMetaData = chartMetaData;
+      this.fullDateTime = checkNotNull(fullDateTime);
+      this.location = checkNotNull(location);
+      this.chartMetaData = checkNotNull(chartMetaData);
    }
 
 }

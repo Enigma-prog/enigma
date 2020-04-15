@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.testsupport.RosettaPreparer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +18,7 @@ public class EclipticProjectionsTest {
 
    @Before
    public void setUp() {
+      new RosettaPreparer().setRosetta();
       projection = EclipticProjections.SIDEREAL;
    }
 
@@ -40,4 +42,8 @@ public class EclipticProjectionsTest {
       assertEquals(EclipticProjections.UNKNOWN, projection.getProjectionForId(1000));
    }
 
+   @Test
+   public void getObservableList() {
+      assertEquals(3, projection.getObservableList().size());
+   }
 }

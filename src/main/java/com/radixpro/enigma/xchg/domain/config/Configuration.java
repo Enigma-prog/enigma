@@ -7,32 +7,36 @@
 package com.radixpro.enigma.xchg.domain.config;
 
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.Setter;
 import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 @ToString
 @Getter
+@Setter
 public class Configuration {
 
    @Id
-   private final long id;
-   private final long parentId;
-   private final String name;
-   private final String description;
-   private final AstronConfiguration astronConfiguration;
-   private final DelinConfiguration delinConfiguration;
+   private long id;
+   private long parentId;
+   private String name;
+   private String description;
+   private AstronConfiguration astronConfiguration;
+   private DelinConfiguration delinConfiguration;
 
 
-   public Configuration(final long id, final long parentId, @NonNull final String name,
-                        @NonNull final String description, @NonNull final AstronConfiguration astronConfiguration,
-                        @NonNull final DelinConfiguration delinConfiguration) {
+   public Configuration(final long id, final long parentId, final String name, final String description,
+                        final AstronConfiguration astronConfiguration, final DelinConfiguration delinConfiguration) {
       this.id = id;
       this.parentId = parentId;
-      this.name = name;
-      this.description = description;
-      this.astronConfiguration = astronConfiguration;
-      this.delinConfiguration = delinConfiguration;
+      this.name = checkNotNull(name);
+      this.description = checkNotNull(description);
+      this.astronConfiguration = checkNotNull(astronConfiguration);
+      this.delinConfiguration = checkNotNull(delinConfiguration);
    }
+
+
 
 }

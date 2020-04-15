@@ -8,8 +8,8 @@ package com.radixpro.enigma.xchg.domain;
 
 import com.radixpro.enigma.be.astron.main.JulianDay;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * All data for date and time, both for calculation and presentation.
@@ -32,20 +32,20 @@ public class FullDateTime {
     * @param dst            True if dst applies, otherwise false, assumed is dst is always one hour.
     * @param offsetForLmt   If timezone is LMT, this field should present the offset to UT in decimal hours.
     */
-   public FullDateTime(@NonNull final SimpleDateTime simpleDateTime, @NonNull final TimeZones timeZone,
-                       final boolean dst, final double offsetForLmt) {
-      this.simpleDateTime = simpleDateTime;
-      this.timeZone = timeZone;
+   public FullDateTime(final SimpleDateTime simpleDateTime, final TimeZones timeZone, final boolean dst,
+                       final double offsetForLmt) {
+      this.simpleDateTime = checkNotNull(simpleDateTime);
+      this.timeZone = checkNotNull(timeZone);
       this.dst = dst;
       this.offsetForLmt = offsetForLmt;
-      val utDelta = calculateUtDelta();
-      val julianDay = new JulianDay(simpleDateTime);
+      double utDelta = calculateUtDelta();
+      JulianDay julianDay = new JulianDay(simpleDateTime);
       jdUt = julianDay.getJdNrUt() - utDelta / 24.0;
       jdEt = julianDay.getJdNrEt() - utDelta / 24.0;
    }
 
    private double calculateUtDelta() {
-      var utDelta = (TimeZones.LMT == timeZone) ? offsetForLmt : timeZone.getOffset();
+      double utDelta = (TimeZones.LMT == timeZone) ? offsetForLmt : timeZone.getOffset();
       if (dst) utDelta++;
       return utDelta;
    }

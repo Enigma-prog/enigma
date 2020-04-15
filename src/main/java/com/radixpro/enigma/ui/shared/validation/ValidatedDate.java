@@ -9,7 +9,6 @@ package com.radixpro.enigma.ui.shared.validation;
 import com.radixpro.enigma.xchg.api.DateTimeApi;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
 
 /**
@@ -27,7 +26,7 @@ public class ValidatedDate extends ValidatedInput {
     *
     * @param input The date to validate.
     */
-   public ValidatedDate(@NonNull final String input) {
+   public ValidatedDate(final String input) {
       super(input);
       dateTimeApi = new DateTimeApi();
       validate();

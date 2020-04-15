@@ -6,8 +6,7 @@
 
 package com.radixpro.enigma.ui.shared.validation;
 
-import lombok.Getter;
-import lombok.NonNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Parent for validators.
@@ -29,7 +28,6 @@ public abstract class ValidatedInput {
    protected static final int SECONDS_PER_HOUR = 3600;
    protected static final String SEXAG_SEPARATOR = ":";
    protected final String input;
-   @Getter
    protected boolean validated = false;
 
    /**
@@ -37,10 +35,13 @@ public abstract class ValidatedInput {
     *
     * @param input The inputted data.
     */
-   public ValidatedInput(@NonNull final String input) {
-      this.input = input;
+   public ValidatedInput(final String input) {
+      this.input = checkNotNull(input);
    }
 
    protected abstract void validate();
 
+   public boolean isValidated() {
+      return validated;
+   }
 }

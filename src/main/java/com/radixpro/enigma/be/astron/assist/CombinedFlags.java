@@ -8,9 +8,10 @@ package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.xchg.domain.SeFlags;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Combined result of all flags.
@@ -25,14 +26,15 @@ public class CombinedFlags {
     *
     * @param flagList The flags.
     */
-   public CombinedFlags(@NonNull final List<SeFlags> flagList) {
-      combinedValue = performCombination(flagList);
+   public CombinedFlags(final List<SeFlags> flagList) {
+      combinedValue = performCombination(checkNotNull(flagList));
    }
 
-   private long performCombination(@NonNull final List<SeFlags> flagList) {
+   private long performCombination(final List<SeFlags> flagList) {
+      List<SeFlags> selFlags = checkNotNull(flagList);
       long result = 0;
-      for (SeFlags seFlags : flagList) {
-         result = result | seFlags.getSeValue();
+      for (SeFlags flag : selFlags) {
+         result = result | flag.getSeValue();
       }
       return result;
    }

@@ -7,7 +7,8 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * DTO for the result of a SE calculation for houses, holds array with positions and a possible error Message.
@@ -25,9 +26,9 @@ public class SePositionResultHouses {
     *              co-ascendant (Walter Koch), co-ascendant (Michael Munkasey), polar ascendant (M. Munkasey)
     * @param cusps Array with teh cusps starting at position 1. Position 0 is not used.
     */
-   public SePositionResultHouses(@NonNull final double[] ascMc, @NonNull final double[] cusps) {
-      this.ascMc = ascMc;
-      this.cusps = cusps;
+   public SePositionResultHouses(final double[] ascMc, final double[] cusps) {
+      this.ascMc = checkNotNull(ascMc);
+      this.cusps = checkNotNull(cusps);
    }
 
 }

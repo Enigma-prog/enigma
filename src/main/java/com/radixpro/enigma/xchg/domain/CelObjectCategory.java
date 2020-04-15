@@ -7,7 +7,8 @@
 package com.radixpro.enigma.xchg.domain;
 
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Enum with categories for celestial objects.
@@ -32,9 +33,9 @@ public enum CelObjectCategory {
     * @param id        The id of the category.
     * @param nameForRB The name to access the resource bundle for a translated text.
     */
-   CelObjectCategory(final int id, @NonNull final String nameForRB) {
+   CelObjectCategory(final int id, final String nameForRB) {
       this.id = id;
-      this.nameForRB = nameForRB;
+      this.nameForRB = checkNotNull(nameForRB);
    }
 
 }

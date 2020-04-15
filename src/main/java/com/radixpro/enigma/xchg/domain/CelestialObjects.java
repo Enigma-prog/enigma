@@ -6,8 +6,15 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.shared.Rosetta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.Getter;
-import lombok.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Celestial bodies and id's to access the SE.
@@ -28,34 +35,34 @@ public enum CelestialObjects {
    PLUTO(11, 9, CelObjectCategory.MODERN, "celobject.pluto"),
    CHEIRON(12, 15, CelObjectCategory.CENTAURS, "celobject.cheiron"),
    MEAN_NODE(13, 10, CelObjectCategory.INTERSECTIONS, "celobject.meannode"),
-   TRUE_NODE(14, 11, CelObjectCategory.INTERSECTIONS, "celobject.truenode"),
-   PHOLUS(15, 16, CelObjectCategory.CENTAURS, "celobject.pholus"),
-   CERES(16, 17, CelObjectCategory.ASTEROIDS, "celobject.ceres"),
-   PALLAS(17, 18, CelObjectCategory.ASTEROIDS, "celobject.pallas"),
-   JUNO(18, 19, CelObjectCategory.ASTEROIDS, "celobject.juno"),
-   VESTA(19, 20, CelObjectCategory.ASTEROIDS, "celobject.vesta"),
-   NESSUS(20, 17066, CelObjectCategory.CENTAURS, "celobject.nessus"),
-   HUYA(21, 48628, CelObjectCategory.EXTRA_PLUT, "celobject.huya"),
-   MAKEMAKE(22, 146472, CelObjectCategory.EXTRA_PLUT, "celobject.makemake"),
-   HAUMEA(23, 146108, CelObjectCategory.EXTRA_PLUT, "celobject.haumea"),
-   ERIS(24, 146199, CelObjectCategory.EXTRA_PLUT, "celobject.eris"),
-   IXION(25, 38978, CelObjectCategory.EXTRA_PLUT, "celobject.ixion"),
-   ORCUS(26, 100482, CelObjectCategory.EXTRA_PLUT, "celobject.orcus"),
-   QUAOAR(27, 60000, CelObjectCategory.EXTRA_PLUT, "celobject.quaoar"),
-   SEDNA(28, 100377, CelObjectCategory.EXTRA_PLUT, "celobject.sedna"),
-   VARUNA(29, 30000, CelObjectCategory.EXTRA_PLUT, "celobject.varuna");
+   TRUE_NODE(14, 11, CelObjectCategory.INTERSECTIONS, "celobject.truenode");
+   // prepared for future use:
+//   PHOLUS(15, 16, CelObjectCategory.CENTAURS, "celobject.pholus"),
+//   CERES(16, 17, CelObjectCategory.ASTEROIDS, "celobject.ceres"),
+//   PALLAS(17, 18, CelObjectCategory.ASTEROIDS, "celobject.pallas"),
+//   JUNO(18, 19, CelObjectCategory.ASTEROIDS, "celobject.juno"),
+//   VESTA(19, 20, CelObjectCategory.ASTEROIDS, "celobject.vesta"),
+//   NESSUS(20, 17066, CelObjectCategory.CENTAURS, "celobject.nessus"),
+//   HUYA(21, 48628, CelObjectCategory.EXTRA_PLUT, "celobject.huya"),
+//   MAKEMAKE(22, 146472, CelObjectCategory.EXTRA_PLUT, "celobject.makemake"),
+//   HAUMEA(23, 146108, CelObjectCategory.EXTRA_PLUT, "celobject.haumea"),
+//   ERIS(24, 146199, CelObjectCategory.EXTRA_PLUT, "celobject.eris"),
+//   IXION(25, 38978, CelObjectCategory.EXTRA_PLUT, "celobject.ixion"),
+//   ORCUS(26, 100482, CelObjectCategory.EXTRA_PLUT, "celobject.orcus"),
+//   QUAOAR(27, 60000, CelObjectCategory.EXTRA_PLUT, "celobject.quaoar"),
+//   SEDNA(28, 100377, CelObjectCategory.EXTRA_PLUT, "celobject.sedna"),
+//   VARUNA(29, 30000, CelObjectCategory.EXTRA_PLUT, "celobject.varuna");
 
    private final int id;
    private final long seId;
    private final String nameForRB;
    private final CelObjectCategory category;
 
-   CelestialObjects(final int id, final long seId, @NonNull final CelObjectCategory category,
-                    @NonNull final String nameForRB) {
+   CelestialObjects(final int id, final long seId, final CelObjectCategory category, final String nameForRB) {
       this.id = id;
       this.seId = seId;
-      this.category = category;
-      this.nameForRB = nameForRB;
+      this.category = checkNotNull(category);
+      this.nameForRB = checkNotNull(nameForRB);
    }
 
    public CelestialObjects getCelObjectForId(int id) {
@@ -65,6 +72,21 @@ public enum CelestialObjects {
          }
       }
       return CelestialObjects.UNKNOWN;
+   }
+
+
+   /**
+    * Create an observable list with names of celestial objects that can be used in the UI, e.g. in a CheckComboBox.
+    *
+    * @return The constructed observable list.
+    */
+   public ObservableList<String> getObservableList() {
+      final Rosetta rosetta = Rosetta.getRosetta();
+      final List<String> celObjectNames = new ArrayList<>();
+      for (CelestialObjects celestialObject : CelestialObjects.values()) {
+         celObjectNames.add(rosetta.getText(celestialObject.nameForRB));
+      }
+      return FXCollections.observableArrayList(celObjectNames);
    }
 
 }

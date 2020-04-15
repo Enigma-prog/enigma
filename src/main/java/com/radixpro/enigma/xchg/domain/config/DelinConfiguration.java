@@ -7,17 +7,20 @@
 package com.radixpro.enigma.xchg.domain.config;
 
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.Setter;
 
 import java.io.Serializable;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 @Getter
+@Setter
 public class DelinConfiguration implements Serializable {
 
    private final AspectConfiguration aspectConfiguration;
 
-   public DelinConfiguration(@NonNull final AspectConfiguration aspectConfiguration) {
-      this.aspectConfiguration = aspectConfiguration;
+   public DelinConfiguration(final AspectConfiguration aspectConfiguration) {
+      this.aspectConfiguration = checkNotNull(aspectConfiguration);
    }
 
 }

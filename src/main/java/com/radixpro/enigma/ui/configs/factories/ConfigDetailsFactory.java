@@ -6,9 +6,11 @@
 
 package com.radixpro.enigma.ui.configs.factories;
 
-import com.radixpro.enigma.ui.configs.AspectsInConfig;
-import com.radixpro.enigma.ui.configs.CelObjectsInConfig;
-import com.radixpro.enigma.ui.configs.ConfigDetails;
+import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.ui.configs.helpers.AspectsInConfig;
+import com.radixpro.enigma.ui.configs.helpers.CelObjectsInConfig;
+import com.radixpro.enigma.ui.configs.helpers.PropertiesForConfig;
+import com.radixpro.enigma.ui.configs.screens.ConfigDetails;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
 import lombok.NonNull;
 
@@ -24,6 +26,10 @@ public class ConfigDetailsFactory {
     * @return the instantiated ConfigDetails.
     */
    public ConfigDetails createConfigDetails(@NonNull final Configuration config) {
-      return new ConfigDetails(config, new CelObjectsInConfig(), new AspectsInConfig());
+      Rosetta rosetta = Rosetta.getRosetta();
+      PropertiesForConfig prop4Config = new PropertiesForConfig(config,
+            new CelObjectsInConfig(rosetta),
+            new AspectsInConfig(rosetta), rosetta);
+      return new ConfigDetails(config.getName(), prop4Config, rosetta);
    }
 }

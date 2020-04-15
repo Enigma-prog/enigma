@@ -7,7 +7,6 @@
 package com.radixpro.enigma.xchg.domain;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
@@ -30,7 +29,7 @@ public class UserDefinedCategory implements Serializable {
     * @param id   The id for the category
     * @param text The text for the category (defined by the user).
     */
-   public UserDefinedCategory(final long id, @NonNull final String text) {
+   public UserDefinedCategory(final long id, final String text) {
       this.id = id;
       this.text = text;
    }

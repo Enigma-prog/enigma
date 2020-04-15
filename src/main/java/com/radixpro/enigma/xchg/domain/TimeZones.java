@@ -10,7 +10,6 @@ import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,7 @@ public enum TimeZones {
    private final String nameForRB;
    private final double offset;
 
-   TimeZones(final int id, @NonNull final String nameForRB, final double offset) {
+   TimeZones(final int id, final String nameForRB, final double offset) {
       this.id = id;
       this.nameForRB = nameForRB;
       this.offset = offset;
@@ -70,7 +69,7 @@ public enum TimeZones {
       return TimeZones.UT;
    }
 
-   public TimeZones timeZoneForName(@NonNull final String zoneLocalName) {
+   public TimeZones timeZoneForName(final String zoneLocalName) {
       final Rosetta rosetta = Rosetta.getRosetta();
       for (TimeZones timeZone : TimeZones.values()) {
          if (rosetta.getText(timeZone.nameForRB).equals(zoneLocalName)) {

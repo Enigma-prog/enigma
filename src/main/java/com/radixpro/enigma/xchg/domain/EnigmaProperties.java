@@ -8,7 +8,6 @@ package com.radixpro.enigma.xchg.domain;
 
 import com.radixpro.enigma.shared.FailFastHandler;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
 
@@ -16,6 +15,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Reads properties, these properties are retrieved from property-files.
@@ -32,11 +33,11 @@ public class EnigmaProperties {
     *
     * @param propType The type of the property, the filename without the extension '.properties'.
     */
-   public EnigmaProperties(@NonNull final String propType) {
-      processProperties(propType);
+   public EnigmaProperties(final String propType) {
+      processProperties(checkNotNull(propType));
    }
 
-   private void processProperties(@NonNull final String propType) {
+   private void processProperties(final String propType) {
       val rootPath = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
       if (rootPath == null) new FailFastHandler().terminate("Could not define rootPath for Properties.");
       val appConfigPath = rootPath + propType + EXTENSION;

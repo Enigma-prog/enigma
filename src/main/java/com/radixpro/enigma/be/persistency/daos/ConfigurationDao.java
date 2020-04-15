@@ -10,7 +10,6 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.ConfigurationObjectDocumentMapper;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
-import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
@@ -18,6 +17,7 @@ import org.dizitart.no2.filters.Filters;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.dizitart.no2.FindOptions.sort;
 
 public class ConfigurationDao {
@@ -33,7 +33,8 @@ public class ConfigurationDao {
       mapper = new ConfigurationObjectDocumentMapper();
    }
 
-   public void insert(@NonNull final Configuration config) throws DatabaseException {
+   public void insert(final Configuration config) throws DatabaseException {
+      checkNotNull(config);
       WriteResult insertResult;
       try {
          openCollectionAndDatabase();
@@ -50,7 +51,8 @@ public class ConfigurationDao {
       }
    }
 
-   public void update(@NonNull final Configuration config) throws DatabaseException {
+   public void update(final Configuration config) throws DatabaseException {
+      checkNotNull(config);
       WriteResult updateResult;
       try {
          openCollectionAndDatabase();
@@ -68,7 +70,8 @@ public class ConfigurationDao {
       }
    }
 
-   public void delete(@NonNull final Configuration config) throws DatabaseException {
+   public void delete(final Configuration config) throws DatabaseException {
+      checkNotNull(config);
       openCollectionAndDatabase();
       try {
          collection.remove(mapper.object2Document(config));
@@ -95,7 +98,8 @@ public class ConfigurationDao {
       return configList;
    }
 
-   public List<Configuration> search(@NonNull final String searchName) throws DatabaseException {
+   public List<Configuration> search(final String searchName) throws DatabaseException {
+      checkNotNull(searchName);
       List<Configuration> configList = new ArrayList<>();
       try {
          openCollectionAndDatabase();

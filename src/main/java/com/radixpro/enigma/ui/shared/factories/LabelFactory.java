@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import lombok.NonNull;
 import lombok.val;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Factory for buttons.
  */
@@ -36,6 +38,12 @@ public class LabelFactory {
 
    public static Label createLabel(@NonNull final String text, @NonNull final String styleClass, final double width) {
       val label = createLabel(text, styleClass);
+      label.setPrefWidth(width);
+      return label;
+   }
+
+   public static Label createLabel(final String text, final double width) {
+      val label = createLabel(checkNotNull(text));
       label.setPrefWidth(width);
       return label;
    }

@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.NonNull;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -25,7 +24,8 @@ public class FailFastHandler {
 
    private static final Logger LOG = Logger.getLogger(FailFastHandler.class);
 
-   public void terminate(@NonNull final String causeOfError) {
+   public void terminate(String causeOfError) {
+      if (null == causeOfError || causeOfError.isEmpty()) causeOfError = "No cause of error mentioned.";
       LOG.info("Showing termination message as a unrecoverable error occurred. Cause of error: " + causeOfError);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/emergencyexit.fxml"));
       loader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));

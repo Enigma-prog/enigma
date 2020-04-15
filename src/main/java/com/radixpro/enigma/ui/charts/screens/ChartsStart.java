@@ -7,8 +7,8 @@
 package com.radixpro.enigma.ui.charts.screens;
 
 import com.radixpro.enigma.shared.Rosetta;
-import com.radixpro.enigma.ui.configs.ConfigEdit;
-import com.radixpro.enigma.ui.configs.ConfigOverview;
+import com.radixpro.enigma.ui.configs.screens.ConfigEdit;
+import com.radixpro.enigma.ui.configs.screens.ConfigOverview;
 import com.radixpro.enigma.ui.shared.InputStatus;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableChartData;
 import com.radixpro.enigma.xchg.api.CalculatedFullChart;

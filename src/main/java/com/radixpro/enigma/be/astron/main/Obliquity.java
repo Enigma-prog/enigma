@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.val;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static swisseph.SweConst.SE_ECL_NUT;
 
 /**
@@ -22,8 +23,8 @@ public class Obliquity {
    private double trueObliquity;
    private double meanObliquity;
 
-   public Obliquity(@NonNull final SeFrontend seFrontend, final double jdUt) {
-      performCalculation(seFrontend, jdUt);
+   public Obliquity(final SeFrontend seFrontend, final double jdUt) {
+      performCalculation(checkNotNull(seFrontend), jdUt);
    }
 
    /**

@@ -11,12 +11,13 @@ import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
 import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
 import com.radixpro.enigma.xchg.domain.*;
 import com.radixpro.enigma.xchg.domain.config.*;
-import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Updater {
 
@@ -88,7 +89,8 @@ public class Updater {
 
    }
 
-   private List<ConfiguredCelObject> createCelObjects(@NonNull final StandardConfigurations config) {
+   private List<ConfiguredCelObject> createCelObjects(final StandardConfigurations config) {
+      checkNotNull(config);
       final List<ConfiguredCelObject> celObjects = new ArrayList<>();
       celObjects.add(new ConfiguredCelObject(CelestialObjects.SUN, "a", 100.0, true));
       celObjects.add(new ConfiguredCelObject(CelestialObjects.MOON, "b", 100.0, true));
@@ -111,8 +113,8 @@ public class Updater {
       return celObjects;
    }
 
-
-   private List<ConfiguredAspect> createAspects(@NonNull final StandardConfigurations config) {
+   private List<ConfiguredAspect> createAspects(final StandardConfigurations config) {
+      checkNotNull(config);
       final List<ConfiguredAspect> aspects = new ArrayList<>();
       aspects.add(new ConfiguredAspect(Aspects.CONJUNCTION, 100, "B", true));
       aspects.add(new ConfiguredAspect(Aspects.OPPOSITION, 100, "C", true));

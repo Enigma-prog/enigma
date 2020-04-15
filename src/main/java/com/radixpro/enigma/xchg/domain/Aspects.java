@@ -6,13 +6,11 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-import lombok.NonNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Enum of supported aspects.
  */
-@Getter
 public enum Aspects {
    CONJUNCTION(1, AspectCategory.MAJOR, 0.0, "aspects.conjunction"),
    OPPOSITION(2, AspectCategory.MAJOR, 180.0, "aspects.opposition"),
@@ -52,11 +50,11 @@ public enum Aspects {
     * @param angle          Angle of the aspect in degrees.
     * @param rbId           Id for the resource bundle to retrieve the name of the aspect.
     */
-   Aspects(final int id, @NonNull final AspectCategory aspectCategory, final double angle, @NonNull final String rbId) {
+   Aspects(final int id, final AspectCategory aspectCategory, final double angle, final String rbId) {
       this.id = id;
-      this.aspectCategory = aspectCategory;
+      this.aspectCategory = checkNotNull(aspectCategory);
       this.angle = angle;
-      this.fullRbId = rbId;
+      this.fullRbId = checkNotNull(rbId);
    }
 
    /**
@@ -73,5 +71,21 @@ public enum Aspects {
       }
       return null;
       // TODO throw exception if aspect is not found
+   }
+
+   public int getId() {
+      return id;
+   }
+
+   public AspectCategory getAspectCategory() {
+      return aspectCategory;
+   }
+
+   public double getAngle() {
+      return angle;
+   }
+
+   public String getFullRbId() {
+      return fullRbId;
    }
 }

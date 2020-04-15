@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.testsupport.RosettaPreparer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +18,7 @@ public class AyanamshasTest {
 
    @Before
    public void setUp() {
+      new RosettaPreparer().setRosetta();
       ayanamsha = Ayanamshas.KUGLER_2;
    }
 
@@ -51,4 +53,8 @@ public class AyanamshasTest {
    }
 
 
+   @Test
+   public void getObservableList() {
+      assertEquals(42, ayanamsha.getObservableList().size());
+   }
 }

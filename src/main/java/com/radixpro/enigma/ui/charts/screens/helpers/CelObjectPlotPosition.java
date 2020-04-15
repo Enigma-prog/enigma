@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculates the position for a celelstial object text.
@@ -15,8 +15,8 @@ public class CelObjectPlotPosition {
 
    private final ChartDrawMetrics metrics;
 
-   public CelObjectPlotPosition(@NonNull final ChartDrawMetrics metrics) {
-      this.metrics = metrics;
+   public CelObjectPlotPosition(final ChartDrawMetrics metrics) {
+      this.metrics = checkNotNull(metrics);
    }
 
    public double[] defineCoordinates(final double angle) {

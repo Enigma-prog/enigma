@@ -7,7 +7,8 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Container for the result of a SE calculation for celestial bodies.
@@ -26,10 +27,9 @@ public class SePositionResultCelObjects {
     *                     speed of main position, speed of deviation, speed of distance.
     * @param errorMsg     Error message or empty String.
     */
-   public SePositionResultCelObjects(@NonNull final double[] allPositions, @NonNull final String errorMsg) {
-      this.allPositions = allPositions;
-      this.errorMsg = errorMsg;
+   public SePositionResultCelObjects(final double[] allPositions, final String errorMsg) {
+      this.allPositions = checkNotNull(allPositions);
+      this.errorMsg = checkNotNull(errorMsg);
    }
-
 
 }

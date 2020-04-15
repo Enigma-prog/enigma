@@ -20,6 +20,8 @@ import lombok.val;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Coordiantes for a celestial object: ecliptical, equatorial and horizontal.
  */
@@ -46,13 +48,12 @@ public class CelObjectPosition {
     * @param location   The location.
     * @param flagList   A list with fglags to be used.
     */
-   public CelObjectPosition(@NonNull final SeFrontend seFrontend, final double jdUt,
-                            @NonNull final CelestialObjects celBody, @NonNull final Location location,
-                            @NonNull final List<SeFlags> flagList) {
-      this.celestialBody = celBody;
-      final List<SeFlags> localFlagList = new ArrayList<>(flagList); // need copy to prevent changing the content of flaglist.
+   public CelObjectPosition(final SeFrontend seFrontend, final double jdUt, final CelestialObjects celBody,
+                            final Location location, final List<SeFlags> flagList) {
+      this.celestialBody = checkNotNull(celBody);
+      final List<SeFlags> localFlagList = new ArrayList<>(checkNotNull(flagList)); // need copy to prevent changing the content of flaglist.
       defineFlags(localFlagList);
-      calculate(seFrontend, jdUt, location);
+      calculate(checkNotNull(seFrontend), jdUt, checkNotNull(location));
    }
 
    private void defineFlags(@NonNull final List<SeFlags> localFlagList) {

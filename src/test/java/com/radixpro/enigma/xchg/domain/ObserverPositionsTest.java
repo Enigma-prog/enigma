@@ -6,6 +6,8 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.testsupport.RosettaPreparer;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,6 +15,11 @@ import static org.junit.Assert.assertEquals;
 public class ObserverPositionsTest {
 
    private final ObserverPositions observerPosition = ObserverPositions.HELIOCENTRIC;
+
+   @Before
+   public void setUp() {
+      new RosettaPreparer().setRosetta();
+   }
 
    @Test
    public void getId() {
@@ -40,4 +47,8 @@ public class ObserverPositionsTest {
       assertEquals(4, ObserverPositions.values().length);
    }
 
+   @Test
+   public void getObservableList() {
+      assertEquals(4, observerPosition.getObservableList().size());
+   }
 }

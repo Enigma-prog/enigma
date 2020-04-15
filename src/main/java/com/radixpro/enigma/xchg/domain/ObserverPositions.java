@@ -6,10 +6,14 @@
 
 package com.radixpro.enigma.xchg.domain;
 
+import com.radixpro.enigma.shared.Rosetta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,7 +30,7 @@ public enum ObserverPositions implements Serializable {
    private final int id;
    private final String nameForRB;
 
-   ObserverPositions(final int id, @NonNull final String nameForRB) {
+   ObserverPositions(final int id, final String nameForRB) {
       this.id = id;
       this.nameForRB = nameForRB;
    }
@@ -45,5 +49,20 @@ public enum ObserverPositions implements Serializable {
       }
       return ObserverPositions.UNKNOWN;
    }
+
+   /**
+    * Create an observable list with names of observer positions that can be used in the UI, e.g. in a SelectBox.
+    *
+    * @return The constructed observable list.
+    */
+   public ObservableList<String> getObservableList() {
+      final Rosetta rosetta = Rosetta.getRosetta();
+      final List<String> observerPosNames = new ArrayList<>();
+      for (ObserverPositions observerPosition : ObserverPositions.values()) {
+         observerPosNames.add(rosetta.getText(observerPosition.nameForRB));
+      }
+      return FXCollections.observableArrayList(observerPosNames);
+   }
+
 
 }

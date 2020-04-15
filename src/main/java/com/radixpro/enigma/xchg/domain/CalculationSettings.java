@@ -7,9 +7,10 @@
 package com.radixpro.enigma.xchg.domain;
 
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @Getter
 public class CalculationSettings {
@@ -21,12 +22,12 @@ public class CalculationSettings {
    private final boolean topocentric;
    private final boolean heliocentric;
 
-   public CalculationSettings(@NonNull final List<CelestialObjects> celBodies, @NonNull final HouseSystems houseSystem,
-                              @NonNull final Ayanamshas ayanamsha, final boolean sidereal, final boolean topocentric,
+   public CalculationSettings(final List<CelestialObjects> celBodies, final HouseSystems houseSystem,
+                              final Ayanamshas ayanamsha, final boolean sidereal, final boolean topocentric,
                               final boolean heliocentric) {
-      this.celBodies = celBodies;
-      this.houseSystem = houseSystem;
-      this.ayanamsha = ayanamsha;
+      this.celBodies = checkNotNull(celBodies);
+      this.houseSystem = checkNotNull(houseSystem);
+      this.ayanamsha = checkNotNull(ayanamsha);
       this.sidereal = sidereal;
       this.topocentric = topocentric;
       this.heliocentric = heliocentric;

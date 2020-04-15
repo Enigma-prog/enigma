@@ -12,10 +12,11 @@ import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.be.astron.main.Obliquity;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A 'full' chart with information on all positions.
@@ -39,11 +40,10 @@ public class FullChart {
    private long flagsValue;
    private List<SeFlags> allFlags;
 
-   public FullChart(@NonNull final FullDateTime fullDateTime, @NonNull final Location location,
-                    @NonNull final CalculationSettings settings) {
-      this.fullDateTime = fullDateTime;
-      this.location = location;
-      this.settings = settings;
+   public FullChart(final FullDateTime fullDateTime, final Location location, final CalculationSettings settings) {
+      this.fullDateTime = checkNotNull(fullDateTime);
+      this.location = checkNotNull(location);
+      this.settings = checkNotNull(settings);
       this.jdUt = fullDateTime.getJdUt();
       seFrontend = SeFrontend.getFrontend();
       calculateFlags();
