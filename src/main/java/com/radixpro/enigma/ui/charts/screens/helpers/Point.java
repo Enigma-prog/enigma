@@ -6,12 +6,9 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.Getter;
-
 /**
  * Location of a point on the canvas.
  */
-@Getter
 public class Point {
 
    private final double xPos;
@@ -26,5 +23,13 @@ public class Point {
    public Point(final double xPos, final double yPos) {
       this.xPos = xPos;
       this.yPos = yPos;
+   }
+
+   public double getXPos() {
+      return this.xPos;
+   }
+
+   public double getYPos() {
+      return this.yPos;
    }
 }

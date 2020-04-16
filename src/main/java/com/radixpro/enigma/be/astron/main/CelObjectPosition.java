@@ -13,7 +13,6 @@ import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
-import lombok.Getter;
 import lombok.val;
 
 import java.util.ArrayList;
@@ -26,13 +25,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class CelObjectPosition {
 
-   @Getter
    private CelObjectSinglePosition eclipticalPosition;
-   @Getter
    private CelObjectSinglePosition equatorialPosition;
-   @Getter
    private HorizontalPosition horizontalPosition;
-   @Getter
    private final CelestialObjects celestialBody;
    private int eclipticalFlags;
    private int equatorialFlags;
@@ -72,4 +67,19 @@ public class CelObjectPosition {
             horizontalFlags);
    }
 
+   public CelObjectSinglePosition getEclipticalPosition() {
+      return this.eclipticalPosition;
+   }
+
+   public CelObjectSinglePosition getEquatorialPosition() {
+      return this.equatorialPosition;
+   }
+
+   public HorizontalPosition getHorizontalPosition() {
+      return this.horizontalPosition;
+   }
+
+   public CelestialObjects getCelestialBody() {
+      return this.celestialBody;
+   }
 }

@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-import lombok.Getter;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * DTO for the result of a SE calculation for houses, holds array with positions and a possible error Message.
  */
-@Getter
 public class SePositionResultHouses {
 
    private final double[] ascMc;
@@ -31,4 +28,11 @@ public class SePositionResultHouses {
       this.cusps = checkNotNull(cusps);
    }
 
+   public double[] getAscMc() {
+      return this.ascMc;
+   }
+
+   public double[] getCusps() {
+      return this.cusps;
+   }
 }

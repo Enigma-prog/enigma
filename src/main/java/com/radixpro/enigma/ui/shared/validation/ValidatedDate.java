@@ -8,7 +8,6 @@ package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.api.DateTimeApi;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
-import lombok.Getter;
 import lombok.val;
 
 /**
@@ -17,7 +16,6 @@ import lombok.val;
  */
 public class ValidatedDate extends ValidatedInput {
 
-   @Getter
    private SimpleDate simpleDate;
    private final DateTimeApi dateTimeApi;
 
@@ -56,4 +54,7 @@ public class ValidatedDate extends ValidatedInput {
       if (!validated) simpleDate = new SimpleDate(0, 1, 1, false);
    }
 
+   public SimpleDate getSimpleDate() {
+      return this.simpleDate;
+   }
 }

@@ -8,8 +8,6 @@ package com.radixpro.enigma.ui.charts.screens.helpers;
 
 import com.radixpro.enigma.ui.shared.formatters.SexagesimalFormatter;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import lombok.Getter;
-import lombok.Setter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -18,13 +16,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * The positions are defined by the angle from the ascendant.
  * This class is mutable: there is a setter for correctedAngle
  */
-@Getter
 public class PlotBodyInfo {
 
    private final CelestialObjects celObject;
    private final double angleFromAsc;
    private final String posText;  // Text in degrees and minutes within a sign, the sign is not given.
-   @Setter
    private double correctedAngle;
 
    /**
@@ -47,4 +43,23 @@ public class PlotBodyInfo {
       return formatter.formatDm(longitudeInSign);
    }
 
+   public CelestialObjects getCelObject() {
+      return this.celObject;
+   }
+
+   public double getAngleFromAsc() {
+      return this.angleFromAsc;
+   }
+
+   public String getPosText() {
+      return this.posText;
+   }
+
+   public double getCorrectedAngle() {
+      return this.correctedAngle;
+   }
+
+   public void setCorrectedAngle(double correctedAngle) {
+      this.correctedAngle = correctedAngle;
+   }
 }

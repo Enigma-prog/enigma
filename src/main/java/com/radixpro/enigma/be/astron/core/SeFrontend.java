@@ -9,7 +9,6 @@ package com.radixpro.enigma.be.astron.core;
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.xchg.domain.Location;
-import lombok.val;
 import org.apache.log4j.Logger;
 import swisseph.SweDate;
 import swisseph.SwissEph;
@@ -60,7 +59,7 @@ public class SeFrontend {
     */
    public double[] getJulianDay(final int year, final int month, final int day, final int hour, final int min,
                                 final int sec, final boolean gregFlag) {
-      val sweDate = new SweDate();
+      SweDate sweDate = new SweDate();
       return sweDate.getJDfromUTC(year, month, day, hour, min, sec, gregFlag, false);
    }
 
@@ -94,8 +93,8 @@ public class SeFrontend {
       checkNotNull(location);
       double[] geoPos = {location.getGeoLong(), location.getGeoLat(), 0.0};
       double[] eclPos = {eclCoord[0], eclCoord[1], eclCoord[2]};
-      val atPress = 0.0;
-      val atTemp = 0.0;
+      double atPress = 0.0;
+      double atTemp = 0.0;
       var azAlt = new double[3];
       swissEph.swe_azalt(jdUt, flags, geoPos, atPress, atTemp, eclPos, azAlt);
       return azAlt;
@@ -145,9 +144,9 @@ public class SeFrontend {
     * @return True if date is valid, otherwise false.
     */
    public boolean isValidDate(final int year, final int month, final int day, final boolean gregorian) {
-      val sweDate1 = new SweDate(year, month, day, 0.0, gregorian);
-      val calculatedJulDay = sweDate1.getJulDay();
-      val sweDate2 = new SweDate(calculatedJulDay, gregorian);
+      SweDate sweDate1 = new SweDate(year, month, day, 0.0, gregorian);
+      double calculatedJulDay = sweDate1.getJulDay();
+      SweDate sweDate2 = new SweDate(calculatedJulDay, gregorian);
       return (sweDate1.getYear() == sweDate2.getYear() && sweDate1.getMonth() == sweDate2.getMonth() &&
             sweDate1.getDay() == sweDate2.getDay());
    }

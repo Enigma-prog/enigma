@@ -6,13 +6,10 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.Getter;
-
 /**
  * Metrics for drawing a chart. Supports resizing.
  * This object is mutable as the value for canvasDimension can be set.
  */
-@Getter
 public class ChartDrawMetrics implements DrawMetrics {
 
    private static final double BASE_DIMENSION = 700;
@@ -107,4 +104,127 @@ public class ChartDrawMetrics implements DrawMetrics {
       corrForXY = getOffsetOuterCircle() + getSizeOuterCircle() / 2;
    }
 
+   public double getCanvasDimension() {
+      return this.canvasDimension;
+   }
+
+   public double getSizeOuterCircle() {
+      return this.sizeOuterCircle;
+   }
+
+   public double getSizeSignsCircle() {
+      return this.sizeSignsCircle;
+   }
+
+   public double getOffsetHousesCircle() {
+      return this.offsetHousesCircle;
+   }
+
+   public double getSizeHousesCircle() {
+      return this.sizeHousesCircle;
+   }
+
+   public double getSizeGlyphFont() {
+      return this.sizeGlyphFont;
+   }
+
+   public double getSizeTextFont() {
+      return this.sizeTextFont;
+   }
+
+   public double getOffSetGlyphs() {
+      return this.offSetGlyphs;
+   }
+
+   public double getDiameterCelBodiesMedium() {
+      return this.diameterCelBodiesMedium;
+   }
+
+   public double getMinAngleObjects() {
+      return this.minAngleObjects;
+   }
+
+   public double getDistanceConnectLines() {
+      return this.distanceConnectLines;
+   }
+
+   public double getDiameterPosTextsLeft() {
+      return this.diameterPosTextsLeft;
+   }
+
+   public double getDiameterPosTextsRight() {
+      return this.diameterPosTextsRight;
+   }
+
+   public double getDiameterPosTextsTop() {
+      return this.diameterPosTextsTop;
+   }
+
+   public double getDiameterPosTextsBottom() {
+      return this.diameterPosTextsBottom;
+   }
+
+   public double getDiameterCuspTextsLeft() {
+      return this.diameterCuspTextsLeft;
+   }
+
+   public double getDiameterCuspTextsRight() {
+      return this.diameterCuspTextsRight;
+   }
+
+   public double getDiameterCuspTextsTop() {
+      return this.diameterCuspTextsTop;
+   }
+
+   public double getDiameterCuspTextsBottom() {
+      return this.diameterCuspTextsBottom;
+   }
+
+   public double getOffsetOuterCircle() {
+      return this.offsetOuterCircle;
+   }
+
+   public double getOffsetSignsCircle() {
+      return this.offsetSignsCircle;
+   }
+
+   public double getDiameterHousesCircle() {
+      return this.diameterHousesCircle;
+   }
+
+   public double getDiameterSignsCircle() {
+      return this.diameterSignsCircle;
+   }
+
+   public double getDiameterOuterCircle() {
+      return this.diameterOuterCircle;
+   }
+
+   public double getDiameterDegrees5Circle() {
+      return this.diameterDegrees5Circle;
+   }
+
+   public double getDiameterDegreesCircle() {
+      return this.diameterDegreesCircle;
+   }
+
+   public double getDiameterSignGlyphsCircle() {
+      return this.diameterSignGlyphsCircle;
+   }
+
+   public double getWidthThickLines() {
+      return this.widthThickLines;
+   }
+
+   public double getWidthMediumLines() {
+      return this.widthMediumLines;
+   }
+
+   public double getWidthThinLines() {
+      return this.widthThinLines;
+   }
+
+   public double getCorrForXY() {
+      return this.corrForXY;
+   }
 }

@@ -7,7 +7,6 @@
 package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.domain.SimpleTime;
-import lombok.Getter;
 import lombok.val;
 
 /**
@@ -16,7 +15,6 @@ import lombok.val;
  */
 public class ValidatedTime extends ValidatedInput {
 
-   @Getter
    private SimpleTime simpleTime;
 
    /**
@@ -51,4 +49,7 @@ public class ValidatedTime extends ValidatedInput {
       if (!validated) simpleTime = new SimpleTime(0, 0, 0);
    }
 
+   public SimpleTime getSimpleTime() {
+      return this.simpleTime;
+   }
 }

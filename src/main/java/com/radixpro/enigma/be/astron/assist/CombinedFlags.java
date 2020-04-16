@@ -7,7 +7,6 @@
 package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.xchg.domain.SeFlags;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -18,7 +17,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class CombinedFlags {
 
-   @Getter
    private final long combinedValue;
 
    /**
@@ -37,5 +35,9 @@ public class CombinedFlags {
          result = result | flag.getSeValue();
       }
       return result;
+   }
+
+   public long getCombinedValue() {
+      return this.combinedValue;
    }
 }

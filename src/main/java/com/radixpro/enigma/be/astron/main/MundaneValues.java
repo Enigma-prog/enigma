@@ -13,7 +13,6 @@ import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
-import lombok.Getter;
 import lombok.val;
 
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Calculated positions for houses and other mundane points.
  */
-@Getter
 public class MundaneValues {
 
    private List<HousePosition> cusps;  // values start at position 1
@@ -92,4 +90,27 @@ public class MundaneValues {
       return new HousePosition(longitude, equatorialPosition, horizontalPosition);
    }
 
+   public List<HousePosition> getCusps() {
+      return this.cusps;
+   }
+
+   public HousePosition getMc() {
+      return this.mc;
+   }
+
+   public HousePosition getAscendant() {
+      return this.ascendant;
+   }
+
+   public HousePosition getEastpoint() {
+      return this.eastpoint;
+   }
+
+   public HousePosition getVertex() {
+      return this.vertex;
+   }
+
+   public double getArmc() {
+      return this.armc;
+   }
 }

@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-import lombok.Getter;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Dto for all positions for a house-cusp, or other mundane point.
  */
-@Getter
 public class HousePosition {
 
    private final EquatorialPosition equatorialPosition;
@@ -34,4 +31,15 @@ public class HousePosition {
       this.horizontalPosition = checkNotNull(horizontalPosition);
    }
 
+   public EquatorialPosition getEquatorialPosition() {
+      return this.equatorialPosition;
+   }
+
+   public HorizontalPosition getHorizontalPosition() {
+      return this.horizontalPosition;
+   }
+
+   public double getLongitude() {
+      return this.longitude;
+   }
 }

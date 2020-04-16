@@ -8614,3 +8614,17 @@
 2020-04-15 23:50:08,471 INFO  Nitrite:309 - Nitrite database has been closed successfully.
 2020-04-15 23:50:08,471 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
 2020-04-15 23:50:08,486 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:29:32,187 INFO  App:27 - Started Enigma.
+2020-04-16 20:29:32,201 INFO  VersionController:42 - Performing checked initialization.
+2020-04-16 20:29:32,308 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:29:32,309 INFO  VersionController:54 - Current version of code : 2020.1 . Current version of database : 2020.1
+2020-04-16 20:29:32,328 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:29:34,918 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:29:34,944 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:29:38,882 INFO  SeFrontend:44 - Created singleton instance for SeFrontend.
+2020-04-16 20:29:38,890 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:29:51,932 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:29:56,380 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:30:02,371 INFO  Nitrite:309 - Nitrite database has been closed successfully.
+2020-04-16 20:30:02,376 ERROR AspectsInConfig:70 - Invalid category for aspect body while constructing details of configuration.Received category with Id : DECLINATION. Aspect was ignored.
+2020-04-16 20:30:02,376 ERROR AspectsInConfig:70 - Invalid category for aspect body while constructing details of configuration.Received category with Id : DECLINATION. Aspect was ignored.

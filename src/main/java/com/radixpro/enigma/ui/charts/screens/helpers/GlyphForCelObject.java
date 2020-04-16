@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.Getter;
-
 /**
  * Defines glyphs for celestial objects.
  */
 public class GlyphForCelObject {
 
-   @Getter
    private final String glyph;
 
 
@@ -74,5 +71,9 @@ public class GlyphForCelObject {
             glyph = "";
       }
       return glyph;
+   }
+
+   public String getGlyph() {
+      return this.glyph;
    }
 }

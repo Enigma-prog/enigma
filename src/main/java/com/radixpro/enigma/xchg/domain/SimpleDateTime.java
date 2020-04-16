@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-
 import java.io.Serializable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -15,7 +13,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * DTO for date and time.
  */
-@Getter
 public class SimpleDateTime implements Serializable {
    private final SimpleDate date;
    private final SimpleTime time;
@@ -31,4 +28,11 @@ public class SimpleDateTime implements Serializable {
       this.time = checkNotNull(simpleTime);
    }
 
+   public SimpleDate getDate() {
+      return date;
+   }
+
+   public SimpleTime getTime() {
+      return time;
+   }
 }

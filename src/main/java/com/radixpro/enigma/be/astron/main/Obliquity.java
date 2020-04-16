@@ -6,9 +6,8 @@
 
 package com.radixpro.enigma.be.astron.main;
 
+import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import lombok.Getter;
-import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static swisseph.SweConst.SE_ECL_NUT;
@@ -16,7 +15,6 @@ import static swisseph.SweConst.SE_ECL_NUT;
 /**
  * Obliquity of the earth-axis.
  */
-@Getter
 public class Obliquity {
 
    private double trueObliquity;
@@ -34,9 +32,17 @@ public class Obliquity {
     * @param jdUt       Julian day number for UT.
     */
    private void performCalculation(final SeFrontend seFrontend, final double jdUt) {
-      val flags = 0;
-      val calculatedPos = seFrontend.getPositionsForCelBody(jdUt, SE_ECL_NUT, flags);
+      int flags = 0;
+      SePositionResultCelObjects calculatedPos = seFrontend.getPositionsForCelBody(jdUt, SE_ECL_NUT, flags);
       trueObliquity = calculatedPos.getAllPositions()[0];
       meanObliquity = calculatedPos.getAllPositions()[1];
+   }
+
+   public double getTrueObliquity() {
+      return this.trueObliquity;
+   }
+
+   public double getMeanObliquity() {
+      return this.meanObliquity;
    }
 }

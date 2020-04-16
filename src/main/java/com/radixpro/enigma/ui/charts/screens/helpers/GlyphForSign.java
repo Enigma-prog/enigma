@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.Getter;
-
 /**
  * Defines glyphs for zodiacal signs.
  */
 public class GlyphForSign {
 
-   @Getter
    private final String glyph;
 
    /**
@@ -29,5 +26,9 @@ public class GlyphForSign {
       // todo use sign-glyphs from settings
       String glyphs = "1234567890-=";
       return glyphs.substring(index - 1, index);
+   }
+
+   public String getGlyph() {
+      return this.glyph;
    }
 }

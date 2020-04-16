@@ -8,7 +8,6 @@ package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.api.PersistedChartDataApi;
 import com.radixpro.enigma.xchg.domain.ChartData;
-import lombok.Getter;
 import lombok.val;
 
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.List;
  */
 public class ValidatedChartName extends ValidatedInput {
 
-   @Getter
    private String nameText;
 
    /**
@@ -44,4 +42,7 @@ public class ValidatedChartName extends ValidatedInput {
       }
    }
 
+   public String getNameText() {
+      return this.nameText;
+   }
 }

@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.be.astron.assist;
 
-import lombok.Getter;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Container for the result of a SE calculation for celestial bodies.
  */
-@Getter
 public class SePositionResultCelObjects {
 
    private final double[] allPositions;
@@ -32,4 +29,11 @@ public class SePositionResultCelObjects {
       this.errorMsg = checkNotNull(errorMsg);
    }
 
+   public double[] getAllPositions() {
+      return this.allPositions;
+   }
+
+   public String getErrorMsg() {
+      return this.errorMsg;
+   }
 }

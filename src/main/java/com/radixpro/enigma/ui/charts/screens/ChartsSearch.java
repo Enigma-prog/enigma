@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -28,9 +27,7 @@ public class ChartsSearch {
    private Button btnCancel;
    @FXML
    private Button btnOk;
-   @Getter
    private ChartData selectedItem;
-   @Getter
    private boolean selectionMade = false;
    private List<ChartData> chartsFound;
 
@@ -63,4 +60,11 @@ public class ChartsSearch {
    }
 
 
+   public ChartData getSelectedItem() {
+      return this.selectedItem;
+   }
+
+   public boolean isSelectionMade() {
+      return this.selectionMade;
+   }
 }

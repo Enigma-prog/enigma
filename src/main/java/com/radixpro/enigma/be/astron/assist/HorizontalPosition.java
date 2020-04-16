@@ -8,14 +8,12 @@ package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.Location;
-import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Horizontal coordinates: azimuth and altitude. Converts from ecliptical coordinates to horizontal coordinates.
  */
-@Getter
 public class HorizontalPosition {
 
    private double azimuth;
@@ -52,5 +50,13 @@ public class HorizontalPosition {
       double[] horizontalPosition = seFrontendInstance.getHorizontalPosition(jdUt, checkNotNull(eclCoord), checkNotNull(location), flags);
       azimuth = horizontalPosition[0];
       altitude = horizontalPosition[1];   // true altitude, index 2 = apparent altitude
+   }
+
+   public double getAzimuth() {
+      return this.azimuth;
+   }
+
+   public double getAltitude() {
+      return this.altitude;
    }
 }

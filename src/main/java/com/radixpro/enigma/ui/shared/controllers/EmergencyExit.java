@@ -9,7 +9,6 @@ package com.radixpro.enigma.ui.shared.controllers;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import lombok.Setter;
 
 /**
  * Controller for popup that handles terminating Enigma in case of an unrecoverable error.
@@ -18,7 +17,6 @@ public class EmergencyExit {
 
    @FXML
    Label lblExplanation;
-   @Setter
    String explanationTxt = "";
 
    @FXML
@@ -31,4 +29,7 @@ public class EmergencyExit {
 
    }
 
+   public void setExplanationTxt(String explanationTxt) {
+      this.explanationTxt = explanationTxt;
+   }
 }

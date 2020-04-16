@@ -7,9 +7,9 @@
 package com.radixpro.enigma.be.astron.main;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
+import com.radixpro.enigma.xchg.domain.SimpleDate;
 import com.radixpro.enigma.xchg.domain.SimpleDateTime;
-import lombok.Getter;
-import lombok.val;
+import com.radixpro.enigma.xchg.domain.SimpleTime;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -19,9 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class JulianDay {
 
    private final SeFrontend seFrontend;
-   @Getter
    private double jdNrEt;
-   @Getter
    private double jdNrUt;
 
    /**
@@ -38,12 +36,19 @@ public class JulianDay {
    private void calculateJdNr(final SimpleDateTime dateTime) {
       checkNotNull(dateTime);
       // Julian Day for ET [0], and Julian Day for UT [1]
-      val date = dateTime.getDate();
-      val time = dateTime.getTime();
+      SimpleDate date = dateTime.getDate();
+      SimpleTime time = dateTime.getTime();
       double[] jdNrs = seFrontend.getJulianDay(date.getYear(), date.getMonth(), date.getDay(),
             time.getHour(), time.getMinute(), time.getSecond(), date.isGregorian());
       jdNrEt = jdNrs[0];
       jdNrUt = jdNrs[1];
    }
 
+   public double getJdNrEt() {
+      return this.jdNrEt;
+   }
+
+   public double getJdNrUt() {
+      return this.jdNrUt;
+   }
 }

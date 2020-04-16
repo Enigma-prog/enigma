@@ -8,7 +8,6 @@ package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.Obliquity;
-import lombok.Getter;
 import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -18,7 +17,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Converts from ecliptic coördinates to equatorial coördinates. Can only be used for house positions as a zero latitude
  * is assumed. There is no need for conversion of planetary positions as they already contain equatorial values.
  */
-@Getter
 public class EquatorialPosition {
 
    private double rightAscension;
@@ -55,6 +53,14 @@ public class EquatorialPosition {
       final double[] equatorialPositions = seFrontendInstance.convertToEquatorial(eclipticPositions, obliquity);
       rightAscension = equatorialPositions[0];
       declination = equatorialPositions[1];
+   }
+
+   public double getRightAscension() {
+      return this.rightAscension;
+   }
+
+   public double getDeclination() {
+      return this.declination;
    }
 }
 

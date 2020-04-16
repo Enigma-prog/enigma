@@ -6,14 +6,12 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.Getter;
 import lombok.val;
 
 /**
  * Defines a rectangular triangle and some basic math to calculate the not yet defined angle.
  */
 public class RectTriangle {
-   @Getter
    private final Point pointAtEndOfHyp;
    private final double hypothenusa;
    private final double angle;
@@ -37,5 +35,8 @@ public class RectTriangle {
    }
 
 
+   public Point getPointAtEndOfHyp() {
+      return this.pointAtEndOfHyp;
+   }
 }
 
