@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Enum with categories for celestial objects.
  */
-@Getter
 public enum CelObjectCategory {
    UNKNOWN(0, "celobjectcat.unknown"),
    CLASSICS(1, "celobjectcat.classic"),
@@ -38,4 +35,11 @@ public enum CelObjectCategory {
       this.nameForRB = checkNotNull(nameForRB);
    }
 
+   public int getId() {
+      return id;
+   }
+
+   public String getNameForRB() {
+      return nameForRB;
+   }
 }

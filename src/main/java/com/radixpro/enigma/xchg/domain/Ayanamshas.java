@@ -9,12 +9,10 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public enum Ayanamshas {
    UNKNOWN(-2, -1, "ayanamshas.unknown"),
    NONE(-1, -1, "ayanamshas.none"),
@@ -92,4 +90,15 @@ public enum Ayanamshas {
       return FXCollections.observableArrayList(ayanamshaNames);
    }
 
+   public String getNameForRB() {
+      return nameForRB;
+   }
+
+   public int getSeId() {
+      return seId;
+   }
+
+   public int getId() {
+      return id;
+   }
 }

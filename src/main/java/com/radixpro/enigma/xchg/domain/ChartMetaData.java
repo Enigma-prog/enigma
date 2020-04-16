@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-
 import java.io.Serializable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -15,7 +13,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Metadata for a chart, name, description etc.
  */
-@Getter
 public class ChartMetaData implements Serializable {
 
    private final String name;
@@ -40,5 +37,25 @@ public class ChartMetaData implements Serializable {
       this.source = checkNotNull(source);
       this.chartType = checkNotNull(chartType);
       this.rating = checkNotNull(rating);
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public String getSource() {
+      return source;
+   }
+
+   public ChartTypes getChartType() {
+      return chartType;
+   }
+
+   public Ratings getRating() {
+      return rating;
    }
 }

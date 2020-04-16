@@ -11,7 +11,6 @@ import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.be.astron.main.MundaneValues;
 import com.radixpro.enigma.be.astron.main.Obliquity;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +22,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class FullChart {
 
-   @Getter
    private final FullDateTime fullDateTime;
-   @Getter
    private final Location location;
-   @Getter
    private final CalculationSettings settings;
-   @Getter
    private MundaneValues mundaneValues;
-   @Getter
    private List<CelObjectPosition> bodies;
-   @Getter
    private double obliquity;
    private final SeFrontend seFrontend;
    private final double jdUt;
@@ -86,5 +79,29 @@ public class FullChart {
 
    public double getJulianDayForUt() {
       return jdUt;
+   }
+
+   public FullDateTime getFullDateTime() {
+      return fullDateTime;
+   }
+
+   public Location getLocation() {
+      return location;
+   }
+
+   public CalculationSettings getSettings() {
+      return settings;
+   }
+
+   public MundaneValues getMundaneValues() {
+      return mundaneValues;
+   }
+
+   public List<CelObjectPosition> getBodies() {
+      return bodies;
+   }
+
+   public double getObliquity() {
+      return obliquity;
    }
 }

@@ -8,14 +8,12 @@ package com.radixpro.enigma.xchg.domain;
 
 import com.radixpro.enigma.be.astron.assist.SePositionResultCelObjects;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
-import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculated positions for a specific coordinateset for a celestial body.
  */
-@Getter
 public class CelObjectSinglePosition {
 
    private String errorMsg = "";
@@ -43,4 +41,31 @@ public class CelObjectSinglePosition {
       distanceSpeed = sePositionResult.getAllPositions()[5];
    }
 
+   public String getErrorMsg() {
+      return errorMsg;
+   }
+
+   public double getMainPosition() {
+      return mainPosition;
+   }
+
+   public double getDeviationPosition() {
+      return deviationPosition;
+   }
+
+   public double getDistancePosition() {
+      return distancePosition;
+   }
+
+   public double getMainSpeed() {
+      return mainSpeed;
+   }
+
+   public double getDeviationSpeed() {
+      return deviationSpeed;
+   }
+
+   public double getDistanceSpeed() {
+      return distanceSpeed;
+   }
 }

@@ -7,14 +7,12 @@
 package com.radixpro.enigma.xchg.domain;
 
 import com.radixpro.enigma.be.astron.main.JulianDay;
-import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * All data for date and time, both for calculation and presentation.
  */
-@Getter
 public class FullDateTime {
 
    private final SimpleDateTime simpleDateTime;
@@ -50,4 +48,27 @@ public class FullDateTime {
       return utDelta;
    }
 
+   public SimpleDateTime getSimpleDateTime() {
+      return simpleDateTime;
+   }
+
+   public TimeZones getTimeZone() {
+      return timeZone;
+   }
+
+   public boolean isDst() {
+      return dst;
+   }
+
+   public double getOffsetForLmt() {
+      return offsetForLmt;
+   }
+
+   public double getJdUt() {
+      return jdUt;
+   }
+
+   public double getJdEt() {
+      return jdEt;
+   }
 }

@@ -9,7 +9,6 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
 /**
  * Housesystems for calculation, internal id and id for SE.
  */
-@Getter
 public enum HouseSystems {
    UNKNOWN(0, "", "houses.unknown", 0, false, false, false),
    NONE(-1, "", "houses.none", 0, false, false, false),
@@ -86,4 +84,31 @@ public enum HouseSystems {
       return FXCollections.observableArrayList(houseSystemNames);
    }
 
+   public String getSeId() {
+      return seId;
+   }
+
+   public int getId() {
+      return id;
+   }
+
+   public int getNrOfCusps() {
+      return nrOfCusps;
+   }
+
+   public String getNameForRB() {
+      return nameForRB;
+   }
+
+   public boolean isCounterClockwise() {
+      return counterClockwise;
+   }
+
+   public boolean isQuadrantSystem() {
+      return quadrantSystem;
+   }
+
+   public boolean isCuspIsStart() {
+      return cuspIsStart;
+   }
 }

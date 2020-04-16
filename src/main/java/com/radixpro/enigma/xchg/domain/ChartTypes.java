@@ -9,14 +9,12 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@Getter
 public enum ChartTypes {
    UNKNOWN(0, "charttype.unknown"),
    FEMALE(1, "charttype.female"),
@@ -63,5 +61,11 @@ public enum ChartTypes {
       return FXCollections.observableArrayList(localnames);
    }
 
+   public int getId() {
+      return id;
+   }
 
+   public String getNameForRB() {
+      return nameForRB;
+   }
 }

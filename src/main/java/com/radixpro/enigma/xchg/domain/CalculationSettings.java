@@ -6,13 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@Getter
 public class CalculationSettings {
 
    private final List<CelestialObjects> celBodies;
@@ -31,5 +28,29 @@ public class CalculationSettings {
       this.sidereal = sidereal;
       this.topocentric = topocentric;
       this.heliocentric = heliocentric;
+   }
+
+   public List<CelestialObjects> getCelBodies() {
+      return celBodies;
+   }
+
+   public HouseSystems getHouseSystem() {
+      return houseSystem;
+   }
+
+   public Ayanamshas getAyanamsha() {
+      return ayanamsha;
+   }
+
+   public boolean isSidereal() {
+      return sidereal;
+   }
+
+   public boolean isTopocentric() {
+      return topocentric;
+   }
+
+   public boolean isHeliocentric() {
+      return heliocentric;
    }
 }

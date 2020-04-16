@@ -8,10 +8,10 @@ package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.*;
 import com.radixpro.enigma.xchg.domain.config.*;
-import lombok.val;
 import org.dizitart.no2.Document;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -51,22 +51,22 @@ public class ConfigurationObjectDocumentMapper {
    @SuppressWarnings("unchecked")
    public Configuration document2Object(final Document doc) {
       checkNotNull(doc);
-      val id = (long) doc.get("_id");
-      val parentId = (long) doc.get("parentid");
-      val name = (String) doc.get("name");
-      val description = (String) doc.get("description");
-      val houseSystem = HouseSystems.UNKNOWN.getSystemForId((int) doc.get("housesystem"));
-      val ayanamsha = Ayanamshas.UNKNOWN.getAyanamshaForId((int) doc.get("ayanamsha"));
-      val eclipticProjection = EclipticProjections.UNKNOWN.getProjectionForId((int) doc.get("eclipticprojection"));
-      val observerPosition = ObserverPositions.UNKNOWN.getObserverPositionForId((int) doc.get("observerposition"));
-      val aspectOrbStructure = (AspectOrbStructure) doc.get("aspectorbstructure");
-      val aspectBaseOrb = (double) doc.get("aspectbaseorb");
-      val aspectDrawInOutGoing = (boolean) doc.get("aspectdrawinoutgoing");
-      val celObjects = (ArrayList<ConfiguredCelObject>) doc.get("celestialobjects");
-      val astronConfig = new AstronConfiguration(houseSystem, ayanamsha, eclipticProjection, observerPosition, celObjects);
-      val supportedAspects = (ArrayList<ConfiguredAspect>) doc.get("supportedaspects");
-      val aspectConfiguration = new AspectConfiguration(supportedAspects, aspectBaseOrb, aspectOrbStructure, aspectDrawInOutGoing);
-      val delinConfig = new DelinConfiguration(aspectConfiguration);
+      long id = (long) doc.get("_id");
+      long parentId = (long) doc.get("parentid");
+      String name = (String) doc.get("name");
+      String description = (String) doc.get("description");
+      HouseSystems houseSystem = HouseSystems.UNKNOWN.getSystemForId((int) doc.get("housesystem"));
+      Ayanamshas ayanamsha = Ayanamshas.UNKNOWN.getAyanamshaForId((int) doc.get("ayanamsha"));
+      EclipticProjections eclipticProjection = EclipticProjections.UNKNOWN.getProjectionForId((int) doc.get("eclipticprojection"));
+      ObserverPositions observerPosition = ObserverPositions.UNKNOWN.getObserverPositionForId((int) doc.get("observerposition"));
+      AspectOrbStructure aspectOrbStructure = (AspectOrbStructure) doc.get("aspectorbstructure");
+      double aspectBaseOrb = (double) doc.get("aspectbaseorb");
+      boolean aspectDrawInOutGoing = (boolean) doc.get("aspectdrawinoutgoing");
+      List celObjects = (ArrayList<ConfiguredCelObject>) doc.get("celestialobjects");
+      AstronConfiguration astronConfig = new AstronConfiguration(houseSystem, ayanamsha, eclipticProjection, observerPosition, celObjects);
+      List supportedAspects = (ArrayList<ConfiguredAspect>) doc.get("supportedaspects");
+      AspectConfiguration aspectConfiguration = new AspectConfiguration(supportedAspects, aspectBaseOrb, aspectOrbStructure, aspectDrawInOutGoing);
+      DelinConfiguration delinConfig = new DelinConfiguration(aspectConfiguration);
       return new Configuration(id, parentId, name, description, astronConfig, delinConfig);
    }
 

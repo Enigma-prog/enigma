@@ -6,13 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-
 import java.io.Serializable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@Getter
 public class GeographicCoordinate implements Serializable {
 
    private final int degrees;
@@ -30,4 +27,23 @@ public class GeographicCoordinate implements Serializable {
       this.value = value;
    }
 
+   public int getDegrees() {
+      return degrees;
+   }
+
+   public int getMinutes() {
+      return minutes;
+   }
+
+   public int getSeconds() {
+      return seconds;
+   }
+
+   public String getDirection() {
+      return direction;
+   }
+
+   public double getValue() {
+      return value;
+   }
 }

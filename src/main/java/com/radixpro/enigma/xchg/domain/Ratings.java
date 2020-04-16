@@ -9,7 +9,6 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Adds a code 'ZZ' as fallback if the rating is unknown.
  * Is persistable as part of a saved chart.
  */
-@Getter
 public enum Ratings implements Serializable {
    ZZ(0, "ratings.zz"),
    AA(1, "ratings.aa"),
@@ -88,4 +86,11 @@ public enum Ratings implements Serializable {
       return FXCollections.observableArrayList(ratingNames);
    }
 
+   public int getId() {
+      return id;
+   }
+
+   public String getNameForRB() {
+      return nameForRB;
+   }
 }

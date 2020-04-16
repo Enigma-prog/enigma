@@ -13,7 +13,6 @@ import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
-import lombok.val;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +60,7 @@ public class CelObjectPosition {
    private void calculate(final SeFrontend seFrontend, final double jdUt, final Location location) {
       eclipticalPosition = new CelObjectSinglePosition(seFrontend, jdUt, celestialBody, eclipticalFlags);
       equatorialPosition = new CelObjectSinglePosition(seFrontend, jdUt, celestialBody, equatorialFlags);
-      val eclipticalCoordinates = new double[]{eclipticalPosition.getMainPosition(),
+      double[] eclipticalCoordinates = new double[]{eclipticalPosition.getMainPosition(),
             eclipticalPosition.getDeviationPosition(), eclipticalPosition.getDistancePosition()};
       horizontalPosition = new HorizontalPosition(seFrontend, jdUt, eclipticalCoordinates, location,
             horizontalFlags);

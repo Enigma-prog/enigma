@@ -10,8 +10,6 @@ import com.radixpro.enigma.xchg.domain.Ayanamshas;
 import com.radixpro.enigma.xchg.domain.EclipticProjections;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 import com.radixpro.enigma.xchg.domain.ObserverPositions;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,8 +19,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Astronomical parts of the configuration.
  */
-@Getter
-@Setter
 public class AstronConfiguration implements Serializable {
 
    private final HouseSystems houseSystem;
@@ -52,4 +48,23 @@ public class AstronConfiguration implements Serializable {
       this.celObjects = checkNotNull(celObjects);
    }
 
+   public HouseSystems getHouseSystem() {
+      return houseSystem;
+   }
+
+   public Ayanamshas getAyanamsha() {
+      return ayanamsha;
+   }
+
+   public EclipticProjections getEclipticProjection() {
+      return eclipticProjection;
+   }
+
+   public ObserverPositions getObserverPosition() {
+      return observerPosition;
+   }
+
+   public List<ConfiguredCelObject> getCelObjects() {
+      return celObjects;
+   }
 }

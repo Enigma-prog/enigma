@@ -6,16 +6,12 @@
 
 package com.radixpro.enigma.xchg.domain.config;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @ToString
-@Getter
-@Setter
 public class Configuration {
 
    @Id
@@ -37,6 +33,51 @@ public class Configuration {
       this.delinConfiguration = checkNotNull(delinConfiguration);
    }
 
+   public long getId() {
+      return id;
+   }
 
+   public void setId(long id) {
+      this.id = id;
+   }
 
+   public long getParentId() {
+      return parentId;
+   }
+
+   public void setParentId(long parentId) {
+      this.parentId = parentId;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public void setDescription(String description) {
+      this.description = description;
+   }
+
+   public AstronConfiguration getAstronConfiguration() {
+      return astronConfiguration;
+   }
+
+   public void setAstronConfiguration(AstronConfiguration astronConfiguration) {
+      this.astronConfiguration = astronConfiguration;
+   }
+
+   public DelinConfiguration getDelinConfiguration() {
+      return delinConfiguration;
+   }
+
+   public void setDelinConfiguration(DelinConfiguration delinConfiguration) {
+      this.delinConfiguration = delinConfiguration;
+   }
 }

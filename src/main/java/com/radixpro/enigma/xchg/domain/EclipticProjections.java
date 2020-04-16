@@ -9,14 +9,12 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@Getter
 public enum EclipticProjections {
    UNKNOWN(0, "eclipticprojections.unknown"),
    TROPICAL(1, "eclipticprojections.tropical"),
@@ -53,4 +51,11 @@ public enum EclipticProjections {
       return FXCollections.observableArrayList(eclipticalProjNames);
    }
 
+   public int getId() {
+      return id;
+   }
+
+   public String getNameForRB() {
+      return nameForRB;
+   }
 }

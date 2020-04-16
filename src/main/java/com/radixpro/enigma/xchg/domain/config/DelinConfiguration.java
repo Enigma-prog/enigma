@@ -6,15 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain.config;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@Getter
-@Setter
 public class DelinConfiguration implements Serializable {
 
    private final AspectConfiguration aspectConfiguration;
@@ -22,5 +17,10 @@ public class DelinConfiguration implements Serializable {
    public DelinConfiguration(final AspectConfiguration aspectConfiguration) {
       this.aspectConfiguration = checkNotNull(aspectConfiguration);
    }
+
+   public AspectConfiguration getAspectConfiguration() {
+      return aspectConfiguration;
+   }
+
 
 }

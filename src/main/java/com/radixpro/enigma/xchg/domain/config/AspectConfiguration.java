@@ -7,8 +7,6 @@
 package com.radixpro.enigma.xchg.domain.config;
 
 import com.radixpro.enigma.xchg.domain.AspectOrbStructure;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,8 +16,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Configuration for aspects.
  */
-@Getter
-@Setter
 public class AspectConfiguration implements Serializable {
 
    private final double baseOrb;
@@ -41,5 +37,21 @@ public class AspectConfiguration implements Serializable {
       this.baseOrb = baseOrb;
       this.orbStructure = checkNotNull(orbStructure);
       this.drawInOutGoing = drawInOutGoing;
+   }
+
+   public double getBaseOrb() {
+      return baseOrb;
+   }
+
+   public AspectOrbStructure getOrbStructure() {
+      return orbStructure;
+   }
+
+   public List<ConfiguredAspect> getAspects() {
+      return aspects;
+   }
+
+   public boolean isDrawInOutGoing() {
+      return drawInOutGoing;
    }
 }

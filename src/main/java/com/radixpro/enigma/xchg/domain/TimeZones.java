@@ -9,12 +9,10 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public enum TimeZones {
    LMT(0, "timezone.lmt", 0.0),
    UT(1, "timezone.ut", 0.0),
@@ -88,4 +86,15 @@ public enum TimeZones {
       return FXCollections.observableArrayList(localnames);
    }
 
+   public int getId() {
+      return id;
+   }
+
+   public String getNameForRB() {
+      return nameForRB;
+   }
+
+   public double getOffset() {
+      return offset;
+   }
 }

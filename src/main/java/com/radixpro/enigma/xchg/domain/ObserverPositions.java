@@ -9,7 +9,6 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.List;
  * Enum for the position of the observer, this results in a geocentric chart, a topocentric chart
  * (using parallax correction), or a heliocentric chart. Is persistable as part of a configuration.
  */
-@Getter
 public enum ObserverPositions implements Serializable {
    UNKNOWN(0, "observerpositions.unknown"),
    GEOCENTRIRC(1, "observerpositions.geocentric"),
@@ -64,5 +62,11 @@ public enum ObserverPositions implements Serializable {
       return FXCollections.observableArrayList(observerPosNames);
    }
 
+   public int getId() {
+      return id;
+   }
 
+   public String getNameForRB() {
+      return nameForRB;
+   }
 }

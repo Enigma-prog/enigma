@@ -6,14 +6,12 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
 import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @ToString
-@Getter
 public class ChartData {
 
    @Id
@@ -30,4 +28,19 @@ public class ChartData {
       this.chartMetaData = checkNotNull(chartMetaData);
    }
 
+   public long getId() {
+      return id;
+   }
+
+   public FullDateTime getFullDateTime() {
+      return fullDateTime;
+   }
+
+   public Location getLocation() {
+      return location;
+   }
+
+   public ChartMetaData getChartMetaData() {
+      return chartMetaData;
+   }
 }

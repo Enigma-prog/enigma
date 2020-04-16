@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-
 import java.io.Serializable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -15,7 +13,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Geographic location. Is part of the persisted data for a chart.
  */
-@Getter
 public class Location implements Serializable {
 
    private final GeographicCoordinate longInput;
@@ -43,4 +40,16 @@ public class Location implements Serializable {
       return longInput.getValue();
    }
 
+
+   public GeographicCoordinate getLongInput() {
+      return longInput;
+   }
+
+   public GeographicCoordinate getLatInput() {
+      return latInput;
+   }
+
+   public String getName() {
+      return name;
+   }
 }

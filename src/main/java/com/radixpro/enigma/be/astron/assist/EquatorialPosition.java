@@ -8,7 +8,6 @@ package com.radixpro.enigma.be.astron.assist;
 
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.be.astron.main.Obliquity;
-import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -46,10 +45,10 @@ public class EquatorialPosition {
 
    private void calculatePositions(final SeFrontend seFrontend, final double longitude, final double jdUt) {
       SeFrontend seFrontendInstance = checkNotNull(seFrontend);
-      val latitude = 0.0;
-      val distance = 1.0;
+      double latitude = 0.0;
+      double distance = 1.0;
       final double[] eclipticPositions = {longitude, latitude, distance};
-      val obliquity = new Obliquity(seFrontendInstance, jdUt).getTrueObliquity();
+      double obliquity = new Obliquity(seFrontendInstance, jdUt).getTrueObliquity();
       final double[] equatorialPositions = seFrontendInstance.convertToEquatorial(eclipticPositions, obliquity);
       rightAscension = equatorialPositions[0];
       declination = equatorialPositions[1];

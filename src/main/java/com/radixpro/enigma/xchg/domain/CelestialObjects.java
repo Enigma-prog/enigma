@@ -9,7 +9,6 @@ package com.radixpro.enigma.xchg.domain;
 import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Celestial bodies and id's to access the SE.
  */
-@Getter
 public enum CelestialObjects {
    UNKNOWN(0, -1, CelObjectCategory.UNKNOWN, "celobject.unknown"),
    SUN(1, 0, CelObjectCategory.CLASSICS, "celobject.sun"),
@@ -89,6 +87,21 @@ public enum CelestialObjects {
       return FXCollections.observableArrayList(celObjectNames);
    }
 
+   public int getId() {
+      return id;
+   }
+
+   public long getSeId() {
+      return seId;
+   }
+
+   public String getNameForRB() {
+      return nameForRB;
+   }
+
+   public CelObjectCategory getCategory() {
+      return category;
+   }
 }
 
 

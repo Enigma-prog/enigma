@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.Getter;
-
 import java.io.Serializable;
 
 /**
  * DTO for a date and the calendar.
  */
-@Getter
 public class SimpleDate implements Serializable {
    private final int year;
    private final int month;
@@ -33,5 +30,21 @@ public class SimpleDate implements Serializable {
       this.month = month;
       this.day = day;
       this.gregorian = gregorian;
+   }
+
+   public int getYear() {
+      return year;
+   }
+
+   public int getMonth() {
+      return month;
+   }
+
+   public int getDay() {
+      return day;
+   }
+
+   public boolean isGregorian() {
+      return gregorian;
    }
 }

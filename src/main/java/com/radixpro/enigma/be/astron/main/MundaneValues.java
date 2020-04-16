@@ -9,11 +9,11 @@ package com.radixpro.enigma.be.astron.main;
 import com.radixpro.enigma.be.astron.assist.EquatorialPosition;
 import com.radixpro.enigma.be.astron.assist.HorizontalPosition;
 import com.radixpro.enigma.be.astron.assist.HousePosition;
+import com.radixpro.enigma.be.astron.assist.SePositionResultHouses;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.HouseSystems;
 import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
-import lombok.val;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +51,8 @@ public class MundaneValues {
       checkNotNull(seFrontend);
       checkNotNull(location);
       checkNotNull(system);
-      val seIdAsInt = system.getSeId().charAt(0);
-      val positions = seFrontend.getPositionsForHouses(jdUt, flags, location, seIdAsInt, system.getNrOfCusps());
+      int seIdAsInt = system.getSeId().charAt(0);
+      SePositionResultHouses positions = seFrontend.getPositionsForHouses(jdUt, flags, location, seIdAsInt, system.getNrOfCusps());
       cusps = new ArrayList<>();
       for (int i = 0; i < positions.getCusps().length; i++) {
          cusps.add(constructFullPosition(seFrontend, positions.getCusps()[i], jdUt, location));
@@ -68,12 +68,12 @@ public class MundaneValues {
                                                final Location location) {
       checkNotNull(seFrontend);
       checkNotNull(location);
-      val latitude = 0.0;
-      val distance = 1.0;
-      val flags = (int) SeFlags.HORIZONTAL.getSeValue();
-      val eclCoord = new double[]{longitude, latitude, distance};
-      val equatorialPosition = new EquatorialPosition(seFrontend, longitude, jdUt);
-      val horizontalPosition = new HorizontalPosition(seFrontend, jdUt, eclCoord, location, flags);
+      double latitude = 0.0;
+      double distance = 1.0;
+      int flags = (int) SeFlags.HORIZONTAL.getSeValue();
+      double[] eclCoord = new double[]{longitude, latitude, distance};
+      EquatorialPosition equatorialPosition = new EquatorialPosition(seFrontend, longitude, jdUt);
+      HorizontalPosition horizontalPosition = new HorizontalPosition(seFrontend, jdUt, eclCoord, location, flags);
       return new HousePosition(longitude, equatorialPosition, horizontalPosition);
    }
 
@@ -82,11 +82,11 @@ public class MundaneValues {
       if (rightAscension >= 360.0) {
          rightAscension -= 360.0;
       }
-      val declination = 0.0;
-      val equatorialPosition = new EquatorialPosition(rightAscension, declination);
-      val altitude = 0.0;
-      val azimuth = 270.0;
-      val horizontalPosition = new HorizontalPosition(azimuth, altitude);
+      double declination = 0.0;
+      EquatorialPosition equatorialPosition = new EquatorialPosition(rightAscension, declination);
+      double altitude = 0.0;
+      double azimuth = 270.0;
+      HorizontalPosition horizontalPosition = new HorizontalPosition(azimuth, altitude);
       return new HousePosition(longitude, equatorialPosition, horizontalPosition);
    }
 
