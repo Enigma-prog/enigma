@@ -8,11 +8,12 @@ package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.*;
 import com.radixpro.enigma.xchg.domain.config.*;
-import lombok.NonNull;
 import lombok.val;
 import org.dizitart.no2.Document;
 
 import java.util.ArrayList;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ConfigurationObjectDocumentMapper {
 
@@ -23,8 +24,9 @@ public class ConfigurationObjectDocumentMapper {
     * @param config The instance to save in Nitrite.
     * @return Document for Nitrite.
     */
-   public Document object2Document(@NonNull final Configuration config) {
+   public Document object2Document(final Configuration config) {
       //noinspection ConstantConditions
+      checkNotNull(config);
       return Document.createDocument("_id", config.getId())
             .put("parentid", config.getParentId())
             .put("name", config.getName())
@@ -47,7 +49,8 @@ public class ConfigurationObjectDocumentMapper {
     * @return The resulting instance of Configuration.
     */
    @SuppressWarnings("unchecked")
-   public Configuration document2Object(@NonNull final Document doc) {
+   public Configuration document2Object(final Document doc) {
+      checkNotNull(doc);
       val id = (long) doc.get("_id");
       val parentId = (long) doc.get("parentid");
       val name = (String) doc.get("name");

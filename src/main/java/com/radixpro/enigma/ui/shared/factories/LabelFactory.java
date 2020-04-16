@@ -7,7 +7,6 @@
 package com.radixpro.enigma.ui.shared.factories;
 
 import javafx.scene.control.Label;
-import lombok.NonNull;
 import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -21,14 +20,16 @@ public class LabelFactory {
       // prevent instantiation
    }
 
-   public static Label createLabel(@NonNull final String text, final double layoutX, final double layoutY,
-                                   @NonNull final String styleClass) {
+   public static Label createLabel(final String text, final double layoutX, final double layoutY, final String styleClass) {
+      checkNotNull(text);
+      checkNotNull(styleClass);
       val label = createLabel(text, layoutX, layoutY);
       label.getStyleClass().add(styleClass);
       return label;
    }
 
-   public static Label createLabel(@NonNull final String text, final double layoutX, final double layoutY) {
+   public static Label createLabel(final String text, final double layoutX, final double layoutY) {
+      checkNotNull(text);
       val label = createLabel(text);
       label.setLayoutX(layoutX);
       label.setLayoutY(layoutY);
@@ -36,7 +37,9 @@ public class LabelFactory {
    }
 
 
-   public static Label createLabel(@NonNull final String text, @NonNull final String styleClass, final double width) {
+   public static Label createLabel(final String text, final String styleClass, final double width) {
+      checkNotNull(text);
+      checkNotNull(styleClass);
       val label = createLabel(text, styleClass);
       label.setPrefWidth(width);
       return label;
@@ -48,13 +51,16 @@ public class LabelFactory {
       return label;
    }
 
-   public static Label createLabel(@NonNull final String text, @NonNull final String styleClass) {
+   public static Label createLabel(final String text, final String styleClass) {
+      checkNotNull(text);
+      checkNotNull(styleClass);
       val label = createLabel(text);
       label.getStyleClass().add(styleClass);
       return label;
    }
 
-   public static Label createLabel(@NonNull final String text) {
+   public static Label createLabel(final String text) {
+      checkNotNull(text);
       val label = new Label();
       label.setText(text);
       return label;

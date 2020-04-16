@@ -7,7 +7,8 @@
 package com.radixpro.enigma.ui.shared.factories;
 
 import javafx.scene.layout.Pane;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Factory for Panes.
@@ -18,7 +19,8 @@ public class PaneFactory {
       // prevent instantiation
    }
 
-   public static Pane createPane(final double height, final double width, @NonNull final String styleClass) {
+   public static Pane createPane(final double height, final double width, final String styleClass) {
+      checkNotNull(styleClass);
       Pane pane = createPane(height, width);
       pane.getStyleClass().add(styleClass);
       return pane;

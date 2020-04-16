@@ -7,8 +7,9 @@
 package com.radixpro.enigma.ui.shared.factories;
 
 import com.radixpro.enigma.ui.charts.screens.helpers.*;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Factory for implementations of PlotCoordinates.
@@ -22,8 +23,8 @@ public class PlotCoordinatesFactory {
     * @param drawMetrics . An acutal instance of ChartDrawMetrics.
     * @return instance of CuspLinePlotCoordinates.
     */
-   public static CuspLinePlotCoordinates createCuspLinePlotCoordinates(final double angle,
-                                                                       @NonNull final DrawMetrics drawMetrics) {
+   public static CuspLinePlotCoordinates createCuspLinePlotCoordinates(final double angle, final DrawMetrics drawMetrics) {
+      checkNotNull(drawMetrics);
       val metrics = (ChartDrawMetrics) drawMetrics;
       val rectTriangle = new RectTriangleAbsolute(angle, metrics.getCorrForXY());
       return new CuspLinePlotCoordinates(rectTriangle);
@@ -36,8 +37,8 @@ public class PlotCoordinatesFactory {
     * @param drawMetrics An actual instance of ChartDrawMetrics.
     * @return instance of CuspTextPlotCoordinates.
     */
-   public static CuspTextPlotCoordinates createCuspTextPlotCoordinates(final double angle,
-                                                                       @NonNull final DrawMetrics drawMetrics) {
+   public static CuspTextPlotCoordinates createCuspTextPlotCoordinates(final double angle, final DrawMetrics drawMetrics) {
+      checkNotNull(drawMetrics);
       val metrics = (ChartDrawMetrics) drawMetrics;
       val rectTriangle = new RectTriangleAbsolute(angle, metrics.getCorrForXY());
       return new CuspTextPlotCoordinates(rectTriangle);
@@ -50,8 +51,8 @@ public class PlotCoordinatesFactory {
     * @param drawMetrics An actual instance of ChartDrawMetrics.
     * @return instance of DegreeLinePlotCoordinates.
     */
-   public static DegreeLinePlotCoordinates createDegreeLinePlotCoordinates(final double angle,
-                                                                           @NonNull final DrawMetrics drawMetrics) {
+   public static DegreeLinePlotCoordinates createDegreeLinePlotCoordinates(final double angle, final DrawMetrics drawMetrics) {
+      checkNotNull(drawMetrics);
       val metrics = (ChartDrawMetrics) drawMetrics;
       val rectTriangle = new RectTriangleAbsolute(angle, metrics.getCorrForXY());
       return new DegreeLinePlotCoordinates(rectTriangle);

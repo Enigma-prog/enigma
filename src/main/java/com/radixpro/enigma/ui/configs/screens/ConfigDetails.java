@@ -23,12 +23,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static com.radixpro.enigma.ui.shared.StyleDictionary.STYLESHEET;
 
 /**
@@ -51,10 +51,10 @@ public class ConfigDetails {
    private Button btnExit;
    private Button btnHelp;
 
-   public ConfigDetails(@NonNull final String configName, @NonNull PropertiesForConfig propertiesForConfig, @NonNull final Rosetta rosetta) {
-      this.rosetta = rosetta;
-      this.configName = configName;
-      this.propertiesForConfig = propertiesForConfig;
+   public ConfigDetails(final String configName, final PropertiesForConfig propertiesForConfig, final Rosetta rosetta) {
+      this.rosetta = checkNotNull(rosetta);
+      this.configName = checkNotNull(configName);
+      this.propertiesForConfig = checkNotNull(propertiesForConfig);
       stage = new Stage();
       showDetails();
    }

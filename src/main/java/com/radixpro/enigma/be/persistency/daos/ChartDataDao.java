@@ -10,13 +10,13 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.ChartDataObjectDocumentMapper;
 import com.radixpro.enigma.xchg.domain.ChartData;
-import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.dizitart.no2.FindOptions.sort;
 import static org.dizitart.no2.filters.Filters.eq;
 import static org.dizitart.no2.filters.Filters.regex;
@@ -46,7 +46,8 @@ public class ChartDataDao {
     * @param chartData The ChartData instance to insert.
     * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
     */
-   public void insert(@NonNull final ChartData chartData) throws DatabaseException {
+   public void insert(final ChartData chartData) throws DatabaseException {
+      checkNotNull(chartData);
       WriteResult insertResult;
       try {
          openCollectionAndDatabase();
@@ -71,7 +72,8 @@ public class ChartDataDao {
     * @param chartData The ChartData instance to update.
     * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
     */
-   public void update(@NonNull final ChartData chartData) throws DatabaseException {
+   public void update(final ChartData chartData) throws DatabaseException {
+      checkNotNull(chartData);
       WriteResult updateResult;
       try {
          openCollectionAndDatabase();
@@ -94,7 +96,8 @@ public class ChartDataDao {
     * @param chartData The ChartData instance to delete.
     * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
     */
-   public void delete(@NonNull final ChartData chartData) throws DatabaseException {
+   public void delete(final ChartData chartData) throws DatabaseException {
+      checkNotNull(chartData);
       openCollectionAndDatabase();
       try {
          Document chartDoc = mapper.object2Document(chartData);
@@ -159,7 +162,8 @@ public class ChartDataDao {
     * @return A list with found instances of ChartData that have the same name as the searchname.
     * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
     */
-   public List<ChartData> search(@NonNull final String searchName) throws DatabaseException {
+   public List<ChartData> search(final String searchName) throws DatabaseException {
+      checkNotNull(searchName);
       List<ChartData> chartDataList = new ArrayList<>();
       try {
          openCollectionAndDatabase();
@@ -181,7 +185,8 @@ public class ChartDataDao {
     * @return All found instances. If searchARg contains an empty String: all instances.
     * @throws DatabaseException Any exception is logged and rethrown as a Database exception.
     */
-   public List<ChartData> searchWildCard(@NonNull final String searchArg) throws DatabaseException {
+   public List<ChartData> searchWildCard(final String searchArg) throws DatabaseException {
+      checkNotNull(searchArg);
       List<ChartData> chartDataList = new ArrayList<>();
       try {
          openCollectionAndDatabase();

@@ -25,7 +25,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.NonNull;
 import lombok.val;
 
 import java.io.IOException;
@@ -146,7 +145,7 @@ public class ChartsStart {
       return chartData;
    }
 
-   private void showChart(@NonNull final ChartData chartData) throws IOException {
+   private void showChart(final ChartData chartData) throws IOException {
       List<CelestialObjects> requestedBodies = new ArrayList<>();
       requestedBodies.add(CelestialObjects.SUN);
       requestedBodies.add(CelestialObjects.MOON);

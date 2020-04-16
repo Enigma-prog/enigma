@@ -49,7 +49,7 @@ public class ConfigEdit {
    private ChoiceBox observerPosSelection;
    private ChoiceBox houseSystemSelection;
    private ChoiceBox eclipticProjSelection;
-   private ChoiceBox ayanamshaSelection;
+   private ChoiceBox<String> ayanamshaSelection;
    private CheckComboBox celObjectsSelection;
 
    public ConfigEdit(final Configuration config, final Stage stage, final Rosetta rosetta) {
@@ -151,17 +151,15 @@ public class ConfigEdit {
       ObservableList<String> eclipticProjections = EclipticProjections.UNKNOWN.getObservableList();
       choiceBox.setItems(eclipticProjections);
       choiceBox.getSelectionModel().select(config.getAstronConfiguration().getEclipticProjection().getId());
-      choiceBox.getSelectionModel().selectedIndexProperty().addListener((ov, value, newValue) -> {
-         onEclipticChange();
-      });
+      choiceBox.getSelectionModel().selectedIndexProperty().addListener((ov, value, newValue) -> onEclipticChange());
       return choiceBox;
    }
 
    private ChoiceBox createAyanamshaSelection() {
-      ChoiceBox choiceBox = new ChoiceBox();
+      ChoiceBox<String> choiceBox = new ChoiceBox(Ayanamshas.NONE.getObservableList());
       choiceBox.setPrefWidth(DATA_INPUT_WIDTH);
-      ObservableList<String> ayanamshas = Ayanamshas.NONE.getObservableList();
-      choiceBox.setItems(ayanamshas);
+//      ObservableList<String> ayanamshas = Ayanamshas.NONE.getObservableList();
+//      choiceBox.setItems(ayanamshas);
       choiceBox.getSelectionModel().select(config.getAstronConfiguration().getAyanamsha().getId());
       return choiceBox;
    }

@@ -6,8 +6,9 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
 import org.apache.commons.lang3.ArrayUtils;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculates the position for a sign separator line.
@@ -16,8 +17,8 @@ public class SignSeparator {
 
    final ChartDrawMetrics metrics;
 
-   public SignSeparator(@NonNull ChartDrawMetrics metrics) {
-      this.metrics = metrics;
+   public SignSeparator(ChartDrawMetrics metrics) {
+      this.metrics = checkNotNull(metrics);
    }
 
    public double[] defineCoordinates(final double angle) {

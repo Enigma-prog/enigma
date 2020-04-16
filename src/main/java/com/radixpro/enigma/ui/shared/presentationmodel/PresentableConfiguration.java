@@ -9,7 +9,8 @@ package com.radixpro.enigma.ui.shared.presentationmodel;
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper for Configuration; enables the use in a tableview.
@@ -28,7 +29,8 @@ public class PresentableConfiguration {
     *
     * @param configuration The configuration to present.
     */
-   public PresentableConfiguration(@NonNull final Configuration configuration) {
+   public PresentableConfiguration(final Configuration configuration) {
+      checkNotNull(configuration);
       configId = configuration.getId();
       configName = configuration.getName();
       configDescription = configuration.getDescription();

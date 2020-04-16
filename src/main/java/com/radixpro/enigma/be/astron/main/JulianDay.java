@@ -9,8 +9,9 @@ package com.radixpro.enigma.be.astron.main;
 import com.radixpro.enigma.be.astron.core.SeFrontend;
 import com.radixpro.enigma.xchg.domain.SimpleDateTime;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Julian Day numbers. HAndles JD nrs for Ephermeris Time (jdnrEt) and Universal Time (jdnrUt).
@@ -28,12 +29,14 @@ public class JulianDay {
     *
     * @param dateTime Instance of datetime in UT.
     */
-   public JulianDay(@NonNull final SimpleDateTime dateTime) {
+   public JulianDay(final SimpleDateTime dateTime) {
+      checkNotNull(dateTime);
       seFrontend = SeFrontend.getFrontend();
       calculateJdNr(dateTime);
    }
 
-   private void calculateJdNr(@NonNull final SimpleDateTime dateTime) {
+   private void calculateJdNr(final SimpleDateTime dateTime) {
+      checkNotNull(dateTime);
       // Julian Day for ET [0], and Julian Day for UT [1]
       val date = dateTime.getDate();
       val time = dateTime.getTime();

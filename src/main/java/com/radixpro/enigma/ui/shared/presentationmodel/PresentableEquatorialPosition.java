@@ -12,7 +12,8 @@ import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue
 import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import lombok.Getter;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition for the equatorial values; enables the use in a tableview.
@@ -26,13 +27,17 @@ public class PresentableEquatorialPosition {
    private String formattedDeclSpeed;
    private String celBodyGlyph;
 
-   public PresentableEquatorialPosition(@NonNull final CelestialObjects celestialObject,
-                                        @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
+   public PresentableEquatorialPosition(final CelestialObjects celestialObject,
+                                        final CelObjectSinglePosition celObjectSinglePosition) {
+      checkNotNull(celestialObject);
+      checkNotNull(celObjectSinglePosition);
       createPresentablePosition(celestialObject, celObjectSinglePosition);
    }
 
-   private void createPresentablePosition(@NonNull final CelestialObjects celestialObject,
-                                          @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
+   private void createPresentablePosition(final CelestialObjects celestialObject,
+                                          final CelObjectSinglePosition celObjectSinglePosition) {
+      checkNotNull(celestialObject);
+      checkNotNull(celObjectSinglePosition);
       formattedRightAscension = new PlainDmsValue(celObjectSinglePosition.getMainPosition()).getFormattedPosition();
       formattedRaSpeed = new PlusMinusValue(celObjectSinglePosition.getMainSpeed()).getFormattedPosition();
       formattedDeclination = new PlusMinusValue(celObjectSinglePosition.getDeviationPosition()).getFormattedPosition();

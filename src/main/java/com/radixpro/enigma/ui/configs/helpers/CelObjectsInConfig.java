@@ -10,12 +10,13 @@ import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableProperty;
 import com.radixpro.enigma.xchg.domain.CelObjectCategory;
 import com.radixpro.enigma.xchg.domain.config.ConfiguredCelObject;
-import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Overview of celestial objects in a configuration.
@@ -30,8 +31,8 @@ public class CelObjectsInConfig {
     *
     * @param rosetta instance of Rosetta(i18n).
     */
-   public CelObjectsInConfig(@NonNull final Rosetta rosetta) {
-      this.rosetta = rosetta;
+   public CelObjectsInConfig(final Rosetta rosetta) {
+      this.rosetta = checkNotNull(rosetta);
    }
 
    /**
@@ -40,7 +41,8 @@ public class CelObjectsInConfig {
     * @param celObjects Celestial objects as defined in the configuration.
     * @return The resulting presentable properties.
     */
-   public List<PresentableProperty> constructProperties(@NonNull final List<ConfiguredCelObject> celObjects) {
+   public List<PresentableProperty> constructProperties(final List<ConfiguredCelObject> celObjects) {
+      checkNotNull(celObjects);
       List<PresentableProperty> presentableProperties = new ArrayList<>();
       val classicCelObjectsAsText = new StringBuilder();
       val modernCelObjectsAsText = new StringBuilder();

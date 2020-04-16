@@ -6,8 +6,9 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculates the coordinates to show text for a cusp.
@@ -22,8 +23,8 @@ public class CuspTextPlotCoordinates implements PlotCoordinates {
     * @param rectTriangle An already instantiated RectTriangleAbsolute.
     * @see com.radixpro.enigma.ui.shared.factories.PlotCoordinatesFactory
     */
-   public CuspTextPlotCoordinates(@NonNull RectTriangleAbsolute rectTriangle) {
-      this.rectTriangle = rectTriangle;
+   public CuspTextPlotCoordinates(RectTriangleAbsolute rectTriangle) {
+      this.rectTriangle = checkNotNull(rectTriangle);
    }
 
    /**
@@ -34,7 +35,8 @@ public class CuspTextPlotCoordinates implements PlotCoordinates {
     * @param drawMetrics Actual instance of ChartDrawMetrics.
     * @return The calculated coordinates.
     */
-   public double[] defineCoordinates(final double angle, @NonNull final DrawMetrics drawMetrics) {
+   public double[] defineCoordinates(final double angle, final DrawMetrics drawMetrics) {
+      checkNotNull(drawMetrics);
       val metrics = (ChartDrawMetrics) drawMetrics;
       double hypothenusa = 0.0;
       if (0.0 <= angle && angle < 45.0) hypothenusa = metrics.getDiameterCuspTextsLeft();

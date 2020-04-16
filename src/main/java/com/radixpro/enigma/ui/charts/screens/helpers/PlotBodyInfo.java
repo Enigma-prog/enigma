@@ -9,8 +9,9 @@ package com.radixpro.enigma.ui.charts.screens.helpers;
 import com.radixpro.enigma.ui.shared.formatters.SexagesimalFormatter;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Postion of celestial body with an additional plotposition Can be used in a sort.
@@ -33,8 +34,8 @@ public class PlotBodyInfo {
     * @param angleFromAsc the angle in degrees from the ascendant, counted counter-clockwise
     * @param longitude    the ecliptical longitude
     */
-   public PlotBodyInfo(@NonNull final CelestialObjects celObject, final double angleFromAsc, final double longitude) {
-      this.celObject = celObject;
+   public PlotBodyInfo(final CelestialObjects celObject, final double angleFromAsc, final double longitude) {
+      this.celObject = checkNotNull(celObject);
       this.angleFromAsc = angleFromAsc;
       this.correctedAngle = angleFromAsc;
       this.posText = formatText(longitude);
@@ -45,4 +46,5 @@ public class PlotBodyInfo {
       SexagesimalFormatter formatter = new SexagesimalFormatter(2);
       return formatter.formatDm(longitudeInSign);
    }
+
 }

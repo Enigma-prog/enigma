@@ -10,7 +10,6 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.EnigmaDatabase;
 import com.radixpro.enigma.be.persistency.mappers.UserDefinedCategoryObjectDocumentMapper;
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
-import lombok.NonNull;
 import org.apache.log4j.Logger;
 import org.dizitart.no2.*;
 import org.dizitart.no2.filters.Filters;
@@ -18,6 +17,7 @@ import org.dizitart.no2.filters.Filters;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.dizitart.no2.FindOptions.sort;
 
 public class UserDefinedCategoryDao {
@@ -33,7 +33,8 @@ public class UserDefinedCategoryDao {
       mapper = new UserDefinedCategoryObjectDocumentMapper();
    }
 
-   public void insert(@NonNull final UserDefinedCategory category) throws DatabaseException {
+   public void insert(final UserDefinedCategory category) throws DatabaseException {
+      checkNotNull(category);
       WriteResult insertResult;
       try {
          openCollectionAndDatabase();
@@ -50,7 +51,8 @@ public class UserDefinedCategoryDao {
       }
    }
 
-   public void update(@NonNull final UserDefinedCategory category) throws DatabaseException {
+   public void update(final UserDefinedCategory category) throws DatabaseException {
+      checkNotNull(category);
       WriteResult updateResult;
       try {
          openCollectionAndDatabase();
@@ -67,7 +69,8 @@ public class UserDefinedCategoryDao {
       }
    }
 
-   public void delete(@NonNull final UserDefinedCategory category) throws DatabaseException {
+   public void delete(final UserDefinedCategory category) throws DatabaseException {
+      checkNotNull(category);
       openCollectionAndDatabase();
       try {
          collection.remove(mapper.object2Document(category));
@@ -93,7 +96,8 @@ public class UserDefinedCategoryDao {
       return catList;
    }
 
-   public List<UserDefinedCategory> search(@NonNull final String searchText) throws DatabaseException {
+   public List<UserDefinedCategory> search(final String searchText) throws DatabaseException {
+      checkNotNull(searchText);
       List<UserDefinedCategory> catList = new ArrayList<>();
       try {
          openCollectionAndDatabase();

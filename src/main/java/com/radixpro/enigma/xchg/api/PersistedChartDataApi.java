@@ -10,10 +10,11 @@ import com.radixpro.enigma.be.exceptions.DatabaseException;
 import com.radixpro.enigma.be.persistency.daos.ChartDataDao;
 import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.xchg.domain.ChartData;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PersistedChartDataApi {
 
@@ -23,7 +24,8 @@ public class PersistedChartDataApi {
       dao = new ChartDataDao();
    }
 
-   public void insert(@NonNull final ChartData chartData) {
+   public void insert(final ChartData chartData) {
+      checkNotNull(chartData);
       try {
          dao.insert(chartData);
       } catch (DatabaseException de) {
@@ -31,7 +33,8 @@ public class PersistedChartDataApi {
       }
    }
 
-   public void update(@NonNull final ChartData chartData) {
+   public void update(final ChartData chartData) {
+      checkNotNull(chartData);
       try {
          dao.update(chartData);
       } catch (DatabaseException de) {
@@ -39,7 +42,8 @@ public class PersistedChartDataApi {
       }
    }
 
-   public void delete(@NonNull final ChartData chartData) {
+   public void delete(final ChartData chartData) {
+      checkNotNull(chartData);
       try {
          dao.delete(chartData);
       } catch (DatabaseException de) {
@@ -67,7 +71,8 @@ public class PersistedChartDataApi {
       return chartDataResult;
    }
 
-   public List<ChartData> search(@NonNull final String searchName) {
+   public List<ChartData> search(final String searchName) {
+      checkNotNull(searchName);
       List<ChartData> chartDataResult = new ArrayList<>();
       try {
          chartDataResult = dao.search(searchName);
@@ -77,7 +82,8 @@ public class PersistedChartDataApi {
       return chartDataResult;
    }
 
-   public List<ChartData> searchWildCard(@NonNull final String searchArgument) {
+   public List<ChartData> searchWildCard(final String searchArgument) {
+      checkNotNull(searchArgument);
       List<ChartData> chartDataResult = new ArrayList<>();
       try {
          chartDataResult = dao.searchWildCard(searchArgument);

@@ -6,9 +6,10 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
 import lombok.val;
 import org.apache.commons.lang3.ArrayUtils;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculates the position for a degree line.
@@ -23,8 +24,8 @@ public class DegreeLinePlotCoordinates {
     * @param rectTriangle An already instantiated RectTriangleAbsolute.
     * @see com.radixpro.enigma.ui.shared.factories.PlotCoordinatesFactory
     */
-   public DegreeLinePlotCoordinates(@NonNull RectTriangleAbsolute rectTriangle) {
-      this.rectTriangle = rectTriangle;
+   public DegreeLinePlotCoordinates(RectTriangleAbsolute rectTriangle) {
+      this.rectTriangle = checkNotNull(rectTriangle);
    }
 
    /**
@@ -34,7 +35,8 @@ public class DegreeLinePlotCoordinates {
     * @param drawMetrics Instance of DrawMetrics.
     * @return The calculated coordinates.
     */
-   public double[] defineCoordinates(final int index, @NonNull final DrawMetrics drawMetrics) {
+   public double[] defineCoordinates(final int index, final DrawMetrics drawMetrics) {
+      checkNotNull(drawMetrics);
       val metrics = (ChartDrawMetrics) drawMetrics;
       double[] coords1;
       if (index % 5 == 0) coords1 = rectTriangle.getCoordinates(metrics.getDiameterDegrees5Circle());

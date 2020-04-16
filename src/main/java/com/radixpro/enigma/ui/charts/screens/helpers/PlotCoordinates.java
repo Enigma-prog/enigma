@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
-
 /**
  * Interface for items that will be shown on a drawing at specific coordinates.
  */
@@ -21,6 +19,6 @@ public interface PlotCoordinates {
     * @param drawMetrics Actual instance of DrawMetrics.
     * @return The calculated coordinates.
     */
-   double[] defineCoordinates(final double angle, @NonNull final DrawMetrics drawMetrics);
+   double[] defineCoordinates(final double angle, final DrawMetrics drawMetrics);
 
 }

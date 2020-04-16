@@ -12,7 +12,8 @@ import com.radixpro.enigma.ui.configs.helpers.CelObjectsInConfig;
 import com.radixpro.enigma.ui.configs.helpers.PropertiesForConfig;
 import com.radixpro.enigma.ui.configs.screens.ConfigDetails;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Factory for ConfigDetails.
@@ -25,7 +26,8 @@ public class ConfigDetailsFactory {
     * @param config the configuration.
     * @return the instantiated ConfigDetails.
     */
-   public ConfigDetails createConfigDetails(@NonNull final Configuration config) {
+   public ConfigDetails createConfigDetails(final Configuration config) {
+      checkNotNull(config);
       Rosetta rosetta = Rosetta.getRosetta();
       PropertiesForConfig prop4Config = new PropertiesForConfig(config,
             new CelObjectsInConfig(rosetta),

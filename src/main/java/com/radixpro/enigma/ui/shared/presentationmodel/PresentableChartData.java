@@ -8,8 +8,9 @@ package com.radixpro.enigma.ui.shared.presentationmodel;
 
 import com.radixpro.enigma.xchg.domain.ChartData;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around ChartData; enables the use in a tableview.
@@ -23,7 +24,8 @@ public class PresentableChartData {
    final String chartDataDescr;
    final ChartData originalData;
 
-   public PresentableChartData(@NonNull final ChartData chartData) {
+   public PresentableChartData(final ChartData chartData) {
+      checkNotNull(chartData);
       chartId = chartData.getId();
       chartName = chartData.getChartMetaData().getName();
       chartDescr = chartData.getChartMetaData().getDescription();
@@ -31,7 +33,7 @@ public class PresentableChartData {
       originalData = chartData;
    }
 
-   private String createDataDescription(@NonNull final ChartData chartData) {
+   private String createDataDescription(final ChartData chartData) {
       val descrSb = new StringBuilder();
       val dateTime4Text = new PresentableDateTime(chartData.getFullDateTime());
       descrSb.append(dateTime4Text.getDate());

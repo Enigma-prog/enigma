@@ -7,7 +7,8 @@
 package com.radixpro.enigma.ui.shared.factories;
 
 import javafx.scene.control.Button;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Factory for buttons.
@@ -18,7 +19,8 @@ public class ButtonFactory {
       // prevent instantiation
    }
 
-   public static Button createButton(@NonNull final String text, final boolean disable) {
+   public static Button createButton(final String text, final boolean disable) {
+      checkNotNull(text);
       Button btn = new Button();
       btn.setMnemonicParsing(false);
       btn.setDisable(disable);

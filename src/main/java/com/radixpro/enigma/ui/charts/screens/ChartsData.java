@@ -19,10 +19,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lombok.NonNull;
 import lombok.val;
 
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ChartsData {
 
@@ -181,7 +182,9 @@ public class ChartsData {
    }
 
 
-   private void handlePresMundPos(@NonNull final String name, @NonNull final HousePosition pos) {
+   private void handlePresMundPos(final String name, final HousePosition pos) {
+      checkNotNull(name);
+      checkNotNull(pos);
       val presMundPos = new PresentableMundanePosition(name, pos);
       tvMundColName.setCellValueFactory(new PropertyValueFactory<>("name"));
       tvMundColLongitude.setCellValueFactory(new PropertyValueFactory<>("formattedLongitude"));

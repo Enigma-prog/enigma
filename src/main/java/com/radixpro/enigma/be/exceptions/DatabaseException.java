@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.be.exceptions;
 
-import lombok.NonNull;
-
 /**
  * General exception for all database errors.
  */
@@ -18,7 +16,7 @@ public class DatabaseException extends Exception {
     *
     * @param message
     */
-   public DatabaseException(@NonNull final String message) {
+   public DatabaseException(final String message) {
       super(message);
    }
 

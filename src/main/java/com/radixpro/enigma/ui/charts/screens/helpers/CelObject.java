@@ -6,7 +6,7 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculates the position for a glyph that represents a celestial object.
@@ -15,8 +15,8 @@ public class CelObject {
 
    private final ChartDrawMetrics metrics;
 
-   public CelObject(@NonNull final ChartDrawMetrics metrics) {
-      this.metrics = metrics;
+   public CelObject(final ChartDrawMetrics metrics) {
+      this.metrics = checkNotNull(metrics);
    }
 
    public double[] defineCoordinates(final double angle) {

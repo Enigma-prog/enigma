@@ -7,9 +7,10 @@
 package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.*;
-import lombok.NonNull;
 import lombok.val;
 import org.dizitart.no2.Document;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Converter between ChartData and JSON document as persisted in Nitrite.
@@ -25,8 +26,9 @@ public class ChartDataObjectDocumentMapper {
     * @return Document for Nitrite.
     */
    @SuppressWarnings({"unchecked", "ConstantConditions", "RedundantSuppression"})
-   public Document object2Document(@NonNull final ChartData chartData) {
+   public Document object2Document(final ChartData chartData) {
       //noinspection ConstantConditions
+      checkNotNull(chartData);
       val date = chartData.getFullDateTime().getSimpleDateTime().getDate();
       val time = chartData.getFullDateTime().getSimpleDateTime().getTime();
       val longInput = chartData.getLocation().getLongInput();
@@ -67,7 +69,8 @@ public class ChartDataObjectDocumentMapper {
     * @param doc The document with the JSON from Nitrite.
     * @return The resulting instance of ChartData.
     */
-   public ChartData document2Object(@NonNull final Document doc) {
+   public ChartData document2Object(final Document doc) {
+      checkNotNull(doc);
       val id = (long) doc.get("_id");
       val date = new SimpleDate((int) doc.get("year"), (int) doc.get("month"), (int) doc.get("day"), (boolean) doc.get("gregorian"));
       val time = new SimpleTime((int) doc.get("hour"), (int) doc.get("minute"), (int) doc.get("second"));

@@ -13,8 +13,9 @@ import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue
 import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition for the ecliptic values; enables the use in a tableview.
@@ -30,13 +31,15 @@ public class PresentableEclipticPosition {
    private String celBodyGlyph;
 
 
-   public PresentableEclipticPosition(@NonNull final CelestialObjects celestialObject,
-                                      @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
+   public PresentableEclipticPosition(final CelestialObjects celestialObject,
+                                      final CelObjectSinglePosition celObjectSinglePosition) {
+      checkNotNull(celestialObject);
+      checkNotNull(celObjectSinglePosition);
       createPresentablePosition(celestialObject, celObjectSinglePosition);
    }
 
-   private void createPresentablePosition(@NonNull final CelestialObjects celestialObject,
-                                          @NonNull final CelObjectSinglePosition celObjectSinglePosition) {
+   private void createPresentablePosition(final CelestialObjects celestialObject,
+                                          final CelObjectSinglePosition celObjectSinglePosition) {
       val mainPosition = celObjectSinglePosition.getMainPosition();
       val longWithGlyph = new LongAndGlyphValue(mainPosition).getLongWithGlyph();
       formattedLongitude = longWithGlyph.getPosition();

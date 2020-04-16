@@ -37,4 +37,9 @@ public class PropertyTest {
    public void getId() {
       assertEquals(id, prop.getId());
    }
+
+   @Test
+   public void testToString() {
+      assertEquals("Property(id=3, key=myKey, value=myValue)", prop.toString());
+   }
 }

@@ -12,8 +12,9 @@ import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongAndGlyphVa
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlainDmsValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around HousePosition; enables the use in a tableview.
@@ -35,12 +36,12 @@ public class PresentableMundanePosition {
     * @param name     Name for the mundane position. Possibly a number for the cusp, an acronym for vertex etc.
     * @param position An instance of HousePosition that contains the data that must be presented.
     */
-   public PresentableMundanePosition(@NonNull final String name, @NonNull final HousePosition position) {
-      this.name = name;
-      createMundanePosition(name, position);
+   public PresentableMundanePosition(final String name, final HousePosition position) {
+      this.name = checkNotNull(name);
+      createMundanePosition(name, checkNotNull(position));
    }
 
-   private void createMundanePosition(@NonNull final String name, @NonNull final HousePosition position) {
+   private void createMundanePosition(final String name, final HousePosition position) {
       val longWithGlyph = new LongAndGlyphValue(position.getLongitude()).getLongWithGlyph();
       formattedLongitude = longWithGlyph.getPosition();
       signGlyph = new Sign2GlyphMapper().getGlyph(longWithGlyph.getSignIndex());

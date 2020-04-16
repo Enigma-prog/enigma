@@ -18,9 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.NonNull;
 import lombok.val;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static com.radixpro.enigma.ui.shared.StyleDictionary.STYLESHEET;
 
 /**
@@ -45,9 +45,9 @@ public class Help {
     * @param title   Title of the help page.
     * @param content Textual content of the help page.
     */
-   public Help(@NonNull final String title, @NonNull final String content) {
-      this.title = title;
-      this.content = content;
+   public Help(final String title, final String content) {
+      this.title = checkNotNull(title);
+      this.content = checkNotNull(content);
       showContent();
    }
 

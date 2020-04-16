@@ -14,7 +14,6 @@ import com.radixpro.enigma.xchg.domain.CelestialObjects;
 import com.radixpro.enigma.xchg.domain.Location;
 import com.radixpro.enigma.xchg.domain.SeFlags;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
 
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class CelObjectPosition {
       calculate(checkNotNull(seFrontend), jdUt, checkNotNull(location));
    }
 
-   private void defineFlags(@NonNull final List<SeFlags> localFlagList) {
+   private void defineFlags(final List<SeFlags> localFlagList) {
       eclipticalFlags = (int) new CombinedFlags(localFlagList).getCombinedValue();
       localFlagList.add(SeFlags.EQUATORIAL);
       equatorialFlags = (int) new CombinedFlags(localFlagList).getCombinedValue();
@@ -64,7 +63,7 @@ public class CelObjectPosition {
       horizontalFlags = (int) SeFlags.HORIZONTAL.getSeValue();
    }
 
-   private void calculate(@NonNull final SeFrontend seFrontend, final double jdUt, @NonNull final Location location) {
+   private void calculate(final SeFrontend seFrontend, final double jdUt, final Location location) {
       eclipticalPosition = new CelObjectSinglePosition(seFrontend, jdUt, celestialBody, eclipticalFlags);
       equatorialPosition = new CelObjectSinglePosition(seFrontend, jdUt, celestialBody, equatorialFlags);
       val eclipticalCoordinates = new double[]{eclipticalPosition.getMainPosition(),

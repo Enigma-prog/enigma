@@ -11,7 +11,8 @@ import com.radixpro.enigma.ui.configs.screens.ConfigNew;
 import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
 import javafx.stage.Stage;
-import lombok.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Factory for ConfigEdit.
@@ -24,7 +25,8 @@ public class ConfigNewFactory {
     * @param config The actual configuration.
     * @return instance of ConfigNew.
     */
-   public ConfigNew createConfigNew(@NonNull final Configuration config) {
+   public ConfigNew createConfigNew(final Configuration config) {
+      checkNotNull(config);
       return new ConfigNew(config, new Stage(), Rosetta.getRosetta().getRosetta(), new PersistedConfigurationApi());
    }
 }

@@ -10,12 +10,13 @@ import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableProperty;
 import com.radixpro.enigma.xchg.domain.AspectCategory;
 import com.radixpro.enigma.xchg.domain.config.ConfiguredAspect;
-import lombok.NonNull;
 import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Overview of aspects in a configuration.
@@ -31,8 +32,8 @@ public class AspectsInConfig {
     *
     * @param rosetta instance of Rosetta(i18n).
     */
-   public AspectsInConfig(@NonNull final Rosetta rosetta) {
-      this.rosetta = rosetta;
+   public AspectsInConfig(final Rosetta rosetta) {
+      this.rosetta = checkNotNull(rosetta);
    }
 
    /**
@@ -41,7 +42,8 @@ public class AspectsInConfig {
     * @param aspects Aspects as defined in the configuration.
     * @return The resulting presentable properties.
     */
-   public List<PresentableProperty> constructProperties(@NonNull final List<ConfiguredAspect> aspects) {
+   public List<PresentableProperty> constructProperties(final List<ConfiguredAspect> aspects) {
+      checkNotNull(aspects);
       List<PresentableProperty> presentableProperties = new ArrayList<>();
       AspectCategory category;
       String nameText;

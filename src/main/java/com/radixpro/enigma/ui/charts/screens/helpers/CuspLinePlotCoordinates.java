@@ -6,9 +6,10 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.NonNull;
 import lombok.val;
 import org.apache.commons.lang3.ArrayUtils;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Calculates the coordinates to draw a cusp line.
@@ -23,8 +24,8 @@ public class CuspLinePlotCoordinates implements PlotCoordinates {
     * @param rectTriangle An already instantiated RectTriangleAbsolute.
     * @see com.radixpro.enigma.ui.shared.factories.PlotCoordinatesFactory
     */
-   public CuspLinePlotCoordinates(@NonNull RectTriangleAbsolute rectTriangle) {
-      this.rectTriangle = rectTriangle;
+   public CuspLinePlotCoordinates(RectTriangleAbsolute rectTriangle) {
+      this.rectTriangle = checkNotNull(rectTriangle);
    }
 
    /**
@@ -36,7 +37,8 @@ public class CuspLinePlotCoordinates implements PlotCoordinates {
     * @return The calculated coordinates.
     */
    @Override
-   public double[] defineCoordinates(final double angle, @NonNull final DrawMetrics drawMetrics) {
+   public double[] defineCoordinates(final double angle, final DrawMetrics drawMetrics) {
+      checkNotNull(drawMetrics);
       val metrics = (ChartDrawMetrics) drawMetrics;
       val coords1 = rectTriangle.getCoordinates(metrics.getDiameterHousesCircle());
       val coords2 = rectTriangle.getCoordinates(metrics.getDiameterSignsCircle());

@@ -7,17 +7,20 @@
 package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.xchg.domain.UserDefinedCategory;
-import lombok.NonNull;
 import lombok.val;
 import org.dizitart.no2.Document;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class UserDefinedCategoryObjectDocumentMapper {
 
-   public Document object2Document(@NonNull final UserDefinedCategory category) {
+   public Document object2Document(final UserDefinedCategory category) {
+      checkNotNull(category);
       return Document.createDocument("_id", category.getId()).put("text", category.getText());
    }
 
-   public UserDefinedCategory document2Object(@NonNull final Document document) {
+   public UserDefinedCategory document2Object(final Document document) {
+      checkNotNull(document);
       val id = (long) document.get("_id");
       val text = (String) document.get("text");
       return new UserDefinedCategory(id, text);

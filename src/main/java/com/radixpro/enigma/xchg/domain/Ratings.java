@@ -10,11 +10,12 @@ import com.radixpro.enigma.shared.Rosetta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Enuim with ratings for the reliability of the time for a chart, as define buy Louise Rodden.
@@ -61,7 +62,8 @@ public enum Ratings implements Serializable {
     * @param ratingName The anme for the rating.
     * @return The resulting rating.
     */
-   public Ratings ratingForName(@NonNull final String ratingName) {
+   public Ratings ratingForName(final String ratingName) {
+      checkNotNull(ratingName);
       final Rosetta rosetta = Rosetta.getRosetta();
       for (Ratings rating : Ratings.values()) {
          if (rosetta.getText(rating.nameForRB).equals(ratingName)) {

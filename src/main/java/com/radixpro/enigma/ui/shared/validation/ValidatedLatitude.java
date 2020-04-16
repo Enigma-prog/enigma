@@ -7,7 +7,6 @@
 package com.radixpro.enigma.ui.shared.validation;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
 
 /**
@@ -27,7 +26,7 @@ public class ValidatedLatitude extends ValidatedInput {
     *
     * @param input The latitude to validate.
     */
-   public ValidatedLatitude(@NonNull final String input) {
+   public ValidatedLatitude(final String input) {
       super(input);
       validate();
    }

@@ -10,8 +10,9 @@ import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.xchg.domain.FullDateTime;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.val;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Presents date and time as Strings.
@@ -22,12 +23,13 @@ public class PresentableDateTime {
    private final String date;
    private final String time;
 
-   public PresentableDateTime(@NonNull final FullDateTime dateTime) {
+   public PresentableDateTime(final FullDateTime dateTime) {
+      checkNotNull(dateTime);
       date = constructDateText(dateTime.getSimpleDateTime().getDate());
       time = constructTimeText(dateTime);
    }
 
-   private String constructDateText(@NonNull final SimpleDate date) {
+   private String constructDateText(final SimpleDate date) {
       val year = date.getYear();
       val month = date.getMonth();
       val day = date.getDay();
@@ -35,7 +37,7 @@ public class PresentableDateTime {
       return String.format("%04d/%02d/%02d %s", year, month, day, cal);
    }
 
-   private String constructTimeText(@NonNull final FullDateTime fullDateTime) {
+   private String constructTimeText(final FullDateTime fullDateTime) {
       val hour = fullDateTime.getSimpleDateTime().getTime().getHour();
       val minute = fullDateTime.getSimpleDateTime().getTime().getMinute();
       val second = fullDateTime.getSimpleDateTime().getTime().getSecond();
