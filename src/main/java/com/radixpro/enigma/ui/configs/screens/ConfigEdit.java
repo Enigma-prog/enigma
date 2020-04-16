@@ -86,7 +86,7 @@ public class ConfigEdit {
    }
 
    private Pane createPaneSubTitle() {
-      final Pane pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "subtitlepane");
+      final Pane pane = PaneFactory.createPane(SUBTITLE_HEIGHT, WIDTH, "subtitlepane");
       pane.getChildren().add(LabelFactory.createLabel(config.getName(), "subtitletext", WIDTH));
       return pane;
    }
@@ -158,8 +158,6 @@ public class ConfigEdit {
    private ChoiceBox createAyanamshaSelection() {
       ChoiceBox<String> choiceBox = new ChoiceBox(Ayanamshas.NONE.getObservableList());
       choiceBox.setPrefWidth(DATA_INPUT_WIDTH);
-//      ObservableList<String> ayanamshas = Ayanamshas.NONE.getObservableList();
-//      choiceBox.setItems(ayanamshas);
       choiceBox.getSelectionModel().select(config.getAstronConfiguration().getAyanamsha().getId());
       return choiceBox;
    }

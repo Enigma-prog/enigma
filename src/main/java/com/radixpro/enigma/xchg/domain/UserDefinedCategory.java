@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
 import java.io.Serializable;
@@ -14,7 +13,6 @@ import java.io.Serializable;
 /**
  * Persistable category for a chart, the content is defined by the user.
  */
-@ToString
 public class UserDefinedCategory implements Serializable {
 
    @Id
@@ -38,5 +36,10 @@ public class UserDefinedCategory implements Serializable {
 
    public String getText() {
       return text;
+   }
+
+   @Override
+   public String toString() {
+      return String.format("UserDefinedCategory(id=%d, text=%s)", id, text);
    }
 }

@@ -8,14 +8,12 @@ package com.radixpro.enigma.ui.shared.presentationmodel;
 
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.xchg.domain.config.Configuration;
-import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper for Configuration; enables the use in a tableview.
  */
-@Getter
 public class PresentableConfiguration {
 
    private final long configId;
@@ -39,4 +37,23 @@ public class PresentableConfiguration {
       originalConfig = configuration;
    }
 
+   public long getConfigId() {
+      return configId;
+   }
+
+   public String getConfigName() {
+      return configName;
+   }
+
+   public String getConfigDescription() {
+      return configDescription;
+   }
+
+   public String getStandardIndication() {
+      return standardIndication;
+   }
+
+   public Configuration getOriginalConfig() {
+      return originalConfig;
+   }
 }

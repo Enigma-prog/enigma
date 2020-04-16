@@ -9,17 +9,15 @@ package com.radixpro.enigma.ui.shared.presentationmodel;
 import com.radixpro.enigma.be.astron.assist.HousePosition;
 import com.radixpro.enigma.ui.shared.glyphs.Sign2GlyphMapper;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongAndGlyphValue;
+import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongWithGlyph;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlainDmsValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
-import lombok.Getter;
-import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around HousePosition; enables the use in a tableview.
  */
-@Getter
 public class PresentableMundanePosition {
 
    private final String name;
@@ -42,7 +40,7 @@ public class PresentableMundanePosition {
    }
 
    private void createMundanePosition(final String name, final HousePosition position) {
-      val longWithGlyph = new LongAndGlyphValue(position.getLongitude()).getLongWithGlyph();
+      LongWithGlyph longWithGlyph = new LongAndGlyphValue(position.getLongitude()).getLongWithGlyph();
       formattedLongitude = longWithGlyph.getPosition();
       signGlyph = new Sign2GlyphMapper().getGlyph(longWithGlyph.getSignIndex());
       formattedRa = new PlainDmsValue(position.getEquatorialPosition().getRightAscension()).getFormattedPosition();
@@ -51,4 +49,31 @@ public class PresentableMundanePosition {
       formattedAltitude = new PlusMinusValue(position.getHorizontalPosition().getAltitude()).getFormattedPosition();
    }
 
+   public String getName() {
+      return name;
+   }
+
+   public String getFormattedLongitude() {
+      return formattedLongitude;
+   }
+
+   public String getFormattedRa() {
+      return formattedRa;
+   }
+
+   public String getFormattedDeclination() {
+      return formattedDeclination;
+   }
+
+   public String getFormattedAzimuth() {
+      return formattedAzimuth;
+   }
+
+   public String getFormattedAltitude() {
+      return formattedAltitude;
+   }
+
+   public String getSignGlyph() {
+      return signGlyph;
+   }
 }

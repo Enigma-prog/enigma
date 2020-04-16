@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.val;
-
 /**
  * Defines a rectangular triangle and some basic math to calculate the not yet defined angle.
  * Calculates a Point with absolute coordinates, referring to the top-left position of the canvas.
@@ -39,8 +37,8 @@ public class RectTriangleAbsolute {
    }
 
    private double[] defineCoordinates(final double hypothenusa) {
-      val ySize = corrForXY + Math.sin(Math.toRadians(angle)) * hypothenusa;
-      val xSize = corrForXY + Math.cos(Math.toRadians(angle)) * hypothenusa;
+      double ySize = corrForXY + Math.sin(Math.toRadians(angle)) * hypothenusa;
+      double xSize = corrForXY + Math.cos(Math.toRadians(angle)) * hypothenusa;
       return new double[]{xSize, ySize};
    }
 

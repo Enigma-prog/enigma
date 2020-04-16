@@ -8,7 +8,6 @@ package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.api.DateTimeApi;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
-import lombok.val;
 
 /**
  * Validation for a date. A date is valid if it does exist, taking leap-years and different valendars into account.
@@ -36,7 +35,7 @@ public class ValidatedDate extends ValidatedInput {
       int month;
       int year;
       boolean gregorian;
-      val values = input.split(DATE_SEPARATOR);
+      String[] values = input.split(DATE_SEPARATOR);
       if (values.length != 4) {
          validated = false;
       } else {

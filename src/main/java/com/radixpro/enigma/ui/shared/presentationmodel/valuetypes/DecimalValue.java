@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel.valuetypes;
 
-import lombok.val;
-
 /**
  * Creates a formatted string for a double value.
  * The string represents a decimal value and uses two positions for the integer part, if necessaryn prefixed with spaces.
@@ -22,12 +20,12 @@ public class DecimalValue extends AbstractValueType {
 
    @Override
    protected void performFormatting() {
-      val absValue = Math.abs(value);
-      val degHour = (int) absValue;
-      val fraction = (int) ((absValue - degHour) * 100000000);
+      double absValue = Math.abs(value);
+      int degHour = (int) absValue;
+      int fraction = (int) ((absValue - degHour) * 100000000);
       String content = "%2d" + "." + "%08d";
       String tempResult = String.format(content, degHour, fraction);
-      val sign = (value >= 0.0 ? " " : "-");
+      String sign = (value >= 0.0 ? " " : "-");
       if (tempResult.startsWith(" ")) {
          formattedPosition = " " + sign + tempResult.substring(1);
       } else {

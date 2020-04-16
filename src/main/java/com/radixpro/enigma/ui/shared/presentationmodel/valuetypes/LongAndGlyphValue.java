@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel.valuetypes;
 
-import lombok.Getter;
-
 /**
  * Creates a formatted string and an index for an ecliptical position.
  * The string represents a decimal value and uses two positions for the integer part, if necessaryn prefixed with spaces.
@@ -15,7 +13,6 @@ import lombok.Getter;
  */
 public class LongAndGlyphValue extends AbstractSexagValue {
 
-   @Getter
    private LongWithGlyph longWithGlyph;
 
    public LongAndGlyphValue(final double value) {
@@ -40,4 +37,7 @@ public class LongAndGlyphValue extends AbstractSexagValue {
       return (value - 30 * (signIndex - 1));
    }
 
+   public LongWithGlyph getLongWithGlyph() {
+      return longWithGlyph;
+   }
 }

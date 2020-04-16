@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel.valuetypes;
 
-import lombok.Getter;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * DTO that holds a formatted String with degrees, minutes and seconds, and the index of the zodiacal sign.
  */
-@Getter
 public class LongWithGlyph {
 
    private final String position;
@@ -24,4 +21,11 @@ public class LongWithGlyph {
       this.signIndex = signIndex;
    }
 
+   public String getPosition() {
+      return position;
+   }
+
+   public int getSignIndex() {
+      return signIndex;
+   }
 }

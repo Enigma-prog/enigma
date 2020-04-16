@@ -7,8 +7,6 @@
 package com.radixpro.enigma.xchg.domain.config;
 
 import com.radixpro.enigma.xchg.domain.Aspects;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -17,8 +15,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Configuration info for a specific aspect.
  */
-@Getter
-@Setter
 public class ConfiguredAspect implements Serializable {
 
    private final boolean showInDrawing;
@@ -34,4 +30,19 @@ public class ConfiguredAspect implements Serializable {
       this.showInDrawing = showInDrawing;
    }
 
+   public boolean isShowInDrawing() {
+      return showInDrawing;
+   }
+
+   public Aspects getAspect() {
+      return aspect;
+   }
+
+   public int getOrbPercentage() {
+      return orbPercentage;
+   }
+
+   public String getGlyph() {
+      return glyph;
+   }
 }

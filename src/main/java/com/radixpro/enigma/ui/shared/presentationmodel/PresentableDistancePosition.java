@@ -10,14 +10,12 @@ import com.radixpro.enigma.ui.shared.glyphs.CelObject2GlyphMapper;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.DecimalValue;
 import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition for the distance values; enables the use in a tableview.
  */
-@Getter
 public class PresentableDistancePosition {
 
    private String formattedDistance;
@@ -36,5 +34,17 @@ public class PresentableDistancePosition {
       formattedDistance = new DecimalValue(celObjectSinglePosition.getDistancePosition()).getFormattedPosition();
       formattedDistSpeed = new DecimalValue(celObjectSinglePosition.getDistanceSpeed()).getFormattedPosition();
       celBodyGlyph = new CelObject2GlyphMapper().getGlyph(celestialObject);
+   }
+
+   public String getFormattedDistance() {
+      return formattedDistance;
+   }
+
+   public String getFormattedDistSpeed() {
+      return formattedDistSpeed;
+   }
+
+   public String getCelBodyGlyph() {
+      return celBodyGlyph;
    }
 }

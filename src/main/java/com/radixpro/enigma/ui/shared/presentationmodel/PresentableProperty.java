@@ -6,14 +6,11 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel;
 
-import lombok.Getter;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Enables the use of a property and its value in a TableView.
  */
-@Getter
 public class PresentableProperty {
 
    private final String name;
@@ -28,5 +25,13 @@ public class PresentableProperty {
    public PresentableProperty(final String name, final String value) {
       this.name = checkNotNull(name);
       this.value = checkNotNull(value);
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public String getValue() {
+      return value;
    }
 }

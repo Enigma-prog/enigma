@@ -11,14 +11,12 @@ import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlainDmsValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
 import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition for the equatorial values; enables the use in a tableview.
  */
-@Getter
 public class PresentableEquatorialPosition {
 
    private String formattedRightAscension;
@@ -45,4 +43,23 @@ public class PresentableEquatorialPosition {
       celBodyGlyph = new CelObject2GlyphMapper().getGlyph(celestialObject);
    }
 
+   public String getFormattedRightAscension() {
+      return formattedRightAscension;
+   }
+
+   public String getFormattedRaSpeed() {
+      return formattedRaSpeed;
+   }
+
+   public String getFormattedDeclination() {
+      return formattedDeclination;
+   }
+
+   public String getFormattedDeclSpeed() {
+      return formattedDeclSpeed;
+   }
+
+   public String getCelBodyGlyph() {
+      return celBodyGlyph;
+   }
 }

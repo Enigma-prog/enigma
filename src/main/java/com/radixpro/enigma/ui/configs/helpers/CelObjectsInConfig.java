@@ -10,7 +10,6 @@ import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableProperty;
 import com.radixpro.enigma.xchg.domain.CelObjectCategory;
 import com.radixpro.enigma.xchg.domain.config.ConfiguredCelObject;
-import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -44,13 +43,13 @@ public class CelObjectsInConfig {
    public List<PresentableProperty> constructProperties(final List<ConfiguredCelObject> celObjects) {
       checkNotNull(celObjects);
       List<PresentableProperty> presentableProperties = new ArrayList<>();
-      val classicCelObjectsAsText = new StringBuilder();
-      val modernCelObjectsAsText = new StringBuilder();
-      val extraplutCelObjectsAsText = new StringBuilder();
-      val asteroidCelObjectsAsText = new StringBuilder();
-      val centaurCelObjectsAsText = new StringBuilder();
-      val intersectionsCelObjectsAsText = new StringBuilder();
-      val hypothetsCelObjectsAsText = new StringBuilder();
+      StringBuilder classicCelObjectsAsText = new StringBuilder();
+      StringBuilder modernCelObjectsAsText = new StringBuilder();
+      StringBuilder extraplutCelObjectsAsText = new StringBuilder();
+      StringBuilder asteroidCelObjectsAsText = new StringBuilder();
+      StringBuilder centaurCelObjectsAsText = new StringBuilder();
+      StringBuilder intersectionsCelObjectsAsText = new StringBuilder();
+      StringBuilder hypothetsCelObjectsAsText = new StringBuilder();
       int category;
       String nameText;
       for (ConfiguredCelObject celObject : celObjects) {

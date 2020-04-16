@@ -6,6 +6,7 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
+import com.radixpro.enigma.be.astron.assist.HousePosition;
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.shared.Range;
 import com.radixpro.enigma.ui.shared.factories.PlotCoordinatesFactory;
@@ -14,7 +15,6 @@ import com.radixpro.enigma.xchg.api.CalculatedFullChart;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import lombok.val;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,11 +179,11 @@ public class RadixWheel {
       double angle;
       double[] positions;
       double asc = cfChart.getHouseValues().getAscendant().getLongitude();
-      val cusps = cfChart.getHouseValues().getCusps();
+      List<HousePosition> cusps = cfChart.getHouseValues().getCusps();
       CuspLinePlotCoordinates cuspLine;
       for (int i = 1; i <= 12; i++) {
          if (!quadrantSystem || (i != 1 && i != 4 && i != 7 && i != 10)) {
-            val longitude = cusps.get(i).getLongitude();
+            double longitude = cusps.get(i).getLongitude();
             angle = asc - longitude;
             cuspLine = PlotCoordinatesFactory.createCuspLinePlotCoordinates(angle, metrics);
             positions = cuspLine.defineCoordinates(angle, metrics);
@@ -194,8 +194,8 @@ public class RadixWheel {
 
    private void drawCornerPositions() {
       preparePositonTexts();
-      val angleMc = cfChart.getHouseValues().getAscendant().getLongitude() - cfChart.getHouseValues().getMc().getLongitude();
-      val cornerPositions = new CornerPositions(metrics);
+      double angleMc = cfChart.getHouseValues().getAscendant().getLongitude() - cfChart.getHouseValues().getMc().getLongitude();
+      CornerPositions cornerPositions = new CornerPositions(metrics);
       double[] coordinates = cornerPositions.defineCoordinates(angleMc);
       String posText = new SexagesimalFormatter(2).formatDm(cfChart.getHouseValues().getAscendant().getLongitude() % 30.0);
       gc.fillText(posText, coordinates[0], coordinates[1]);
@@ -207,9 +207,9 @@ public class RadixWheel {
 
    private void drawCuspPositions() {
       preparePositonTexts();
-      val quadrantSystem = cfChart.getSettings().getHouseSystem().isQuadrantSystem();
-      val asc = cfChart.getHouseValues().getAscendant().getLongitude();
-      val cusps = cfChart.getHouseValues().getCusps();
+      boolean quadrantSystem = cfChart.getSettings().getHouseSystem().isQuadrantSystem();
+      double asc = cfChart.getHouseValues().getAscendant().getLongitude();
+      List<HousePosition> cusps = cfChart.getHouseValues().getCusps();
       CuspTextPlotCoordinates cuspText;
       double[] coordinates;
       double angle;
@@ -218,7 +218,7 @@ public class RadixWheel {
             angle = new Range(0.0, 360.0).checkValue(asc - cusps.get(i).getLongitude());
             cuspText = PlotCoordinatesFactory.createCuspTextPlotCoordinates(angle + 180.0, metrics);
             coordinates = cuspText.defineCoordinates(angle, metrics);
-            val posText = new SexagesimalFormatter(2).formatDm(cusps.get(i).getLongitude() % 30.0);
+            String posText = new SexagesimalFormatter(2).formatDm(cusps.get(i).getLongitude() % 30.0);
             gc.fillText(posText, coordinates[0], coordinates[1]);
          }
       }
@@ -239,8 +239,8 @@ public class RadixWheel {
 
    private void drawCelObjects() {
       prepareCelObjects();
-      val bodies = cfChart.getBodies();
-      val ascendant = cfChart.getHouseValues().getAscendant().getLongitude();
+      List<CelObjectPosition> bodies = cfChart.getBodies();
+      double ascendant = cfChart.getHouseValues().getAscendant().getLongitude();
       double longitude;
       double angle;
       double angle1;
@@ -269,11 +269,11 @@ public class RadixWheel {
             plotBodyInfos.get(i).setCorrectedAngle(angle2 + minDist);
          }
       }
-      val celObject = new CelObject(metrics);
+      CelObject celObject = new CelObject(metrics);
       for (PlotBodyInfo bodyInfo : plotBodyInfos) {
          gc.setFont(new Font(GLYPH_FONTNAME, metrics.getSizeGlyphFont()));  // TODO add to prepare function
-         val bodyIndex = bodyInfo.getCelObject().getId();
-         val coordinates = celObject.defineCoordinates(bodyInfo.getCorrectedAngle());
+         int bodyIndex = bodyInfo.getCelObject().getId();
+         double[] coordinates = celObject.defineCoordinates(bodyInfo.getCorrectedAngle());
          gc.fillText(new GlyphForCelObject(bodyIndex).getGlyph(), coordinates[0], coordinates[1]);
          drawConnectLines(bodyInfo);
          drawCelObjectPosition(bodyInfo);
@@ -283,12 +283,12 @@ public class RadixWheel {
    private void drawConnectLines(final PlotBodyInfo plotBodyInfo) {
       checkNotNull(plotBodyInfo);
       prepareConnectLines();
-      val hypothenusa1 = metrics.getDiameterCelBodiesMedium() - metrics.getDistanceConnectLines();
-      val hypothenusa2 = metrics.getSizeHousesCircle() / 2;
-      val hypothenusa3 = metrics.getDiameterCelBodiesMedium() + metrics.getDistanceConnectLines();
-      val hypothenusa4 = metrics.getSizeSignsCircle() / 2;
-      var startPoint = new RectTriangle(hypothenusa1, plotBodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();
-      var endPoint = new RectTriangle(hypothenusa2, plotBodyInfo.getAngleFromAsc() + 180.0).getPointAtEndOfHyp();
+      double hypothenusa1 = metrics.getDiameterCelBodiesMedium() - metrics.getDistanceConnectLines();
+      double hypothenusa2 = metrics.getSizeHousesCircle() / 2;
+      double hypothenusa3 = metrics.getDiameterCelBodiesMedium() + metrics.getDistanceConnectLines();
+      double hypothenusa4 = metrics.getSizeSignsCircle() / 2;
+      Point startPoint = new RectTriangle(hypothenusa1, plotBodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();
+      Point endPoint = new RectTriangle(hypothenusa2, plotBodyInfo.getAngleFromAsc() + 180.0).getPointAtEndOfHyp();
       gc.strokeLine(startPoint.getXPos() + corrForXY, startPoint.getYPos() + corrForXY,
             endPoint.getXPos() + corrForXY, endPoint.getYPos() + corrForXY);
       startPoint = new RectTriangle(hypothenusa3, plotBodyInfo.getCorrectedAngle() + 180.0).getPointAtEndOfHyp();

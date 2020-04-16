@@ -9,18 +9,16 @@ package com.radixpro.enigma.ui.shared.presentationmodel;
 import com.radixpro.enigma.ui.shared.glyphs.CelObject2GlyphMapper;
 import com.radixpro.enigma.ui.shared.glyphs.Sign2GlyphMapper;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongAndGlyphValue;
+import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongWithGlyph;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
 import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import lombok.Getter;
-import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition for the ecliptic values; enables the use in a tableview.
  */
-@Getter
 public class PresentableEclipticPosition {
 
    private String formattedLongitude;
@@ -40,8 +38,8 @@ public class PresentableEclipticPosition {
 
    private void createPresentablePosition(final CelestialObjects celestialObject,
                                           final CelObjectSinglePosition celObjectSinglePosition) {
-      val mainPosition = celObjectSinglePosition.getMainPosition();
-      val longWithGlyph = new LongAndGlyphValue(mainPosition).getLongWithGlyph();
+      double mainPosition = celObjectSinglePosition.getMainPosition();
+      LongWithGlyph longWithGlyph = new LongAndGlyphValue(mainPosition).getLongWithGlyph();
       formattedLongitude = longWithGlyph.getPosition();
       signGlyph = new Sign2GlyphMapper().getGlyph(longWithGlyph.getSignIndex());
       formattedLongSpeed = new PlusMinusValue(celObjectSinglePosition.getMainSpeed()).getFormattedPosition();
@@ -50,5 +48,27 @@ public class PresentableEclipticPosition {
       celBodyGlyph = new CelObject2GlyphMapper().getGlyph(celestialObject);
    }
 
+   public String getFormattedLongitude() {
+      return formattedLongitude;
+   }
 
+   public String getFormattedLongSpeed() {
+      return formattedLongSpeed;
+   }
+
+   public String getFormattedLatitude() {
+      return formattedLatitude;
+   }
+
+   public String getFormattedLatSpeed() {
+      return formattedLatSpeed;
+   }
+
+   public String getSignGlyph() {
+      return signGlyph;
+   }
+
+   public String getCelBodyGlyph() {
+      return celBodyGlyph;
+   }
 }

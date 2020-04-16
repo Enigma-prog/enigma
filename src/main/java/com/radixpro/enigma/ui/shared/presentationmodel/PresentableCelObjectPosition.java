@@ -10,19 +10,14 @@ import com.radixpro.enigma.be.astron.assist.HorizontalPosition;
 import com.radixpro.enigma.be.astron.main.CelObjectPosition;
 import com.radixpro.enigma.ui.shared.glyphs.CelObject2GlyphMapper;
 import com.radixpro.enigma.ui.shared.glyphs.Sign2GlyphMapper;
-import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.DecimalValue;
-import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.LongAndGlyphValue;
-import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlainDmsValue;
-import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
-import lombok.Getter;
-import lombok.val;
+import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.*;
+import com.radixpro.enigma.xchg.domain.CelObjectSinglePosition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around CelObjectSinglePosition; enables the use in a tableview.
  */
-@Getter
 public class PresentableCelObjectPosition {
 
    private String formattedLongitude;
@@ -56,10 +51,11 @@ public class PresentableCelObjectPosition {
                                           final HorizontalPosition horPos) {
       checkNotNull(celObjectPos);
       checkNotNull(horPos);
-      val eclPos = celObjectPos.getEclipticalPosition();
-      val equPos = celObjectPos.getEquatorialPosition();
-      val mainEclPos = eclPos.getMainPosition();
-      val longWithGlyph = new LongAndGlyphValue(mainEclPos).getLongWithGlyph();
+
+      CelObjectSinglePosition eclPos = celObjectPos.getEclipticalPosition();
+      CelObjectSinglePosition equPos = celObjectPos.getEquatorialPosition();
+      double mainEclPos = eclPos.getMainPosition();
+      LongWithGlyph longWithGlyph = new LongAndGlyphValue(mainEclPos).getLongWithGlyph();
       formattedLongitude = longWithGlyph.getPosition();
       signGlyph = new Sign2GlyphMapper().getGlyph(longWithGlyph.getSignIndex());
       celBodyGlyph = new CelObject2GlyphMapper().getGlyph(celObjectPos.getCelestialBody());
@@ -76,4 +72,59 @@ public class PresentableCelObjectPosition {
       formattedDistSpeed = new DecimalValue(eclPos.getDistanceSpeed()).getFormattedPosition();
    }
 
+   public String getFormattedLongitude() {
+      return formattedLongitude;
+   }
+
+   public String getFormattedLongSpeed() {
+      return formattedLongSpeed;
+   }
+
+   public String getFormattedLatitude() {
+      return formattedLatitude;
+   }
+
+   public String getFormattedLatSpeed() {
+      return formattedLatSpeed;
+   }
+
+   public String getSignGlyph() {
+      return signGlyph;
+   }
+
+   public String getCelBodyGlyph() {
+      return celBodyGlyph;
+   }
+
+   public String getFormattedRightAscension() {
+      return formattedRightAscension;
+   }
+
+   public String getFormattedRaSpeed() {
+      return formattedRaSpeed;
+   }
+
+   public String getFormattedDeclination() {
+      return formattedDeclination;
+   }
+
+   public String getFormattedDeclSpeed() {
+      return formattedDeclSpeed;
+   }
+
+   public String getFormattedAzimuth() {
+      return formattedAzimuth;
+   }
+
+   public String getFormattedAltitude() {
+      return formattedAltitude;
+   }
+
+   public String getFormattedDistance() {
+      return formattedDistance;
+   }
+
+   public String getFormattedDistSpeed() {
+      return formattedDistSpeed;
+   }
 }

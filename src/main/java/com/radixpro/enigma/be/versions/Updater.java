@@ -11,7 +11,6 @@ import com.radixpro.enigma.xchg.api.PersistedConfigurationApi;
 import com.radixpro.enigma.xchg.api.PersistedPropertyApi;
 import com.radixpro.enigma.xchg.domain.*;
 import com.radixpro.enigma.xchg.domain.config.*;
-import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class Updater {
       propApi.insert(new Property(3L, "config", "1"));
       LOG.info("Inserted properties for 2020.1");
 
-      val api = new PersistedConfigurationApi();
+      PersistedConfigurationApi api = new PersistedConfigurationApi();
       var celObjects = createCelObjects(StandardConfigurations.WESTERN_STANDARD);
       var astronConfiguration = new AstronConfiguration(HouseSystems.PLACIDUS, Ayanamshas.NONE,
             EclipticProjections.TROPICAL, ObserverPositions.GEOCENTRIRC, celObjects);

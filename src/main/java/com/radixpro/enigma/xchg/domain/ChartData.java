@@ -6,12 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain;
 
-import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@ToString
 public class ChartData {
 
    @Id
@@ -43,4 +41,10 @@ public class ChartData {
    public ChartMetaData getChartMetaData() {
       return chartMetaData;
    }
+
+   @Override
+   public String toString() {
+      return String.format("ChartData(id=%d, fullDateTime=%s, location=%s, chartMetaData=%s)", id, fullDateTime, location, chartMetaData);
+   }
+
 }

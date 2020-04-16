@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.shared.validation;
 
-import lombok.val;
-
 /**
  * Validation for latitude. Latitude should be in the format h:m:s (degrees -89..+89, minutes 0..59, seconds 0..59).
  * Seconds are optional. Negative degrees indicate south latitude, positive degrees indicate north latitude.
@@ -31,7 +29,7 @@ public class ValidatedLatitude extends ValidatedInput {
 
    @Override
    protected void validate() {
-      val values = input.split(SEXAG_SEPARATOR);
+      String[] values = input.split(SEXAG_SEPARATOR);
       if (values.length == 2 || values.length == 3) {
          try {
             degrees = Integer.parseInt(values[0]);

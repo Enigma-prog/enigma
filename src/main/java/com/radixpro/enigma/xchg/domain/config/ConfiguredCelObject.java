@@ -7,8 +7,6 @@
 package com.radixpro.enigma.xchg.domain.config;
 
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -17,8 +15,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Configuration for a specific celestial object.
  */
-@Getter
-@Setter
 public class ConfiguredCelObject implements Serializable {
    private final CelestialObjects celObject;
    private final String glyph;
@@ -43,4 +39,19 @@ public class ConfiguredCelObject implements Serializable {
       this.showInDrawing = showInDrawing;
    }
 
+   public CelestialObjects getCelObject() {
+      return celObject;
+   }
+
+   public String getGlyph() {
+      return glyph;
+   }
+
+   public double getOrbPercentage() {
+      return orbPercentage;
+   }
+
+   public boolean isShowInDrawing() {
+      return showInDrawing;
+   }
 }

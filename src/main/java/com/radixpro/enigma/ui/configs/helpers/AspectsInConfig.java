@@ -10,7 +10,6 @@ import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.shared.presentationmodel.PresentableProperty;
 import com.radixpro.enigma.xchg.domain.AspectCategory;
 import com.radixpro.enigma.xchg.domain.config.ConfiguredAspect;
-import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -47,10 +46,10 @@ public class AspectsInConfig {
       List<PresentableProperty> presentableProperties = new ArrayList<>();
       AspectCategory category;
       String nameText;
-      val majorAspectsAsText = new StringBuilder();
-      val minorAspectsAsText = new StringBuilder();
-      val microAspectsAsText = new StringBuilder();
-      val declinationAspectsAsText = new StringBuilder();
+      StringBuilder majorAspectsAsText = new StringBuilder();
+      StringBuilder minorAspectsAsText = new StringBuilder();
+      StringBuilder microAspectsAsText = new StringBuilder();
+      StringBuilder declinationAspectsAsText = new StringBuilder();
       for (ConfiguredAspect aspect : aspects) {
          category = aspect.getAspect().getAspectCategory();
          nameText = rosetta.getText(aspect.getAspect().getFullRbId()) + " ";

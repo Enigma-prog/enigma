@@ -23,7 +23,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.val;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -70,7 +69,7 @@ public class ConfigDetails {
    }
 
    private VBox createVBox() {
-      val vBox = new VBox();
+      VBox vBox = new VBox();
       vBox.getStylesheets().add(STYLESHEET);
       vBox.setPrefWidth(WIDTH);
       vBox.setPrefHeight(HEIGHT);
@@ -84,19 +83,19 @@ public class ConfigDetails {
    }
 
    private Pane createPaneTitle() {
-      val pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "titlepane");
+      Pane pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "titlepane");
       pane.getChildren().add(LabelFactory.createLabel(rosetta.getText("ui.configs.overview.title"), "titletext", WIDTH));
       return pane;
    }
 
    private Pane createPaneSubTitle() {
-      val pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "subtitlepane");
+      Pane pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "subtitlepane");
       pane.getChildren().add(LabelFactory.createLabel(configName, "subtitletext", WIDTH));
       return pane;
    }
 
    private Pane createPaneData() {
-      val pane = PaneFactory.createPane(TV_HEIGHT, WIDTH);
+      Pane pane = PaneFactory.createPane(TV_HEIGHT, WIDTH);
       pane.getChildren().add(createTableView());
       return pane;
    }
@@ -106,13 +105,13 @@ public class ConfigDetails {
    }
 
    private Pane createPaneBtns() {
-      val pane = PaneFactory.createPane(BTN_PANE_HEIGHT, WIDTH);
+      Pane pane = PaneFactory.createPane(BTN_PANE_HEIGHT, WIDTH);
       pane.getChildren().add(createButtonBar());
       return pane;
    }
 
    private TableView<PresentableProperty> createTableView() {
-      val tableView = new TableView<PresentableProperty>();
+      TableView tableView = new TableView<PresentableProperty>();
       tableView.setPrefHeight(TV_HEIGHT);
       tableView.setPrefWidth(WIDTH);
       TableColumn propertyColumn = new TableColumn<PresentableProperty, String>("Property");
@@ -130,7 +129,7 @@ public class ConfigDetails {
 
 
    private ButtonBar createButtonBar() {
-      val buttonBar = new ButtonBar();
+      ButtonBar buttonBar = new ButtonBar();
       btnHelp = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.help"), false);
       btnExit = ButtonFactory.createButton(rosetta.getText("ui.shared.btn.exit"), false);
 

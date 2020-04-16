@@ -9,15 +9,12 @@ package com.radixpro.enigma.ui.shared.presentationmodel;
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.xchg.domain.FullDateTime;
 import com.radixpro.enigma.xchg.domain.SimpleDate;
-import lombok.Getter;
-import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Presents date and time as Strings.
  */
-@Getter
 public class PresentableDateTime {
 
    private final String date;
@@ -30,21 +27,28 @@ public class PresentableDateTime {
    }
 
    private String constructDateText(final SimpleDate date) {
-      val year = date.getYear();
-      val month = date.getMonth();
-      val day = date.getDay();
-      val cal = date.isGregorian() ? "G" : "J";
+      int year = date.getYear();
+      int month = date.getMonth();
+      int day = date.getDay();
+      String cal = date.isGregorian() ? "G" : "J";
       return String.format("%04d/%02d/%02d %s", year, month, day, cal);
    }
 
    private String constructTimeText(final FullDateTime fullDateTime) {
-      val hour = fullDateTime.getSimpleDateTime().getTime().getHour();
-      val minute = fullDateTime.getSimpleDateTime().getTime().getMinute();
-      val second = fullDateTime.getSimpleDateTime().getTime().getSecond();
-      val zoneTxt = Rosetta.getRosetta().getText(fullDateTime.getTimeZone().getNameForRB());
-      val dstKey = fullDateTime.isDst() ? "ui.shared.dst" : "ui.shared.nodst";
-      val dstTxt = Rosetta.getRosetta().getText(dstKey);
+      int hour = fullDateTime.getSimpleDateTime().getTime().getHour();
+      int minute = fullDateTime.getSimpleDateTime().getTime().getMinute();
+      int second = fullDateTime.getSimpleDateTime().getTime().getSecond();
+      String zoneTxt = Rosetta.getRosetta().getText(fullDateTime.getTimeZone().getNameForRB());
+      String dstKey = fullDateTime.isDst() ? "ui.shared.dst" : "ui.shared.nodst";
+      String dstTxt = Rosetta.getRosetta().getText(dstKey);
       return String.format("%02d:%02d:%02d %s %s", hour, minute, second, dstTxt, zoneTxt);
    }
 
+   public String getDate() {
+      return date;
+   }
+
+   public String getTime() {
+      return time;
+   }
 }

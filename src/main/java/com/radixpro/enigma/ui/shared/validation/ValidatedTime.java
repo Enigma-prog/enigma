@@ -7,7 +7,6 @@
 package com.radixpro.enigma.ui.shared.validation;
 
 import com.radixpro.enigma.xchg.domain.SimpleTime;
-import lombok.val;
 
 /**
  * Validation for time. Time should be in the format h:m:s (hours 0..23, minutes 0..59, seconds 0..59).
@@ -32,7 +31,7 @@ public class ValidatedTime extends ValidatedInput {
       int hour;
       int minute;
       int second;
-      val values = input.split(SEXAG_SEPARATOR);
+      String[] values = input.split(SEXAG_SEPARATOR);
       if (values.length == 2 || values.length == 3) {
          try {
             hour = Integer.parseInt(values[0]);

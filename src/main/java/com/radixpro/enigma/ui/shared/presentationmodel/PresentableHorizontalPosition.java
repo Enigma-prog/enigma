@@ -11,14 +11,12 @@ import com.radixpro.enigma.ui.shared.glyphs.CelObject2GlyphMapper;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlainDmsValue;
 import com.radixpro.enigma.ui.shared.presentationmodel.valuetypes.PlusMinusValue;
 import com.radixpro.enigma.xchg.domain.CelestialObjects;
-import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Wrapper around HorizontalPosition (azimuth and altitude); enables the use in a tableview.
  */
-@Getter
 public class PresentableHorizontalPosition {
 
    private String formattedAzimuth;
@@ -33,5 +31,17 @@ public class PresentableHorizontalPosition {
       formattedAzimuth = new PlainDmsValue(horizontalPosition.getAzimuth()).getFormattedPosition();
       formattedAltitude = new PlusMinusValue(horizontalPosition.getAltitude()).getFormattedPosition();
       celBodyGlyph = new CelObject2GlyphMapper().getGlyph(celObject);
+   }
+
+   public String getFormattedAzimuth() {
+      return formattedAzimuth;
+   }
+
+   public String getFormattedAltitude() {
+      return formattedAltitude;
+   }
+
+   public String getCelBodyGlyph() {
+      return celBodyGlyph;
    }
 }

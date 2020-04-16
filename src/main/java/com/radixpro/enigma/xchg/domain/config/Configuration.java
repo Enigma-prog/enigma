@@ -6,12 +6,10 @@
 
 package com.radixpro.enigma.xchg.domain.config;
 
-import lombok.ToString;
 import org.dizitart.no2.objects.Id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@ToString
 public class Configuration {
 
    @Id
@@ -79,5 +77,11 @@ public class Configuration {
 
    public void setDelinConfiguration(DelinConfiguration delinConfiguration) {
       this.delinConfiguration = delinConfiguration;
+   }
+
+   @Override
+   public String toString() {
+      return String.format("Configuration(id=%d, parentId=%d, name=%s, description=%s, astronConfiguration=%s, delinConfiguration=%s)",
+            id, parentId, name, description, astronConfiguration, delinConfiguration);
    }
 }

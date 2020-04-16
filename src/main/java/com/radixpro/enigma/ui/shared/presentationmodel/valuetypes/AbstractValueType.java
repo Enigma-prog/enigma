@@ -6,15 +6,13 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel.valuetypes;
 
-import lombok.Getter;
-
 /**
  * Parent for classes that construct a formatted value.
  */
 public abstract class AbstractValueType {
 
    protected final double value;
-   @Getter
+
    protected String formattedPosition;
 
    public AbstractValueType(final double value) {
@@ -23,4 +21,11 @@ public abstract class AbstractValueType {
 
    protected abstract void performFormatting();
 
+   public double getValue() {
+      return value;
+   }
+
+   public String getFormattedPosition() {
+      return formattedPosition;
+   }
 }

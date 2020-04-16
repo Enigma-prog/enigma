@@ -50,4 +50,9 @@ public class ChartDataTest {
    public void getChartMetaData() {
       assertEquals(chartMetaDataMock, chartData.getChartMetaData());
    }
+
+   @Test
+   public void testToString() {
+      assertEquals("ChartData(id=123, fullDateTime=fullDateTimeMock, location=locationMock, chartMetaData=chartMetaDataMock)", chartData.toString());
+   }
 }

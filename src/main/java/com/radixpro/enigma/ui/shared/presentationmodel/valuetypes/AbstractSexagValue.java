@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.shared.presentationmodel.valuetypes;
 
-import lombok.val;
-
 import static com.radixpro.enigma.shared.EnigmaDictionary.*;
 
 /**
@@ -25,11 +23,11 @@ public abstract class AbstractSexagValue extends AbstractValueType {
 
    protected String performSexagFormatting(final double workValue) {
       double posValue = Math.abs(workValue);
-      val degHour = (int) posValue;
-      val fraction = posValue - degHour;
-      val fractionalMinute = fraction * 60.0;
-      val minute = (int) fractionalMinute;
-      val second = (int) ((fractionalMinute - minute) * 60.0);
+      int degHour = (int) posValue;
+      double fraction = posValue - degHour;
+      double fractionalMinute = fraction * 60.0;
+      int minute = (int) fractionalMinute;
+      int second = (int) ((fractionalMinute - minute) * 60.0);
       String degHourFormat;
       degHourFormat = lengthOfIntegerPart == 2 ? "%2d" : "%3d";
       String content = degHourFormat + DEGREESIGN + "%02d" + MINUTESIGN + "%02d" + SECONDSIGN;

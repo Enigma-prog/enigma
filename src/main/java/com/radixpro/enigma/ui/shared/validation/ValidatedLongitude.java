@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.shared.validation;
 
-import lombok.val;
-
 /**
  * Validation for longitude. Longitude should be in the format h:m:s (degrees -180..+180, minutes 0..59, seconds 0..59).
  * Seconds are optional. Negative degrees indicate west longitude, positive degrees indicate east longitude.
@@ -31,7 +29,7 @@ public class ValidatedLongitude extends ValidatedInput {
 
    @Override
    protected void validate() {
-      val values = input.split(SEXAG_SEPARATOR);
+      String[] values = input.split(SEXAG_SEPARATOR);
       if (values.length == 2 || values.length == 3) {
          try {
             degrees = Integer.parseInt(values[0]);

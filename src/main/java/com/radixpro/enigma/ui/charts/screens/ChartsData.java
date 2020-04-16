@@ -19,7 +19,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lombok.val;
 
 import java.util.List;
 
@@ -98,7 +97,7 @@ public class ChartsData {
    }
 
    public void populate() {
-      val titlePrefix = Rosetta.getRosetta().getText("ui.charts.data.pagetitleprefix");
+      String titlePrefix = Rosetta.getRosetta().getText("ui.charts.data.pagetitleprefix");
       lblTitle.setText(titlePrefix + " " + "Jan");
       // add name and other metadata to FullChart and use correct name
       lblLocName.setText(calculatedFullChart.getLocation().getName());
@@ -118,7 +117,7 @@ public class ChartsData {
          celObject = celObjectPosition.getCelestialBody();
 
 //         val presEclipticPos = new PresentableEclipticPosition(celObject, celObjectPosition.getEclipticalPosition());
-         val presPos = new PresentableCelObjectPosition(celObjectPosition, celObjectPosition.getHorizontalPosition());   // TODO should be one parameter
+         PresentableCelObjectPosition presPos = new PresentableCelObjectPosition(celObjectPosition, celObjectPosition.getHorizontalPosition());   // TODO should be one parameter
          tvEclColBodyGlyph.setCellValueFactory(new PropertyValueFactory<>("celBodyGlyph"));
          tvEclColLongitude.setCellValueFactory(new PropertyValueFactory<>("formattedLongitude"));
          tvEclColSignGlyph.setCellValueFactory(new PropertyValueFactory<>("signGlyph"));
@@ -169,7 +168,7 @@ public class ChartsData {
 //         tvDistanceData.getItems().add(presDistancePos);
 //      }
 
-      val rosetta = Rosetta.getRosetta();
+      Rosetta rosetta = Rosetta.getRosetta();
       handlePresMundPos(rosetta.getText("ui.shared.mc"), calculatedFullChart.getHouseValues().getMc());
       handlePresMundPos(rosetta.getText("ui.shared.asc"), calculatedFullChart.getHouseValues().getAscendant());
       final List<HousePosition> cusps = calculatedFullChart.getHouseValues().getCusps();
@@ -185,7 +184,7 @@ public class ChartsData {
    private void handlePresMundPos(final String name, final HousePosition pos) {
       checkNotNull(name);
       checkNotNull(pos);
-      val presMundPos = new PresentableMundanePosition(name, pos);
+      PresentableMundanePosition presMundPos = new PresentableMundanePosition(name, pos);
       tvMundColName.setCellValueFactory(new PropertyValueFactory<>("name"));
       tvMundColLongitude.setCellValueFactory(new PropertyValueFactory<>("formattedLongitude"));
       tvMundColSignGlyph.setCellValueFactory(new PropertyValueFactory<>("signGlyph"));

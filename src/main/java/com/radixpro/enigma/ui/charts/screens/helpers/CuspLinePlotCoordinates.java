@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.val;
 import org.apache.commons.lang3.ArrayUtils;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -39,9 +38,9 @@ public class CuspLinePlotCoordinates implements PlotCoordinates {
    @Override
    public double[] defineCoordinates(final double angle, final DrawMetrics drawMetrics) {
       checkNotNull(drawMetrics);
-      val metrics = (ChartDrawMetrics) drawMetrics;
-      val coords1 = rectTriangle.getCoordinates(metrics.getDiameterHousesCircle());
-      val coords2 = rectTriangle.getCoordinates(metrics.getDiameterSignsCircle());
+      ChartDrawMetrics metrics = (ChartDrawMetrics) drawMetrics;
+      double[] coords1 = rectTriangle.getCoordinates(metrics.getDiameterHousesCircle());
+      double[] coords2 = rectTriangle.getCoordinates(metrics.getDiameterSignsCircle());
       return ArrayUtils.addAll(coords1, coords2);
    }
 

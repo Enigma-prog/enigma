@@ -7,7 +7,6 @@
 package com.radixpro.enigma.be.persistency.mappers;
 
 import com.radixpro.enigma.shared.Property;
-import lombok.val;
 import org.dizitart.no2.Document;
 
 import java.util.Objects;
@@ -23,9 +22,9 @@ public class PropertyDocumentMapper {
 
    public Property document2Object(final Document document) {
       checkNotNull(document);
-      val id = (Long) document.get("_id");
-      val key = (String) document.get("key");
-      val value = (String) document.get("value");
+      long id = (Long) document.get("_id");
+      String key = (String) document.get("key");
+      String value = (String) document.get("value");
       return new Property(id, key, value);
    }
 

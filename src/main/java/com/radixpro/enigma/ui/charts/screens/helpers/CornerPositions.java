@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.val;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -22,7 +20,7 @@ public class CornerPositions {
    }
 
    public double[] defineCoordinates(final double angleMc) {
-      val hypothenusa = metrics.getDiameterOuterCircle() + metrics.getOffsetOuterCircle() / 2.0;
+      double hypothenusa = metrics.getDiameterOuterCircle() + metrics.getOffsetOuterCircle() / 2.0;
       var rectTriangle = new RectTriangleAbsolute(0.0, metrics.getCorrForXY());
       double[] coordsAsc = rectTriangle.getCoordinates(hypothenusa);
       rectTriangle = new RectTriangleAbsolute(180.0, metrics.getCorrForXY());

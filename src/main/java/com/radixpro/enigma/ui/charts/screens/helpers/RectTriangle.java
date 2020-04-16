@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.val;
-
 /**
  * Defines a rectangular triangle and some basic math to calculate the not yet defined angle.
  */
@@ -29,11 +27,10 @@ public class RectTriangle {
    }
 
    private Point definePoint() {
-      val ySize = Math.sin(Math.toRadians(angle)) * hypothenusa;
-      val xSize = Math.cos(Math.toRadians(angle)) * hypothenusa;
+      double ySize = Math.sin(Math.toRadians(angle)) * hypothenusa;
+      double xSize = Math.cos(Math.toRadians(angle)) * hypothenusa;
       return new Point(xSize, ySize);
    }
-
 
    public Point getPointAtEndOfHyp() {
       return this.pointAtEndOfHyp;

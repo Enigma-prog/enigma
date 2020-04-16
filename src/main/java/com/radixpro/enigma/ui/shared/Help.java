@@ -15,10 +15,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.val;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.radixpro.enigma.ui.shared.StyleDictionary.STYLESHEET;
@@ -70,26 +70,26 @@ public class Help {
    }
 
    private Pane createTitlePane() {
-      val pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "titlepane");
+      Pane pane = PaneFactory.createPane(TITLE_HEIGHT, WIDTH, "titlepane");
       pane.getChildren().add(createLblHelpTitle());
       return pane;
    }
 
    private Pane createContentPane() {
-      val pane = PaneFactory.createPane(CONTENT_HEIGHT, WIDTH);
+      Pane pane = PaneFactory.createPane(CONTENT_HEIGHT, WIDTH);
       pane.getChildren().add(createContentWebView());
       return pane;
    }
 
    private Pane createButtonPane() {
-      val pane = PaneFactory.createPane(BTN_PANE_HEIGHT, WIDTH, "helppane");
+      Pane pane = PaneFactory.createPane(BTN_PANE_HEIGHT, WIDTH, "helppane");
       pane.getChildren().add(createCloseButton());
       return pane;
    }
 
    private WebView createContentWebView() {
-      val webView = new WebView();
-      val webEngine = webView.getEngine();
+      WebView webView = new WebView();
+      WebEngine webEngine = webView.getEngine();
       String fullContent = PREFIX + content + POSTFIX;
       webView.setPrefWidth(WIDTH);
       webView.setPrefHeight(CONTENT_HEIGHT);
@@ -98,13 +98,13 @@ public class Help {
    }
 
    private Button createCloseButton() {
-      val button = ButtonFactory.createButton(Rosetta.getRosetta().getText("ui.shared.btn.exit"), false);
+      Button button = ButtonFactory.createButton(Rosetta.getRosetta().getText("ui.shared.btn.exit"), false);
       button.setOnAction(click -> onClose());
       return button;
    }
 
    private VBox createVBox() {
-      val vBox = new VBox();
+      VBox vBox = new VBox();
       vBox.getStylesheets().add(STYLESHEET);
       vBox.setPrefWidth(WIDTH);
       vBox.setPrefHeight(HEIGHT);

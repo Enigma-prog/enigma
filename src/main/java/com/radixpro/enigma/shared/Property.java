@@ -6,13 +6,8 @@
 
 package com.radixpro.enigma.shared;
 
-import lombok.Getter;
-import lombok.ToString;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@ToString
-@Getter
 public class Property {
 
    private final long id;
@@ -25,4 +20,20 @@ public class Property {
       this.value = checkNotNull(value);
    }
 
+   public long getId() {
+      return id;
+   }
+
+   public String getKey() {
+      return key;
+   }
+
+   public String getValue() {
+      return value;
+   }
+
+   @Override
+   public String toString() {
+      return String.format("Property(id=%d, key=%s, value=%s)", id, key, value);
+   }
 }

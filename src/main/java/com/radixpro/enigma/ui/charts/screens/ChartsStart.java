@@ -25,7 +25,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.val;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,7 +66,7 @@ public class ChartsStart {
       stage.showAndWait();
       if (chartsInput.getInputStatus() == InputStatus.READY) {
          long newChartId = chartsInput.getNewChartId();
-         val chartData = addChart(newChartId);
+         ChartData chartData = addChart(newChartId);
          showChart(chartData);
          drawChart2D();
       }
@@ -88,7 +87,7 @@ public class ChartsStart {
       // read selected chart
       if (chartsSearch.isSelectionMade()) {
          ChartData chartData = chartsSearch.getSelectedItem();
-         val presentableChartData = new PresentableChartData(chartData);
+         PresentableChartData presentableChartData = new PresentableChartData(chartData);
          colName.setCellValueFactory(new PropertyValueFactory<>("chartName"));
          colData.setCellValueFactory(new PropertyValueFactory<>("chartDataDescr"));
          tvCharts.getItems().add(presentableChartData);
@@ -128,17 +127,17 @@ public class ChartsStart {
    }
 
    private void defineConfig() {
-      val propApi = new PersistedPropertyApi();
-      val currentConfigId = Integer.parseInt(propApi.read("config").get(0).getValue());
-      val confApi = new PersistedConfigurationApi();
+      PersistedPropertyApi propApi = new PersistedPropertyApi();
+      int currentConfigId = Integer.parseInt(propApi.read("config").get(0).getValue());
+      PersistedConfigurationApi confApi = new PersistedConfigurationApi();
       Configuration currentConfig = confApi.read(currentConfigId).get(0);
       // show config
    }
 
    private ChartData addChart(final long chartId) {
-      val api = new PersistedChartDataApi();
-      val chartData = api.read(chartId).get(0);
-      val presentableChartData = new PresentableChartData(chartData);
+      PersistedChartDataApi api = new PersistedChartDataApi();
+      ChartData chartData = api.read(chartId).get(0);
+      PresentableChartData presentableChartData = new PresentableChartData(chartData);
       colName.setCellValueFactory(new PropertyValueFactory<>("chartName"));
       colData.setCellValueFactory(new PropertyValueFactory<>("chartDataDescr"));
       tvCharts.getItems().add(presentableChartData);
@@ -159,7 +158,7 @@ public class ChartsStart {
       requestedBodies.add(CelestialObjects.PLUTO);
       requestedBodies.add(CelestialObjects.CHEIRON);
       requestedBodies.add(CelestialObjects.MEAN_NODE);
-      val settings = new CalculationSettings(requestedBodies, HouseSystems.PLACIDUS, Ayanamshas.NONE, false,
+      CalculationSettings settings = new CalculationSettings(requestedBodies, HouseSystems.PLACIDUS, Ayanamshas.NONE, false,
             false, false);
       currentFullChart = new CalculatedFullChart(chartData.getFullDateTime(),
             chartData.getLocation(), settings);

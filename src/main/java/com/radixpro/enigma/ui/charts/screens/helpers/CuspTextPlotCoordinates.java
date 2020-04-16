@@ -6,8 +6,6 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.val;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -37,7 +35,7 @@ public class CuspTextPlotCoordinates implements PlotCoordinates {
     */
    public double[] defineCoordinates(final double angle, final DrawMetrics drawMetrics) {
       checkNotNull(drawMetrics);
-      val metrics = (ChartDrawMetrics) drawMetrics;
+      ChartDrawMetrics metrics = (ChartDrawMetrics) drawMetrics;
       double hypothenusa = 0.0;
       if (0.0 <= angle && angle < 45.0) hypothenusa = metrics.getDiameterCuspTextsLeft();
       else if (45.0 <= angle && angle < 135.0) hypothenusa = metrics.getDiameterCuspTextsTop();

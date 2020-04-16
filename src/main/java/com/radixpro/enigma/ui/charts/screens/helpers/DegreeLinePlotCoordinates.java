@@ -6,7 +6,6 @@
 
 package com.radixpro.enigma.ui.charts.screens.helpers;
 
-import lombok.val;
 import org.apache.commons.lang3.ArrayUtils;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -37,7 +36,7 @@ public class DegreeLinePlotCoordinates {
     */
    public double[] defineCoordinates(final int index, final DrawMetrics drawMetrics) {
       checkNotNull(drawMetrics);
-      val metrics = (ChartDrawMetrics) drawMetrics;
+      ChartDrawMetrics metrics = (ChartDrawMetrics) drawMetrics;
       double[] coords1;
       if (index % 5 == 0) coords1 = rectTriangle.getCoordinates(metrics.getDiameterDegrees5Circle());
       else coords1 = rectTriangle.getCoordinates(metrics.getDiameterDegreesCircle());
