@@ -71,6 +71,10 @@ public class ConfigOverview {
       stage.setMinWidth(WIDTH);
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle(rosetta.getText("ui.configs.overview.title"));
+      showOrReshow();
+   }
+
+   private void showOrReshow() {
       stage.setScene(new Scene(createVBox()));
       stage.show();
    }
@@ -217,7 +221,10 @@ public class ConfigOverview {
    private void onEdit() {
       PresentableConfiguration config = selectedItems.get(0);
       long configId = config.getConfigId();
-      new ConfigEditFactory().createConfigEdit(api.read((int) configId).get(0));  // TODO use long consistently, also in api
+      ConfigEdit configEdit = new ConfigEditFactory().createConfigEdit(api.read((int) configId).get(0));// TODO use long consistently, also in api
+      if (InputStatus.READY == configEdit.getInputStatus()) {
+         showOrReshow();
+      }
    }
 
    private void onHelp() {

@@ -18,10 +18,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class AspectConfiguration implements Serializable {
 
-   private final double baseOrb;
-   private final AspectOrbStructure orbStructure;
-   private final List<ConfiguredAspect> aspects;
-   private final boolean drawInOutGoing;
+   private double baseOrb;
+   private AspectOrbStructure orbStructure;
+   private List<ConfiguredAspect> aspects;
+   private boolean drawInOutGoing;
 
    /**
     * Constructor defines all members.
@@ -53,5 +53,21 @@ public class AspectConfiguration implements Serializable {
 
    public boolean isDrawInOutGoing() {
       return drawInOutGoing;
+   }
+
+   public void setBaseOrb(double baseOrb) {
+      this.baseOrb = baseOrb;
+   }
+
+   public void setOrbStructure(AspectOrbStructure orbStructure) {
+      this.orbStructure = orbStructure;
+   }
+
+   public void setAspects(List<ConfiguredAspect> aspects) {
+      this.aspects = aspects;
+   }
+
+   public void setDrawInOutGoing(boolean drawInOutGoing) {
+      this.drawInOutGoing = drawInOutGoing;
    }
 }

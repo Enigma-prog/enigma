@@ -11,10 +11,18 @@
 .radio-button {
      -fx-padding: 6;
 }
+.pane {
+    -fx-padding: 6;
+}
+.vbox {
+    -fx-padding: 6;
+}
+.hbox{
+    -fx-padding: 6;
+}
 .check-box {
     -fx-padding: 4;
     -fx-text-fill: midnightblue;
-    -fx-background-color: blanchedalmond;
 }
 .descriptionpane {
     -fx-background-color: lightsteelblue;

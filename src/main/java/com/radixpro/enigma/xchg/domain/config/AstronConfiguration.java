@@ -21,11 +21,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class AstronConfiguration implements Serializable {
 
-   private final HouseSystems houseSystem;
-   private final Ayanamshas ayanamsha;
-   private final EclipticProjections eclipticProjection;
-   private final ObserverPositions observerPosition;
-   private final List<ConfiguredCelObject> celObjects;
+   private HouseSystems houseSystem;
+   private Ayanamshas ayanamsha;
+   private EclipticProjections eclipticProjection;
+   private ObserverPositions observerPosition;
+   private List<ConfiguredCelObject> celObjects;
 
    /**
     * Constructor defines all memebers.
@@ -66,5 +66,25 @@ public class AstronConfiguration implements Serializable {
 
    public List<ConfiguredCelObject> getCelObjects() {
       return celObjects;
+   }
+
+   public void setHouseSystem(HouseSystems houseSystem) {
+      this.houseSystem = houseSystem;
+   }
+
+   public void setAyanamsha(Ayanamshas ayanamsha) {
+      this.ayanamsha = ayanamsha;
+   }
+
+   public void setEclipticProjection(EclipticProjections eclipticProjection) {
+      this.eclipticProjection = eclipticProjection;
+   }
+
+   public void setObserverPosition(ObserverPositions observerPosition) {
+      this.observerPosition = observerPosition;
+   }
+
+   public void setCelObjects(List<ConfiguredCelObject> celObjects) {
+      this.celObjects = celObjects;
    }
 }
