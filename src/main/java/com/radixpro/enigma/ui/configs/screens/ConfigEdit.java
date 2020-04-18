@@ -8,6 +8,7 @@ package com.radixpro.enigma.ui.configs.screens;
 
 import com.radixpro.enigma.shared.Rosetta;
 import com.radixpro.enigma.ui.charts.screens.helpers.GlyphForCelObject;
+import com.radixpro.enigma.ui.shared.Help;
 import com.radixpro.enigma.ui.shared.InputStatus;
 import com.radixpro.enigma.ui.shared.factories.ButtonFactory;
 import com.radixpro.enigma.ui.shared.factories.LabelFactory;
@@ -250,7 +251,7 @@ public class ConfigEdit {
    }
 
    private void onHelp() {
-
+      new Help(rosetta.getHelpText("help.configedit.title"), rosetta.getHelpText("help.configedit.content"));
    }
 
    private void constructConfig() {

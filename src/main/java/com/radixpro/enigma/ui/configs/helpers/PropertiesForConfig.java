@@ -15,6 +15,9 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+/**
+ * Set of properties from a configuration, in the form of preentable properties.
+ */
 public class PropertiesForConfig {
 
    private final Configuration config;
@@ -22,8 +25,9 @@ public class PropertiesForConfig {
    private final AspectsInConfig aspectsInConfig;
    private final Rosetta rosetta;
 
-   public PropertiesForConfig(final Configuration config, final CelObjectsInConfig celObjectsInConfig,
-                              final AspectsInConfig aspectsInConfig, Rosetta rosetta) {
+
+   public PropertiesForConfig(Configuration config, CelObjectsInConfig celObjectsInConfig,
+                              AspectsInConfig aspectsInConfig, Rosetta rosetta) {
       this.config = checkNotNull(config);
       this.celObjectsInConfig = checkNotNull(celObjectsInConfig);
       this.aspectsInConfig = checkNotNull(aspectsInConfig);
@@ -36,21 +40,19 @@ public class PropertiesForConfig {
 
    private List<PresentableProperty> createProperties() {
       List<PresentableProperty> properties = new ArrayList<>();
-      // TODO use rbNames for properties
-      properties.add(new PresentableProperty("Name", config.getName()));
-      properties.add(new PresentableProperty("Description", config.getDescription()));
-      properties.add(new PresentableProperty("Housesystem", rosetta.getText(config.getAstronConfiguration().getHouseSystem().getNameForRB())));
-      properties.add(new PresentableProperty("Observer position", rosetta.getText(config.getAstronConfiguration().getObserverPosition().getNameForRB())));
-      properties.add(new PresentableProperty("Ecliptic projection", rosetta.getText(config.getAstronConfiguration().getEclipticProjection().getNameForRB())));
-      properties.add(new PresentableProperty("Ayanamsha", rosetta.getText(config.getAstronConfiguration().getAyanamsha().getNameForRB())));
-      properties.add(new PresentableProperty("Celestial objects and points", ""));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.name"), config.getName()));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.description"), config.getDescription()));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.housesystem"), rosetta.getText(config.getAstronConfiguration().getHouseSystem().getNameForRB())));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.observerposition"), rosetta.getText(config.getAstronConfiguration().getObserverPosition().getNameForRB())));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.eclipticprojection"), rosetta.getText(config.getAstronConfiguration().getEclipticProjection().getNameForRB())));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.ayanamsha"), rosetta.getText(config.getAstronConfiguration().getAyanamsha().getNameForRB())));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.celobjects"), ""));
       properties.addAll(celObjectsInConfig.constructProperties(config.getAstronConfiguration().getCelObjects()));
-
       // add aspects
-      properties.add(new PresentableProperty("Aspects", ""));
-      properties.add(new PresentableProperty("Aspect orb structure", config.getDelinConfiguration().getAspectConfiguration().getOrbStructure().name()));
-      properties.add(new PresentableProperty("Aspect base orb", Double.toString(config.getDelinConfiguration().getAspectConfiguration().getBaseOrb())));
-      properties.add(new PresentableProperty("Draw ingoing/outgoing", config.getDelinConfiguration().getAspectConfiguration().isDrawInOutGoing() ? "Yes" : "No"));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.aspects"), ""));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.aspect.orbstructure"), config.getDelinConfiguration().getAspectConfiguration().getOrbStructure().name()));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.aspect.baseorb"), Double.toString(config.getDelinConfiguration().getAspectConfiguration().getBaseOrb())));
+      properties.add(new PresentableProperty(rosetta.getText("ui.general.aspect.drawinoutgoing"), config.getDelinConfiguration().getAspectConfiguration().isDrawInOutGoing() ? "Yes" : "No"));
       properties.addAll(aspectsInConfig.constructProperties(config.getDelinConfiguration().getAspectConfiguration().getAspects()));
       return properties;
    }
