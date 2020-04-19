@@ -7,15 +7,13 @@
 package com.radixpro.enigma.ui.shared;
 
 import com.radixpro.enigma.shared.EnigmaDictionary;
-import com.radixpro.enigma.shared.FailFastHandler;
 import com.radixpro.enigma.shared.Rosetta;
+import com.radixpro.enigma.ui.charts.screens.ChartsStart;
 import com.radixpro.enigma.ui.shared.factories.ButtonFactory;
 import com.radixpro.enigma.ui.shared.factories.LabelFactory;
 import com.radixpro.enigma.ui.shared.factories.PaneFactory;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -26,10 +24,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
 import static com.radixpro.enigma.ui.shared.StyleDictionary.STYLESHEET;
 
@@ -46,20 +40,7 @@ public class Dashboard {
    }
 
    void onCharts() {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setResources(ResourceBundle.getBundle("rb/texts", Rosetta.getRosetta().getLocale()));
-      loader.setLocation(getClass().getResource("/fxml/chartsstart.fxml"));
-      Parent root = null;
-      try {
-         root = loader.load();
-      } catch (IOException e) {
-         new FailFastHandler().terminate("Dashboard cannot start.");
-      }
-      Scene scene = new Scene(Objects.requireNonNull(root));
-      Stage chartsStage = new Stage();
-      chartsStage.initModality(Modality.APPLICATION_MODAL);
-      chartsStage.setScene(scene);
-      chartsStage.showAndWait();
+      new ChartsStart(new Stage(), rosetta);
    }
 
 

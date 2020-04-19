@@ -124,6 +124,8 @@ public class ConfigOverview {
       return pane;
    }
 
+
+   //   TODO: use ResourceBundle
    private TableView<PresentableConfiguration> createTableView() {
       final TableView tableView = new TableView<PresentableConfiguration>();
       tableView.setPrefHeight(TV_HEIGHT);
